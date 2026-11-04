@@ -201,14 +201,16 @@ BylineTimezone=Europe/Oslo
 # "Created by A" is written_by (A), "last modified by B on <date>" is last_updated_by (B) and last_updated_at;
 # "last modified on <date>" with no name, and "Created and last modified by A", credit the change to A; "Created by A on
 # <date>" (never changed since) is written_at. A date link whose title is a fuller date ("May 27, 2014 07:44") counts
-# with that one.
+# with that one. "on" is left out before a fuller date, and a date "yesterday at 7:42 PM" (or "today at ...") counts
+# from the day the export saved the page (HTTrack's "Mirrored from ..., Tue, 21 Oct 2014 08:54:32 GMT" comment).
 BylineSentenceSelectors[]
 BylineSentenceSelectors[]=.page-metadata-modification-info
+BylineSavedAtPattern=/Mirrored from .* by HTTrack[^\]]*\],\s*(.+? GMT)/
 BylineSentences[]
-BylineSentences[]=/^Created and last modified by (?<written>.+?) on (?<updated_at>.+)$/u
-BylineSentences[]=/^Created by (?<written>.+?), last modified by (?<updated>.+?) on (?<updated_at>.+)$/u
-BylineSentences[]=/^Created by (?<written>.+?), last modified on (?<updated_at>.+)$/u
-BylineSentences[]=/^Created by (?<written>.+?) on (?<written_at>.+)$/u
+BylineSentences[]=/^Created and last modified by (?<written>.+?) (?:on )?(?<updated_at>(?:yesterday|today) at .+|[A-Z][a-z]{2} \d{1,2}, \d{4}.*)$/u
+BylineSentences[]=/^Created by (?<written>.+?), last modified by (?<updated>.+?) (?:on )?(?<updated_at>(?:yesterday|today) at .+|[A-Z][a-z]{2} \d{1,2}, \d{4}.*)$/u
+BylineSentences[]=/^Created by (?<written>.+?), last modified (?:on )?(?<updated_at>(?:yesterday|today) at .+|[A-Z][a-z]{2} \d{1,2}, \d{4}.*)$/u
+BylineSentences[]=/^Created by (?<written>.+?) (?:on )?(?<written_at>(?:yesterday|today) at .+|[A-Z][a-z]{2} \d{1,2}, \d{4}.*)$/u
 # The authors of the readers' comments (the old manual pages' and Confluence's) are contributors of the page too
 BylineCommentAuthorSelectors[]
 BylineCommentAuthorSelectors[]=#comments-content p.author
