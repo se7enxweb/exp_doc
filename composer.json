@@ -1,0 +1,22 @@
+{
+    "name": "se7enxweb/exp_doc",
+    "description": "Exponential Documentation: the documentation site's content classes (with class icons), the import of the static Exponential documentation into them, and the Classic (doc2025) and Modern (doc2026) designs with a one-click switch.",
+    "type": "ezpublish-legacy-extension",
+    "keywords": ["Exponential", "Exponential Legacy", "documentation", "import", "design"],
+    "homepage": "https://se7enx.com",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=7.4",
+        "se7enxweb/exp_static_html_imports": "*"
+    },
+    "extra": {
+        "ezpublish-legacy-extension-name": "exp_doc"
+    },
+    "authors": [
+        { "name": "7x", "homepage": "https://se7enx.com" }
+    ],
+    "support": {
+        "issues": "https://github.com/se7enxweb/exp_doc/issues",
+        "source": "https://github.com/se7enxweb/exp_doc"
+    }
+}

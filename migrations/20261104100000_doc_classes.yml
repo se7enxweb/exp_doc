@@ -1,0 +1,319 @@
+---
+# description: The documentation classes, sections and anonymous read access of exp_doc
+- { type: "content_class_group", mode: "ensure", name: "Documentation" }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_page"
+  remote_id: "exp-doc-class-exp_doc_page"
+  language: "eng-US"
+  name: "Doc page"
+  description: "A page of the documentation"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_section"
+  remote_id: "exp-doc-class-exp_doc_section"
+  language: "eng-US"
+  name: "Doc section"
+  description: "A section (a chapter or a folder) of the documentation"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_manual"
+  remote_id: "exp-doc-class-exp_doc_manual"
+  language: "eng-US"
+  name: "Doc manual"
+  description: "A manual (Technical manual, User manual): the card on the start page"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "summary", type: "ezxmltext", name: "Summary" }
+    - { identifier: "audience", type: "ezstring", name: "Audience" }
+    - { identifier: "icon", type: "ezstring", name: "Icon (a Bootstrap Icons name)", translatable: false }
+    - { identifier: "cover", type: "ezimage", name: "Cover" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_version"
+  remote_id: "exp-doc-class-exp_doc_version"
+  language: "eng-US"
+  name: "Doc version"
+  description: "A version of a manual (3.6, 4.x, 6 ...) with its pages below it"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "version", type: "ezstring", name: "Version", required: true, translatable: false }
+    - { identifier: "status", type: "ezstring", name: "Status (current, maintained, legacy or EOL)", translatable: false }
+    - { identifier: "released", type: "ezdate", name: "Released", translatable: false }
+    - { identifier: "eol", type: "ezdate", name: "End of life", translatable: false }
+    - { identifier: "release_notes", type: "ezurl", name: "Release notes" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_tutorial"
+  remote_id: "exp-doc-class-exp_doc_tutorial"
+  language: "eng-US"
+  name: "Doc tutorial"
+  description: "A tutorial; its steps are its children"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "level", type: "ezstring", name: "Level (beginner, intermediate or advanced)" }
+    - { identifier: "duration", type: "ezstring", name: "Duration" }
+    - { identifier: "prerequisites", type: "ezxmltext", name: "Prerequisites" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_tutorial_step"
+  remote_id: "exp-doc-class-exp_doc_tutorial_step"
+  language: "eng-US"
+  name: "Doc tutorial step"
+  description: "One step of a tutorial"
+  name_pattern: "<short_title|title>"
+  container: false
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "step_number", type: "ezinteger", name: "Step number", translatable: false }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_faq"
+  remote_id: "exp-doc-class-exp_doc_faq"
+  language: "eng-US"
+  name: "Doc FAQ"
+  description: "A group of questions; each question is a child"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_faq_question"
+  remote_id: "exp-doc-class-exp_doc_faq_question"
+  language: "eng-US"
+  name: "Doc FAQ question"
+  description: "One question and its answer"
+  name_pattern: "<question>"
+  container: false
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "question", type: "ezstring", name: "Question", required: true }
+    - { identifier: "answer", type: "ezxmltext", name: "Answer" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_extension"
+  remote_id: "exp-doc-class-exp_doc_extension"
+  language: "eng-US"
+  name: "Doc extension"
+  description: "The reference page of an extension, with its facts box"
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "title", type: "ezstring", name: "Title", required: true }
+    - { identifier: "short_title", type: "ezstring", name: "Short title" }
+    - { identifier: "body", type: "ezxmltext", name: "Body" }
+    - { identifier: "extension_name", type: "ezstring", name: "Extension name", translatable: false }
+    - { identifier: "repository", type: "ezurl", name: "Repository" }
+    - { identifier: "packagist", type: "ezurl", name: "Packagist" }
+    - { identifier: "compatibility", type: "ezstring", name: "Compatibility" }
+    - { identifier: "license", type: "ezstring", name: "License" }
+    - { identifier: "status", type: "ezstring", name: "Status" }
+    - { identifier: "original_html", type: "eztext", name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "source_page_id", type: "ezstring", name: "Source page id", searchable: false, translatable: false }
+    - { identifier: "author", type: "ezstring", name: "Author" }
+    - { identifier: "source_modified", type: "ezdatetime", name: "Last modified in the source", translatable: false }
+    - { identifier: "labels", type: "eztags", name: "Labels" }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_image"
+  remote_id: "exp-doc-class-exp_doc_image"
+  language: "eng-US"
+  name: "Doc image"
+  description: "An image of the documentation"
+  name_pattern: "<name>"
+  container: false
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "name", type: "ezstring", name: "Name", required: true }
+    - { identifier: "image", type: "ezimage", name: "Image" }
+    - { identifier: "alt", type: "ezstring", name: "Alternative text" }
+    - { identifier: "caption", type: "ezxmltext", name: "Caption" }
+    - { identifier: "credit", type: "ezstring", name: "Credit" }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- type: "content_class"
+  mode: "ensure"
+  identifier: "exp_doc_file"
+  remote_id: "exp-doc-class-exp_doc_file"
+  language: "eng-US"
+  name: "Doc file"
+  description: "A file (PDF, ZIP ...) of the documentation"
+  name_pattern: "<name>"
+  container: false
+  always_available: true
+  sort_field: "priority"
+  sort_order: "asc"
+  groups:
+    - "Documentation"
+  attributes:
+    - { identifier: "name", type: "ezstring", name: "Name", required: true }
+    - { identifier: "file", type: "ezbinaryfile", name: "File" }
+    - { identifier: "caption", type: "ezxmltext", name: "Caption" }
+    - { identifier: "credit", type: "ezstring", name: "Credit" }
+    - { identifier: "source_path", type: "ezstring", name: "Source path", searchable: false, translatable: false }
+    - { identifier: "metadata", type: "xrowmetadata", name: "Metadata", category: "meta" }
+    - { identifier: "import_hash", type: "ezstring", name: "Import hash", category: "meta", searchable: false, translatable: false }
+- { type: "section", mode: "ensure", identifier: "exp_doc", name: "Doc", navigation_part: "ezcontentnavigationpart" }
+- { type: "section", mode: "ensure", identifier: "exp_doc_media", name: "Doc media", navigation_part: "ezcontentnavigationpart" }
+- { type: "section", mode: "ensure", identifier: "exp_doc_hidden", name: "Doc hidden", navigation_part: "ezcontentnavigationpart" }
+- type: "role"
+  mode: "ensure"
+  name: "Doc reader"
+  policies:
+    - module: "content"
+      function: "read"
+      limitations:
+        Section:
+          - "exp_doc"
+          - "exp_doc_media"
+          - "exp_doc_hidden"
+- type: "role"
+  mode: "assign"
+  role: "Doc reader"
+  users:
+    - "anonymous"

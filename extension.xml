@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" requires="ezpublish 6.0">
+  <name>Exponential Documentation</name>
+  <summary>The Exponential documentation site: documentation content classes, the import of the static documentation, and the Classic (doc2025) and Modern (doc2026) designs</summary>
+  <version>0.1.0</version>
+  <copyright>Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.</copyright>
+  <license>GNU General Public License v2.0 (or any later version)</license>
+  <info_url>https://github.com/se7enxweb/exp_doc</info_url>
+  <author>7x</author>
+  <dependencies>
+    <requires>
+      <extension name="exp_static_html_imports"/>
+    </requires>
+  </dependencies>
+</extension>

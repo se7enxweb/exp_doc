@@ -1,0 +1,21 @@
+---
+# description: The Documentation site in the Doc section, and its media folder
+- type: section
+  mode: assign
+  section: exp_doc
+  node: object-remote:exp_doc_site_root
+  scope: subtree
+- type: content
+  mode: ensure
+  class: folder
+  parent: object-remote:exp_doc_site_root
+  remote_id: exp-doc-media
+  language: eng-US
+  fields:
+    name: Media
+  references: { media: node_id }
+- type: section
+  mode: assign
+  section: exp_doc_media
+  node: object-remote:exp-doc-media
+  scope: subtree
