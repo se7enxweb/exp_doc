@@ -27,8 +27,6 @@
 {if is_set( $after_body )}{$after_body}{/if}
 {* the Contributors folder lists every contributor below its own text *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
-{* the Contributors folder lists every contributor below its own text *}
-{if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
     {include uri='design:parts/doc_children.tpl' node=$node}
     {include uri='design:parts/doc_contributors.tpl' node=$node}
     {include uri='design:parts/doc_historical_comments.tpl' node=$node}
