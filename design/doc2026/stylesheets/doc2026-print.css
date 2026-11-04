@@ -1,0 +1,39 @@
+/*
+ * exp_doc Modern (doc2026): printing a page (and the PDF per manual made through the browser engine): the page
+ * alone, without the header, the tree, the page's contents, the feedback, the footer's links or the cookie banner;
+ * light colors (doc2026-theme.js switches to light before printing); link addresses after external links.
+ */
+.exp-doc-header,
+.exp-doc-tree,
+.exp-doc-onpage,
+.exp-doc-crumbs-nav,
+.exp-doc-feedback,
+.exp-doc-edit,
+.exp-doc-copy,
+.exp-doc-anchor,
+.exp-doc-footer-inner,
+#exp-cc,
+.a4-skip-link {
+    display: none !important;
+}
+.exp-doc-frame {
+    display: block;
+    padding: 0;
+}
+.exp-doc-article {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+}
+.exp-doc-body a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+}
+.exp-doc-body pre {
+    white-space: pre-wrap;
+    break-inside: avoid;
+}
+.exp-doc-body h2,
+.exp-doc-body h3 {
+    break-after: avoid;
+}
