@@ -1,8 +1,9 @@
 {* The Modern design (doc2026, the "doc" design): the Exponential brand on the help center's tokens and components
    (components.css, copied from admin4), light and dark. A docs layout in three columns: the page tree on the left,
    the page in the middle, the page's own contents on the right (sticky), one column on a phone with the tree in a
-   drawer. No inline scripts or styles: the color mode is set by javascript/doc2026-theme.js in the head, everything
-   else by javascript/doc2026.js at the end. The front page draws its landing page (parts/doc_landing.tpl) instead of
+   drawer. No inline scripts or styles: the color mode is admin4's own (javascript/a4_head.js, copied from the
+   kernel, in the head; the switch is design:exp_doc/theme_toggle.tpl), everything else is javascript/doc2026.js at
+   the end. The front page draws its landing page (parts/doc_landing.tpl) instead of
    the three columns. *}
 {* the path from the site's root (content.ini [NodeSettings] RootNode) down; the folders above it (the multisite
    tree's "Websites") are not part of this site *}
@@ -23,8 +24,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
-{ezscript_load( array( 'doc2026-theme.js' ) )}
-{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'doc2026.css' ) )}
+{ezscript_load( array( 'a4_head.js' ) )}
+{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'a4-theme-toggle.css', 'doc2026.css' ) )}
 <link rel="stylesheet" href={'stylesheets/doc2026-print.css'|ezdesign} media="print">
 {include uri='design:parts/doc_head.tpl' path=$doc_path node=$doc_node is_front=$doc_is_front}
 </head>
@@ -66,7 +67,7 @@
 
 {include uri='design:exp_doc/cookie_consent.tpl'}
 {include uri='design:parts/expwt_page_toolbar.tpl'}
-<script type="application/json" id="exp-doc-strings">{json_encode( hash( 'copy', 'Copy'|i18n( 'design/exp_doc' ), 'copied', 'Copied'|i18n( 'design/exp_doc' ), 'copyLink', 'Copy the link to this heading'|i18n( 'design/exp_doc' ), 'themeSystem', 'System'|i18n( 'design/exp_doc' ), 'themeLight', 'Light'|i18n( 'design/exp_doc' ), 'themeDark', 'Dark'|i18n( 'design/exp_doc' ) ) )}</script>
+<script type="application/json" id="exp-doc-strings">{json_encode( hash( 'copy', 'Copy'|i18n( 'design/exp_doc' ), 'copied', 'Copied'|i18n( 'design/exp_doc' ), 'copyLink', 'Copy the link to this heading'|i18n( 'design/exp_doc' ), ) )}</script>
 {ezscript_load( array( 'doc2026.js' ) )}
 <script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>
 </body>

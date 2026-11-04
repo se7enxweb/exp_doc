@@ -1,7 +1,7 @@
 /*
  * exp_doc Modern (doc2026): the documentation site's layout on the help center's tokens and components
  * (components.css, copied from admin4). Colors, radii, spacing, fonts, weights and durations come only from the
- * --a4-* tokens, so light and dark follow html[data-a4-theme] (javascript/doc2026-theme.js) with no value of its
+ * --a4-* tokens, so light and dark follow html[data-a4-theme] (admin4's javascript/a4_head.js) with no value of its
  * own. Widths of the columns are in rem/ch, the only sizes this file defines.
  *
  *   header      .exp-doc-header: brand, search, version switch, design and language switches, color mode
@@ -582,7 +582,7 @@ body.exp-doc {
         transform: none;
         visibility: visible;
     }
-    html:not(.exp-doc-js) .exp-doc-tree {
+    html:not(.a4-js) .exp-doc-tree {
         position: static;
         transform: none;
         visibility: visible;
@@ -1068,4 +1068,30 @@ body.exp-doc {
 /* a supported product's card: the accent outline of a supported version (.exp-doc-version-tag.is-supported) */
 .exp-doc-manual.is-supported {
     box-shadow: inset 0 0 0 2px var(--a4-accent);
+}
+
+/* "Recently added" on the front page: the help center's .a4-help-support box with the accent fade in place of its
+   green one (the help center has no orange box of its own); the tokens carry the dark values */
+.a4-help-support.is-accent {
+    background:
+        linear-gradient(120deg, var(--a4-accent-soft), transparent 60%),
+        var(--a4-card);
+    box-shadow: inset 0 0 0 1px var(--a4-line);
+}
+.exp-doc-landing-excerpt {
+    display: block;
+    color: var(--a4-muted);
+    font-size: var(--a4-text-s);
+}
+
+/* the tokens of admin4's color mode switch (stylesheets/a4-theme-toggle.css, the kernel's block): admin4.css defines
+   them, which this site does not load; the same values, light and dark */
+:root {
+    --a4-orange: var(--a4-accent);
+    --a4-header-field: var(--a4-field);
+    --a4-header-field-line: rgba(16, 24, 40, 0.14);
+}
+html[data-a4-theme="dark"] {
+    --a4-header-field: var(--a4-field);
+    --a4-header-field-line: rgba(255, 255, 255, 0.18);
 }

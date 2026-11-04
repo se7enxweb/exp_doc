@@ -1,6 +1,6 @@
 {* The header of a Modern page: the brand, the search with suggestions (the kernel's front search), the version
    switch of the page's manual, the Classic / Modern and language switches, the round button to the recent changes
-   (doc/recent), the color mode switch, and the menu
+   (doc/recent), admin4's color mode switch (exp_doc/theme_toggle.tpl), and the menu
    button that opens the page tree on a phone. *}
 <header class="exp-doc-header">
     <div class="exp-doc-header-inner">
@@ -23,10 +23,7 @@
             {if $node}{include uri='design:parts/doc_version_switch.tpl' node=$node}{/if}
             {include uri='design:exp_doc/switches.tpl'}
             <a class="a4-btn exp-doc-icon-button" href={ezini( 'RecentSettings', 'Path', 'exp_doc.ini' )|ezurl} title="{'Recent changes'|i18n( 'design/exp_doc' )}" aria-label="{'Recent changes'|i18n( 'design/exp_doc' )}"><span class="a4-icon a4-bi-clock-history" aria-hidden="true"></span></a>
-            <button type="button" class="a4-btn exp-doc-theme" id="exp-doc-theme" data-exp-doc-theme hidden
-                    aria-label="{'Color mode'|i18n( 'design/exp_doc' )}">
-                <span data-exp-doc-theme-label>{'System'|i18n( 'design/exp_doc' )}</span>
-            </button>
+            {include uri='design:exp_doc/theme_toggle.tpl'}
         </div>
     </div>
 </header>

@@ -9,7 +9,6 @@
  * - heading links: every h2/h3/h4 of the article gets an id and a "link to this heading" button that copies it;
  * - code blocks: a copy button, and a light highlighting of comments, strings, numbers and keywords (text nodes in
  *   spans with classes; the code itself is never parsed as HTML);
- * - the color mode button (javascript/doc2026-theme.js does the work).
  */
 (() => {
     'use strict';
@@ -172,15 +171,4 @@
         });
         wrap.appendChild(copy);
     });
-
-    /* ---- the color mode button ---------------------------------------------------------------------------- */
-    const themeButton = doc.querySelector('[data-exp-doc-theme]');
-    if (themeButton && window.expDocTheme) {
-        const label = themeButton.querySelector('[data-exp-doc-theme-label]');
-        const names = { system: t('themeSystem', 'System'), light: t('themeLight', 'Light'), dark: t('themeDark', 'Dark') };
-        const show = () => { if (label) { label.textContent = names[window.expDocTheme.choice()]; } };
-        themeButton.hidden = false;
-        show();
-        themeButton.addEventListener('click', () => { window.expDocTheme.next(); show(); });
-    }
 })();
