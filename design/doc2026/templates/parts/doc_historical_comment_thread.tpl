@@ -15,12 +15,12 @@
             <header class="exp-doc-comment-head">
                 {if and( gt( $depth, $doc_indent ), is_set( $reply_to ), $reply_to )}<p class="a4-meta exp-doc-comment-replyto">{'Replying to %name'|i18n( 'design/exp_doc', '', hash( '%name', $reply_to|wash ) )}</p>{/if}
                 <h3 class="exp-doc-comment-subject" id="historical-comment-{$doc_item.node_id}-subject">{if and( is_set( $doc_item.data_map.title ), $doc_item.data_map.title.has_content )}{$doc_item.data_map.title.content|wash}{else}{$doc_item.name|wash}{/if}</h3>
-                <p class="a4-meta">{if $doc_e.contributor}<a href={$doc_e.contributor.url_alias|ezurl}>{$doc_e.name|wash}</a>{elseif $doc_e.name}{$doc_e.name|wash}{else}{'Unknown author'|i18n( 'design/exp_doc' )}{/if}{if $doc_e.date} · <time datetime="{$doc_e.date|datetime( 'custom', '%Y-%m-%dT%H:%i' )}">{$doc_e.date|l10n( 'shortdatetime' )}</time>{/if}</p>
+                <p class="a4-meta">{if $doc_e.contributor}<a href={$doc_e.contributor.url_alias|ezurl}>{$doc_e.name|wash}</a>{elseif $doc_e.name}{$doc_e.name|wash}{/if}{if and( $doc_e.name, $doc_e.date )} · {/if}{if $doc_e.date}<time datetime="{$doc_e.date|datetime( 'custom', '%Y-%m-%dT%H:%i' )}">{$doc_e.date|l10n( 'shortdatetime' )}</time>{/if}</p>
             </header>
-            <div class="exp-doc-comment-text">{if $doc_e.body}{attribute_view_gui attribute=$doc_item.data_map[$doc_e.body]}{elseif $doc_e.html}{$doc_e.html}{else}<p class="a4-meta">{'The text of this comment was not kept.'|i18n( 'design/exp_doc' )}</p>{/if}</div>
+            <div class="exp-doc-comment-text">{if $doc_e.body}{attribute_view_gui attribute=$doc_item.data_map[$doc_e.body]}{elseif $doc_e.html}{$doc_e.html}{/if}</div>
         </article>
         {include uri='design:parts/doc_historical_comment_thread.tpl' parent_id=$doc_item.node_id class=$class depth=inc( $depth )
-                 reply_to=cond( $doc_e.name, $doc_e.name, 'Unknown author'|i18n( 'design/exp_doc' ) )}
+                 reply_to=$doc_e.name}
     </li>
     {undef $doc_e}
 {/foreach}

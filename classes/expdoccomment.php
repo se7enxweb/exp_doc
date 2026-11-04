@@ -204,19 +204,19 @@ class expDocComment
     }
 
     /**
-     * The historical comments of a page (exp_doc.ini [ClassicSettings] CommentClass, else CommentClassBefore where
-     * the page has none of it yet): the class, the comments directly below the page in the order of their priority,
-     * and how many there are with every reply. Only the page's own thread counts, never the comments of its
-     * subpages.
+     * The historical comments of a page: the comment_historical objects directly below it (exp_doc.ini
+     * [ClassicSettings] CommentClass) in the order of their priority, or, while the import has not converted the page,
+     * the comments of its static source file (expDocCommentSource, the importer's parser) as a tree; and how many
+     * there are with every reply. Only the page's own thread counts, never the comments of its subpages.
      *
      * @param int $nodeID
-     * @return array array( 'result' => array( 'class' => string, 'comments' => eZContentObjectTreeNode[], 'total' => int ) )
+     * @return array array( 'result' => array( 'class' => string, 'comments' => eZContentObjectTreeNode[],
+     *               'source' => the source's comment tree (expDocCommentSource::read()), 'total' => int ) )
      */
     public static function historical( $nodeID )
     {
         $ini = eZINI::instance( 'exp_doc.ini' );
-        $classes = array_filter( array( (string)$ini->variable( 'ClassicSettings', 'CommentClass' ),
-                                        $ini->hasVariable( 'ClassicSettings', 'CommentClassBefore' ) ? (string)$ini->variable( 'ClassicSettings', 'CommentClassBefore' ) : '' ) );
+        $classes = array( (string)$ini->variable( 'ClassicSettings', 'CommentClass' ) );
         foreach ( $classes as $class )
         {
             $comments = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
@@ -233,9 +233,16 @@ class expDocComment
                 $total += (int)eZContentObjectTreeNode::subTreeCountByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( $class ) ),
                                                                                 $comment->attribute( 'node_id' ) );
             }
-            return array( 'result' => array( 'class' => $class, 'comments' => $comments, 'total' => $total ) );
+            return array( 'result' => array( 'class' => $class, 'comments' => $comments, 'source' => array(), 'total' => $total ) );
         }
-        return array( 'result' => array( 'class' => reset( $classes ), 'comments' => array(), 'total' => 0 ) );
+        // not converted yet: the comments as the page's static source has them (the importer's parser), never the
+        // empty objects of the class before
+        $node = eZContentObjectTreeNode::fetch( (int)$nodeID );
+        $map = $node ? $node->dataMap() : array();
+        $source = isset( $map['source_path'] ) && $map['source_path']->hasContent() && class_exists( 'expStaticImportTypeDocHtml' )
+                ? expDocCommentSource::read( $map['source_path']->toString() ) : array();
+        return array( 'result' => array( 'class' => reset( $classes ), 'comments' => array(), 'source' => $source,
+                                            'total' => $source ? expDocCommentSource::count( $source ) : 0 ) );
     }
 
     /**

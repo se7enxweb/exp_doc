@@ -61,7 +61,7 @@
 <ul>
 {foreach $doc_group.items as $doc_item}
 <li><div><a href={concat( $doc_item.page.url_alias, '#', $doc_item.anchor )|ezurl}>{$doc_item.subject|wash}</a>{if eq( $doc_item.type, 'historical' )} ({'Historical'|i18n( 'design/exp_doc' )}){/if}
-    <br />{if $doc_item.name|ne( '' )}{$doc_item.name|wash}{else}{'Unknown author'|i18n( 'design/exp_doc' )}{/if}{if $doc_item.date} &middot; {$doc_item.date|l10n( 'shortdatetime' )}{/if} &middot; {'on %page'|i18n( 'design/exp_doc', '', hash( '%page', concat( '<a href=', $doc_item.page.url_alias|ezurl, '>', $doc_item.page.name|wash, '</a>' ) ) )}
+    <br />{$doc_item.name|wash}{if $doc_item.date} &middot; {$doc_item.date|l10n( 'shortdatetime' )}{/if} &middot; {'on %page'|i18n( 'design/exp_doc', '', hash( '%page', concat( '<a href=', $doc_item.page.url_alias|ezurl, '>', $doc_item.page.name|wash, '</a>' ) ) )}
     {if $doc_item.excerpt}<br /><em>{$doc_item.excerpt|wash}</em>{/if}</div></li>
 {/foreach}
 </ul>

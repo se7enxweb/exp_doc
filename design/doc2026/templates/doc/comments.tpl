@@ -70,7 +70,7 @@
         {foreach $doc_group.items as $doc_item}
             <li class="a4-card exp-doc-recent-item">
                 <h3 class="exp-doc-recent-title"><a href={concat( $doc_item.page.url_alias, '#', $doc_item.anchor )|ezurl}>{$doc_item.subject|wash}</a>{if eq( $doc_item.type, 'historical' )} <span class="a4-tag is-warn">{'Historical'|i18n( 'design/exp_doc' )}</span>{/if}</h3>
-                <p class="a4-meta exp-doc-recent-meta">{if $doc_item.name|ne( '' )}{$doc_item.name|wash}{else}{'Unknown author'|i18n( 'design/exp_doc' )}{/if}{if $doc_item.date} · {$doc_item.date|l10n( 'shortdatetime' )}{/if} · {'on %page'|i18n( 'design/exp_doc', '', hash( '%page', concat( '<a href=', $doc_item.page.url_alias|ezurl, '>', $doc_item.page.name|wash, '</a>' ) ) )}</p>
+                <p class="a4-meta exp-doc-recent-meta">{$doc_item.name|wash}{if $doc_item.date} · {$doc_item.date|l10n( 'shortdatetime' )}{/if} · {'on %page'|i18n( 'design/exp_doc', '', hash( '%page', concat( '<a href=', $doc_item.page.url_alias|ezurl, '>', $doc_item.page.name|wash, '</a>' ) ) )}</p>
                 {if $doc_item.excerpt}<p class="exp-doc-recent-excerpt">{$doc_item.excerpt|wash}</p>{/if}
             </li>
         {/foreach}

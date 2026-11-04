@@ -1,6 +1,7 @@
 {* The historical comments of a Classic page (the class in exp_doc.ini [ClassicSettings] CommentClass,
    comment_historical: the readers' comments of the old site, replies below the comment they answer, in the order of
-   their priority; fetch exp_doc/historical_comments, which falls back to the class before it), in the static site's markup:
+   their priority; fetch exp_doc/historical_comments, which gives the comments of the page's static source while the
+   import has not stored them: parts/doc_comment_source_list.tpl), in the static site's markup:
    - an ezdoc page: div#comments with the thread (parts/doc_comment_list.tpl), rows alternating comment-bglight /
      comment-bgdark, each with its heading, date, author, text and Reply button, and the "New comment" button;
    - a Confluence page: div#comments-section with "<n> Comment(s)" and ol#page-comments, each comment in its own
@@ -11,11 +12,11 @@
 {def $doc_hist = fetch( 'exp_doc', 'historical_comments', hash( 'node_id', $node.node_id ) )
      $doc_comment_class = $doc_hist.class
      $doc_comments = $doc_hist.comments}
-{if $doc_comments|count}
+{if $doc_hist.total}
 {def $doc_total = $doc_hist.total
      $doc_confluence = and( is_set( $node.data_map.source_path ), ezini( 'ClassicSettings', 'ConfluencePrefixes', 'exp_doc.ini' )|contains( $node.data_map.source_path.content|explode( '/' ).0 ) )}
 <details class="exp-doc-comments-toggle"><summary class="exp-doc-comments-summary">{'Comments (%count historical)'|i18n( 'design/exp_doc', '', hash( '%count', $doc_total ) )}</summary>
-{if and( $doc_confluence, eq( $doc_comment_class, ezini( 'ClassicSettings', 'CommentClass', 'exp_doc.ini' ) ) )}
+{if $doc_confluence}
 <div id="comments-section" class="pageSection group">
                 <div class="section-header">
             <h2 id="comments-section-title" class="section-title">
@@ -23,11 +24,19 @@
                             </h2>
         </div>
             <ol class="comment-threads top-level" id="page-comments">
+{if $doc_comments|count}
 {foreach $doc_comments as $comment}
                     <li id="comment-thread-{$comment.data_map.source_comment_id.content|explode( 'comment-' )|implode( '' )|wash}" class="comment-thread">
 {$comment.data_map.original_html.content}
                     </li>
 {/foreach}
+{else}
+{foreach $doc_hist.source as $doc_c}
+                    <li id="comment-thread-{$doc_c.id|wash}" class="comment-thread">
+{$doc_c.original}
+                    </li>
+{/foreach}
+{/if}
             </ol>
 </div>
 {else}
@@ -36,7 +45,7 @@
 
 <h1>{'Comments'|i18n( 'design/doc2025' )}</h1>
 <div id="comments-content">
-{include uri='design:parts/doc_comment_list.tpl' comments=$doc_comments class=$doc_comment_class page=$node}
+{if $doc_comments|count}{include uri='design:parts/doc_comment_list.tpl' comments=$doc_comments class=$doc_comment_class page=$node}{else}{include uri='design:parts/doc_comment_source_list.tpl' comments=$doc_hist.source page=$node}{/if}
 </div>
 <div class="toolbar">
 
