@@ -611,6 +611,22 @@
         <source>on %page</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%count added pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Added %time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recently added</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See all new pages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

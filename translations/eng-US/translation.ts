@@ -611,6 +611,22 @@
         <source>on %page</source>
         <translation>on %page</translation>
     </message>
+    <message>
+        <source>%count added pages</source>
+        <translation>%count added pages</translation>
+    </message>
+    <message>
+        <source>Added %time</source>
+        <translation>Added %time</translation>
+    </message>
+    <message>
+        <source>Recently added</source>
+        <translation>Recently added</translation>
+    </message>
+    <message>
+        <source>See all new pages</source>
+        <translation>See all new pages</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>
