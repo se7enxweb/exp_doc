@@ -142,6 +142,18 @@ TopParentRules[]=**;Exponential.html
 # The hidden leftovers of earlier runs (pages that became redirects or no pages) go below Historical
 RetiredParent=historical/
 
+# The authors of the 6.x documentation by the git history of the source repository (se7enxweb/exponential.doc.exponential.earth):
+# the commit identities "7x <info@se7enx.com>" and "Brookins Consulting <info@brookinsconsulting.com>" are both Graham
+# Brookins (only his public name is used). A 6.x page keeps the byline of its source (the 4.x authors it was copied
+# from); its git authors are contributors of it, and writer and updater where the source names none.
+GitAuthors=enabled
+GitAuthorPaths[]
+GitAuthorPaths[]=Exponential/*/6.x/**
+GitAuthorPaths[]=Exponential/*/6*.html
+GitAuthorMap[]
+GitAuthorMap[info@se7enx.com]=Graham Brookins
+GitAuthorMap[info@brookinsconsulting.com]=Graham Brookins
+
 # Copies of pages: view-parameter variants, the Confluence page-id copies and the hidden mirror. Each becomes a
 # redirect to the page with the same content; one with content of its own is imported (hidden when below doc_hidden)
 # A copy under a view parameter (".../(language)/eng-GB.html") is always a redirect to the page it copies, whatever
