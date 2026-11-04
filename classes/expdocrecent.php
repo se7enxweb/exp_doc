@@ -177,7 +177,8 @@ class expDocRecent
         $excerpt = '';
         if ( isset( $map['body'] ) && $map['body']->hasContent() )
         {
-            $text = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( str_replace( '<', ' <', $map['body']->attribute( 'data_text' ) ) ), ENT_QUOTES, 'UTF-8' ) ) );
+            // the XML stores entities once more escaped (&amp;middot;), so they are decoded twice
+            $text = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( html_entity_decode( strip_tags( str_replace( '<', ' <', $map['body']->attribute( 'data_text' ) ) ), ENT_QUOTES, 'UTF-8' ), ENT_QUOTES, 'UTF-8' ) ) );
             $length = (int)eZINI::instance( 'exp_doc.ini' )->variable( 'RecentSettings', 'ExcerptLength' );
             $excerpt = mb_strlen( $text ) > $length ? rtrim( mb_substr( $text, 0, $length ) ) . '…' : $text;
         }
