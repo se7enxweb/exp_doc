@@ -1038,3 +1038,9 @@ body.exp-doc {
     clip-path: inset(50%);
     white-space: nowrap;
 }
+
+/* the hero's buttons (the help center, all help) on one row, wrapping on a narrow screen */
+.exp-doc-hero .a4-help-hero-actions {
+    flex-wrap: wrap;
+    gap: var(--a4-space-2);
+}

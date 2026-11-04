@@ -22,7 +22,7 @@
         {include uri='design:parts/front_search_suggest.tpl' suggest_id='exp-doc-hero-search-text'}
     </form>
     <p class="a4-meta exp-doc-hero-help">{'Guides, manuals and the reference of this Exponential installation, in English and German.'|i18n( 'design/exp_doc' )}</p>
-    <p class="a4-help-hero-actions"><a class="a4-btn" href={'exphelp/dashboard'|ezurl}>{'Open the help center'|i18n( 'design/exp_doc' )}</a></p>
+    <p class="a4-help-hero-actions"><a class="a4-btn" href={'exphelp/dashboard'|ezurl}>{'Open the help center'|i18n( 'design/exp_doc' )}</a> <a class="a4-btn" href={'exphelp/contents'|ezurl}><span class="a4-icon a4-bi-list-ul" aria-hidden="true"></span> {'Browse all help'|i18n( 'design/exp_doc' )}</a></p>
 </section>
 
 {if $doc_manuals|count}
