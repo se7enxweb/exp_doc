@@ -5,7 +5,6 @@
 {let page_limit=10
      col_count=2
      hide_classes=ezini( 'ClassicSettings', 'MenuHideClasses', 'exp_doc.ini' )
-     hide_nodes=ezini( 'ClassicSettings', 'MenuHideNodeRemoteIDs', 'exp_doc.ini' )
      children=fetch('content','list',hash(parent_node_id,$node.node_id,limit,$page_limit,offset,$view_parameters.offset,
                                           class_filter_type,'exclude',class_filter_array,$hide_classes))}
 
@@ -16,25 +15,25 @@
 <table width="100%" cellspacing="0" cellpadding="4">
 <tr>
 {section name=Child loop=$children}
-    {if $hide_nodes|contains( $Child:item.remote_id )|not}
+    {if ezini( 'ClassicSettings', 'MenuHideNodeRemoteIDs', 'exp_doc.ini' )|contains( $Child:item.object.remote_id )|not}{if ezini( 'ClassicSettings', 'MenuHideNodeRemoteIDs', 'exp_doc.ini' )|contains( $Child:item.remote_id )|not}
     <td>
     <h2><a href={$Child:item.url_alias|ezurl}>{$Child:item.name}</a></h2>
 
     {let sub_children=fetch('content','list',hash(parent_node_id,$Child:item.node_id,limit,$page_limit,
-                                                  class_filter_type,'exclude',class_filter_array,$hide_classes))}
+                                                  class_filter_type,'exclude',class_filter_array,ezini( 'ClassicSettings', 'MenuHideClasses', 'exp_doc.ini' )))}
 
     <ul>
     {section name=SubChild loop=$:sub_children}
-    {if $hide_nodes|contains( $:item.remote_id )|not}
+    {if ezini( 'ClassicSettings', 'MenuHideNodeRemoteIDs', 'exp_doc.ini' )|contains( $:item.object.remote_id )|not}{if ezini( 'ClassicSettings', 'MenuHideNodeRemoteIDs', 'exp_doc.ini' )|contains( $:item.remote_id )|not}
     <li><a href={$:item.url_alias|ezurl}>{$:item.name}</a></li>
-    {/if}
+    {/if}{/if}
     {/section}
     </ul>
 
     {/let}
 
     </td>
-    {/if}
+    {/if}{/if}
     {delimiter modulo=$col_count}
 </tr>
 <tr>
