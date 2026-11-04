@@ -106,14 +106,6 @@ Links[]=Extensions/Exponential-extensions/eZ-Image-Editor.html;eZ Image Editor
 Links[]=Extensions/Exponential-extensions/eZ-Multiupload.html;eZ Multiupload
 Links[]=Extensions/Exponential-extensions/Exponential-Extension-for-Oracle-R-database.html;Exponential Extension for <br />Oracle&reg; database
 
-# The design choice in the header (design:exp_doc/switches.tpl): Designs[<design name>]=<label>. The kernel's design
-# switch (site.ini [DesignSettings] SwitchableDesigns[]) must list the same names. "doc" is the symlink to the
-# current Modern design (doc2026).
-[DesignSwitchSettings]
-Designs[]
-Designs[doc2025]=Classic
-Designs[doc]=Modern
-
 # The Modern design (doc2026, the "doc" design)
 [ModernSettings]
 SiteName=Exponential Documentation
