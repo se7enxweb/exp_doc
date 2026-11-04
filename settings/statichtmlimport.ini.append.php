@@ -131,6 +131,13 @@ AssetSuffixes[]=svg
 AssetSuffixes[]=pdf
 AssetSuffixes[]=zip
 
+# The version pages of the export were renamed (Technical-manual/4.html is the page of the folder 4.7/): such a page is
+# the parent of the folder its links point into most, and a "Table of contents" heading becomes the version
+FolderPagePatterns[]
+FolderPagePatterns[]=Exponential/*/[0-9]*.html
+GenericTitles[]
+GenericTitles[]=Table of contents
+
 # Which class a page becomes; the first match wins
 ClassRules[]
 ClassRules[]=Exponential/Technical-manual.html;exp_doc_manual
