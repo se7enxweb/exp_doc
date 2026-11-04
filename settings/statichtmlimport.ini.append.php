@@ -166,6 +166,8 @@ TitleSelector=#title-text, .attribute-heading h1, h1
 # Confluence's heading (#title-text) is outside its body (#main-content): looked for in the whole page, before the
 # first heading of the text
 TitleSelectorScope=document
+# The static h2 below the title is the first section of the XML (the designs draw it as h2, as the static site did)
+NormalizeHeadings=enabled
 BodySelector=#main-content, .area-docmain-normal .content-view-full, #main, body
 OriginalSelector=
 TitleSuffixPatterns[]
