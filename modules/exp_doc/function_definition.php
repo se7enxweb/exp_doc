@@ -107,3 +107,18 @@ $FunctionList['historical_comments'] = array( 'name' => 'historical_comments',
                                               'parameters' => array( array( 'name' => 'node_id',
                                                                             'type' => 'integer',
                                                                             'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'historical_comment', hash( 'node_id', <comment node id> ) )
+ *       what a historical comment shows: name (the author, by the first value stored of the relation, author_name,
+ *       the old author and the comment's own markup), contributor (node or false), date, body (the XML attribute with
+ *       content, or '') and html (original_html when there is no body)
+ */
+$FunctionList['historical_comment'] = array( 'name' => 'historical_comment',
+                                             'operation_types' => array( 'read' ),
+                                             'call_method' => array( 'class' => 'expDocComment',
+                                                                     'method' => 'historicalEntry' ),
+                                             'parameter_type' => 'standard',
+                                             'parameters' => array( array( 'name' => 'node_id',
+                                                                           'type' => 'integer',
+                                                                           'required' => true ) ) );

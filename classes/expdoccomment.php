@@ -239,6 +239,70 @@ class expDocComment
     }
 
     /**
+     * What a historical comment shows, whichever class and whatever the import stored:
+     *   - name: the author relation's contributor, else author_name, else the old class's author, else the name in
+     *     the comment's own markup (original_html: Confluence h4.author, ezdoc p.author);
+     *   - contributor: the contributor's node, or false;
+     *   - date: created, else the object's publication;
+     *   - body: the identifier of the XML attribute with content (body, the old class's text), or '' when there is
+     *     none; then html: original_html, the comment's own markup, to show as it was.
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => array( 'name', 'contributor', 'date', 'body', 'html' ) )
+     */
+    public static function historicalEntry( $nodeID )
+    {
+        $node = eZContentObjectTreeNode::fetch( (int)$nodeID );
+        $entry = array( 'name' => '', 'contributor' => false, 'date' => 0, 'body' => '', 'html' => '' );
+        if ( !$node instanceof eZContentObjectTreeNode )
+        {
+            return array( 'result' => $entry );
+        }
+        $map = $node->dataMap();
+        $has = function ( $identifier ) use ( $map )
+        {
+            return isset( $map[$identifier] ) && $map[$identifier]->hasContent();
+        };
+        $html = $has( 'original_html' ) ? (string)$map['original_html']->attribute( 'data_text' ) : '';
+        if ( $has( 'author' ) && $map['author']->attribute( 'data_type_string' ) === 'ezobjectrelation' )
+        {
+            $person = eZContentObject::fetch( (int)$map['author']->attribute( 'data_int' ) );
+            if ( $person instanceof eZContentObject )
+            {
+                $entry['contributor'] = $person->mainNode() ?: false;
+                $entry['name'] = $person->attribute( 'name' );
+            }
+        }
+        if ( $has( 'author_name' ) )
+        {
+            $entry['name'] = trim( $map['author_name']->toString() );
+        }
+        elseif ( $entry['name'] === '' && $has( 'author' ) && $map['author']->attribute( 'data_type_string' ) === 'ezstring' )
+        {
+            $entry['name'] = trim( $map['author']->toString() );
+        }
+        if ( $entry['name'] === '' && $html !== ''
+             && preg_match( '#<(?:h4|p)[^>]*class="[^"]*\bauthor\b[^"]*"[^>]*>(.*?)</(?:h4|p)>#si', $html, $match ) )
+        {
+            $entry['name'] = trim( html_entity_decode( strip_tags( $match[1] ), ENT_QUOTES, 'UTF-8' ) );
+        }
+        $entry['date'] = $has( 'created' ) ? (int)$map['created']->attribute( 'data_int' ) : (int)$node->object()->attribute( 'published' );
+        foreach ( array( 'body', 'text' ) as $identifier )
+        {
+            if ( $has( $identifier ) )
+            {
+                $entry['body'] = $identifier;
+                break;
+            }
+        }
+        if ( $entry['body'] === '' )
+        {
+            $entry['html'] = $html;
+        }
+        return array( 'result' => $entry );
+    }
+
+    /**
      * The visible comments below a node (a page or a comment), oldest first, as the reader may see them (held ones
      * are hidden by the auto-hold, so readers never get them).
      *

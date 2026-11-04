@@ -1,7 +1,8 @@
 {* One level of a Classic comment thread (parts/doc_comments.tpl): each comment in its row, its replies nested
-   inside the row, as on the static site. The author as the source wrote it (author_name), the date (created), the
-   text (body); the old class exp_doc_comment kept them in author and text. *}
-<ul>{foreach $comments as $doc_index => $comment}    <li class="{cond( $doc_index|mod( 2 )|eq( 0 ), 'comment-bglight', 'comment-bgdark' )}"><div class="padding">
+   inside the row, as on the static site. The author, date and text are what fetch exp_doc/historical_comment finds
+   stored first (author: relation, author_name, the old author, the comment's own markup; text: body, the old text,
+   else the comment's own markup original_html). *}
+<ul>{foreach $comments as $doc_index => $comment}{def $doc_e = fetch( 'exp_doc', 'historical_comment', hash( 'node_id', $comment.node_id ) )}    <li class="{cond( $doc_index|mod( 2 )|eq( 0 ), 'comment-bglight', 'comment-bgdark' )}"><div class="padding">
     <div class="content-view-line">
 <div class="class-comment">
 
@@ -12,12 +13,12 @@
 </div>
 
 <div class="attribute-byline float-break">
- <p class="date">{cond( and( is_set( $comment.data_map.created ), $comment.data_map.created.has_content ), $comment.data_map.created.content.timestamp, $comment.object.published )|datetime( 'custom', '%l %d %F %Y %g:%i:%s %a' )}</p>
- <p class="author">{if is_set( $comment.data_map.author_name )}{$comment.data_map.author_name.content|wash}{else}{$comment.data_map.author.content|wash}{/if}</p>
+ <p class="date">{$doc_e.date|datetime( 'custom', '%l %d %F %Y %g:%i:%s %a' )}</p>
+ <p class="author">{$doc_e.name|wash}</p>
 </div>
 
 <div class="attribute-short">
-{if is_set( $comment.data_map.body )}{$comment.data_map.body.content.output.output_text}{else}{$comment.data_map.text.content.output.output_text}{/if}
+{if $doc_e.body}{$comment.data_map[$doc_e.body].content.output.output_text}{else}{$doc_e.html}{/if}{undef $doc_e}
 </div>
 
 <input class="button" type="submit" name="NewButton" value="{'Reply'|i18n( 'design/doc2025' )}" />
