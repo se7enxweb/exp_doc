@@ -260,8 +260,6 @@ VersionStatus[6*]=current
 VersionStatus[5*]=EOL
 VersionStatus[4*]=EOL
 VersionStatus[3*]=EOL
-AttributeMap[exp_doc_version/status]=version_status
-AttributeMap[folder/description]=body
 
 # Which class a page becomes; the first match wins
 ClassRules[]
@@ -305,6 +303,9 @@ AttributeMap[exp_doc_version/version]=version
 AttributeMap[exp_doc_faq_question/question]=title
 AttributeMap[exp_doc_faq_question/answer]=body
 AttributeMap[exp_doc_extension/extension_name]=title
+# (after the reset of AttributeMap[] above, which empties the list: set earlier, these two were lost)
+AttributeMap[exp_doc_version/status]=version_status
+AttributeMap[folder/description]=body
 
 AssetClassRules[]
 AssetClassRules[]=*.pdf;exp_doc_file
