@@ -40,6 +40,87 @@ class expDocFetch
     }
 
     /**
+     * Everyone a page names, for its "Contributors" list: the objects of its contributors relation list, in that order,
+     * each with the roles the page gives them: author (written_by, with written_at), updated (last_updated_by, with
+     * last_updated_at), maintainer (maintainers) and commenter (a comment below the page, exp_doc.ini [ClassicSettings]
+     * CommentClass, whose author is that name, with the first comment's date).
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => list of array( 'object', 'node', 'name', 'roles', 'dates' ) )
+     */
+    public static function contributors( $nodeID )
+    {
+        $node = eZContentObjectTreeNode::fetch( (int)$nodeID );
+        if ( !$node instanceof eZContentObjectTreeNode )
+        {
+            return array( 'result' => array() );
+        }
+        $map = $node->dataMap();
+        $ids = isset( $map['contributors'] ) ? self::relationIDs( $map['contributors'] ) : array();
+        $single = function ( $identifier ) use ( $map )
+        {
+            return isset( $map[$identifier] ) && $map[$identifier]->hasContent() ? (int)$map[$identifier]->attribute( 'data_int' ) : 0;
+        };
+        $date = function ( $identifier ) use ( $map )
+        {
+            return isset( $map[$identifier] ) && $map[$identifier]->hasContent() ? (int)$map[$identifier]->attribute( 'data_int' ) : 0;
+        };
+        $author = $single( 'written_by' );
+        $updater = $single( 'last_updated_by' );
+        $maintainers = isset( $map['maintainers'] ) ? self::relationIDs( $map['maintainers'] ) : array();
+        // comment authors, by name (comments carry the author as text)
+        $commented = array();
+        $commentClass = eZINI::instance( 'exp_doc.ini' )->variable( 'ClassicSettings', 'CommentClass' );
+        $comments = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( $commentClass ),
+                                                                    'SortBy' => array( 'published', true ) ), $node->attribute( 'node_id' ) );
+        foreach ( is_array( $comments ) ? $comments : array() as $comment )
+        {
+            $cmap = $comment->dataMap();
+            $name = isset( $cmap['author'] ) ? mb_strtolower( trim( $cmap['author']->toString() ) ) : '';
+            if ( $name !== '' && !isset( $commented[$name] ) )
+            {
+                $commented[$name] = isset( $cmap['created'] ) && $cmap['created']->hasContent() ? (int)$cmap['created']->attribute( 'data_int' ) : (int)$comment->object()->attribute( 'published' );
+            }
+        }
+        $result = array();
+        foreach ( $ids as $id )
+        {
+            $object = eZContentObject::fetch( $id );
+            if ( !$object instanceof eZContentObject )
+            {
+                continue;
+            }
+            $roles = array();
+            $dates = array();
+            if ( $id === $author ) { $roles[] = 'author'; $dates['author'] = $date( 'written_at' ); }
+            if ( $id === $updater ) { $roles[] = 'updated'; $dates['updated'] = $date( 'last_updated_at' ); }
+            if ( in_array( $id, $maintainers, true ) ) { $roles[] = 'maintainer'; }
+            $key = mb_strtolower( trim( $object->attribute( 'name' ) ) );
+            if ( isset( $commented[$key] ) ) { $roles[] = 'commenter'; $dates['commenter'] = $commented[$key]; }
+            $result[] = array( 'object' => $object, 'node' => $object->mainNode(), 'name' => $object->attribute( 'name' ),
+                               'roles' => $roles, 'dates' => $dates );
+        }
+        return array( 'result' => $result );
+    }
+
+    /**
+     * The object ids of a relation list attribute, in its order.
+     *
+     * @param eZContentObjectAttribute $attribute
+     * @return int[]
+     */
+    protected static function relationIDs( eZContentObjectAttribute $attribute )
+    {
+        $ids = array();
+        $content = $attribute->content();
+        foreach ( isset( $content['relation_list'] ) ? $content['relation_list'] : array() as $item )
+        {
+            $ids[] = (int)$item['contentobject_id'];
+        }
+        return $ids;
+    }
+
+    /**
      * The children of a node as the documentation's menus list them: in the parent's sort order, without the classes
      * of exp_doc.ini [ClassicSettings] MenuHideClasses[] and the nodes named by remote id in MenuHideNodeRemoteIDs[].
      * Only nodes the reader may see.

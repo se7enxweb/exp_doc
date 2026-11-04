@@ -49,3 +49,17 @@ $FunctionList['menu_children'] = array( 'name' => 'menu_children',
                                         'parameters' => array( array( 'name' => 'parent_node_id',
                                                                       'type' => 'integer',
                                                                       'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'contributors', hash( 'node_id', <page node id> ) )
+ *       everyone the page names (its contributors relation list, in its order), each as a hash: object, node (the
+ *       contributor's page), name, roles (author, updated, maintainer, commenter) and dates (role => timestamp)
+ */
+$FunctionList['contributors'] = array( 'name' => 'contributors',
+                                       'operation_types' => array( 'read' ),
+                                       'call_method' => array( 'class' => 'expDocFetch',
+                                                               'method' => 'contributors' ),
+                                       'parameter_type' => 'standard',
+                                       'parameters' => array( array( 'name' => 'node_id',
+                                                                     'type' => 'integer',
+                                                                     'required' => true ) ) );

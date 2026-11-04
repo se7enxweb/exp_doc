@@ -19,7 +19,7 @@
 {$doc_map.original_html.content}
 {/if}
 
-<div class="break"></div>{include uri='design:parts/doc_pageinfo.tpl' node=$node}
+{if and( is_set( $doc_map.source_path ), ezini( 'ClassicSettings', 'ConfluencePrefixes', 'exp_doc.ini' )|contains( $doc_map.source_path.content|explode( '/' ).0 ) )}{include uri='design:parts/doc_confluence_meta.tpl' node=$node}<div class="break"></div>{else}<div class="break"></div>{include uri='design:parts/doc_pageinfo.tpl' node=$node}{/if}{include uri='design:parts/doc_contributors.tpl' node=$node}
 <hr class="hide" />
 
 </div>

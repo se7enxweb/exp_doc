@@ -22,6 +22,7 @@
     </div>
 {if is_set( $after_body )}{$after_body}{/if}
     {include uri='design:parts/doc_children.tpl' node=$node}
+    {include uri='design:parts/doc_contributors.tpl' node=$node}
     {include uri='design:parts/doc_feedback.tpl' node=$node}
     {include uri='design:parts/doc_edit_link.tpl' node=$node}
 </article>

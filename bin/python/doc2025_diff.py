@@ -38,7 +38,9 @@ import urllib.request
 from lxml import html as lhtml
 
 EXCEPTION_IDS = {'exp-doc-switches', 'exp-cc', 'expwt', 'exp-wt', 'ezwt', 'exp-cc-config'}
-EXCEPTION_CLASSES = {'exp-doc-runs-on'}
+# the decided additions left out of the comparison: the version badge, and the page's Contributors list (a
+# list the static site did not have, owner 2026-11-04)
+EXCEPTION_CLASSES = {'exp-doc-runs-on', 'exp-doc-contributors'}
 # Decided modern exceptions in text (doc.md, the rebranding rule): the copyright runs to the current year, so any
 # end year of "1998 - <year>" counts as equal
 YEAR_RANGE = re.compile(r'(\b1998\s*-\s*)\d{4}\b')
