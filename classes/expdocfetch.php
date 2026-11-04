@@ -1,56 +1,4 @@
-    /** @var array|null the people of the Contributors page, for the request (people()) */
-    protected static $people = null;
-
-    /**
-     * The Contributors page's main list (fetch exp_doc/contributor_list): everyone with at least one authoring role,
-     * most pages first; see people().
-     *
-     * @return array array( 'result' => entries of people() )
-     */
-    public static function contributorList()
-    {
-        $people = self::people();
-        return array( 'result' => $people['authors'] );
-    }
-
-    /**
-     * The Contributors page's "Commenters" (fetch exp_doc/commenter_list): the people whose only role is the author of
-     * historical comments, most comments first; see people().
-     *
-     * @return array array( 'result' => entries of people() )
-     */
-    public static function commenterList()
-    {
-        $people = self::people();
-        return array( 'result' => $people['commenters'] );
-    }
-
-    /**
-     * Every contributor of the site: the exp_doc_contributor objects below the Contributors folder (exp_doc.ini
-     * [RecentSettings] ContributorFolderRemoteID), each with the number of pages that name them as writer (written_by;
-     * Confluence's "created by" is mapped there), last updater (last_updated_by, "last modified by") and maintainer
-     * (maintainers), the current versions of published pages only, and the historical comments they wrote (the
-     * comment class's author relation: how many, and the newest one's written date). Aggregate queries, one per role,
-     * never one per person. Split by role: authors (at least one page; most pages first, then by name), commenters
-     * (comments only; most comments first, then by name), and the count of those with neither (their comments not
-     * converted yet).
-     *
-     * @return array array( 'authors', 'commenters' => list of array( 'object', 'node', 'name', 'written', 'updated',
-     *               'maintained', 'total', 'comments', 'last_comment', 'roles' ), 'neither' => int )
-     */
-    protected static function people()
-    {
-        if ( self::$people !== null )
-        {
-            return self::$people;
-        }
-        $ini = eZINI::instance( 'exp_doc.ini' );
-        $folder = eZContentObject::fetchByRemoteID( (string)$ini->variable( 'RecentSettings', 'ContributorFolderRemoteID' ) );
-        $result = array( 'authors' => array(), 'commenters' => array(), 'neither' => 0 );
-        if ( !$folder || !$folder->mainNode() )
-        {
-            return self::$people = $result;
-        }<?php
+<?php
 /**
  * The template fetch functions of exp_doc (modules/exp_doc/function_definition.php).
  *
@@ -156,22 +104,58 @@ class expDocFetch
         return array( 'result' => $result );
     }
 
+    /** @var array|null the people of the Contributors page, for the request (people()) */
+    protected static $people = null;
+
     /**
-     * Every contributor of the site, for the Contributors folder's page: the exp_doc_contributor objects below the
-     * folder (exp_doc.ini [RecentSettings] ContributorFolderRemoteID), each with the number of pages that name them
-     * as writer (written_by), last updater (last_updated_by) and maintainer (maintainers), the current versions of
-     * published pages only; sorted by the sum of the three, then by name.
+     * The Contributors page's main list (fetch exp_doc/contributor_list): everyone with at least one authoring role,
+     * most pages first; see people().
      *
-     * @return array array( 'result' => list of array( 'object', 'node', 'name', 'written', 'updated', 'maintained',
-     *               'total', 'roles' (author, updated, maintainer: the roles with at least one page) ) )
+     * @return array array( 'result' => entries of people() )
      */
     public static function contributorList()
     {
+        $people = self::people();
+        return array( 'result' => $people['authors'] );
+    }
+
+    /**
+     * The Contributors page's "Commenters" (fetch exp_doc/commenter_list): the people whose only role is the author of
+     * historical comments, most comments first; see people().
+     *
+     * @return array array( 'result' => entries of people() )
+     */
+    public static function commenterList()
+    {
+        $people = self::people();
+        return array( 'result' => $people['commenters'] );
+    }
+
+    /**
+     * Every contributor of the site: the exp_doc_contributor objects below the Contributors folder (exp_doc.ini
+     * [RecentSettings] ContributorFolderRemoteID), each with the number of pages that name them as writer (written_by;
+     * Confluence's "created by" is mapped there), last updater (last_updated_by, "last modified by") and maintainer
+     * (maintainers), the current versions of published pages only, and the historical comments they wrote (the
+     * comment class's author relation: how many, and the newest one's written date). Aggregate queries, one per role,
+     * never one per person. Split by role: authors (at least one page; most pages first, then by name), commenters
+     * (comments only; most comments first, then by name), and the count of those with neither (their comments not
+     * converted yet).
+     *
+     * @return array array( 'authors', 'commenters' => list of array( 'object', 'node', 'name', 'written', 'updated',
+     *               'maintained', 'total', 'comments', 'last_comment', 'roles' ), 'neither' => int )
+     */
+    protected static function people()
+    {
+        if ( self::$people !== null )
+        {
+            return self::$people;
+        }
         $ini = eZINI::instance( 'exp_doc.ini' );
         $folder = eZContentObject::fetchByRemoteID( (string)$ini->variable( 'RecentSettings', 'ContributorFolderRemoteID' ) );
+        $result = array( 'authors' => array(), 'commenters' => array(), 'neither' => 0 );
         if ( !$folder || !$folder->mainNode() )
         {
-            return array( 'result' => array() );
+            return self::$people = $result;
         }
         $db = eZDB::instance();
         $attributeIDs = function ( $identifier ) use ( $db )
