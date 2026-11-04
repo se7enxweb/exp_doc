@@ -163,6 +163,9 @@ HiddenPaths[]=doc_inside_admin/**
 # The two page layouts of the export: the documentation site's own (.area-docmain-normal) and Confluence's
 # (#main-content); the first selector that matches wins
 TitleSelector=#title-text, .attribute-heading h1, h1
+# Confluence's heading (#title-text) is outside its body (#main-content): looked for in the whole page, before the
+# first heading of the text
+TitleSelectorScope=document
 BodySelector=#main-content, .area-docmain-normal .content-view-full, #main, body
 OriginalSelector=
 TitleSuffixPatterns[]
