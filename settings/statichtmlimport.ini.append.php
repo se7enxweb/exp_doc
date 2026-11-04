@@ -145,6 +145,27 @@ FolderPagePatterns[]=Exponential/*/[0-9]*.html
 GenericTitles[]
 GenericTitles[]=Table of contents
 
+# The byline box of every page ("Written by: A (14/09/2010 10:14 am)", "Last updated by: B (...)", "Maintainers: C, D")
+# leaves the body: its people become contributor objects (one per name, in the Contributors folder) and the page
+# relates to them (written_by, last_updated_by, maintainers) with the dates in written_at and last_updated_at.
+# The dates are read in the source's timezone, assumed to be Europe/Oslo (the documentation site was run from Norway;
+# the export carries no timezone of its own).
+BylineSelectors[]
+BylineSelectors[]=.pageinfo
+BylineFields[]
+BylineFields[written]=Written by
+BylineFields[updated]=Last updated by
+BylineFields[maintainers]=Maintainers
+BylineListFields[]
+BylineListFields[]=maintainers
+BylineDateFormats[]
+BylineDateFormats[]=d/m/Y g:i a
+BylineTimezone=Europe/Oslo
+ContributorClass=exp_doc_contributor
+ContributorNameAttribute=name
+ContributorParentRemoteID=exp-doc-contributors
+ContributorSection=exp_doc
+
 # Which class a page becomes; the first match wins
 ClassRules[]
 ClassRules[]=Exponential/Technical-manual.html;exp_doc_manual
@@ -169,10 +190,11 @@ AttributeMap[*/body]=body
 AttributeMap[*/original_html]=original_html
 AttributeMap[*/source_path]=source_path
 AttributeMap[*/source_page_id]=page_id
-AttributeMap[*/author]=author
-AttributeMap[*/modifier]=modifier
-AttributeMap[*/source_created]=created
-AttributeMap[*/source_modified]=modified
+AttributeMap[*/written_by]=written_by
+AttributeMap[*/written_at]=written_at
+AttributeMap[*/last_updated_by]=last_updated_by
+AttributeMap[*/last_updated_at]=last_updated_at
+AttributeMap[*/maintainers]=maintainers
 AttributeMap[*/labels]=labels_tags
 AttributeMap[*/metadata]=metadata_xml
 AttributeMap[*/import_hash]=import_hash

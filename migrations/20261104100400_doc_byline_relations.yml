@@ -1,0 +1,118 @@
+---
+# description: The byline as relations: a contributor class and folder, and written_by, written_at, last_updated_by, last_updated_at and maintainers on the page classes in place of the plain author, modifier, source_created and source_modified
+- type: content_class
+  mode: ensure
+  identifier: exp_doc_contributor
+  remote_id: exp-doc-class-exp_doc_contributor
+  language: eng-US
+  name: Doc contributor
+  description: A person credited in the documentation's bylines (written by, last updated by, maintainers)
+  name_pattern: "<name>"
+  container: false
+  always_available: true
+  groups:
+    - Documentation
+  attributes:
+    - { identifier: name, type: ezstring, name: Name, required: true }
+    - { identifier: bio, type: ezxmltext, name: About }
+    - { identifier: profile_url, type: ezurl, name: Profile }
+    - { identifier: image, type: ezimage, name: Portrait }
+    - { identifier: metadata, type: xrowmetadata, name: Metadata, category: meta }
+- type: content
+  mode: ensure
+  class: folder
+  parent: object-remote:exp_doc_site_root
+  remote_id: exp-doc-contributors
+  language: eng-US
+  fields:
+    name: Contributors
+- type: content_class
+  mode: update
+  class: exp_doc_page
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_section
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_manual
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_version
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial_step
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_faq
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_faq_question
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
+- type: content_class
+  mode: update
+  class: exp_doc_extension
+  add_attributes:
+    - { identifier: written_by, type: ezobjectrelation, name: "Written by" }
+    - { identifier: written_at, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: last_updated_by, type: ezobjectrelation, name: "Last updated by" }
+    - { identifier: last_updated_at, type: ezdatetime, name: "Last updated at", translatable: false }
+    - { identifier: maintainers, type: ezobjectrelationlist, name: "Maintainers" }
+  remove_attributes: [ author, modifier, source_created, source_modified ]
