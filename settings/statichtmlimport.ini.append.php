@@ -276,8 +276,9 @@ DateGitPathAliases[]=#(^|[/-])Expon?ential(?=[-/.]|$)#;$1eZ-Publish
 # small differences its content has (it would be a page named like its version or section, below that one)
 CopyOfPatterns[]
 CopyOfPatterns[]=#^(.+)/\([a-z_]+\)/.*\.html$#
-# the index page of a folder that has a page of its own (Exponential/index.html of Exponential.html) is that page
-CopyOfPatterns[]=#^(Exponential(?:/[^/]+)?)/index\.html$#
+# a folder's index page with the same visible text as the page next to the folder (Exponential/index.html of
+# Exponential.html: only their stylesheet links differ) is that page: one node, the index page's path redirects to it
+FolderIndexCopies=enabled
 DuplicatePatterns[]
 DuplicatePatterns[]=#\(language\)#
 DuplicatePatterns[]=#^pages/#
