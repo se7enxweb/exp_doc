@@ -71,13 +71,25 @@ class expDocContributorMerge
             {
                 // an address: https://host/doc/contributors/name, /contributors/name or contributors/name
                 $path = trim( (string)parse_url( $reference, PHP_URL_PATH ), '/' );
-                foreach ( array( $path, preg_replace( '#^[^/]+/#', '', $path ) ) as $candidate )
-                    if ( $candidate !== '' && ( $nodeID = eZURLAliasML::fetchNodeIDByPath( $candidate ) ) )
+                // (the siteaccess's path prefix applies, as for a request: translate(), not fetchByPath())
+                foreach ( array_unique( array( $path, preg_replace( '#^[^/]+/#', '', $path ) ) ) as $candidate )
+                {
+                    if ( $candidate === '' )
+                        continue;
+                    $uri = eZURI::instance( $candidate );
+                    $translated = eZURLAliasML::translate( $uri );
+                    if ( is_string( $translated ) )
                     {
-                        $node = eZContentObjectTreeNode::fetch( (int)$nodeID );
+                        $uri = eZURI::instance( $translated );
+                        $translated = eZURLAliasML::translate( $uri );
+                    }
+                    if ( $translated === true && preg_match( '#^content/view/full/(\d+)$#', (string)$uri->elements(), $m ) )
+                    {
+                        $node = eZContentObjectTreeNode::fetch( (int)$m[1] );
                         $object = $node instanceof eZContentObjectTreeNode ? $node->object() : null;
                         break;
                     }
+                }
             }
         }
         if ( !$object instanceof eZContentObject || $object->attribute( 'class_identifier' ) !== self::CONTRIBUTOR_CLASS )
