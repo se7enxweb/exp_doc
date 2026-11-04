@@ -1,2 +1,2 @@
-{* A folder or documentation page in a list, in the Classic design: the generic line view (node/view/line.tpl). *}
-{include uri='design:node/view/line.tpl' node=$node}
+{* A folder or documentation page in a list, in the Classic design: the generic line view (parts/doc_line.tpl). *}
+{include uri='design:parts/doc_line.tpl' node=$node}

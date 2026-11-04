@@ -1,2 +1,2 @@
-{* A documentation page in the Modern design: the generic full view (node/view/full.tpl). *}
-{include uri='design:node/view/full.tpl' node=$node}
+{* A documentation page in the Modern design: the generic full view (parts/doc_full.tpl). *}
+{include uri='design:parts/doc_full.tpl' node=$node}

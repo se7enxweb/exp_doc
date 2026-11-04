@@ -1,2 +1,2 @@
-{* A documentation page in a list, in the Classic design: the plain linked name the static site's lists used. *}
-<div class="content-view-line"><a href={$node.url_alias|ezurl}>{$node.name|wash}</a></div>
+{* The line view of any node in this design: parts/doc_line.tpl (see node/view/full.tpl). *}
+{include uri='design:parts/doc_line.tpl' node=$node}
