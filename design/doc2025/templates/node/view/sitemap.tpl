@@ -1,33 +1,45 @@
-{* The site map (content/view/sitemap/<node>) in the Classic design: a page the static site did not have (a listed
-   exception), in the static pages' frame and classes: the node's children as the menus list them (fetch
-   exp_doc/menu_children: without the Contributors, the media folder and the historical copies), each with its own
-   children, at most [ModernSettings] SitemapChildren of them and a link to the rest. *}
-{def $doc_top = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $node.node_id, 'limit', ezini( 'ModernSettings', 'SitemapTop', 'exp_doc.ini' ) ) )
-     $doc_more = ezini( 'ModernSettings', 'SitemapChildren', 'exp_doc.ini' )}
-<div class="template-design">
-<div class="template-module content-view-full exp-doc-sitemap-classic">
-<div class="template-object">
+{* The kernel's site map (design/standard/templates/node/view/sitemap.tpl), unchanged but for what the documentation
+   leaves out of its menus: the classes of exp_doc.ini [ClassicSettings] MenuHideClasses[] (historical copies,
+   comments ...) are not fetched, and the nodes of MenuHideNodeRemoteIDs[] (the Contributors and the media folder)
+   are skipped. Styled by the design's stylesheet only. *}
+{let page_limit=10
+     col_count=2
+     hide_classes=ezini( 'ClassicSettings', 'MenuHideClasses', 'exp_doc.ini' )
+     hide_nodes=ezini( 'ClassicSettings', 'MenuHideNodeRemoteIDs', 'exp_doc.ini' )
+     children=fetch('content','list',hash(parent_node_id,$node.node_id,limit,$page_limit,offset,$view_parameters.offset,
+                                          class_filter_type,'exclude',class_filter_array,$hide_classes))}
 
-<div class="attribute-heading">
-<h1>{'Sitemap'|i18n( 'design/exp_doc' )}</h1>
+<div class="maincontentheader">
+<h1>{"Site map"|i18n("design/standard/node/view")} {$node.name|wash}</h1>
 </div>
 
-{foreach $doc_top as $doc_item}
-{def $doc_sub = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $doc_item.node_id, 'limit', $doc_more ) )}
-<h2><a href={$doc_item.url_alias|ezurl}>{$doc_item.name|wash}</a></h2>
-{if $doc_sub|count}
-<ul>
-{foreach $doc_sub as $doc_child}<li><div><a href={$doc_child.url_alias|ezurl}>{$doc_child.name|wash}</a></div></li>{/foreach}
-{if eq( $doc_sub|count, $doc_more )}<li><div><a href={$doc_item.url_alias|ezurl}>{'All pages of %name'|i18n( 'design/exp_doc', '', hash( '%name', $doc_item.name|wash ) )}</a></div></li>{/if}
-</ul>
-{/if}
-{undef $doc_sub}
-{/foreach}
+<table width="100%" cellspacing="0" cellpadding="4">
+<tr>
+{section name=Child loop=$children}
+    {if $hide_nodes|contains( $Child:item.remote_id )|not}
+    <td>
+    <h2><a href={$Child:item.url_alias|ezurl}>{$Child:item.name}</a></h2>
 
-<div class="break"></div>
-<hr class="hide" />
+    {let sub_children=fetch('content','list',hash(parent_node_id,$Child:item.node_id,limit,$page_limit,
+                                                  class_filter_type,'exclude',class_filter_array,$hide_classes))}
 
-</div>
-</div>
-</div>
-{undef $doc_top $doc_more}
+    <ul>
+    {section name=SubChild loop=$:sub_children}
+    {if $hide_nodes|contains( $:item.remote_id )|not}
+    <li><a href={$:item.url_alias|ezurl}>{$:item.name}</a></li>
+    {/if}
+    {/section}
+    </ul>
+
+    {/let}
+
+    </td>
+    {/if}
+    {delimiter modulo=$col_count}
+</tr>
+<tr>
+    {/delimiter}
+{/section}
+</tr>
+</table>
+{/let}
