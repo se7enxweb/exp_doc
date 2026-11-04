@@ -21,6 +21,6 @@
             </ul>
         </div>
     </div>
-    <p class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', fetch( 'setup', 'version' )|wash ) )}</p>
+    <p class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', concat( fetch( 'setup', 'major_version' ), '.', fetch( 'setup', 'minor_version' ), '.', fetch( 'setup', 'release' ) )|wash ) )}</p>
 </footer>
 {undef $doc_license}

@@ -45,6 +45,12 @@ MatchFile=full/exp_doc_extension.tpl
 Subdir=templates
 Match[class_identifier]=exp_doc_extension
 
+[full_exp_doc_contributor]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_contributor.tpl
+Subdir=templates
+Match[class_identifier]=exp_doc_contributor
+
 [embed_exp_doc_image]
 Source=content/view/embed.tpl
 MatchFile=embed/exp_doc_image.tpl

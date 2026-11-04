@@ -16,6 +16,8 @@ For each page:
   * links are compared by target: a static link is resolved to the static file it names, a dynamic link to the
     static file its page came from (through the map); images by file name;
   * text is compared with its whitespace collapsed; attributes in any order;
+  * the decided modern exceptions of the rebranding rule: the copyright's end year (any "1998 - <year>"), and the
+    head's meta author and copyright (7x), which lie outside the compared page area;
 - screenshot (--screenshots): both pages at the given width, the exceptions hidden, compared pixel by pixel;
   a page passes when at most --threshold of its pixels differ (0.005 = 0.5 %, doc.md wave 5 answer 23).
 Writes <out>/report.json (every page), <out>/report.md (per layout family: pages, markup equal, screenshot equal,
@@ -36,6 +38,9 @@ from lxml import html as lhtml
 
 EXCEPTION_IDS = {'exp-doc-switches', 'exp-cc', 'expwt', 'exp-wt', 'ezwt', 'exp-cc-config'}
 EXCEPTION_CLASSES = {'exp-doc-runs-on'}
+# Decided modern exceptions in text (doc.md, the rebranding rule): the copyright runs to the current year, so any
+# end year of "1998 - <year>" counts as equal
+YEAR_RANGE = re.compile(r'(\b1998\s*-\s*)\d{4}\b')
 DROP_TAGS = {'script', 'noscript', 'style', 'exp-wt'}
 # hidden form fields carry internal ids (node and class ids of the old site and of this one)
 HIDDEN_INPUT = 'hidden'
@@ -125,12 +130,12 @@ class Normalizer:
                 value = posixpath.basename(urllib.parse.urlparse(value).path)
             attrs.append('%s=%s' % (name, value))
         out.append(('open', depth, el.tag, tuple(sorted(attrs))))
-        text = re.sub(r'\s+', ' ', el.text or '').strip()
+        text = YEAR_RANGE.sub(r"\g<1>YEAR", re.sub(r"\s+", " ", el.text or "").strip())
         if text:
             out.append(('text', depth, text))
         for child in el:
             self._walk(child, side, page_path, out, depth + 1)
-            tail = re.sub(r"\s+", " ", child.tail or "").strip()
+            tail = YEAR_RANGE.sub(r"\g<1>YEAR", re.sub(r"\s+", " ", child.tail or "").strip())
             if tail:
                 out.append(("text", depth, tail))
         out.append(('close', depth, el.tag))
