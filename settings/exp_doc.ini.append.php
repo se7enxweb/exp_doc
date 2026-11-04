@@ -151,7 +151,10 @@ TreeDepth=3
 # How many of the site's top pages the tree of a page outside the manuals lists (then a link to all of them)
 SiteTreeLimit=40
 # How many children of each top page the site map (node/view/sitemap.tpl) lists, then a link to the page
-SitemapChildren=30
+SitemapChildren=20
+# How many top pages it lists at most (the root has fewer than ten once the import is in place; while it still
+# holds thousands, the map stays short)
+SitemapTop=40
 # The classes that count as pages (recently changed on the front page)
 PageClasses[]
 PageClasses[]=exp_doc_page

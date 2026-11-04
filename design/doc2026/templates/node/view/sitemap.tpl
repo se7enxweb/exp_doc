@@ -3,7 +3,7 @@
    the historical copies and the other classes and nodes of exp_doc.ini MenuHideClasses[] and MenuHideNodeRemoteIDs[]),
    each as a card with its own children below it, at most [ModernSettings] SitemapChildren of them and a link to the
    rest. *}
-{def $doc_top = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $node.node_id ) )
+{def $doc_top = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $node.node_id, 'limit', ezini( 'ModernSettings', 'SitemapTop', 'exp_doc.ini' ) ) )
      $doc_more = ezini( 'ModernSettings', 'SitemapChildren', 'exp_doc.ini' )}
 <article class="exp-doc-article exp-doc-sitemap">
     <h1 class="exp-doc-title">{'Sitemap'|i18n( 'design/exp_doc' )}</h1>

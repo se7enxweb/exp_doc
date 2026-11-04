@@ -2,7 +2,7 @@
    exception), in the static pages' frame and classes: the node's children as the menus list them (fetch
    exp_doc/menu_children: without the Contributors, the media folder and the historical copies), each with its own
    children, at most [ModernSettings] SitemapChildren of them and a link to the rest. *}
-{def $doc_top = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $node.node_id ) )
+{def $doc_top = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $node.node_id, 'limit', ezini( 'ModernSettings', 'SitemapTop', 'exp_doc.ini' ) ) )
      $doc_more = ezini( 'ModernSettings', 'SitemapChildren', 'exp_doc.ini' )}
 <div class="template-design">
 <div class="template-module content-view-full exp-doc-sitemap-classic">
