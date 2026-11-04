@@ -195,6 +195,12 @@ FeedLimit=30
 ExcerptLength=220
 # The contributors of the filter: the Contributors folder's exp_doc_contributor objects, by name, at most this many
 ContributorFolderRemoteID=exp-doc-contributors
+
+# The Platform container (the Confluence spaces, made by the import from display/): Modern draws a landing page for it
+[PlatformSettings]
+RemoteID=staticimport-doc-html-e4fd3481c5e8112931e161ebbc5af0ff
+# How many recently changed pages of the platform the landing lists
+RecentLimit=8
 ContributorLimit=500
 
 */ ?>

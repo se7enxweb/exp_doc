@@ -5,6 +5,8 @@
    facts box). The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl). *}
 {if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}
 {include uri='design:parts/doc_landing.tpl' node=$node}
+{elseif eq( $node.object.remote_id, ezini( 'PlatformSettings', 'RemoteID', 'exp_doc.ini' ) )}
+{include uri='design:parts/doc_platform_landing.tpl' node=$node}
 {else}
 {def $doc_map = $node.data_map}
 <article class="exp-doc-article" data-exp-doc-article>
