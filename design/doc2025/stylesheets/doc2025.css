@@ -1,0 +1,37 @@
+/* The Classic design's additions to the static stylesheets (core, classes, doc, ezdoc2024): only what replaces an
+   inline style of the static pages, and the modern exceptions the owner allowed (the header switches, the version
+   badge). The static rules themselves are untouched. */
+
+/* "Caution:" in the disclaimer box: the static pages colored it with style="color: red" */
+.exp-doc-caution {
+    color: red;
+}
+
+/* The header switches (design:exp_doc/switches.tpl): a slim row under the logo row, right aligned, out of the way
+   of the static layout */
+.exp-doc-switches {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.5em;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2px 10px;
+    font-size: 0.85em;
+}
+.exp-doc-switch ul {
+    display: flex;
+    gap: 0.75em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.exp-doc-switch a.current {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* The version badge in the footer */
+.exp-doc-runs-on {
+    display: inline-block;
+    margin-top: 0.5em;
+}
