@@ -8,6 +8,15 @@
 # Known variants of a contributor's name: one person (case, dots and extra spaces do not count)
 [ContributorAliases]
 Map[graham b]=Graham Brookins
+# the old sites' default administrator account was his (owner, 2026-11-04); a git name is looked up here too
+Map[Administrator User]=Graham Brookins
+Map[André R]=André Rømcke
+Map[Lukasz Serwatka]=Łukasz Serwatka
+Map[Piotr Switkowski]=Piotr Świtkowski
+Map[Piotrek Karas]=Piotrek Karaś
+Map[Ester H]=Ester Heylen
+Map[Marco Z]=Marco Zinn
+Map[Unknown User (toby.schlitt)]=Toby Schlitt
 
 [Type_doc-html]
 SourceRepository=https://github.com/se7enxweb/exponential.doc.exponential.earth.git
@@ -231,16 +240,17 @@ RetiredRules[]=display/**;display/confluence/pages/not-found/;{title}: {seg2}/{f
 RetiredRules[]=pages/**;display/confluence/pages/copies/
 
 # The authors of the 6.x documentation by the git history of the source repository (se7enxweb/exponential.doc.exponential.earth):
-# the commit identities "7x <info@se7enx.com>" and "Brookins Consulting <info@brookinsconsulting.com>" are both Graham
-# Brookins (only his public name is used). A 6.x page keeps the byline of its source (the 4.x authors it was copied
-# from); its git authors are contributors of it, and writer and updater where the source names none.
+# the commit identity "7x <info@se7enx.com>" is Graham Brookins (only his public name is used); "Brookins Consulting
+# <info@brookinsconsulting.com>" stays a contributor of its own (owner, 2026-11-04). A 6.x page keeps the byline of its
+# source (the 4.x authors it was copied from); its git authors are contributors of it, and writer and updater where the
+# source names none.
 GitAuthors=enabled
 GitAuthorPaths[]
 GitAuthorPaths[]=Exponential/*/6.x/**
 GitAuthorPaths[]=Exponential/*/6*.html
 GitAuthorMap[]
 GitAuthorMap[info@se7enx.com]=Graham Brookins
-GitAuthorMap[info@brookinsconsulting.com]=Graham Brookins
+GitAuthorMap[info@brookinsconsulting.com]=Brookins Consulting
 
 # The real dates of every object (published = first published, modified = last changed), never the day of the import
 # (exp:static-import:dates brings the objects of earlier runs in step). <field>;<source>[;<arguments>[;<label>[;<paths>]]],
