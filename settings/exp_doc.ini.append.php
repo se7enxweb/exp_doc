@@ -19,6 +19,8 @@ PdfTools[]=wkhtmltopdf
 [ClassicSettings]
 # The front page's title, description and Open Graph site name (parts/doc_head.tpl)
 FrontTitle=The Official Documentation For Exponential 6 CMS
+# The heading of the front page and its last path item (the static index.html was the page "Exponential")
+FrontHeading=Exponential
 FrontDescription=Read Exponential Documentation For Free and Join Our Community!
 SiteName=Exponential 6.0 CMS Documentation
 # Every other page: "<path from the page up> - <TitleSuffix>"

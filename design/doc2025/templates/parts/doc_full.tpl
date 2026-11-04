@@ -8,11 +8,13 @@
 <div class="template-object">
 
 <div class="attribute-heading">
-<h1>{$node.name|wash}</h1>
+<h1>{cond( eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), ezini( 'ClassicSettings', 'FrontHeading', 'exp_doc.ini' ), $node.name )|wash}</h1>
 </div>
 
 {if and( is_set( $doc_map.body ), $doc_map.body.has_content )}
 {attribute_view_gui attribute=$doc_map.body}
+{elseif and( is_set( $doc_map.description ), $doc_map.description.has_content )}
+{attribute_view_gui attribute=$doc_map.description}
 {elseif is_set( $doc_map.original_html )}
 {$doc_map.original_html.content}
 {/if}

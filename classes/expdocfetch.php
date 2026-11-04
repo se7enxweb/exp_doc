@@ -124,13 +124,23 @@ class expDocFetch
     }
 
     /**
-     * The main node id of the published object whose source_path is $path, or 0.
+     * The main node id of the page imported from $path: by the import's remote id (staticimport-<type>-<md5 of the
+     * path>), else by the published object whose source_path is $path; 0 when none.
      *
      * @param string $path
      * @return int
      */
     protected static function lookup( $path )
     {
+        // the import's own remote id first (staticimport-doc-html-<md5 of the source path>), then the source_path attribute
+        foreach ( array( 'doc-html', 'html-generic', 'markdown', 'sitemap-crawl' ) as $type )
+        {
+            $object = eZContentObject::fetchByRemoteID( 'staticimport-' . $type . '-' . md5( $path ) );
+            if ( $object instanceof eZContentObject && $object->attribute( 'main_node_id' ) )
+            {
+                return (int)$object->attribute( 'main_node_id' );
+            }
+        }
         $classAttributeIDs = array();
         foreach ( eZContentClassAttribute::fetchFilteredList( array( 'identifier' => 'source_path', 'version' => eZContentClass::VERSION_STATUS_DEFINED ) ) as $classAttribute )
         {
