@@ -1,7 +1,7 @@
 <?php
 /**
  * Writes the source map of the imported documentation: one line per imported page, "<static path> TAB <page URL>",
- * for the Classic design's exactness check (bin/python/doc2025_diff.py).
+ * for the Classic design's exactness check (bin/python/doc2025_diff.py || trim( $dataMap['source_path']->toString() ) === $rootSource ).
  *
  * The static path is the page's source_path attribute (the file it was imported from, relative to the static
  * repository); the URL is its main node's address on this site, built with --site-url.
@@ -52,6 +52,14 @@ else
 
 $handle = $options['output'] ? fopen( $options['output'], 'w' ) : STDOUT;
 $count = 0;
+// the static start page is the site's root (exp_doc.ini [ClassicSettings] RootSource); the page imported from it earlier
+// is hidden and left out
+$rootSource = (string)eZINI::instance( 'exp_doc.ini' )->variable( 'ClassicSettings', 'RootSource' );
+if ( $rootSource !== '' )
+{
+    fwrite( $handle, $rootSource . "\t" . $siteUrl . "/\n" );
+    $count++;
+}
 $offset = 0;
 $limit = 200;
 do
@@ -67,7 +75,8 @@ do
     foreach ( $nodes as $node )
     {
         $dataMap = $node->dataMap();
-        if ( !isset( $dataMap['source_path'] ) || !$dataMap['source_path']->hasContent() )
+        if ( !isset( $dataMap['source_path'] ) || !$dataMap['source_path']->hasContent()
+             || trim( $dataMap['source_path']->toString() ) === $rootSource )
         {
             continue;
         }
