@@ -51,4 +51,18 @@ MatchFile=embed/exp_doc_image.tpl
 Subdir=templates
 Match[class_identifier]=exp_doc_image
 
+# The site's root and other folders: the documentation's own full and line views (Modern draws the landing on the
+# front page), not the standard design's folder templates
+[full_folder_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_page.tpl
+Subdir=templates
+Match[class_identifier]=folder
+
+[line_folder_doc]
+Source=node/view/line.tpl
+MatchFile=line/exp_doc_page.tpl
+Subdir=templates
+Match[class_identifier]=folder
+
 */ ?>

@@ -614,3 +614,37 @@ body.exp-doc {
         transition: none;
     }
 }
+
+/* ---- the cookie banner (design/standard/stylesheets/exp-cookie-consent.css, the media sites' component): its
+   colors on the tokens, so it follows light and dark like the rest of the page --------------------------------- */
+.exp-doc .exp-cc {
+    background: var(--a4-surface);
+    color: var(--a4-ink);
+    border: 1px solid var(--a4-line-strong);
+    border-radius: var(--a4-radius-s);
+    box-shadow: var(--a4-shadow-m);
+}
+.exp-doc .exp-cc:focus-visible {
+    outline-color: var(--a4-ring);
+}
+.exp-doc .exp-cc-close {
+    color: var(--a4-ink);
+}
+.exp-doc .exp-cc-close:hover {
+    background: var(--a4-soft);
+}
+.exp-doc .exp-cc .exp-cc-btn {
+    background: var(--a4-accent-strong);
+    color: var(--a4-on-accent);
+    border-color: var(--a4-accent-strong);
+}
+.exp-doc .exp-cc .exp-cc-btn.btn-outline-primary {
+    background: transparent;
+    color: var(--a4-ink);
+    border-color: var(--a4-line-strong);
+}
+.exp-doc .exp-cc .exp-cc-btn.btn-outline-primary[aria-expanded="true"] {
+    background: var(--a4-ink);
+    color: var(--a4-surface);
+    border-color: var(--a4-ink);
+}
