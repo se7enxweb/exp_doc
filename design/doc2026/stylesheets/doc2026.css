@@ -874,3 +874,16 @@ body.exp-doc {
 .exp-doc-main-front {
     min-width: 0;
 }
+
+/* two columns where there is no "on this page" column: the help center's views (they draw their own contents), and
+   pages with fewer than two headings (doc2026.js) */
+.exp-doc-frame.is-module,
+.exp-doc-frame.no-onpage {
+    grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+}
+@media (max-width: 899px) {
+    .exp-doc-frame.is-module,
+    .exp-doc-frame.no-onpage {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

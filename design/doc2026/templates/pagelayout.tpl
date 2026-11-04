@@ -38,7 +38,8 @@
 {$module_result.content}
 </main>
 {else}
-<div class="exp-doc-frame">
+{def $doc_module_menu = and( is_set( $module_result.left_menu ), $module_result.left_menu )}
+<div class="exp-doc-frame{if $doc_module_menu} is-module{/if}">
     {if and( is_set( $module_result.left_menu ), $module_result.left_menu )}
     <div id="exp-doc-tree" class="exp-doc-tree exp-doc-tree-module" data-exp-doc-tree>{include uri=$module_result.left_menu uri_string=$site.uri.original_uri}</div>
     {else}
@@ -48,13 +49,16 @@
         {include uri='design:parts/doc_crumbs.tpl' path=$doc_path}
         {$module_result.content}
     </main>
+    {if not( $doc_module_menu )}
     <aside class="exp-doc-onpage" aria-labelledby="exp-doc-onpage-title">
         <div class="exp-doc-onpage-inner" data-exp-doc-onpage>
             <h2 id="exp-doc-onpage-title" class="exp-doc-onpage-title">{'On this page'|i18n( 'design/exp_doc' )}</h2>
             <nav aria-labelledby="exp-doc-onpage-title"><ol class="exp-doc-onpage-list" data-exp-doc-onpage-list></ol></nav>
         </div>
     </aside>
+    {/if}
 </div>
+{undef $doc_module_menu}
 {/if}
 
 {include uri='design:parts/doc_footer.tpl'}

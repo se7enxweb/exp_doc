@@ -91,6 +91,8 @@
     if (onpage && list) {
         if (tocHeadings.length < 2) {
             onpage.hidden = true;
+            const frame = onpage.closest('.exp-doc-frame');
+            if (frame) { frame.classList.add('no-onpage'); }
         } else {
             tocHeadings.forEach((heading) => {
                 const item = doc.createElement('li');
