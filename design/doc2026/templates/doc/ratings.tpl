@@ -73,7 +73,7 @@
             {set-block variable=$doc_ago}{include uri='design:exp_doc/time_ago.tpl' time=$doc_item.time}{/set-block}
             <li class="a4-card exp-doc-recent-item">
                 <h3 class="exp-doc-recent-title"><a href={$doc_item.node.url_alias|ezurl}>{$doc_item.node.name|wash}</a></h3>
-                <p class="a4-meta exp-doc-recent-meta">{include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_item.stars, 'rating_count', 1 )} {'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} ·{'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_item.average, '%count', $doc_item.count ) )}</p>
+                <p class="a4-meta exp-doc-recent-meta">{include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_item.stars, 'rating_count', 1 )} {'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} ·<span>{'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_item.average, '%count', $doc_item.count ) )}</span></p>
             </li>
         {/foreach}
         </ol>

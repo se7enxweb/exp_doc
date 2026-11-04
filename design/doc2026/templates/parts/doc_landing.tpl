@@ -129,7 +129,7 @@
     <ol class="a4-plain exp-doc-landing-list">
     {foreach $doc_ratings as $doc_r}
         {set-block variable=$doc_ago}{include uri='design:exp_doc/time_ago.tpl' time=$doc_r.time}{/set-block}
-        <li><a href={$doc_r.node.url_alias|ezurl}>{$doc_r.node.name|wash}</a> {include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_r.stars, 'rating_count', 1 )} <span class="a4-meta">{'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} · {'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_r.average, '%count', $doc_r.count ) )}</span></li>
+        <li><a href={$doc_r.node.url_alias|ezurl}>{$doc_r.node.name|wash}</a> {include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_r.stars, 'rating_count', 1 )} <span class="a4-meta">{'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} · <span>{'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_r.average, '%count', $doc_r.count ) )}</span></span></li>
     {/foreach}
     </ol>
     {else}

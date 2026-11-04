@@ -64,7 +64,7 @@
 {foreach $doc_group.items as $doc_item}
 {set-block variable=$doc_ago}{include uri='design:exp_doc/time_ago.tpl' time=$doc_item.time}{/set-block}
 <li><div><a href={$doc_item.node.url_alias|ezurl}>{$doc_item.node.name|wash}</a>
-    <br />{include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_item.stars, 'rating_count', 1 )} {'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} &middot; {'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_item.average, '%count', $doc_item.count ) )}</div></li>
+    <br />{include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_item.stars, 'rating_count', 1 )} {'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} &middot; <span>{'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_item.average, '%count', $doc_item.count ) )}</span></div></li>
 {/foreach}
 </ul>
 {/foreach}
