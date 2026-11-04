@@ -18,6 +18,8 @@
     <div class="exp-doc-body" data-exp-doc-body>
 {if and( is_set( $doc_map.body ), $doc_map.body.has_content )}
 {attribute_view_gui attribute=$doc_map.body}
+{elseif and( is_set( $doc_map.answer ), $doc_map.answer.has_content )}
+{attribute_view_gui attribute=$doc_map.answer}
 {elseif and( is_set( $doc_map.description ), $doc_map.description.has_content )}
 {attribute_view_gui attribute=$doc_map.description}
 {elseif is_set( $doc_map.original_html )}
