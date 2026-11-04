@@ -61,6 +61,7 @@
         <li><a href={$doc_item.url_alias|ezurl}>{$doc_item.name|wash}</a> <span class="a4-meta">{$doc_item.object.modified|l10n( 'shortdate' )}</span></li>
     {/foreach}
     </ol>
+    <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'Path', 'exp_doc.ini' )|ezurl}>{'See all changes'|i18n( 'design/exp_doc' )}</a></p>
 </section>
 {/if}
 {if $doc_popular|count}

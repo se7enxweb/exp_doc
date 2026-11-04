@@ -17,5 +17,6 @@
 {include uri='design:exp_doc/head_brand.tpl' title=$doc_title description=$doc_description manual=$doc_manual
          url=cond( $node, $node.url_alias|ezurl( 'no', 'full' ), '/'|ezurl( 'no', 'full' ) )}
     <link rel="search" href={'/content/search'|ezurl} title="{'Search the documentation'|i18n( 'design/exp_doc' )}">
+{include uri='design:exp_doc/head_feed.tpl'}
     <meta name="generator" content="Exponential">
 {undef $doc_site $doc_title $doc_meta $doc_description $doc_manual}

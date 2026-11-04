@@ -1,0 +1,12 @@
+---
+# description: The recent changes (doc/recent) for every reader: the policy doc/read in the Doc reader role, and the address "recent" for the view
+- type: role
+  mode: update
+  role: "Doc reader"
+  add_policies:
+    - { module: doc, function: read }
+- type: url_alias
+  mode: ensure
+  path: recent
+  destination: doc/recent
+  redirect: false

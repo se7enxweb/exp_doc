@@ -167,4 +167,32 @@ ManualImages[]
 ManualImages[]=technical-manual
 ManualImages[]=user-manual
 
+# The recent changes (the view doc/recent, classes/expdocrecent.php) and the front page's link to them
+[RecentSettings]
+# The view's address: its URL alias (migrations/20261104100800_doc_recent.yml), from the site's root
+Path=recent
+# The classes the list takes: the pages, and the historical copies (shown as "moved to history")
+Classes[]
+Classes[]=exp_doc_page
+Classes[]=exp_doc_section
+Classes[]=exp_doc_tutorial
+Classes[]=exp_doc_faq
+Classes[]=exp_doc_extension
+Classes[]=exp_doc_historical
+HistoryClasses[]
+HistoryClasses[]=exp_doc_historical
+# Entries per page: the choices, and the default
+Limits[]
+Limits[]=20
+Limits[]=50
+Limits[]=100
+DefaultLimit=20
+# The Atom feed's entries
+FeedLimit=30
+# Characters of the body shown below each entry
+ExcerptLength=220
+# The contributors of the filter: the Contributors folder's exp_doc_contributor objects, by name, at most this many
+ContributorFolderRemoteID=exp-doc-contributors
+ContributorLimit=500
+
 */ ?>

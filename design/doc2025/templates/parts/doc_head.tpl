@@ -24,6 +24,7 @@
     <meta name="generator" content="Exponential" />
     <link rel="Home" href={'/'|ezurl} title="Doc front page" />
     <link rel="Search" href={'/content/advancedsearch'|ezurl} title="Search Doc" />
+{include uri='design:exp_doc/head_feed.tpl' only_own=true()}
 {* the icons, theme colors, Open Graph and Twitter tags: the official logo's brand images (a decided exception) *}
 {def $doc_manual = false()
      $doc_page = cond( and( is_set( $module_result.node_id ), $module_result.node_id ), fetch( 'content', 'node', hash( 'node_id', $module_result.node_id ) ), false() )}
