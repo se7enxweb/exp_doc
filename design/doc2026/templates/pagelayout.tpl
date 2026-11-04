@@ -4,8 +4,17 @@
    drawer. No inline scripts or styles: the color mode is set by javascript/doc2026-theme.js in the head, everything
    else by javascript/doc2026.js at the end. The front page draws its landing page (parts/doc_landing.tpl) instead of
    the three columns. *}
-{def $doc_path = $module_result.path
-     $doc_node = cond( and( is_set( $module_result.node_id ), $module_result.node_id ),
+{* the path from the site's root (content.ini [NodeSettings] RootNode) down; the folders above it (the multisite
+   tree's "Websites") are not part of this site *}
+{def $doc_root_id = ezini( 'NodeSettings', 'RootNode', 'content.ini' )
+     $doc_path = array()
+     $doc_seen = false()}
+{foreach $module_result.path as $doc_item}
+    {if and( is_set( $doc_item.node_id ), eq( $doc_item.node_id, $doc_root_id ) )}{set $doc_seen = true()}{/if}
+    {if $doc_seen}{set $doc_path = $doc_path|append( $doc_item )}{/if}
+{/foreach}
+{if not( $doc_seen )}{set $doc_path = $module_result.path}{/if}
+{def $doc_node = cond( and( is_set( $module_result.node_id ), $module_result.node_id ),
                        fetch( 'content', 'node', hash( 'node_id', $module_result.node_id ) ), false() )
      $doc_is_front = and( $doc_node, eq( $doc_node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}
 <!DOCTYPE html>
@@ -52,4 +61,4 @@
 {ezscript_load( array( 'doc2026.js' ) )}
 </body>
 </html>
-{undef $doc_path $doc_node $doc_is_front}
+{undef $doc_root_id $doc_path $doc_seen $doc_node $doc_is_front}

@@ -6,8 +6,17 @@
    - the viewport meta and the cookie banner;
    - no third-party trackers (the static gtag snippet is left out).
    Everything inside #page matches the static markup after whitespace normalization (the diff suite checks it). *}
-{def $doc_path = $module_result.path
-     $doc_node_id = $module_result.node_id
+{* the path from the site's root (content.ini [NodeSettings] RootNode) down; the folders above it (the multisite
+   tree's "Websites") are not part of this site *}
+{def $doc_root_id = ezini( 'NodeSettings', 'RootNode', 'content.ini' )
+     $doc_path = array()
+     $doc_seen = false()}
+{foreach $module_result.path as $doc_item}
+    {if and( is_set( $doc_item.node_id ), eq( $doc_item.node_id, $doc_root_id ) )}{set $doc_seen = true()}{/if}
+    {if $doc_seen}{set $doc_path = $doc_path|append( $doc_item )}{/if}
+{/foreach}
+{if not( $doc_seen )}{set $doc_path = $module_result.path}{/if}
+{def $doc_node_id = $module_result.node_id
      $doc_is_front = false()}
 {if and( is_set( $module_result.node_id ), eq( $module_result.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}
     {set $doc_is_front = true()}
@@ -62,4 +71,4 @@
 {include uri='design:parts/expwt_page_toolbar.tpl'}
 </body>
 </html>
-{undef $doc_path $doc_node_id $doc_is_front}
+{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front}
