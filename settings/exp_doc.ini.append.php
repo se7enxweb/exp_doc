@@ -153,4 +153,14 @@ EmbedImageAlias=large
 [HelpBridgeSettings]
 StartPage=project/README.md
 
+# The brand images of both designs (bin/python/doc_brand_images.py, from the official logo): the theme color for
+# light and dark (the accent and the dark surface tokens), and the manuals that have their own social image
+# (images/og-<manual name, lower case, dashes>.png)
+[BrandSettings]
+ThemeColor=#f26a21
+ThemeColorDark=#1a1f29
+ManualImages[]
+ManualImages[]=technical-manual
+ManualImages[]=user-manual
+
 */ ?>
