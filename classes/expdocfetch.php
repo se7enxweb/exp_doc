@@ -242,9 +242,10 @@ class expDocFetch
      *
      * @param int $parentNodeID
      * @param int|false $limit at most this many (false: all)
+     * @param int $offset the visible children to skip first (paging counts only the children the menus show)
      * @return array array( 'result' => eZContentObjectTreeNode[] )
      */
-    public static function menuChildren( $parentNodeID, $limit = false )
+    public static function menuChildren( $parentNodeID, $limit = false, $offset = 0 )
     {
         $parent = eZContentObjectTreeNode::fetch( (int)$parentNodeID );
         if ( !$parent instanceof eZContentObjectTreeNode )
@@ -258,7 +259,7 @@ class expDocFetch
         if ( $limit && (int)$limit > 0 )
         {
             // a few more than asked: the hidden remote ids are left out after the fetch
-            $params['Limit'] = (int)$limit + count( $hideNodes );
+            $params['Limit'] = max( 0, (int)$offset ) + (int)$limit + count( $hideNodes );
         }
         if ( $hideClasses )
         {
@@ -269,14 +270,16 @@ class expDocFetch
         $result = array();
         foreach ( is_array( $children ) ? $children : array() as $child )
         {
-            if ( !in_array( $child->attribute( 'remote_id' ), $hideNodes, true ) )
+            // by the node's remote id or its object's (the migrations name the objects)
+            if ( !in_array( $child->attribute( 'remote_id' ), $hideNodes, true )
+                 && !in_array( $child->object()->attribute( 'remote_id' ), $hideNodes, true ) )
             {
                 $result[] = $child;
             }
         }
-        if ( $limit && (int)$limit > 0 )
+        if ( ( $limit && (int)$limit > 0 ) || (int)$offset > 0 )
         {
-            $result = array_slice( $result, 0, (int)$limit );
+            $result = array_slice( $result, max( 0, (int)$offset ), $limit && (int)$limit > 0 ? (int)$limit : null );
         }
         return array( 'result' => $result );
     }

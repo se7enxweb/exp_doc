@@ -52,7 +52,11 @@ $FunctionList['menu_children'] = array( 'name' => 'menu_children',
                                                                array( 'name' => 'limit',
                                                                       'type' => 'integer',
                                                                       'required' => false,
-                                                                      'default' => false ) ) );
+                                                                      'default' => false ),
+                                                               array( 'name' => 'offset',
+                                                                      'type' => 'integer',
+                                                                      'required' => false,
+                                                                      'default' => 0 ) ) );
 
 /*
  *   fetch( 'exp_doc', 'contributors', hash( 'node_id', <page node id> ) )
