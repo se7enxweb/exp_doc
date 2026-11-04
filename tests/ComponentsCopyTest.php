@@ -24,7 +24,9 @@ class ExpDocComponentsCopyTest extends \PHPUnit\Framework\TestCase
         // the copy starts with its own comment, then the kernel's file unchanged
         $end = strpos( $copy, "*/\n" );
         $this->assertNotFalse( $end, 'The copy has no leading comment' );
-        $this->assertSame( file_get_contents( $kernel ), substr( $copy, $end + 3 ),
+        // the icon addresses climb two more folders from extension/exp_doc/design/doc2026/stylesheets/
+        $expected = str_replace( 'url(../../../share/icons/', 'url(../../../../../share/icons/', file_get_contents( $kernel ) );
+        $this->assertSame( $expected, substr( $copy, $end + 3 ),
                            'design/doc2026/stylesheets/components.css differs from the kernel\'s design/admin4/stylesheets/components.css: copy it again' );
     }
 }

@@ -1,7 +1,9 @@
 /*
  * A copy of the administration's shared components (design/admin4/stylesheets/components.css of the Exponential
  * kernel), so the Modern documentation design builds on the same tokens and classes as the help center (doc.md wave 4,
- * answer 1: "1+2"). Keep it identical to the kernel's file: tests/ComponentsCopyTest.php in exp_doc compares them.
+ * answer 1: "1+2"). Keep it identical to the kernel's file, except that the icon addresses climb two more folders
+ * (../../../../../share/icons/, this file being in extension/exp_doc/design/doc2026/stylesheets/): tests/ComponentsCopyTest.php
+ * in exp_doc compares them.
  */
 /*
  * The administration's shared components: the tokens and the .a4-* classes every admin page builds on.
@@ -1458,10 +1460,10 @@ fieldset.a4-field > legend + * { clear: both; }
   -webkit-mask-size: contain;
   mask-size: contain;
 }
-.a4-notice.is-ok::before { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); }
-.a4-notice.is-bad::before { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); }
-.a4-notice.is-warn::before { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/exclamation-triangle-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/exclamation-triangle-fill.svg); }
-.a4-notice.is-info::before { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/info-circle-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/info-circle-fill.svg); }
+.a4-notice.is-ok::before { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); }
+.a4-notice.is-bad::before { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); }
+.a4-notice.is-warn::before { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/exclamation-triangle-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/exclamation-triangle-fill.svg); }
+.a4-notice.is-info::before { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/info-circle-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/info-circle-fill.svg); }
 li.a4-notice { list-style: none; }   /* a notice as a list item: no marker next to its icon */
 .a4-notice-title { display: block; margin-bottom: var(--a4-space-1); font-weight: var(--a4-weight-heading); color: inherit; }
 
@@ -1879,147 +1881,147 @@ a.a4-icon-btn, a.a4-icon-btn:visited { color: var(--a4-muted); }
 @media (forced-colors: active) {
   .a4-icon { forced-color-adjust: none; background-color: CanvasText; }
 }
-.a4-bi-123 { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/123.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/123.svg); }
-.a4-bi-archive { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/archive.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/archive.svg); }
-.a4-bi-arrow-90deg-up { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-90deg-up.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-90deg-up.svg); }
-.a4-bi-arrow-bar-down { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-bar-down.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-bar-down.svg); }
-.a4-bi-arrow-bar-up { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-bar-up.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-bar-up.svg); }
-.a4-bi-arrow-clockwise { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-clockwise.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-clockwise.svg); }
-.a4-bi-arrow-counterclockwise { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-counterclockwise.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-counterclockwise.svg); }
-.a4-bi-arrow-down { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-down.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-down.svg); }
-.a4-bi-arrow-down-up { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-down-up.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-down-up.svg); }
-.a4-bi-arrow-down-right { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-down-right.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-down-right.svg); }
-.a4-bi-arrow-up { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-up.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-up.svg); }
-.a4-bi-arrow-up-circle { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-up-circle.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-up-circle.svg); }
-.a4-bi-arrow-up-right { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-up-right.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrow-up-right.svg); }
-.a4-bi-arrows-collapse-vertical { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrows-collapse-vertical.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrows-collapse-vertical.svg); }
-.a4-bi-arrows-expand-vertical { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrows-expand-vertical.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrows-expand-vertical.svg); }
-.a4-bi-arrows-move { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/arrows-move.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/arrows-move.svg); }
-.a4-bi-asterisk { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/asterisk.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/asterisk.svg); }
-.a4-bi-bank { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/bank.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/bank.svg); }
-.a4-bi-bar-chart-line { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/bar-chart-line.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/bar-chart-line.svg); }
-.a4-bi-bell { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/bell.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/bell.svg); }
-.a4-bi-book { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/book.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/book.svg); }
-.a4-bi-bookmark { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/bookmark.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/bookmark.svg); }
-.a4-bi-box-arrow-right { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/box-arrow-right.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/box-arrow-right.svg); }
-.a4-bi-box-arrow-up-right { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/box-arrow-up-right.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/box-arrow-up-right.svg); }
-.a4-bi-box-seam { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/box-seam.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/box-seam.svg); }
-.a4-bi-briefcase { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/briefcase.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/briefcase.svg); }
-.a4-bi-brush { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/brush.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/brush.svg); }
-.a4-bi-building { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/building.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/building.svg); }
-.a4-bi-calendar3 { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/calendar3.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/calendar3.svg); }
-.a4-bi-caret-down-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/caret-down-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/caret-down-fill.svg); }
-.a4-bi-caret-up-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/caret-up-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/caret-up-fill.svg); }
-.a4-bi-chat-left-dots { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/chat-left-dots.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/chat-left-dots.svg); }
-.a4-bi-chat-square-text { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/chat-square-text.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/chat-square-text.svg); }
-.a4-bi-check-circle-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); }
-.a4-bi-check-lg { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/check-lg.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/check-lg.svg); }
-.a4-bi-check2-square { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/check2-square.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/check2-square.svg); }
-.a4-bi-chevron-down { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/chevron-down.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/chevron-down.svg); }
-.a4-bi-chevron-right { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/chevron-right.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/chevron-right.svg); }
-.a4-bi-circle-half { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/circle-half.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/circle-half.svg); }
-.a4-bi-clock { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/clock.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/clock.svg); }
-.a4-bi-clock-history { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/clock-history.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/clock-history.svg); }
-.a4-bi-cloud-arrow-down { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/cloud-arrow-down.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/cloud-arrow-down.svg); }
-.a4-bi-code-square { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/code-square.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/code-square.svg); }
-.a4-bi-collection { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/collection.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/collection.svg); }
-.a4-bi-collection-play { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/collection-play.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/collection-play.svg); }
-.a4-bi-cpu { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/cpu.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/cpu.svg); }
-.a4-bi-dash { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/dash.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/dash.svg); }
-.a4-bi-database { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/database.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/database.svg); }
-.a4-bi-diagram-2 { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/diagram-2.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/diagram-2.svg); }
-.a4-bi-diagram-3 { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/diagram-3.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/diagram-3.svg); }
-.a4-bi-display { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/display.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/display.svg); }
-.a4-bi-download { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/download.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/download.svg); }
-.a4-bi-easel { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/easel.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/easel.svg); }
-.a4-bi-envelope { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/envelope.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/envelope.svg); }
-.a4-bi-envelope-paper { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/envelope-paper.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/envelope-paper.svg); }
-.a4-bi-exclamation-diamond { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/exclamation-diamond.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/exclamation-diamond.svg); }
-.a4-bi-exclamation-triangle { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/exclamation-triangle.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/exclamation-triangle.svg); }
-.a4-bi-eye { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/eye.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/eye.svg); }
-.a4-bi-eye-slash { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/eye-slash.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/eye-slash.svg); }
-.a4-bi-file-earmark { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark.svg); }
-.a4-bi-file-earmark-break { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark-break.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark-break.svg); }
-.a4-bi-file-earmark-code { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark-code.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark-code.svg); }
-.a4-bi-file-earmark-pdf { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark-pdf.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/file-earmark-pdf.svg); }
-.a4-bi-files { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/files.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/files.svg); }
-.a4-bi-film { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/film.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/film.svg); }
-.a4-bi-folder { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/folder.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/folder.svg); }
-.a4-bi-gear { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/gear.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/gear.svg); }
-.a4-bi-geo-alt { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/geo-alt.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/geo-alt.svg); }
-.a4-bi-git { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/git.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/git.svg); }
-.a4-bi-globe { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/globe.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/globe.svg); }
-.a4-bi-globe2 { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/globe2.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/globe2.svg); }
-.a4-bi-graph-up-arrow { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/graph-up-arrow.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/graph-up-arrow.svg); }
-.a4-bi-grip-vertical { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/grip-vertical.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/grip-vertical.svg); }
-.a4-bi-hourglass-split { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/hourglass-split.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/hourglass-split.svg); }
-.a4-bi-images { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/images.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/images.svg); }
-.a4-bi-inbox { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/inbox.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/inbox.svg); }
-.a4-bi-info-circle { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/info-circle.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/info-circle.svg); }
-.a4-bi-input-cursor-text { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/input-cursor-text.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/input-cursor-text.svg); }
-.a4-bi-journal-check { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/journal-check.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/journal-check.svg); }
-.a4-bi-journal-text { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/journal-text.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/journal-text.svg); }
-.a4-bi-key { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/key.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/key.svg); }
-.a4-bi-laptop { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/laptop.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/laptop.svg); }
-.a4-bi-layout-sidebar-inset { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/layout-sidebar-inset.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/layout-sidebar-inset.svg); }
-.a4-bi-lightning { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/lightning.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/lightning.svg); }
-.a4-bi-link-45deg { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/link-45deg.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/link-45deg.svg); }
-.a4-bi-list { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/list.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/list.svg); }
-.a4-bi-list-task { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/list-task.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/list-task.svg); }
-.a4-bi-list-ul { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/list-ul.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/list-ul.svg); }
-.a4-bi-lock { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/lock.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/lock.svg); }
-.a4-bi-lock-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/lock-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/lock-fill.svg); }
-.a4-bi-magic { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/magic.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/magic.svg); }
-.a4-bi-megaphone { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/megaphone.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/megaphone.svg); }
-.a4-bi-menu-button-wide { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/menu-button-wide.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/menu-button-wide.svg); }
-.a4-bi-moon { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/moon.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/moon.svg); }
-.a4-bi-palette { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/palette.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/palette.svg); }
-.a4-bi-pause-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/pause-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/pause-fill.svg); }
-.a4-bi-pencil { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/pencil.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/pencil.svg); }
-.a4-bi-pencil-square { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/pencil-square.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/pencil-square.svg); }
-.a4-bi-people { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/people.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/people.svg); }
-.a4-bi-person { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/person.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/person.svg); }
-.a4-bi-person-badge { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/person-badge.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/person-badge.svg); }
-.a4-bi-person-check { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/person-check.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/person-check.svg); }
-.a4-bi-person-circle { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/person-circle.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/person-circle.svg); }
-.a4-bi-person-lock { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/person-lock.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/person-lock.svg); }
-.a4-bi-person-slash { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/person-slash.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/person-slash.svg); }
-.a4-bi-phone { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/phone.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/phone.svg); }
-.a4-bi-phone-flip { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/phone-flip.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/phone-flip.svg); }
-.a4-bi-piggy-bank { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/piggy-bank.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/piggy-bank.svg); }
-.a4-bi-play-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/play-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/play-fill.svg); }
-.a4-bi-plug { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/plug.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/plug.svg); }
-.a4-bi-plus-lg { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/plus-lg.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/plus-lg.svg); }
-.a4-bi-power { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/power.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/power.svg); }
-.a4-bi-puzzle { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/puzzle.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/puzzle.svg); }
-.a4-bi-printer { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/printer.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/printer.svg); }
-.a4-bi-question-circle { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/question-circle.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/question-circle.svg); }
-.a4-bi-rss { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/rss.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/rss.svg); }
-.a4-bi-search { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/search.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/search.svg); }
-.a4-bi-shield-fill-check { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/shield-fill-check.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/shield-fill-check.svg); }
-.a4-bi-shield-lock { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/shield-lock.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/shield-lock.svg); }
-.a4-bi-signpost-split { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/signpost-split.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/signpost-split.svg); }
-.a4-bi-sliders { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/sliders.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/sliders.svg); }
-.a4-bi-speedometer { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/speedometer.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/speedometer.svg); }
-.a4-bi-speedometer2 { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/speedometer2.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/speedometer2.svg); }
-.a4-bi-star { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/star.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/star.svg); }
-.a4-bi-stars { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/stars.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/stars.svg); }
-.a4-bi-sun { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/sun.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/sun.svg); }
-.a4-bi-table { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/table.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/table.svg); }
-.a4-bi-tablet { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/tablet.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/tablet.svg); }
-.a4-bi-tag { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/tag.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/tag.svg); }
-.a4-bi-tags { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/tags.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/tags.svg); }
-.a4-bi-terminal { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/terminal.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/terminal.svg); }
-.a4-bi-text-paragraph { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/text-paragraph.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/text-paragraph.svg); }
-.a4-bi-toggles { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/toggles.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/toggles.svg); }
-.a4-bi-tools { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/tools.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/tools.svg); }
-.a4-bi-translate { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/translate.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/translate.svg); }
-.a4-bi-trash { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/trash.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/trash.svg); }
-.a4-bi-ui-radios { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/ui-radios.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/ui-radios.svg); }
-.a4-bi-upload { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/upload.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/upload.svg); }
-.a4-bi-wrench-adjustable { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/wrench-adjustable.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/wrench-adjustable.svg); }
-.a4-bi-x-circle-fill { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); }
-.a4-bi-x-lg { -webkit-mask-image: url(../../../share/icons/bootstrap-icons/svg/x-lg.svg); mask-image: url(../../../share/icons/bootstrap-icons/svg/x-lg.svg); }
+.a4-bi-123 { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/123.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/123.svg); }
+.a4-bi-archive { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/archive.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/archive.svg); }
+.a4-bi-arrow-90deg-up { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-90deg-up.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-90deg-up.svg); }
+.a4-bi-arrow-bar-down { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-bar-down.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-bar-down.svg); }
+.a4-bi-arrow-bar-up { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-bar-up.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-bar-up.svg); }
+.a4-bi-arrow-clockwise { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-clockwise.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-clockwise.svg); }
+.a4-bi-arrow-counterclockwise { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-counterclockwise.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-counterclockwise.svg); }
+.a4-bi-arrow-down { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-down.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-down.svg); }
+.a4-bi-arrow-down-up { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-down-up.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-down-up.svg); }
+.a4-bi-arrow-down-right { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-down-right.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-down-right.svg); }
+.a4-bi-arrow-up { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-up.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-up.svg); }
+.a4-bi-arrow-up-circle { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-up-circle.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-up-circle.svg); }
+.a4-bi-arrow-up-right { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-up-right.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrow-up-right.svg); }
+.a4-bi-arrows-collapse-vertical { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrows-collapse-vertical.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrows-collapse-vertical.svg); }
+.a4-bi-arrows-expand-vertical { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrows-expand-vertical.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrows-expand-vertical.svg); }
+.a4-bi-arrows-move { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrows-move.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/arrows-move.svg); }
+.a4-bi-asterisk { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/asterisk.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/asterisk.svg); }
+.a4-bi-bank { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bank.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bank.svg); }
+.a4-bi-bar-chart-line { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bar-chart-line.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bar-chart-line.svg); }
+.a4-bi-bell { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bell.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bell.svg); }
+.a4-bi-book { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/book.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/book.svg); }
+.a4-bi-bookmark { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bookmark.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/bookmark.svg); }
+.a4-bi-box-arrow-right { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/box-arrow-right.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/box-arrow-right.svg); }
+.a4-bi-box-arrow-up-right { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/box-arrow-up-right.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/box-arrow-up-right.svg); }
+.a4-bi-box-seam { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/box-seam.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/box-seam.svg); }
+.a4-bi-briefcase { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/briefcase.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/briefcase.svg); }
+.a4-bi-brush { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/brush.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/brush.svg); }
+.a4-bi-building { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/building.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/building.svg); }
+.a4-bi-calendar3 { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/calendar3.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/calendar3.svg); }
+.a4-bi-caret-down-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/caret-down-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/caret-down-fill.svg); }
+.a4-bi-caret-up-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/caret-up-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/caret-up-fill.svg); }
+.a4-bi-chat-left-dots { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chat-left-dots.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chat-left-dots.svg); }
+.a4-bi-chat-square-text { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chat-square-text.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chat-square-text.svg); }
+.a4-bi-check-circle-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check-circle-fill.svg); }
+.a4-bi-check-lg { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check-lg.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check-lg.svg); }
+.a4-bi-check2-square { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check2-square.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/check2-square.svg); }
+.a4-bi-chevron-down { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chevron-down.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chevron-down.svg); }
+.a4-bi-chevron-right { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chevron-right.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/chevron-right.svg); }
+.a4-bi-circle-half { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/circle-half.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/circle-half.svg); }
+.a4-bi-clock { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/clock.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/clock.svg); }
+.a4-bi-clock-history { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/clock-history.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/clock-history.svg); }
+.a4-bi-cloud-arrow-down { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/cloud-arrow-down.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/cloud-arrow-down.svg); }
+.a4-bi-code-square { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/code-square.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/code-square.svg); }
+.a4-bi-collection { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/collection.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/collection.svg); }
+.a4-bi-collection-play { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/collection-play.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/collection-play.svg); }
+.a4-bi-cpu { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/cpu.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/cpu.svg); }
+.a4-bi-dash { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/dash.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/dash.svg); }
+.a4-bi-database { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/database.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/database.svg); }
+.a4-bi-diagram-2 { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/diagram-2.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/diagram-2.svg); }
+.a4-bi-diagram-3 { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/diagram-3.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/diagram-3.svg); }
+.a4-bi-display { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/display.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/display.svg); }
+.a4-bi-download { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/download.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/download.svg); }
+.a4-bi-easel { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/easel.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/easel.svg); }
+.a4-bi-envelope { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/envelope.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/envelope.svg); }
+.a4-bi-envelope-paper { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/envelope-paper.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/envelope-paper.svg); }
+.a4-bi-exclamation-diamond { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/exclamation-diamond.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/exclamation-diamond.svg); }
+.a4-bi-exclamation-triangle { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/exclamation-triangle.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/exclamation-triangle.svg); }
+.a4-bi-eye { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/eye.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/eye.svg); }
+.a4-bi-eye-slash { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/eye-slash.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/eye-slash.svg); }
+.a4-bi-file-earmark { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark.svg); }
+.a4-bi-file-earmark-break { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark-break.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark-break.svg); }
+.a4-bi-file-earmark-code { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark-code.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark-code.svg); }
+.a4-bi-file-earmark-pdf { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark-pdf.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/file-earmark-pdf.svg); }
+.a4-bi-files { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/files.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/files.svg); }
+.a4-bi-film { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/film.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/film.svg); }
+.a4-bi-folder { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/folder.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/folder.svg); }
+.a4-bi-gear { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/gear.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/gear.svg); }
+.a4-bi-geo-alt { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/geo-alt.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/geo-alt.svg); }
+.a4-bi-git { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/git.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/git.svg); }
+.a4-bi-globe { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/globe.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/globe.svg); }
+.a4-bi-globe2 { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/globe2.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/globe2.svg); }
+.a4-bi-graph-up-arrow { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/graph-up-arrow.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/graph-up-arrow.svg); }
+.a4-bi-grip-vertical { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/grip-vertical.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/grip-vertical.svg); }
+.a4-bi-hourglass-split { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/hourglass-split.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/hourglass-split.svg); }
+.a4-bi-images { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/images.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/images.svg); }
+.a4-bi-inbox { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/inbox.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/inbox.svg); }
+.a4-bi-info-circle { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/info-circle.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/info-circle.svg); }
+.a4-bi-input-cursor-text { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/input-cursor-text.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/input-cursor-text.svg); }
+.a4-bi-journal-check { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/journal-check.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/journal-check.svg); }
+.a4-bi-journal-text { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/journal-text.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/journal-text.svg); }
+.a4-bi-key { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/key.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/key.svg); }
+.a4-bi-laptop { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/laptop.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/laptop.svg); }
+.a4-bi-layout-sidebar-inset { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/layout-sidebar-inset.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/layout-sidebar-inset.svg); }
+.a4-bi-lightning { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/lightning.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/lightning.svg); }
+.a4-bi-link-45deg { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/link-45deg.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/link-45deg.svg); }
+.a4-bi-list { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/list.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/list.svg); }
+.a4-bi-list-task { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/list-task.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/list-task.svg); }
+.a4-bi-list-ul { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/list-ul.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/list-ul.svg); }
+.a4-bi-lock { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/lock.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/lock.svg); }
+.a4-bi-lock-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/lock-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/lock-fill.svg); }
+.a4-bi-magic { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/magic.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/magic.svg); }
+.a4-bi-megaphone { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/megaphone.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/megaphone.svg); }
+.a4-bi-menu-button-wide { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/menu-button-wide.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/menu-button-wide.svg); }
+.a4-bi-moon { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/moon.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/moon.svg); }
+.a4-bi-palette { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/palette.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/palette.svg); }
+.a4-bi-pause-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/pause-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/pause-fill.svg); }
+.a4-bi-pencil { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/pencil.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/pencil.svg); }
+.a4-bi-pencil-square { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/pencil-square.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/pencil-square.svg); }
+.a4-bi-people { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/people.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/people.svg); }
+.a4-bi-person { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person.svg); }
+.a4-bi-person-badge { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-badge.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-badge.svg); }
+.a4-bi-person-check { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-check.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-check.svg); }
+.a4-bi-person-circle { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-circle.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-circle.svg); }
+.a4-bi-person-lock { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-lock.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-lock.svg); }
+.a4-bi-person-slash { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-slash.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/person-slash.svg); }
+.a4-bi-phone { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/phone.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/phone.svg); }
+.a4-bi-phone-flip { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/phone-flip.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/phone-flip.svg); }
+.a4-bi-piggy-bank { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/piggy-bank.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/piggy-bank.svg); }
+.a4-bi-play-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/play-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/play-fill.svg); }
+.a4-bi-plug { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/plug.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/plug.svg); }
+.a4-bi-plus-lg { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/plus-lg.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/plus-lg.svg); }
+.a4-bi-power { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/power.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/power.svg); }
+.a4-bi-puzzle { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/puzzle.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/puzzle.svg); }
+.a4-bi-printer { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/printer.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/printer.svg); }
+.a4-bi-question-circle { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/question-circle.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/question-circle.svg); }
+.a4-bi-rss { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/rss.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/rss.svg); }
+.a4-bi-search { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/search.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/search.svg); }
+.a4-bi-shield-fill-check { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/shield-fill-check.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/shield-fill-check.svg); }
+.a4-bi-shield-lock { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/shield-lock.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/shield-lock.svg); }
+.a4-bi-signpost-split { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/signpost-split.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/signpost-split.svg); }
+.a4-bi-sliders { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/sliders.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/sliders.svg); }
+.a4-bi-speedometer { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/speedometer.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/speedometer.svg); }
+.a4-bi-speedometer2 { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/speedometer2.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/speedometer2.svg); }
+.a4-bi-star { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/star.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/star.svg); }
+.a4-bi-stars { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/stars.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/stars.svg); }
+.a4-bi-sun { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/sun.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/sun.svg); }
+.a4-bi-table { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/table.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/table.svg); }
+.a4-bi-tablet { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tablet.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tablet.svg); }
+.a4-bi-tag { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tag.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tag.svg); }
+.a4-bi-tags { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tags.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tags.svg); }
+.a4-bi-terminal { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/terminal.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/terminal.svg); }
+.a4-bi-text-paragraph { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/text-paragraph.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/text-paragraph.svg); }
+.a4-bi-toggles { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/toggles.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/toggles.svg); }
+.a4-bi-tools { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tools.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/tools.svg); }
+.a4-bi-translate { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/translate.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/translate.svg); }
+.a4-bi-trash { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/trash.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/trash.svg); }
+.a4-bi-ui-radios { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/ui-radios.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/ui-radios.svg); }
+.a4-bi-upload { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/upload.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/upload.svg); }
+.a4-bi-wrench-adjustable { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/wrench-adjustable.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/wrench-adjustable.svg); }
+.a4-bi-x-circle-fill { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/x-circle-fill.svg); }
+.a4-bi-x-lg { -webkit-mask-image: url(../../../../../share/icons/bootstrap-icons/svg/x-lg.svg); mask-image: url(../../../../../share/icons/bootstrap-icons/svg/x-lg.svg); }
 
 /* ---- The frame's own hidden-until-used parts (were style="display:none" in the pagelayouts) ------------------ */
 
@@ -2321,12 +2323,12 @@ a.a4-current-user-name { color: var(--a4-ink); font-weight: normal; text-decorat
   mask: var(--a4-row-icon) no-repeat center / contain;
 }
 .a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > :is(a, button, span).a4-btn-small:not([target="_blank"], :has(> svg, > .a4-icon)):is([href*="/view/"], [href$="/edit"], [href*="/edit/"]:not([href$="/generate"]), [href*="/edit_"], [href*="/groupedit/"], [href*="/group_edit/"], [href*="/classlist/"], [href*="/workflowlist/"], [href*="/state/group/"], [href*="/role/assign/"], [href*="/section/assign/"], [href*="/section/edit/"] ~ span.is-disabled, [href*="/copy/"], [name="CopyClassButton"]):is(:hover, :focus-visible):not(.is-disabled, [disabled]) { border-color: transparent; background-color: var(--a4-soft); color: var(--a4-accent-text); }
-.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/view/"]) { --a4-row-icon: url(../../../share/icons/bootstrap-icons/svg/eye.svg); }
-.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href$="/edit"], [href*="/edit/"]:not([href$="/generate"]), [href*="/edit_"], [href*="/groupedit/"], [href*="/group_edit/"]) { --a4-row-icon: url(../../../share/icons/bootstrap-icons/svg/pencil.svg); }
-.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/classlist/"], [href*="/workflowlist/"], [href*="/state/group/"]) { --a4-row-icon: url(../../../share/icons/bootstrap-icons/svg/folder.svg); }
-.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/role/assign/"]) { --a4-row-icon: url(../../../share/icons/bootstrap-icons/svg/person-check.svg); }
-.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/section/assign/"], [href*="/section/edit/"] ~ span.is-disabled) { --a4-row-icon: url(../../../share/icons/bootstrap-icons/svg/diagram-3.svg); }
-.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/copy/"], [name="CopyClassButton"]) { --a4-row-icon: url(../../../share/icons/bootstrap-icons/svg/files.svg); }
+.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/view/"]) { --a4-row-icon: url(../../../../../share/icons/bootstrap-icons/svg/eye.svg); }
+.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href$="/edit"], [href*="/edit/"]:not([href$="/generate"]), [href*="/edit_"], [href*="/groupedit/"], [href*="/group_edit/"]) { --a4-row-icon: url(../../../../../share/icons/bootstrap-icons/svg/pencil.svg); }
+.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/classlist/"], [href*="/workflowlist/"], [href*="/state/group/"]) { --a4-row-icon: url(../../../../../share/icons/bootstrap-icons/svg/folder.svg); }
+.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/role/assign/"]) { --a4-row-icon: url(../../../../../share/icons/bootstrap-icons/svg/person-check.svg); }
+.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/section/assign/"], [href*="/section/edit/"] ~ span.is-disabled) { --a4-row-icon: url(../../../../../share/icons/bootstrap-icons/svg/diagram-3.svg); }
+.a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > .a4-btn-small:is([href*="/copy/"], [name="CopyClassButton"]) { --a4-row-icon: url(../../../../../share/icons/bootstrap-icons/svg/files.svg); }
 @media (forced-colors: active) {
   .a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > :is(a, button, span).a4-btn-small:not([target="_blank"], :has(> svg, > .a4-icon)):is([href*="/view/"], [href$="/edit"], [href*="/edit/"]:not([href$="/generate"]), [href*="/edit_"], [href*="/groupedit/"], [href*="/group_edit/"], [href*="/classlist/"], [href*="/workflowlist/"], [href*="/state/group/"], [href*="/role/assign/"], [href*="/section/assign/"], [href*="/section/edit/"] ~ span.is-disabled, [href*="/copy/"], [name="CopyClassButton"])::before { forced-color-adjust: none; background-color: ButtonText; }
   .a4-page :is(ul.a4-cards:not(.a4-card-body, [aria-labelledby="account-actions-title"] *) :is(.a4-actions, .a4-card-actions), .a4-table td, .a4-table td > .a4-actions) > :is(a, button, span).a4-btn-small:not([target="_blank"], :has(> svg, > .a4-icon)):is([href*="/view/"], [href$="/edit"], [href*="/edit/"]:not([href$="/generate"]), [href*="/edit_"], [href*="/groupedit/"], [href*="/group_edit/"], [href*="/classlist/"], [href*="/workflowlist/"], [href*="/state/group/"], [href*="/role/assign/"], [href*="/section/assign/"], [href*="/section/edit/"] ~ span.is-disabled, [href*="/copy/"], [name="CopyClassButton"]):is(.is-disabled, [disabled])::before { background-color: GrayText; }

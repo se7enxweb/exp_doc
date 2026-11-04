@@ -3,7 +3,7 @@
  * exp_doc/help/<page id>: a page of the installation's help center, rendered live from its Markdown (or text) file
  * by the kernel's renderer, inside the site's design (design:exp_doc/help.tpl). Links to other help pages and images
  * stay on this site (expDocHelpBridge); a page that is not in the help center is a 404. Without an id: the help
- * center's start page (README.md).
+ * center's start page (exp_doc.ini [HelpBridgeSettings] StartPage).
  *
  * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
  * @license GNU General Public License v2.0 (or any later version)
@@ -19,7 +19,7 @@ if ( !class_exists( 'expHelpDocumentIndex' ) || !expHelp::isEnabled() )
 $id = expHelp::requestedId( $Params );
 if ( $id === '' )
 {
-    $id = 'README.md';
+    $id = eZINI::instance( 'exp_doc.ini' )->variable( 'HelpBridgeSettings', 'StartPage' );
 }
 $page = expDocHelpBridge::page( $id );
 if ( $page === null )

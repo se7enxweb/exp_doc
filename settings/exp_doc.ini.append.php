@@ -139,4 +139,8 @@ AdminPrefix=admin
 # The image size embedded images are shown at
 EmbedImageAlias=large
 
+# The help center bridge (exp_doc/help): the page shown without a page id
+[HelpBridgeSettings]
+StartPage=project/README.md
+
 */ ?>
