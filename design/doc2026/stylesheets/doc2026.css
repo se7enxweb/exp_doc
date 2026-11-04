@@ -817,3 +817,42 @@ body.exp-doc {
     height: auto;
     border-radius: var(--a4-radius-s);
 }
+
+/* ---- the help center on the documentation site (exphelp/*): its left menu in the tree's column, the header link,
+   the landing's link -------------------------------------------------------------------------------------------- */
+.exp-doc-helpmenu-title {
+    margin: 0 0 var(--a4-space-2);
+    font-size: var(--a4-text-m);
+}
+.exp-doc-helpmenu-title a {
+    color: var(--a4-ink);
+    text-decoration: none;
+}
+.exp-doc-helpmenu ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.exp-doc-helpmenu li a {
+    display: block;
+    padding: var(--a4-space-1) var(--a4-space-2);
+    border-radius: var(--a4-radius-s);
+    color: var(--a4-ink);
+    text-decoration: none;
+}
+.exp-doc-helpmenu li a:hover {
+    background: var(--a4-accent-soft);
+}
+.exp-doc-helpmenu li a[aria-current] {
+    background: var(--a4-accent-soft);
+    color: var(--a4-accent-text);
+    font-weight: var(--a4-weight-strong);
+}
+.exp-doc-helplink {
+    color: var(--a4-muted);
+    font-size: var(--a4-text-s);
+}
+.exp-doc-hero-help {
+    margin: var(--a4-space-4) 0 0;
+    text-align: center;
+}

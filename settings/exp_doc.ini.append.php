@@ -145,10 +145,6 @@ AdminPrefix=admin
 # The image size embedded images are shown at
 EmbedImageAlias=large
 
-# The help center bridge (exp_doc/help): the page shown without a page id
-[HelpBridgeSettings]
-StartPage=project/README.md
-
 # The brand images of both designs (bin/python/doc_brand_images.py, from the official logo): the theme color for
 # light and dark (the accent and the dark surface tokens), and the manuals that have their own social image
 # (images/og-<manual name, lower case, dashes>.png)

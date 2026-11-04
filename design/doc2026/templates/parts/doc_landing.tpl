@@ -18,6 +18,7 @@
         {include uri='design:parts/front_search_suggest.tpl' suggest_id='exp-doc-hero-search-text'}
     </form>
 </section>
+<p class="exp-doc-hero-help"><a class="a4-btn" href={'exphelp/dashboard'|ezurl}>{'Open the help center'|i18n( 'design/exp_doc' )}</a> <span class="a4-meta">{'Guides, manuals and the reference of this Exponential installation, in English and German.'|i18n( 'design/exp_doc' )}</span></p>
 
 {if $doc_manuals|count}
 <section class="exp-doc-landing-section" aria-labelledby="exp-doc-manuals-title">

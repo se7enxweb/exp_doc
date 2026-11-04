@@ -3,7 +3,8 @@
    - Classic / Modern: the kernel's design switch (fetch uiswitch/front_designs, site.ini [DesignSettings]
      SwitchableDesigns[]): a link to the same page with the view parameter (design)/<name>, which shows that design
      and keeps it in a cookie; nothing is drawn where the switch is off;
-   - the content languages: the same page in each translation (language_switcher), the current one marked.
+   - the content languages: the same page in each translation (language_switcher), the current one marked;
+   - and a link to the help center (exphelp/dashboard), which runs on this site for every reader.
    Plain links, no script: each choice is one click, and works without JavaScript. *}
 {def $doc_switch = fetch( 'uiswitch', 'front_designs' )
      $doc_here = cond( and( is_set( $module_result.node_id ), $module_result.node_id ),
@@ -11,6 +12,7 @@
                        $site.uri.original_uri )
      $doc_languages = language_switcher( $doc_here )}
 <div id="exp-doc-switches" class="exp-doc-switches">
+    <a class="exp-doc-helplink" href={'exphelp/dashboard'|ezurl}>{'Help center'|i18n( 'design/exp_doc' )}</a>
 {if $doc_switch.designs|count}
     <nav class="exp-doc-switch exp-doc-switch-design" aria-label="{'Design'|i18n( 'design/exp_doc' )}">
         <ul>

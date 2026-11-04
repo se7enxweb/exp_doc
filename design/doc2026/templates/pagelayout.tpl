@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
 {ezscript_load( array( 'doc2026-theme.js' ) )}
-{ezcss_load( array( 'components.css', 'doc2026.css' ) )}
+{ezcss_load( array( 'components.css', 'exphelp.css', 'doc2026.css' ) )}
 <link rel="stylesheet" href={'stylesheets/doc2026-print.css'|ezdesign} media="print">
 {include uri='design:parts/doc_head.tpl' path=$doc_path node=$doc_node is_front=$doc_is_front}
 </head>
@@ -39,7 +39,11 @@
 </main>
 {else}
 <div class="exp-doc-frame">
+    {if and( is_set( $module_result.left_menu ), $module_result.left_menu )}
+    <div id="exp-doc-tree" class="exp-doc-tree exp-doc-tree-module" data-exp-doc-tree>{include uri=$module_result.left_menu uri_string=$site.uri.original_uri}</div>
+    {else}
     {include uri='design:parts/doc_tree.tpl' node=$doc_node path=$doc_path}
+    {/if}
     <main id="exp-doc-main" class="exp-doc-main" tabindex="-1">
         {include uri='design:parts/doc_crumbs.tpl' path=$doc_path}
         {$module_result.content}

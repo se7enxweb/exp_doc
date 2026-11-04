@@ -1,9 +1,8 @@
 <?php
 /**
- * exp_doc/help/<page id>: a page of the installation's help center, rendered live from its Markdown (or text) file
- * by the kernel's renderer, inside the site's design (design:exp_doc/help.tpl). Links to other help pages and images
- * stay on this site (expDocHelpBridge); a page that is not in the help center is a 404. Without an id: the help
- * center's start page (exp_doc.ini [HelpBridgeSettings] StartPage).
+ * exp_doc/help/<page id>: the help center bridge's old address. The kernel's help center now runs on the
+ * documentation site for every reader (exphelp/read in the Doc reader role, the doc designs' exphelp templates), so
+ * this view answers with a permanent redirect to the same page in exphelp/viewer (exphelp/dashboard without an id).
  *
  * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
  * @license GNU General Public License v2.0 (or any later version)
@@ -11,25 +10,8 @@
  */
 
 $Module = $Params['Module'];
-if ( !class_exists( 'expHelpDocumentIndex' ) || !expHelp::isEnabled() )
-{
-    return $Module->handleError( eZError::KERNEL_MODULE_NOT_FOUND, 'kernel' );
-}
-
-$id = expHelp::requestedId( $Params );
-if ( $id === '' )
-{
-    $id = eZINI::instance( 'exp_doc.ini' )->variable( 'HelpBridgeSettings', 'StartPage' );
-}
-$page = expDocHelpBridge::page( $id );
-if ( $page === null )
-{
-    return $Module->handleError( eZError::KERNEL_NOT_FOUND, 'kernel' );
-}
-
-$tpl = eZTemplate::factory();
-$tpl->setVariable( 'help_page', $page );
-$Result = array();
-$Result['content'] = $tpl->fetch( 'design:exp_doc/help.tpl' );
-$Result['path'] = $page['path'];
-$Result['title_path'] = $page['path'];
+$id = class_exists( 'expHelp' ) ? expHelp::requestedId( $Params ) : '';
+$target = $id === '' ? 'exphelp/dashboard' : 'exphelp/viewer/' . implode( '/', array_map( 'rawurlencode', explode( '/', $id ) ) );
+eZURI::transformURI( $target );
+header( 'Location: ' . $target, true, 301 );
+eZExecution::cleanExit();

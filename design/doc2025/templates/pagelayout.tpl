@@ -26,7 +26,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}
+{* the help center's views (exphelp/*): its own components and styles, light, inside the Classic frame *}
+{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'doc2025.css' ) )}
+{else}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'doc2025.css' ) )}
+{/if}
 <link type="text/css" rel="stylesheet" href={'stylesheets/print.css'|ezdesign} media="print" />
 {include uri='design:parts/doc_head.tpl' path=$doc_path is_front=$doc_is_front}
 </head>
@@ -51,7 +56,7 @@
 
 {include uri='design:parts/doc_menu.tpl' path=$doc_path node_id=$doc_node_id}
 <div class="area-docmain-normal">
-{$module_result.content}
+{if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}<div class="a4-page exp-doc-help-classic">{$module_result.content}</div>{else}{$module_result.content}{/if}
 </div>
 <!-- Main area content: END -->
 

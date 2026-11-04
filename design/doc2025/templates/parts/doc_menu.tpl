@@ -29,7 +29,9 @@
 <div class="template-module">
 <div class="template-object">
 <div id="contentmenu">
-{if eq( $doc_menu_kind, 'toc' )}
+{if and( is_set( $module_result.left_menu ), $module_result.left_menu )}
+{include uri=$module_result.left_menu uri_string=$site.uri.original_uri}
+{elseif eq( $doc_menu_kind, 'toc' )}
 {include uri='design:parts/doc_menu_toc.tpl' root=$doc_menu_root path_ids=$doc_ids current_id=$node_id}
 {elseif eq( $doc_menu_kind, 'list' )}
 {include uri='design:parts/doc_menu_list.tpl' root=$doc_menu_root current_id=$node_id}

@@ -2,7 +2,7 @@
  * A copy of the administration's shared components (design/admin4/stylesheets/components.css of the Exponential
  * kernel), so the Modern documentation design builds on the same tokens and classes as the help center (doc.md wave 4,
  * answer 1: "1+2"). Keep it identical to the kernel's file, except that the icon addresses climb two more folders
- * (../../../../../share/icons/, this file being in extension/exp_doc/design/doc2026/stylesheets/): tests/ComponentsCopyTest.php
+ * (../../../../../share/icons/, this file being in extension/exp_doc/design/standard/stylesheets/): tests/ComponentsCopyTest.php
  * in exp_doc compares them.
  */
 /*

@@ -45,3 +45,20 @@
 }
 .exp-logo__ink { fill: #212529; }
 .exp-logo__paper { fill: #f8f9fa; }
+
+/* The help center's left menu inside the Classic frame (design:exphelp/menu.tpl), in the static menu's look */
+.exp-doc-helpmenu-title {
+    margin: 0 0 0.5em;
+    font-size: 1.1em;
+}
+.exp-doc-helpmenu ul {
+    margin: 0;
+    padding: 0 0 0 1em;
+}
+.exp-doc-helpmenu li a[aria-current] {
+    font-weight: bold;
+    text-decoration: none;
+}
+.exp-doc-helplink {
+    margin-right: auto;
+}

@@ -1,0 +1,2219 @@
+/*
+ * The help center's stylesheet (design/admin4/stylesheets/modules/help.css of the kernel), copied for the help
+ * center views on the documentation site (exphelp/*); the icon addresses climb one more folder from this design.
+ *
+ * Only what the shared components (stylesheets/components.css) cannot do, as .a4-help-* classes, with colours,
+ * radius, spacing and fonts from the --a4-* tokens only (no hard-coded values, no local aliases), so the dark mode
+ * follows from the tokens. Registered in design.ini [StylesheetSettings] AdminComponentCSSFileList; rules:
+ * doc/eng-us/bc/6.0/admin4-styling.md. The same file is in design/admin (classic) and design/admin4.
+ *
+ * Sections: the page frame and the shared parts (audience pills, icon tiles); the dashboard (search hero, search
+ * results as exphelp.js draws them, audience cards, featured pages, recently changed pages, quick links, report an
+ * error, keyboard hints); then the viewer and the renderer's markup.
+ */
+
+/* ---- page frame and shared parts ----------------------------------------------------------------------------- */
+
+/* The frame takes the width it is given, up to its maximum, also as the item of a flex column with centred items
+   (the Admin UI's .main-content): there an item with auto side margins takes the width of its content, and a
+   container's content (container-type below) has none, so the page shrank to a few pixels. */
+.a4-help-frame {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--a4-space-5);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  max-width: var(--a4-content-max);
+  margin: 0 auto;
+}
+.a4-help-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--a4-space-1) var(--a4-space-3);
+  margin: 0 0 var(--a4-space-3);
+}
+.a4-help-section-head h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  margin: 0;
+  font-size: var(--a4-text-l);
+  font-weight: var(--a4-weight-heading);
+  line-height: var(--a4-leading-tight);
+  color: var(--a4-ink);
+}
+.a4-help-section-head h2 .a4-icon { color: var(--a4-accent-text); }
+.a4-help-section-head p { margin: 0; font-size: var(--a4-text-s); color: var(--a4-muted); }
+.a4-help-section-head a { font-size: var(--a4-text-s); font-weight: var(--a4-weight-strong); }
+
+/* An icon on a tinted square: the audience cards, featured pages, the report entry */
+.a4-help-tile {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-soft);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+  color: var(--a4-accent-text);
+  font-size: var(--a4-text-xl);
+}
+.a4-help-tile.is-small { width: 32px; height: 32px; font-size: var(--a4-text-l); }
+/* one colour per audience, the same everywhere (cards, pills, results): editors the accent, admins blue,
+   developers green, end users violet, project managers amber, sales & marketing pink (the chart palette, which has
+   its dark values) */
+.a4-help-tile.is-editor { color: var(--a4-accent-text); }
+.a4-help-tile.is-admin { color: var(--a4-chart-1); }
+.a4-help-tile.is-developer { color: var(--a4-chart-3); }
+.a4-help-tile.is-user { color: var(--a4-chart-7); }
+.a4-help-tile.is-project-manager { color: var(--a4-chart-4); }
+.a4-help-tile.is-sales-marketing { color: var(--a4-chart-5); }
+/* the wave-4 audiences (partners ... sponsors): the chart palette again, their pills outlined like the two above */
+.a4-help-tile.is-partner { color: var(--a4-chart-2); }
+.a4-help-tile.is-advocate { color: var(--a4-chart-6); }
+.a4-help-tile.is-designer { color: var(--a4-chart-8); }
+.a4-help-tile.is-hosting { color: var(--a4-chart-1); }
+.a4-help-tile.is-app-creator { color: var(--a4-chart-3); }
+.a4-help-tile.is-website-creator { color: var(--a4-chart-7); }
+.a4-help-tile.is-supporter { color: var(--a4-chart-4); }
+.a4-help-tile.is-sponsor { color: var(--a4-chart-5); }
+.a4-help-tile.is-customer { color: var(--a4-chart-4); }
+.a4-help-tile.is-government { color: var(--a4-chart-7); }
+.a4-help-tile.is-businesses { color: var(--a4-chart-3); }
+.a4-help-tile.is-press { color: var(--a4-chart-6); }
+.a4-help-tile.is-trainer { color: var(--a4-chart-2); }
+/* the audiences of #645 (community ... students): the chart palette again */
+.a4-help-tile.is-community { color: var(--a4-chart-6); }
+.a4-help-tile.is-ecosystem { color: var(--a4-chart-1); }
+.a4-help-tile.is-php-developer { color: var(--a4-chart-3); }
+.a4-help-tile.is-theme-designer { color: var(--a4-chart-8); }
+.a4-help-tile.is-reseller { color: var(--a4-chart-2); }
+.a4-help-tile.is-bundler { color: var(--a4-chart-4); }
+.a4-help-tile.is-ai-agents { color: var(--a4-chart-7); }
+.a4-help-tile.is-software-engineer { color: var(--a4-chart-1); }
+.a4-help-tile.is-adopter { color: var(--a4-chart-5); }
+.a4-help-tile.is-mobile-app-developer { color: var(--a4-chart-3); }
+.a4-help-tile.is-web-framework-developer { color: var(--a4-chart-6); }
+.a4-help-tile.is-cms-developer { color: var(--a4-chart-8); }
+.a4-help-tile.is-dxp-developer { color: var(--a4-chart-2); }
+.a4-help-tile.is-ecommerce { color: var(--a4-chart-4); }
+.a4-help-tile.is-integrator { color: var(--a4-chart-7); }
+.a4-help-tile.is-dba { color: var(--a4-chart-1); }
+.a4-help-tile.is-podcaster { color: var(--a4-chart-5); }
+.a4-help-tile.is-non-profit { color: var(--a4-chart-3); }
+.a4-help-tile.is-local-business { color: var(--a4-chart-2); }
+.a4-help-tile.is-individual { color: var(--a4-chart-7); }
+.a4-help-tile.is-non-technical { color: var(--a4-chart-4); }
+.a4-help-tile.is-student { color: var(--a4-chart-6); }
+
+/* The audience of a page as a small pill (on top of .a4-tag) */
+.a4-help-pill {
+  gap: var(--a4-space-1);
+  font-size: var(--a4-text-xs);
+  font-weight: var(--a4-weight-strong);
+  white-space: nowrap;
+}
+.a4-help-pill.is-editor { border-color: transparent; background-color: var(--a4-accent-soft); color: var(--a4-accent-text); }
+.a4-help-pill.is-admin { border-color: transparent; background-color: var(--a4-info-bg); color: var(--a4-info); }
+.a4-help-pill.is-developer { border-color: transparent; background-color: var(--a4-ok-bg); color: var(--a4-ok); }
+.a4-help-pill.is-user { border-color: transparent; background-color: var(--a4-warn-bg); color: var(--a4-warn); }
+/* the two later audiences: an outline in their chart color on the card, ink text (contrast in light and dark) */
+.a4-help-pill.is-project-manager { border-color: var(--a4-chart-4); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-sales-marketing { border-color: var(--a4-chart-5); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-partner { border-color: var(--a4-chart-2); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-advocate { border-color: var(--a4-chart-6); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-designer { border-color: var(--a4-chart-8); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-hosting { border-color: var(--a4-chart-1); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-app-creator { border-color: var(--a4-chart-3); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-website-creator { border-color: var(--a4-chart-7); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-supporter { border-color: var(--a4-chart-4); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-sponsor { border-color: var(--a4-chart-5); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-customer { border-color: var(--a4-chart-4); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-government { border-color: var(--a4-chart-7); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-businesses { border-color: var(--a4-chart-3); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-press { border-color: var(--a4-chart-6); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-trainer { border-color: var(--a4-chart-2); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-community { border-color: var(--a4-chart-6); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-ecosystem { border-color: var(--a4-chart-1); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-php-developer { border-color: var(--a4-chart-3); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-theme-designer { border-color: var(--a4-chart-8); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-reseller { border-color: var(--a4-chart-2); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-bundler { border-color: var(--a4-chart-4); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-ai-agents { border-color: var(--a4-chart-7); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-software-engineer { border-color: var(--a4-chart-1); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-adopter { border-color: var(--a4-chart-5); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-mobile-app-developer { border-color: var(--a4-chart-3); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-web-framework-developer { border-color: var(--a4-chart-6); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-cms-developer { border-color: var(--a4-chart-8); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-dxp-developer { border-color: var(--a4-chart-2); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-ecommerce { border-color: var(--a4-chart-4); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-integrator { border-color: var(--a4-chart-7); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-dba { border-color: var(--a4-chart-1); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-podcaster { border-color: var(--a4-chart-5); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-non-profit { border-color: var(--a4-chart-3); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-local-business { border-color: var(--a4-chart-2); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-individual { border-color: var(--a4-chart-7); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-non-technical { border-color: var(--a4-chart-4); background-color: var(--a4-card); color: var(--a4-ink); }
+.a4-help-pill.is-student { border-color: var(--a4-chart-6); background-color: var(--a4-card); color: var(--a4-ink); }
+
+/* ---- dashboard: the search hero ------------------------------------------------------------------------------ */
+
+.a4-help-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--a4-space-4);
+  padding: var(--a4-space-7) var(--a4-space-6) var(--a4-space-6);
+  border-radius: var(--a4-radius-s);
+  background:
+    radial-gradient(60% 120% at 100% 0%, var(--a4-accent-soft), transparent 70%),
+    radial-gradient(50% 110% at 0% 100%, var(--a4-info-bg), transparent 70%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line), var(--a4-shadow-m);
+  text-align: center;
+}
+.a4-help-hero-pre {
+  display: inline-flex;
+  align-items: center;
+  justify-self: center;
+  gap: var(--a4-space-2);
+  margin: 0;
+  padding: var(--a4-space-1) var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-accent-soft);
+  color: var(--a4-accent-text);
+  font-size: var(--a4-text-xs);
+  font-weight: var(--a4-weight-heading);
+  letter-spacing: var(--a4-tracking);
+  text-transform: uppercase;
+}
+/* The Exponential logo above "Help center" (exphelp/parts/dashboard_brand.tpl): the header's drawing in admin4 (its
+   ink, surface and brand tokens follow the dark mode), the image file in the classic design; 32px high at the
+   logo's 380:60 proportion, fixed so the hero never moves while it loads */
+.a4-help-brand {
+  display: flex;
+  justify-self: center;
+  margin: 0;
+  color: var(--a4-ink);
+}
+.a4-help-brand .a4-logo-full,
+.a4-help-brand-img {
+  display: block;
+  width: calc(var(--a4-space-6) * 380 / 60);
+  height: var(--a4-space-6);
+}
+.a4-help-brand .a4-logo-mark { display: none; }
+.a4-help-hero h1 {
+  margin: 0;
+  color: var(--a4-ink);
+  font-size: var(--a4-text-3xl);
+  font-weight: var(--a4-weight-heading);
+  letter-spacing: -0.01em;
+  line-height: var(--a4-leading-tight);
+}
+.a4-help-hero-sub {
+  max-width: 62ch;
+  margin: 0 auto;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-l);
+}
+.a4-help-search {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: start;
+}
+.a4-help-search-field {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  padding: var(--a4-space-1) var(--a4-space-1) var(--a4-space-1) var(--a4-space-4);
+  border: 1px solid var(--a4-field-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-field);
+  box-shadow: var(--a4-shadow-m);
+}
+.a4-help-search-field:focus-within { border-color: var(--a4-ring); box-shadow: 0 0 0 3px var(--a4-accent-soft), var(--a4-shadow-m); }
+.a4-help-search-field > .a4-icon { color: var(--a4-muted); font-size: var(--a4-text-l); }
+.a4-help-search-field input[type="search"] {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--a4-ink);
+  font-family: var(--a4-font);
+  font-size: var(--a4-text-l);
+}
+/* the field's frame shows the focus (:focus-within above), so the input itself needs no second ring */
+.a4-help-search-field input[type="search"]:focus-visible { outline: 2px solid transparent; }
+.a4-help-search-field input[type="search"]::placeholder { color: var(--a4-muted); opacity: 1; }
+.a4-help-search-field .a4-kbd { margin: 0; }
+.a4-help-search-field .a4-btn { flex: 0 0 auto; }
+
+/* the audience filter: radio buttons drawn as chips (the input stays, for the keyboard and the form) */
+.a4-help-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--a4-space-2);
+  margin: var(--a4-space-3) 0 0;
+  padding: 0;
+  border: 0;
+}
+.a4-help-filters legend { float: left; width: auto; margin: 0 var(--a4-space-1) 0 0; padding: var(--a4-space-1) 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-filter { position: relative; display: inline-flex; }
+.a4-help-filter > input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.a4-help-filter > span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a4-space-1);
+  min-height: 28px;
+  padding: var(--a4-space-1) var(--a4-space-3);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  color: var(--a4-ink);
+  font-size: var(--a4-text-s);
+  font-weight: var(--a4-weight-strong);
+}
+.a4-help-filter > input:hover + span { border-color: var(--a4-line-strong); }
+.a4-help-filter > input:checked + span { border-color: var(--a4-accent-strong); background-color: var(--a4-accent-strong); color: var(--a4-on-accent); }
+.a4-help-filter > input:focus-visible + span { outline: 3px solid var(--a4-ring); outline-offset: 2px; }
+.a4-help-filter [data-exphelp-count]:not(:empty) { color: inherit; font-weight: normal; }
+.a4-help-filter [data-exphelp-count]:not(:empty)::before { content: "("; }
+.a4-help-filter [data-exphelp-count]:not(:empty)::after { content: ")"; }
+
+/* key figures under the search */
+.a4-help-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--a4-space-2) var(--a4-space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+.a4-help-stats li { display: inline-flex; align-items: center; gap: var(--a4-space-2); }
+.a4-help-stats strong { color: var(--a4-ink); font-size: var(--a4-text-l); font-variant-numeric: tabular-nums; }
+
+/* the Browse all help button at the bottom of the hero (the hero's grid gap spaces it) */
+.a4-help-hero-actions {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+/* "Reading in: English / Deutsch" (parts/reading_language.tpl): the reader's language, a segmented switch that posts
+   to uiswitch/set, and how much of the help each translation has. Centred in the dashboard's hero, at the end of
+   the line of Help Start in the bar of the help pages. */
+.a4-help-reading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--a4-space-2) var(--a4-space-3);
+  margin: var(--a4-space-3) 0;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+/* In the bar of the help pages it follows Help Start on one line: [Help Start] | Reading in: English | Deutsch */
+.a4-help-viewer-line .a4-help-reading {
+  justify-content: flex-start;
+  gap: var(--a4-space-1) var(--a4-space-2);
+  min-width: 0;
+  margin: 0;
+  padding-inline-start: var(--a4-space-2);
+  border-inline-start: 1px solid var(--a4-line);
+}
+.a4-help-reading-label { display: inline-flex; align-items: center; gap: var(--a4-space-1); }
+.a4-help-reading-form { display: inline-flex; margin: 0; }
+.a4-help-reading-list {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  overflow: hidden;
+}
+.a4-help-reading-list > li + li { border-inline-start: 1px solid var(--a4-line); }
+.a4-help-reading-option {
+  min-height: 28px;
+  margin: 0;
+  padding: var(--a4-space-1) var(--a4-space-3);
+  border: 0;
+  background-color: transparent;
+  color: var(--a4-ink);
+  font: inherit;
+  font-weight: var(--a4-weight-strong);
+  cursor: pointer;
+}
+.a4-help-reading-option:hover { background-color: var(--a4-soft); color: var(--a4-accent-text); }
+.a4-help-reading-option:focus-visible { outline: 3px solid var(--a4-ring); outline-offset: -3px; }
+.a4-help-reading-option[aria-current="true"] { background-color: var(--a4-accent-strong); color: var(--a4-on-accent); cursor: default; }
+.a4-help-reading-current { color: var(--a4-ink); }
+.a4-help-reading-coverage { display: inline-flex; flex-wrap: wrap; gap: var(--a4-space-1) var(--a4-space-3); margin: 0; padding: 0; list-style: none; font-variant-numeric: tabular-nums; }
+.a4-help-reading-about { color: var(--a4-accent-text); }
+/* the link between a translated page and its English original */
+.a4-help-original { display: flex; align-items: center; gap: var(--a4-space-1); margin: 0 0 var(--a4-space-4); }
+
+/* ---- search results (exphelp.js draws them; the search page renders the same markup without the script) ------ */
+
+.a4-help-search-box { position: relative; }
+.a4-help-search-box [data-exphelp-results] {
+  position: absolute;
+  z-index: var(--a4-z-popover);
+  top: calc(100% + var(--a4-space-2));
+  inset-inline: 0;
+  max-height: min(70vh, 560px);
+  overflow-y: auto;
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: var(--a4-shadow-m);
+  text-align: start;
+}
+.a4-help-results,
+.a4-help-results__list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: var(--a4-space-1);
+  list-style: none;
+}
+.a4-help-result { margin: 0; border-radius: var(--a4-radius-s); }
+.a4-help-result + .a4-help-result { border-top: 1px solid var(--a4-line); }
+.a4-help-result__link,
+.a4-help-result__link:visited {
+  display: grid;
+  gap: 2px;
+  padding: var(--a4-space-2) var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  color: var(--a4-ink);
+  text-decoration: none;
+}
+.a4-help-result__link:hover,
+.a4-help-result.is-active .a4-help-result__link,
+.a4-help-result__link:focus-visible { background-color: var(--a4-info-bg); color: var(--a4-ink); }
+.a4-help-result.is-active .a4-help-result__link,
+.a4-help-result__link:focus-visible { box-shadow: inset 3px 0 0 var(--a4-accent); }
+.a4-help-result__title { font-weight: var(--a4-weight-heading); font-size: var(--a4-text-m); }
+.a4-help-result__section { color: var(--a4-muted); font-size: var(--a4-text-xs); }
+.a4-help-result__snippet { color: var(--a4-muted); font-size: var(--a4-text-s); overflow-wrap: anywhere; }
+.a4-help-result__snippet mark,
+.a4-help-result__title mark {
+  padding: 0 2px;
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-accent-soft);
+  color: var(--a4-ink);
+  font-weight: var(--a4-weight-heading);
+}
+.a4-help-result__meta { display: flex; flex-wrap: wrap; gap: var(--a4-space-1); margin-top: var(--a4-space-1); }
+.a4-help-result__link:hover, .a4-help-result__link:focus-visible { text-decoration: none; }
+.a4-help-results__status { margin: 0; padding: var(--a4-space-2) var(--a4-space-3); color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-results__status:empty { display: none; }
+.a4-help-results__relaxed { margin: 0; padding: var(--a4-space-2) var(--a4-space-3) 0; color: var(--a4-warn); font-size: var(--a4-text-xs); font-weight: var(--a4-weight-strong); }
+.a4-help-result__link:focus-visible { outline-offset: -3px; }
+
+/* ---- the search page (exphelp/search) ------------------------------------------------------------------------ */
+
+.a4-help-search.a4-help-search-wide { max-width: none; margin: 0; }
+.a4-help-facets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--a4-space-3) var(--a4-space-5);
+  margin: var(--a4-space-3) 0 0;
+}
+.a4-help-facets .a4-help-filters { justify-content: flex-start; margin: 0; }
+.a4-help-facets .a4-field { margin: 0; }
+.a4-help-searchresults {
+  min-width: 0;
+  padding: var(--a4-space-2);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line), var(--a4-shadow-s);
+}
+.a4-help-searchresults .a4-help-result__link { padding: var(--a4-space-3) var(--a4-space-4); }
+.a4-help-searchresults .a4-help-result__title { font-size: var(--a4-text-l); }
+.a4-help-pager {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--a4-space-3);
+  padding: var(--a4-space-3) 0 var(--a4-space-1);
+  border-top: 1px solid var(--a4-line);
+}
+.a4-help-noresults { display: grid; justify-items: center; gap: var(--a4-space-2); padding: var(--a4-space-6) var(--a4-space-4); text-align: center; }
+.a4-help-noresults p { margin: 0; }
+
+/* browsing a topic: its introduction, the topic links, the page numbers */
+.a4-help-searchpage .a4-pagehead-title .a4-icon { color: var(--a4-accent-text); }
+.a4-help-catintro { max-width: 80ch; color: var(--a4-ink); font-size: var(--a4-text-m); }
+.a4-help-topics { min-height: var(--a4-control-h); }
+.a4-help-topics__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a4-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-topics__list a.a4-tag,
+.a4-help-topics__list a.a4-tag:visited {
+  min-height: 28px;
+  padding: var(--a4-space-1) var(--a4-space-3);
+  color: var(--a4-ink);
+  font-weight: var(--a4-weight-strong);
+  text-decoration: none;
+}
+.a4-help-topics__list a.a4-tag:hover { border-color: var(--a4-accent); color: var(--a4-accent-text); }
+.a4-help-topics__list a.a4-tag.is-current { border-color: var(--a4-accent-strong); background-color: var(--a4-accent-strong); color: var(--a4-on-accent); }
+.a4-help-topics__count { color: inherit; font-weight: normal; font-variant-numeric: tabular-nums; }
+.a4-help-results__list.is-browse .a4-help-result__snippet { color: var(--a4-muted); }
+.a4-help-result__title .a4-icon { color: var(--a4-accent-text); }
+.a4-help-pager__pages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a4-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-pager__page { min-width: var(--a4-control-h); justify-content: center; font-variant-numeric: tabular-nums; }
+.a4-help-pager__page.is-current { border-color: var(--a4-accent-strong); background-color: var(--a4-accent-strong); color: var(--a4-on-accent); }
+
+/* ---- dashboard: audience cards------------------------------------------------------------------------------- */
+
+.a4-help-frame { container-type: inline-size; }
+.a4-help-audiences {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--a4-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-audience {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--a4-space-3);
+  min-width: 0;
+  padding: var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line), var(--a4-shadow-s);
+  transition: box-shadow var(--a4-duration) ease, transform var(--a4-duration) ease;
+}
+.a4-help-audience::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  border-radius: var(--a4-radius-s) var(--a4-radius-s) 0 0;
+  background-color: var(--a4-accent);
+}
+.a4-help-audience.is-admin::before { background-color: var(--a4-chart-1); }
+.a4-help-audience.is-developer::before { background-color: var(--a4-chart-3); }
+.a4-help-audience.is-user::before { background-color: var(--a4-chart-7); }
+.a4-help-audience.is-project-manager::before { background-color: var(--a4-chart-4); }
+.a4-help-audience.is-sales-marketing::before { background-color: var(--a4-chart-5); }
+.a4-help-audience.is-partner::before { background-color: var(--a4-chart-2); }
+.a4-help-audience.is-advocate::before { background-color: var(--a4-chart-6); }
+.a4-help-audience.is-designer::before { background-color: var(--a4-chart-8); }
+.a4-help-audience.is-hosting::before { background-color: var(--a4-chart-1); }
+.a4-help-audience.is-app-creator::before { background-color: var(--a4-chart-3); }
+.a4-help-audience.is-website-creator::before { background-color: var(--a4-chart-7); }
+.a4-help-audience.is-supporter::before { background-color: var(--a4-chart-4); }
+.a4-help-audience.is-sponsor::before { background-color: var(--a4-chart-5); }
+.a4-help-audience.is-customer::before { background-color: var(--a4-chart-4); }
+.a4-help-audience.is-government::before { background-color: var(--a4-chart-7); }
+.a4-help-audience.is-businesses::before { background-color: var(--a4-chart-3); }
+.a4-help-audience.is-press::before { background-color: var(--a4-chart-6); }
+.a4-help-audience.is-trainer::before { background-color: var(--a4-chart-2); }
+.a4-help-audience.is-community::before { background-color: var(--a4-chart-6); }
+.a4-help-audience.is-ecosystem::before { background-color: var(--a4-chart-1); }
+.a4-help-audience.is-php-developer::before { background-color: var(--a4-chart-3); }
+.a4-help-audience.is-theme-designer::before { background-color: var(--a4-chart-8); }
+.a4-help-audience.is-reseller::before { background-color: var(--a4-chart-2); }
+.a4-help-audience.is-bundler::before { background-color: var(--a4-chart-4); }
+.a4-help-audience.is-ai-agents::before { background-color: var(--a4-chart-7); }
+.a4-help-audience.is-software-engineer::before { background-color: var(--a4-chart-1); }
+.a4-help-audience.is-adopter::before { background-color: var(--a4-chart-5); }
+.a4-help-audience.is-mobile-app-developer::before { background-color: var(--a4-chart-3); }
+.a4-help-audience.is-web-framework-developer::before { background-color: var(--a4-chart-6); }
+.a4-help-audience.is-cms-developer::before { background-color: var(--a4-chart-8); }
+.a4-help-audience.is-dxp-developer::before { background-color: var(--a4-chart-2); }
+.a4-help-audience.is-ecommerce::before { background-color: var(--a4-chart-4); }
+.a4-help-audience.is-integrator::before { background-color: var(--a4-chart-7); }
+.a4-help-audience.is-dba::before { background-color: var(--a4-chart-1); }
+.a4-help-audience.is-podcaster::before { background-color: var(--a4-chart-5); }
+.a4-help-audience.is-non-profit::before { background-color: var(--a4-chart-3); }
+.a4-help-audience.is-local-business::before { background-color: var(--a4-chart-2); }
+.a4-help-audience.is-individual::before { background-color: var(--a4-chart-7); }
+.a4-help-audience.is-non-technical::before { background-color: var(--a4-chart-4); }
+.a4-help-audience.is-student::before { background-color: var(--a4-chart-6); }
+.a4-help-audience:hover,
+.a4-help-audience:focus-within { box-shadow: inset 0 0 0 1px var(--a4-line-strong), var(--a4-shadow-m); transform: translateY(-2px); }
+.a4-help-audience h3 { margin: 0; font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); line-height: var(--a4-leading-tight); }
+.a4-help-audience h3 a,
+.a4-help-audience h3 a:visited { color: var(--a4-ink); text-decoration: none; }
+/* the whole card is the link to the audience's pages; the page links inside stay clickable above it */
+.a4-help-audience h3 a::after { content: ""; position: absolute; inset: 0; border-radius: var(--a4-radius-s); }
+.a4-help-audience h3 a:focus-visible { outline: 2px solid transparent; }
+.a4-help-audience h3 a:focus-visible::after { outline: 3px solid var(--a4-ring); outline-offset: 2px; }
+.a4-help-audience p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-audience-head { display: flex; align-items: center; justify-content: space-between; gap: var(--a4-space-3); }
+.a4-help-audience-count { color: var(--a4-muted); font-size: var(--a4-text-xs); font-variant-numeric: tabular-nums; }
+.a4-help-audience ul { display: grid; gap: var(--a4-space-1); margin: auto 0 0; padding: 0; list-style: none; }
+.a4-help-audience li a {
+  position: relative;
+  z-index: var(--a4-z-raised);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a4-space-1);
+  font-size: var(--a4-text-s);
+}
+.a4-help-audience li a .a4-icon { color: var(--a4-muted); }
+/* the start page of an audience (project managers, sales & marketing): above the whole-card link like the page links */
+.a4-help-audience-start {
+  position: relative;
+  z-index: var(--a4-z-raised);
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--a4-space-1);
+  font-size: var(--a4-text-s);
+  font-weight: var(--a4-weight-strong);
+}
+
+@container (max-width: 1080px) {
+  .a4-help-audiences { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (max-width: 520px) {
+  .a4-help-audiences { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* the audience cards in groups (dashboard.tpl, $help_audience_groups): each group a <details>, the first one open */
+.a4-help-audience-groups { display: grid; gap: var(--a4-space-3); }
+.a4-help-audience-group {
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+}
+.a4-help-audience-group-head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--a4-space-1) var(--a4-space-3);
+  padding: var(--a4-space-4) var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  cursor: pointer;
+  list-style: none;
+}
+.a4-help-audience-group-head::-webkit-details-marker { display: none; }
+.a4-help-audience-group-head:hover .a4-help-audience-group-title { text-decoration: underline; }
+.a4-help-audience-group-head:focus-visible { outline: 3px solid var(--a4-ring); outline-offset: 2px; }
+.a4-help-audience-group-chevron { color: var(--a4-muted); transition: transform var(--a4-duration) ease; }
+.a4-help-audience-group[open] > .a4-help-audience-group-head .a4-help-audience-group-chevron { transform: rotate(90deg); }
+.a4-help-audience-group-title { color: var(--a4-ink); font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); line-height: var(--a4-leading-tight); }
+.a4-help-audience-group-count { color: var(--a4-muted); font-size: var(--a4-text-xs); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.a4-help-audience-group-text { grid-column: 2 / -1; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-audience-group > .a4-help-audiences { padding: 0 var(--a4-space-5) var(--a4-space-5); }
+@media (max-width: 600px) {
+  .a4-help-audience-group-head { padding: var(--a4-space-3) var(--a4-space-4); }
+  .a4-help-audience-group > .a4-help-audiences { padding: 0 var(--a4-space-3) var(--a4-space-4); }
+}
+
+/* the search hero's audience filters beyond the open group, behind "More audiences" */
+.a4-help-filters-more { flex-basis: 100%; text-align: center; }
+.a4-help-filters-more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--a4-space-1);
+  padding: var(--a4-space-1) 0;
+  color: var(--a4-accent-text);
+  font-size: var(--a4-text-s);
+  font-weight: var(--a4-weight-strong);
+  cursor: pointer;
+  list-style: none;
+}
+.a4-help-filters-more > summary::-webkit-details-marker { display: none; }
+.a4-help-filters-more > summary:focus-visible { outline: 3px solid var(--a4-ring); outline-offset: 2px; }
+.a4-help-filters-more > summary .a4-icon { transition: transform var(--a4-duration) ease; }
+.a4-help-filters-more[open] > summary .a4-icon { transform: rotate(180deg); }
+.a4-help-filters-more-list { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--a4-space-2); padding-top: var(--a4-space-2); text-align: start; }
+@media (prefers-reduced-motion: reduce) {
+  .a4-help-audience-group-chevron,
+  .a4-help-filters-more > summary .a4-icon { transition: none; }
+}
+
+/* ---- dashboard: featured pages and recently changed pages, side by side ------------------------------------- */
+
+.a4-help-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: var(--a4-space-5);
+  align-items: start;
+}
+.a4-help-columns > :only-child { grid-column: 1 / -1; }
+@media (max-width: 1100px) {
+  .a4-help-columns { grid-template-columns: minmax(0, 1fr); }
+}
+.a4-help-featured {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: var(--a4-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-feature a,
+.a4-help-feature a:visited {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--a4-space-3);
+  height: 100%;
+  padding: var(--a4-space-4);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+  color: var(--a4-ink);
+  text-decoration: none;
+  transition: box-shadow var(--a4-duration) ease, transform var(--a4-duration) ease;
+}
+.a4-help-feature a:hover { box-shadow: inset 0 0 0 1px var(--a4-accent), var(--a4-shadow-m); transform: translateY(-1px); }
+.a4-help-feature-text { display: grid; gap: var(--a4-space-1); min-width: 0; }
+.a4-help-feature-title { font-weight: var(--a4-weight-heading); font-size: var(--a4-text-m); line-height: var(--a4-leading-tight); }
+.a4-help-feature-summary { color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-feature-meta { display: flex; flex-wrap: wrap; gap: var(--a4-space-1); }
+
+/* recently changed pages: a list with the date at the end of each row */
+.a4-help-recent { margin: 0; padding: 0; list-style: none; }
+.a4-help-recent li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--a4-space-1) var(--a4-space-3);
+  padding: var(--a4-space-2) 0;
+  border-bottom: 1px solid var(--a4-line);
+}
+.a4-help-recent li:last-child { border-bottom: 0; }
+.a4-help-recent li > .a4-icon { color: var(--a4-muted); }
+.a4-help-recent-main { display: grid; min-width: 0; }
+.a4-help-recent-main a { font-weight: var(--a4-weight-strong); overflow-wrap: anywhere; }
+.a4-help-recent-path { color: var(--a4-muted); font-family: var(--a4-mono); font-size: var(--a4-text-xs); overflow-wrap: anywhere; }
+.a4-help-recent time { color: var(--a4-muted); font-size: var(--a4-text-xs); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* ---- dashboard: quick links (categories) --------------------------------------------------------------------- */
+
+.a4-help-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: var(--a4-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-links a,
+.a4-help-links a:visited {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  min-height: 40px;
+  padding: var(--a4-space-2) var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-soft);
+  color: var(--a4-ink);
+  font-weight: var(--a4-weight-strong);
+  font-size: var(--a4-text-s);
+  text-decoration: none;
+}
+.a4-help-links a:hover { background-color: var(--a4-accent-soft); color: var(--a4-accent-text); }
+.a4-help-links a .a4-icon { color: var(--a4-accent-text); }
+.a4-help-links-count { margin-inline-start: auto; color: var(--a4-muted); font-weight: normal; font-size: var(--a4-text-xs); font-variant-numeric: tabular-nums; }
+
+/* ---- dashboard: report an error ------------------------------------------------------------------------------ */
+
+.a4-help-report {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--a4-space-4) var(--a4-space-5);
+  padding: var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  background:
+    linear-gradient(120deg, var(--a4-bad-bg), transparent 55%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-bad-line);
+}
+.a4-help-report .a4-help-tile { color: var(--a4-bad); background-color: var(--a4-card); box-shadow: inset 0 0 0 1px var(--a4-bad-line); }
+.a4-help-report h2 { margin: 0 0 var(--a4-space-1); font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); }
+.a4-help-report p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-report-actions { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); }
+.a4-help-report-security { display: inline-flex; align-items: center; gap: var(--a4-space-1); margin-top: var(--a4-space-2); font-size: var(--a4-text-xs); }
+.a4-help-report-actions { grid-column: 2; }
+@media (max-width: 600px) {
+  .a4-help-report-actions { grid-column: 1 / -1; }
+}
+
+/* ---- help pages: the "Become an Exponential Partner" card -----------------------------------------------------
+   The block at the end of the help pages (between <!-- exp-partner-block:start/end --> in the Markdown), rendered by
+   expHelpMarkdownRenderer (option partner_card, set by the viewer) as the dashboard's footer blocks are: a tile with
+   the partner icon, the bold lead as heading, the text and its links as buttons. Inside .a4-help-body, so the
+   article's own heading and paragraph rules are undone here. */
+
+.a4-help-partner {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--a4-space-4) var(--a4-space-5);
+  margin: var(--a4-space-6) 0 var(--a4-space-4);
+  padding: var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  background:
+    linear-gradient(120deg, var(--a4-info-bg), transparent 55%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-info-line);
+}
+.a4-help-partner .a4-help-tile { color: var(--a4-info); background-color: var(--a4-card); box-shadow: inset 0 0 0 1px var(--a4-info-line); }
+.a4-help-body .a4-help-partner .a4-help-partner-title {
+  margin: 0 0 var(--a4-space-1);
+  padding: 0;
+  border: 0;
+  font-size: var(--a4-text-l);
+  font-weight: var(--a4-weight-heading);
+}
+.a4-help-body .a4-help-partner p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-body .a4-help-partner p strong { color: var(--a4-ink); }
+.a4-help-partner-actions { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); grid-column: 2; }
+.a4-help-body .a4-help-partner-actions a.a4-btn { text-decoration: none; }
+@media (max-width: 600px) {
+  .a4-help-partner-actions { grid-column: 1 / -1; }
+}
+@media print {
+  .a4-help-partner { break-inside: avoid; }
+}
+
+/* ---- dashboard: grow from user to developer (parts/dashboard_grow.tpl) ---------------------------------------- */
+
+.a4-help-grow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--a4-space-4) var(--a4-space-5);
+  padding: var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  background:
+    linear-gradient(120deg, var(--a4-ok-bg), transparent 55%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-ok-line);
+}
+.a4-help-grow .a4-help-tile { color: var(--a4-ok); background-color: var(--a4-card); box-shadow: inset 0 0 0 1px var(--a4-ok-line); }
+.a4-help-grow h2 { margin: 0 0 var(--a4-space-1); font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); }
+.a4-help-grow p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-grow-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--a4-space-2);
+  margin: var(--a4-space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-grow-steps a {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--a4-space-2);
+  height: 100%;
+  padding: var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+  color: var(--a4-ink);
+  text-decoration: none;
+}
+.a4-help-grow-steps a:hover { box-shadow: inset 0 0 0 1px var(--a4-ok-line); }
+.a4-help-grow-steps a:hover strong { text-decoration: underline; }
+.a4-help-grow-num {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background-color: var(--a4-ok-bg);
+  color: var(--a4-ok);
+  font-weight: var(--a4-weight-heading);
+  font-size: var(--a4-text-s);
+  font-variant-numeric: tabular-nums;
+}
+.a4-help-grow-step { color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-grow-step strong { display: block; color: var(--a4-ink); font-weight: var(--a4-weight-strong); }
+.a4-help-grow-actions { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); grid-column: 2; }
+@media (max-width: 600px) {
+  .a4-help-grow { padding: var(--a4-space-4); }
+  .a4-help-grow-actions { grid-column: 1 / -1; }
+}
+@media print {
+  .a4-help-grow-actions { display: none; }
+}
+
+/* ---- dashboard: who makes Exponential (parts/dashboard_about.tpl) -------------------------------------------- */
+
+.a4-help-about {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--a4-space-4) var(--a4-space-5);
+  padding: var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  background:
+    linear-gradient(120deg, var(--a4-info-bg), transparent 55%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-info-line);
+}
+.a4-help-about .a4-help-tile { color: var(--a4-info); background-color: var(--a4-card); box-shadow: inset 0 0 0 1px var(--a4-info-line); }
+.a4-help-about h2 { margin: 0 0 var(--a4-space-1); font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); }
+.a4-help-about p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-about-links {
+  display: grid;
+  grid-column: 2;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--a4-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-about-links a {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--a4-space-2);
+  height: 100%;
+  padding: var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+  color: var(--a4-ink);
+  text-decoration: none;
+}
+.a4-help-about-links a:hover { box-shadow: inset 0 0 0 1px var(--a4-info-line); }
+.a4-help-about-links a:hover strong { text-decoration: underline; }
+.a4-help-about-links .a4-icon { flex: 0 0 auto; margin-top: var(--a4-space-1); color: var(--a4-info); }
+.a4-help-about-text { color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-about-text strong { display: block; color: var(--a4-ink); font-weight: var(--a4-weight-strong); }
+@media (max-width: 600px) {
+  .a4-help-about { padding: var(--a4-space-4); }
+  .a4-help-about-links { grid-column: 1 / -1; }
+}
+
+/* ---- dashboard: keyboard hints ------------------------------------------------------------------------------- */
+
+.a4-help-keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--a4-space-2) var(--a4-space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-xs);
+}
+.a4-help-keys li { display: inline-flex; align-items: center; gap: var(--a4-space-1); }
+.a4-help-keys .a4-kbd { margin: 0; }
+
+/* ---- small windows ------------------------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+  .a4-help-frame { gap: var(--a4-space-4); }
+  .a4-help-hero { padding: var(--a4-space-5) var(--a4-space-4); }
+  .a4-help-hero h1 { font-size: var(--a4-text-2xl); }
+  .a4-help-hero-sub { font-size: var(--a4-text-m); }
+  .a4-help-search-field { padding-inline-start: var(--a4-space-3); }
+  .a4-help-search-field .a4-kbd { display: none; }
+  .a4-help-audience { padding: var(--a4-space-4); }
+  .a4-help-report { padding: var(--a4-space-4); }
+  .a4-help-recent li { grid-template-columns: minmax(0, 1fr) auto; }
+  .a4-help-recent li > .a4-icon { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a4-help-audience,
+  .a4-help-feature a { transition: none; }
+  .a4-help-audience:hover,
+  .a4-help-audience:focus-within,
+  .a4-help-feature a:hover { transform: none; }
+}
+
+@media print {
+  .a4-help-search,
+  .a4-help-keys,
+  .a4-help-report-actions { display: none; }
+  .a4-help-hero,
+  .a4-help-audience,
+  .a4-help-feature a { box-shadow: none; transform: none; }
+}
+
+/* ---- renderer (A): the markup of expHelpMarkdownRenderer and expHelpHighlighter ---------------------------------
+   Code blocks, syntax tokens, callouts, tables, figures, quotes, task lists, footnotes, heading anchors, inline code,
+   keys and refused links. Prose margins of bare p / ul / h2-h6 are the viewer's (E). Colours from the tokens only;
+   the code tokens (--a4-code-*) live in components.css, the same in both themes because code sits on --a4-code-bg. */
+
+/* inline code and keys */
+.a4-help-body :not(pre) > code {
+  padding: 0 var(--a4-space-1);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-soft);
+  color: var(--a4-ink);
+  font-family: var(--a4-mono);
+  font-size: var(--a4-text-s);
+  overflow-wrap: anywhere;
+}
+.a4-help-body kbd {
+  display: inline-block;
+  padding: 0 var(--a4-space-1);
+  border: 1px solid var(--a4-line-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-card);
+  color: var(--a4-ink);
+  font-family: var(--a4-mono);
+  font-size: var(--a4-text-xs);
+  line-height: var(--a4-leading-tight);
+}
+.a4-help-body mark {
+  background: var(--a4-warn-bg);
+  color: var(--a4-ink);
+}
+
+/* heading anchors: shown on hover / focus within the heading */
+.a4-help-h {
+  scroll-margin-top: var(--a4-space-7);
+}
+.a4-help-anchor {
+  margin-inline-start: var(--a4-space-1);
+  color: var(--a4-muted);
+  text-decoration: none;
+  opacity: 0;
+}
+.a4-help-h:hover > .a4-help-anchor,
+.a4-help-h:focus-within > .a4-help-anchor,
+.a4-help-target:target + .a4-help-anchor {
+  opacity: 1;
+}
+.a4-help-target {
+  scroll-margin-top: var(--a4-space-7);
+}
+
+/* code blocks */
+.a4-help-code {
+  position: relative;
+  margin: var(--a4-space-3) 0 var(--a4-space-4);
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-code-bg);
+}
+.a4-help-pre,
+.a4-help-body .a4-help-pre {
+  margin: 0;
+  padding: var(--a4-space-3) var(--a4-space-4);
+  overflow-x: auto;
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-code-bg);
+  color: var(--a4-code-ink);
+  font-family: var(--a4-mono);
+  font-size: var(--a4-text-s);
+  line-height: var(--a4-leading);
+  tab-size: 4;
+  white-space: pre;
+}
+.a4-help-pre > code {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+}
+.a4-help-code[data-label]::before {
+  content: attr(data-label);
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  padding: 0 var(--a4-space-2);
+  border-end-start-radius: var(--a4-radius-s);
+  color: var(--a4-code-comment);
+  font-family: var(--a4-font);
+  font-size: var(--a4-text-xs);
+  pointer-events: none;
+}
+.a4-help-plain .a4-help-pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+/* syntax tokens */
+.a4-help-tok-comment { color: var(--a4-code-comment); font-style: italic; }
+.a4-help-tok-keyword { color: var(--a4-code-keyword); }
+.a4-help-tok-string { color: var(--a4-code-string); }
+.a4-help-tok-number { color: var(--a4-code-number); }
+.a4-help-tok-variable { color: var(--a4-code-variable); }
+.a4-help-tok-function { color: var(--a4-code-function); }
+.a4-help-tok-tag { color: var(--a4-code-tag); }
+.a4-help-tok-attr { color: var(--a4-code-attr); }
+.a4-help-tok-operator { color: var(--a4-code-operator); }
+.a4-help-tok-constant { color: var(--a4-code-constant); }
+.a4-help-tok-meta { color: var(--a4-code-meta); }
+.a4-help-tok-section { color: var(--a4-code-section); font-weight: var(--a4-weight-heading); }
+.a4-help-tok-inserted { color: var(--a4-code-inserted); }
+.a4-help-tok-deleted { color: var(--a4-code-deleted); }
+.a4-help-tok-property { color: var(--a4-code-property); }
+.a4-help-tok-type { color: var(--a4-code-type); }
+
+/* callouts: > [!NOTE], > **Warning:**, :::tip */
+.a4-help-callout {
+  margin: var(--a4-space-3) 0 var(--a4-space-4);
+  padding: var(--a4-space-3) var(--a4-space-4);
+  border: 1px solid var(--a4-info-line);
+  border-inline-start-width: 4px;
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-info-bg);
+  color: var(--a4-ink);
+}
+.a4-help-callout > :last-child {
+  margin-bottom: 0;
+}
+.a4-help-callout-title {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  margin: 0 0 var(--a4-space-2);
+  color: var(--a4-info);
+  font-weight: var(--a4-weight-heading);
+}
+.a4-help-callout-title:only-child {
+  margin-bottom: 0;
+}
+.a4-help-callout--tip {
+  border-color: var(--a4-ok-line);
+  background: var(--a4-ok-bg);
+}
+.a4-help-callout--tip > .a4-help-callout-title {
+  color: var(--a4-ok);
+}
+.a4-help-callout--important {
+  border-color: var(--a4-accent);
+  background: var(--a4-accent-soft);
+}
+.a4-help-callout--important > .a4-help-callout-title {
+  color: var(--a4-accent-text);
+}
+.a4-help-callout--warning {
+  border-color: var(--a4-warn-line);
+  background: var(--a4-warn-bg);
+}
+.a4-help-callout--warning > .a4-help-callout-title {
+  color: var(--a4-warn);
+}
+.a4-help-callout--caution {
+  border-color: var(--a4-bad-line);
+  background: var(--a4-bad-bg);
+}
+.a4-help-callout--caution > .a4-help-callout-title {
+  color: var(--a4-bad);
+}
+
+/* tables: the wrapper scrolls, the table is .a4-table */
+.a4-help-table-wrap {
+  max-width: 100%;
+  margin: var(--a4-space-3) 0 var(--a4-space-4);
+  overflow-x: auto;
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+}
+.a4-help-table {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+}
+.a4-help-table th,
+.a4-help-table td {
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.a4-help-align-left { text-align: start; }
+.a4-help-align-center { text-align: center; }
+.a4-help-align-right { text-align: end; }
+
+/* quotes, rules, figures, images */
+.a4-help-quote {
+  margin: var(--a4-space-3) 0 var(--a4-space-4);
+  padding: var(--a4-space-1) var(--a4-space-4);
+  border-inline-start: 4px solid var(--a4-line-strong);
+  color: var(--a4-muted);
+}
+.a4-help-hr {
+  height: 0;
+  margin: var(--a4-space-5) 0;
+  border: 0;
+  border-top: 1px solid var(--a4-line);
+}
+.a4-help-figure {
+  margin: var(--a4-space-4) 0;
+}
+.a4-help-figure > figcaption {
+  margin-top: var(--a4-space-2);
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+.a4-help-img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-card);
+}
+
+/* collapsible sections */
+.a4-help-details {
+  margin: var(--a4-space-3) 0;
+  padding: var(--a4-space-2) var(--a4-space-3);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-card);
+}
+.a4-help-details > summary {
+  cursor: pointer;
+  font-weight: var(--a4-weight-strong);
+}
+.a4-help-details[open] > summary {
+  margin-bottom: var(--a4-space-2);
+}
+
+/* task lists */
+.a4-help-tasks {
+  padding-inline-start: 0;
+  list-style: none;
+}
+.a4-help-task {
+  display: flex;
+  align-items: baseline;
+  gap: var(--a4-space-2);
+}
+.a4-help-task-box {
+  display: inline-block;
+  flex: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--a4-line-strong);
+  border-radius: var(--a4-radius-s);
+  vertical-align: -0.125em;
+}
+.a4-help-task-box--done {
+  border: 0;
+  color: var(--a4-ok);
+}
+
+/* links */
+.a4-help-ext::after {
+  content: "\2197";
+  margin-inline-start: 2px;
+  font-size: var(--a4-text-xs);
+}
+.a4-help-deadlink {
+  color: var(--a4-muted);
+  text-decoration: underline dotted;
+}
+
+/* footnotes */
+.a4-help-fnref {
+  line-height: 0;
+}
+.a4-help-fnref > a {
+  padding: 0 2px;
+  text-decoration: none;
+}
+.a4-help-footnotes {
+  margin-top: var(--a4-space-6);
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+.a4-help-fnback {
+  text-decoration: none;
+}
+
+/* record pages (expHelpRecordRenderer): the release and branch history as tables per series */
+.a4-help-records-intro {
+  color: var(--a4-ink);
+}
+.a4-help-records-stats {
+  color: var(--a4-muted);
+}
+.a4-help-records-group {
+  margin-top: var(--a4-space-6);
+}
+.a4-help-records .a4-help-h > .a4-tag {
+  margin-inline-start: var(--a4-space-2);
+  vertical-align: middle;
+}
+.a4-help-records-details > summary,
+.a4-help-records-range {
+  color: var(--a4-muted);
+}
+.a4-help-records-table th[scope="row"] {
+  font-family: var(--a4-mono);
+  font-size: var(--a4-text-s);
+  white-space: nowrap;
+}
+.a4-help-records-table td,
+.a4-help-records-table th {
+  font-size: var(--a4-text-s);
+}
+.a4-help-records-table time {
+  white-space: nowrap;
+}
+.a4-help-records-table tr:target {
+  outline: 2px solid var(--a4-accent);
+  outline-offset: -2px;
+}
+.a4-help-records-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-records-list > li + li {
+  margin-top: var(--a4-space-1);
+}
+.a4-help-records-key {
+  color: var(--a4-muted);
+}
+.a4-help-records-sub {
+  display: block;
+  color: var(--a4-muted);
+}
+.a4-help-records-none {
+  color: var(--a4-muted);
+  font-style: italic;
+}
+.a4-help-records-url {
+  overflow-wrap: anywhere;
+  word-break: break-all;
+}
+.a4-help-records-dead {
+  margin-inline-start: var(--a4-space-1);
+  white-space: nowrap;
+}
+.a4-help-records-note {
+  font-style: italic;
+}
+/* ---- record pages: sources of the records (A, batch 2) ---- */
+.a4-help-records-source {
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+.a4-help-records-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--a4-space-3);
+  margin: var(--a4-space-3) 0;
+}
+.a4-help-records-filter {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+}
+.a4-help-records-filter > .a4-field {
+  min-width: 16rem;
+  max-width: 100%;
+}
+.a4-help-records-count {
+  margin: 0;
+  color: var(--a4-muted);
+}
+.a4-help-records-table tr[hidden] {
+  display: none;
+}
+.a4-help-sort {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-weight: var(--a4-weight-strong);
+  cursor: pointer;
+}
+.a4-help-sort::after {
+  content: "\2195";
+  margin-inline-start: var(--a4-space-1);
+  color: var(--a4-muted);
+}
+[aria-sort="ascending"] > .a4-help-sort::after {
+  content: "\2191";
+}
+[aria-sort="descending"] > .a4-help-sort::after {
+  content: "\2193";
+}
+@media print {
+  .a4-help-records-tools {
+    display: none;
+  }
+}
+@media print {
+  .a4-help-pre,
+  .a4-help-body .a4-help-pre {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .a4-help-anchor,
+  .a4-help-code[data-label]::before {
+    display: none;
+  }
+}
+
+/* ---- viewer (E) ---------------------------------------------------------------------------------------------- */
+/* exphelp/viewer: a bar (start, all pages, search), then a grid of the page, the tree of all help pages and the
+   contents of the page. The grid follows the width of the page column (container queries), not the window, so it
+   adapts when the admin's left column is shown or hidden:
+   - from 56rem: tree | page | contents (the tree and the contents stay in view while the page scrolls; wider
+     side columns from 72rem). admin4l with both of its columns open leaves about 60rem at 1440px;
+   - from 48rem: tree | page, the contents folded above the page;
+   - narrower: one column, the tree after the page (it is after the page in the source, too). */
+
+.a4-help-viewer { container-type: inline-size; container-name: a4-help-viewer; }
+.a4-help-viewer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--a4-space-1) var(--a4-space-2);
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 var(--a4-space-2);
+  border-bottom: 1px solid var(--a4-line);
+}
+.a4-help-viewer-bar .a4-btn .a4-icon { flex: none; }
+/* Help Start and the language bar share one line (no row of their own); it wraps at 960px / 200% zoom */
+.a4-help-viewer-line {
+  display: flex;
+  flex: 0 1 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--a4-space-1) var(--a4-space-2);
+  min-width: 0;
+  max-width: 100%;
+}
+.a4-help-viewer-search {
+  display: flex;
+  flex: 1 1 18rem;
+  align-items: center;
+  gap: var(--a4-space-2);
+  max-width: 34rem;
+  margin: 0 0 0 auto;
+}
+.a4-help-viewer-search .a4-input { flex: 1 1 auto; min-width: 0; }
+
+.a4-help-viewer-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "main" "nav";
+  gap: var(--a4-space-6);
+  align-items: start;
+}
+.a4-help-main { min-width: 0; }
+.a4-help-viewer-grid > .a4-help-main { grid-area: main; }
+.a4-help-nav { min-width: 0; }
+/* the areas only inside the viewer's grid: the contents page puts the tree straight into the help root, a grid too */
+.a4-help-viewer-grid > .a4-help-nav { grid-area: nav; }
+.a4-help-toc-side { display: none; min-width: 0; }
+.a4-help-viewer-grid > .a4-help-toc-side { grid-area: toc; }
+
+@container a4-help-viewer (min-width: 48rem) {
+  .a4-help-viewer-grid {
+    grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr);
+    grid-template-areas: "nav main";
+  }
+  .a4-help-viewer-tonav { display: none; }
+  /* The sidebar stays in the window; only its tree scrolls, so the filter and the Browse all help and Help Start
+     buttons above it are always in reach, however far the reader has scrolled the page or the tree */
+  .a4-help-nav {
+    position: sticky;
+    top: calc(var(--header-height, 6.25rem) + var(--a4-space-3));
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - var(--header-height, 6.25rem) - var(--a4-space-6));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .a4-help-nav > * { flex: none; }
+  .a4-help-nav > .a4-help-nav-list.is-top {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+}
+@container a4-help-viewer (min-width: 56rem) {
+  .a4-help-viewer-grid {
+    grid-template-columns: minmax(11rem, 13rem) minmax(0, 1fr) minmax(10rem, 12rem);
+    grid-template-areas: "nav main toc";
+    gap: var(--a4-space-5);
+  }
+  .a4-help-toc-side {
+    display: block;
+    position: sticky;
+    top: calc(var(--header-height, 6.25rem) + var(--a4-space-3));
+    max-height: calc(100vh - var(--header-height, 6.25rem) - var(--a4-space-6));
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+  .a4-help-toc-fold { display: none; }
+}
+@container a4-help-viewer (min-width: 72rem) {
+  .a4-help-viewer-grid {
+    grid-template-columns: minmax(13rem, 16rem) minmax(0, 1fr) minmax(11rem, 14rem);
+    gap: var(--a4-space-6);
+  }
+}
+
+/* The page: title, summary, meta */
+.a4-help-pagehead { margin: 0 0 var(--a4-space-4); }
+.a4-help-title {
+  margin: 0 0 var(--a4-space-2);
+  color: var(--a4-ink);
+  font-size: var(--a4-text-3xl);
+  font-weight: var(--a4-weight-heading);
+  line-height: var(--a4-leading-tight);
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+.a4-help-summary {
+  max-width: 72ch;
+  margin: 0 0 var(--a4-space-3);
+  color: var(--a4-muted);
+  font-size: var(--a4-text-l);
+  line-height: var(--a4-leading);
+}
+.a4-help-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--a4-space-2) var(--a4-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+.a4-help-meta-item { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--a4-space-1); margin: 0; padding: 0; }
+.a4-help-meta-item > .a4-icon { flex: none; }
+.a4-help-meta-item .a4-tag .a4-icon { flex: none; }
+/* The category and audience tags link to the search listing every page of theirs */
+.a4-help-meta a.a4-tag { text-decoration: none; }
+.a4-help-meta a.a4-tag:hover { border-color: var(--a4-line-strong); text-decoration: underline; }
+.a4-help-meta a.a4-help-pill:hover { box-shadow: inset 0 0 0 1px currentColor; }
+.a4-help-meta-path {
+  padding: 0 var(--a4-space-1);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-soft);
+  color: var(--a4-ink);
+  font-size: var(--a4-text-xs);
+}
+.a4-help-meta-item.is-edit { margin-inline-start: auto; }
+
+/* The document: the renderer's body (A's section styles what is inside) at a readable measure. The document's own
+   first heading repeats the page title above it, so it is left out. */
+.a4-help-article { max-width: 80ch; min-width: 0; color: var(--a4-ink); line-height: var(--a4-leading); }
+.a4-help-article > .a4-help-body > h1:first-child { display: none; }
+.a4-help-article :is(h2, h3, h4)[id] { scroll-margin-top: calc(var(--header-height, 6.25rem) + var(--a4-space-4)); }
+.a4-help-article .a4-help-target[id] { scroll-margin-top: calc(var(--header-height, 6.25rem) + var(--a4-space-4)); }
+/* The "#" anchor after a heading is a link inside the heading's text: underlined, so it is not told apart by colour
+   alone (WCAG 1.4.1, axe link-in-text-block), also while the renderer section keeps it hidden until hover or focus */
+.a4-help-article .a4-help-h > .a4-help-anchor { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.15em; }
+
+/* Prose of the document (element level; the renderer's own classes are styled in the renderer section) */
+.a4-help-body { font-size: var(--a4-text-body); overflow-wrap: break-word; }
+.a4-help-body > :first-child,
+.a4-help-body > h1:first-child + * { margin-top: 0; }
+.a4-help-body :is(p, ul, ol, dl) { margin: 0 0 var(--a4-space-4); }
+.a4-help-body :is(ul, ol) { padding-inline-start: var(--a4-space-6); }
+.a4-help-body li { margin: 0 0 var(--a4-space-1); }
+.a4-help-body li > :is(ul, ol) { margin: var(--a4-space-1) 0 0; }
+.a4-help-body li > p { margin: 0 0 var(--a4-space-2); }
+.a4-help-body :is(h2, h3, h4, h5, h6) { color: var(--a4-ink); line-height: var(--a4-leading-tight); overflow-wrap: anywhere; }
+.a4-help-body h2 {
+  margin: var(--a4-space-7) 0 var(--a4-space-3);
+  padding: 0 0 var(--a4-space-2);
+  border-bottom: 1px solid var(--a4-line);
+  font-size: var(--a4-text-2xl);
+  font-weight: var(--a4-weight-heading);
+}
+.a4-help-body h3 { margin: var(--a4-space-6) 0 var(--a4-space-2); font-size: var(--a4-text-xl); font-weight: var(--a4-weight-heading); }
+.a4-help-body h4 { margin: var(--a4-space-5) 0 var(--a4-space-2); font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); }
+.a4-help-body :is(h5, h6) { margin: var(--a4-space-4) 0 var(--a4-space-1); font-size: var(--a4-text-m); font-weight: var(--a4-weight-heading); }
+.a4-help-body dt { font-weight: var(--a4-weight-strong); }
+.a4-help-body dd { margin: 0 0 var(--a4-space-2); padding-inline-start: var(--a4-space-4); }
+.a4-help-body strong { font-weight: var(--a4-weight-heading); color: var(--a4-ink); }
+
+/* Collapsible sections (exphelp.js: a button after each h2 heading's text, the section in .a4-help-section) */
+.a4-help-collapse {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--a4-control-h);
+  height: var(--a4-control-h);
+  margin: 0 0 0 var(--a4-space-2);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--a4-radius-s);
+  background-color: transparent;
+  color: var(--a4-muted);
+  font: inherit;
+  font-size: var(--a4-text-s);
+  vertical-align: middle;
+  cursor: pointer;
+}
+.a4-help-collapse:hover { border-color: var(--a4-line); background-color: var(--a4-soft); color: var(--a4-ink); }
+.a4-help-collapse::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  background-color: currentColor;
+  -webkit-mask: url(../../../../../share/icons/bootstrap-icons/svg/chevron-down.svg) center / contain no-repeat;
+  mask: url(../../../../../share/icons/bootstrap-icons/svg/chevron-down.svg) center / contain no-repeat;
+  transition: rotate var(--a4-duration) ease;
+}
+.a4-help-collapse[aria-expanded="false"]::before { rotate: -90deg; }
+:where([dir="rtl"]) .a4-help-collapse[aria-expanded="false"]::before { rotate: 90deg; }
+.a4-help-section[hidden] { display: none; }
+
+/* Copy buttons of code blocks (exphelp.js), at the top end corner of .a4-help-code */
+.a4-help-code { position: relative; }
+.a4-help-copy {
+  position: absolute;
+  z-index: var(--a4-z-raised);
+  top: var(--a4-space-2);
+  inset-inline-end: var(--a4-space-2);
+  min-height: 0;
+  padding: 2px var(--a4-space-2);
+  font-size: var(--a4-text-xs);
+  opacity: 0.85;
+}
+.a4-help-code:hover .a4-help-copy,
+.a4-help-copy:focus-visible { opacity: 1; }
+.a4-help-copy.is-copied { border-color: var(--a4-ok-line); background-color: var(--a4-ok-bg); color: var(--a4-ok); }
+
+/* Previous and next page */
+.a4-help-pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--a4-space-3);
+  max-width: 80ch;
+  margin: var(--a4-space-7) 0 var(--a4-space-4);
+  padding: var(--a4-space-5) 0 0;
+  border-top: 1px solid var(--a4-line);
+}
+.a4-help-pager-link,
+.a4-help-pager-link:visited {
+  display: grid;
+  gap: var(--a4-space-1);
+  padding: var(--a4-space-3) var(--a4-space-4);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  color: var(--a4-ink);
+  text-decoration: none;
+  transition: border-color var(--a4-duration) ease, box-shadow var(--a4-duration) ease;
+}
+.a4-help-pager-link:hover { border-color: var(--a4-accent); box-shadow: var(--a4-shadow-s); color: var(--a4-ink); }
+.a4-help-pager-link.is-next { grid-column: -2; text-align: end; }
+.a4-help-pager-dir { display: inline-flex; align-items: center; gap: var(--a4-space-1); color: var(--a4-muted); font-size: var(--a4-text-xs); font-weight: var(--a4-weight-strong); text-transform: uppercase; letter-spacing: var(--a4-tracking); }
+.a4-help-pager-link.is-next .a4-help-pager-dir { justify-content: flex-end; }
+.a4-help-pager-link.is-prev .a4-help-pager-dir .a4-icon { scale: -1 1; }
+:where([dir="rtl"]) .a4-help-pager-link.is-prev .a4-help-pager-dir .a4-icon { scale: 1 1; }
+.a4-help-pager-title { color: var(--a4-accent-text); font-size: var(--a4-text-m); font-weight: var(--a4-weight-strong); overflow-wrap: anywhere; }
+.a4-help-foot { max-width: 80ch; margin: var(--a4-space-4) 0 0; }
+.a4-help-foot a { display: inline-flex; align-items: center; gap: var(--a4-space-1); }
+
+/* Help maintained as content: "Was this helpful?" and the review workflow under a topic (parts/topic_feedback.tpl,
+   parts/topic_workflow.tpl). Cards of the shared components; only their place in the column is set here. */
+.a4-help-feedback,
+.a4-help-workflow { max-width: 80ch; margin: var(--a4-space-5) 0 0; }
+.a4-help-feedback > * + *,
+.a4-help-workflow > * + *,
+.a4-help-feedback-form > * + * { margin-top: var(--a4-space-3); }
+.a4-help-feedback-form .a4-field { max-width: 40ch; }
+.a4-help-workflow .a4-steps { margin-bottom: 0; }
+/* the status box (the state as a badge and what it means for readers) and the steps, each with what it does */
+.a4-help-wf-status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a4-space-2); }
+.a4-help-wf-actions { display: grid; gap: var(--a4-space-3); margin: 0; padding: 0; list-style: none; }
+.a4-help-wf-action { display: flex; flex-wrap: wrap; align-items: center; gap: var(--a4-space-2) var(--a4-space-3); }
+/* a rule's code and a field's name stay whole; the finding wraps */
+.a4-help-workflow td code { white-space: nowrap; }
+
+/* The tree of all help pages: folders as <details>, open on the way to the current page */
+.a4-help-nav { font-size: var(--a4-text-s); }
+.a4-help-nav:focus { outline: 2px solid transparent; }
+.a4-help-nav-head,
+.a4-help-toc-head {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  margin: 0 0 var(--a4-space-2);
+  color: var(--a4-muted);
+  font-size: var(--a4-text-xs);
+  font-weight: var(--a4-weight-heading);
+  text-transform: uppercase;
+  letter-spacing: var(--a4-tracking);
+}
+.a4-help-nav-list { margin: 0; padding: 0; list-style: none; }
+.a4-help-nav-list .a4-help-nav-list {
+  margin: 2px 0 var(--a4-space-1) var(--a4-space-3);
+  padding: 0 0 0 var(--a4-space-2);
+  border-inline-start: 1px solid var(--a4-line);
+}
+:where([dir="rtl"]) .a4-help-nav-list .a4-help-nav-list { margin: 2px var(--a4-space-3) var(--a4-space-1) 0; padding: 0 var(--a4-space-2) 0 0; }
+.a4-help-nav-folder,
+.a4-help-nav-page { margin: 0; padding: 0; }
+.a4-help-nav-summary,
+.a4-help-nav-link,
+.a4-help-nav-link:visited {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  min-height: 2rem;
+  padding: 2px var(--a4-space-2);
+  border-radius: var(--a4-radius-s);
+  color: var(--a4-ink);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.a4-help-nav-summary { cursor: pointer; font-weight: var(--a4-weight-strong); list-style: none; }
+.a4-help-nav-summary::-webkit-details-marker { display: none; }
+.a4-help-nav-summary::after {
+  content: "";
+  flex: none;
+  width: 0.75em;
+  height: 0.75em;
+  margin-inline-start: auto;
+  background-color: var(--a4-muted);
+  -webkit-mask: url(../../../../../share/icons/bootstrap-icons/svg/chevron-right.svg) center / contain no-repeat;
+  mask: url(../../../../../share/icons/bootstrap-icons/svg/chevron-right.svg) center / contain no-repeat;
+  transition: rotate var(--a4-duration) ease;
+}
+:where([dir="rtl"]) .a4-help-nav-summary::after { scale: -1 1; }
+.a4-help-nav-details[open] > .a4-help-nav-summary::after { rotate: 90deg; }
+.a4-help-nav-summary .a4-icon { flex: none; color: var(--a4-muted); }
+.a4-help-nav-summary:hover,
+.a4-help-nav-link:hover { background-color: var(--a4-soft); color: var(--a4-ink); }
+.a4-help-nav-link.is-index { color: var(--a4-muted); font-style: italic; }
+/* a closed folder of the viewer's tree before its list is loaded (expHelpNavigation::pathHtml()): the link to its
+   listing, for a browser without JavaScript; while it loads, the folder says so to the pointer */
+.a4-help-nav-link.is-more { color: var(--a4-muted); }
+.a4-help-nav-details[aria-busy="true"] > .a4-help-nav-summary { cursor: progress; }
+.a4-help-nav-link[aria-current="page"] {
+  background-color: var(--a4-accent-soft);
+  box-shadow: inset 3px 0 0 var(--a4-accent);
+  color: var(--a4-accent-text);
+  font-weight: var(--a4-weight-strong);
+  font-style: normal;
+}
+:where([dir="rtl"]) .a4-help-nav-link[aria-current="page"] { box-shadow: inset -3px 0 0 var(--a4-accent); }
+.a4-help-nav-text { flex: 1 1 auto; min-width: 0; }
+.a4-help-nav-count {
+  flex: none;
+  padding: 0 var(--a4-space-1);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-soft);
+  color: var(--a4-muted);
+  font-size: var(--a4-text-xs);
+  font-weight: normal;
+  font-variant-numeric: tabular-nums;
+}
+.a4-help-nav li[hidden] { display: none; }
+.a4-help-nav-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--a4-space-2);
+  margin: 0 0 var(--a4-space-3);
+}
+.a4-help-nav-filter { flex: 1 1 10rem; min-width: 0; }
+.a4-help-nav-clear[hidden] { display: none; }
+/* A stored filter (exphelp.js, localStorage): the tree and the Clear filter button wait, invisible but with their room,
+   until the filter is applied, so nothing moves when the script narrows the tree and shows the button */
+.exp-help-nav-pending [data-exphelp-nav] .a4-help-nav-list.is-top { visibility: hidden; }
+.exp-help-nav-pending [data-exphelp-nav] .a4-help-nav-clear[hidden] { display: inline-flex; visibility: hidden; }
+/* Browse all help and Help Start (viewer sidebar): a row of their own under the filter, side by side in two equal
+   halves; in the narrow sidebar a label wraps inside its button rather than pushing the other one to a new row */
+.a4-help-nav-go { display: flex; flex: 1 1 100%; flex-wrap: wrap; gap: var(--a4-space-2); }
+.a4-help-nav-go > .a4-btn { flex: 1 1 0; white-space: normal; text-align: center; }
+.a4-help-section-more { display: inline-flex; align-items: center; gap: var(--a4-space-1); font-size: var(--a4-text-s); }
+
+/* The contents page (exphelp/contents): the whole tree, its top folders in columns on wide pages */
+.a4-help-contents { container-type: inline-size; container-name: a4-help-contents; }
+.a4-help-contents > .a4-help-viewer-bar,
+.a4-help-contents > .a4-help-pagehead { margin-bottom: 0; }
+.a4-help-contents > .a4-help-pagehead .a4-help-summary { margin-bottom: 0; }
+.a4-help-nav.is-contents .a4-help-nav-tools { max-width: 32rem; }
+@container a4-help-contents (min-width: 60rem) {
+  .a4-help-nav.is-contents .a4-help-nav-list.is-top { columns: 2; column-gap: var(--a4-space-6); }
+  .a4-help-nav.is-contents .a4-help-nav-list.is-top > li { break-inside: avoid-column; }
+}
+@container a4-help-contents (min-width: 90rem) {
+  .a4-help-nav.is-contents .a4-help-nav-list.is-top { columns: 3; }
+}
+/* A folder opened from an #anchor is not hidden under the fixed header */
+.a4-help-nav.is-contents .a4-help-nav-details { scroll-margin-top: calc(var(--a4-space-7) + var(--a4-space-7)); }
+/* Expand all / Collapse all: the last item of the page, sticky at the bottom of the window at the end side of the
+   help column, so it follows the reader down the page without ever lying over the side menus (the Tools sidebar is
+   at the window's end edge) and is mirrored in a right-to-left interface. It stays above the debug bar, or its
+   minimised tab, by the room the bar keeps free (--exp-debug-clearance, set in expdebugbar.css; 0 without the bar).
+   Hidden without JavaScript; with it (html.a4-js, set before the first paint) its room is kept, invisible, until
+   exphelp.js shows it, so nothing moves. */
+.a4-help-contents-controls {
+  position: sticky;
+  bottom: calc(var(--exp-debug-clearance, 0px) + var(--a4-space-4));
+  z-index: var(--a4-z-scroll-top);
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--a4-space-2);
+  padding: var(--a4-space-2);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: var(--a4-shadow-m);
+}
+.a4-help-contents-controls[hidden] { display: none; }
+.a4-js .a4-help-contents-controls[hidden] { display: flex; visibility: hidden; }
+.a4-help-contents-controls .a4-btn { justify-content: flex-start; }
+.a4-help-contents-controls .a4-icon { rotate: 90deg; }
+@media (max-width: 30rem) {
+  .a4-help-contents-controls { padding: var(--a4-space-1); gap: var(--a4-space-1); }
+}
+@media print {
+  .a4-help-contents-controls,
+  .a4-js .a4-help-contents-controls[hidden] { display: none; }
+}
+
+/* The contents of the page: at the side (scrollspy marks the heading in view) or folded above the page */
+.a4-help-toc-list { margin: 0; padding: 0; list-style: none; border-inline-start: 2px solid var(--a4-line); }
+.a4-help-toc-item { margin: 0; padding: 0; }
+.a4-help-toc-link,
+.a4-help-toc-link:visited {
+  /* at least 24 CSS px high, the target size of WCAG 2.2 2.5.8: the small level-3 entries were 23px; the text stays
+     centred, so a one-line entry grows by a pixel and the contents hardly get taller */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: var(--a4-space-5);
+  margin-inline-start: -2px;
+  padding: var(--a4-space-1) var(--a4-space-3);
+  border-inline-start: 2px solid transparent;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+  line-height: var(--a4-leading-tight);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.a4-help-toc-item.is-l3 .a4-help-toc-link { padding-inline-start: var(--a4-space-5); font-size: var(--a4-text-xs); }
+.a4-help-toc-link:hover { color: var(--a4-ink); border-inline-start-color: var(--a4-line-strong); }
+.a4-help-toc-link.is-current,
+.a4-help-toc-link[aria-current="location"] { border-inline-start-color: var(--a4-accent); color: var(--a4-accent-text); font-weight: var(--a4-weight-strong); }
+.a4-help-toc-fold {
+  max-width: 80ch;
+  margin: 0 0 var(--a4-space-5);
+  padding: var(--a4-space-2) var(--a4-space-3);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+}
+.a4-help-toc-fold > .a4-help-toc-head { margin: 0; cursor: pointer; }
+.a4-help-toc-fold[open] > .a4-help-toc-head { margin: 0 0 var(--a4-space-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .a4-help-collapse::before,
+  .a4-help-nav-summary::after,
+  .a4-help-pager-link { transition: none; }
+}
+
+/* Print: the page alone, at full width, with the address of every outside link and no buttons */
+@media print {
+  .a4-help-viewer-bar,
+  .a4-help-nav,
+  .a4-help-toc-side,
+  .a4-help-toc-fold,
+  .a4-help-pager,
+  .a4-help-foot,
+  .a4-help-copy,
+  .a4-help-collapse,
+  .a4-help-meta-item.is-edit { display: none; }
+  .a4-help-viewer-grid { display: block; }
+  .a4-help-article,
+  .a4-help-summary { max-width: none; }
+  .a4-help-section[hidden] { display: block; }
+  .a4-help-article a.a4-help-ext[href]::after { content: " (" attr(href) ")"; color: var(--a4-muted); font-size: var(--a4-text-xs); overflow-wrap: anywhere; }
+  .a4-help-article :is(pre, .a4-help-code, .a4-help-callout, figure, table, img) { break-inside: avoid; }
+  .a4-help-article :is(h2, h3, h4) { break-after: avoid; }
+  .a4-help-article pre { white-space: pre-wrap; }
+}
+
+/* ---- Print and PDF (exphelp/parts/viewer_actions.tpl) --------------------------------------------------------
+   "Print this page" (shown by exphelp.js) and "Download as PDF" under the page's facts; on paper only the document:
+   no frame of the administration (admin4.css hides admin4's, the ids below are the classic admin's), no tree,
+   contents, buttons or pager; the address of the page under its facts, readable code on paper, outside link
+   addresses after the link (above), nothing split inside a code block, table or callout. Paper is light: admin4
+   switches to the light theme before printing (a4_head.js), and the code blocks drop their dark background. */
+.a4-help-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a4-space-2);
+  margin: var(--a4-space-2) 0 0;
+}
+.a4-help-actions .a4-btn[hidden] { display: none; }
+.a4-help-print-url { display: none; }
+
+@media print {
+  body:has(.a4-help-viewer) :is(#header, #path, #leftmenu, #rightmenu, #footer, #left-panels-separator,
+    #right-panels-separator, #widthcontrol-handler, #leftmenu-showhide, #rightmenu-showhide) { display: none !important; }
+  body:has(.a4-help-viewer) :is(#maincolumn, #maincontent, #columns) { margin: 0 !important; padding: 0 !important; width: auto !important; }
+  .a4-help-actions,
+  .a4-help-meta-item.is-audience .a4-sr-only { display: none; }
+  .a4-help-print-url {
+    display: block;
+    margin: var(--a4-space-1) 0 0;
+    color: var(--a4-muted);
+    font-size: var(--a4-text-xs);
+    overflow-wrap: anywhere;
+  }
+  .a4-help-viewer,
+  .a4-help-article {
+    color: var(--a4-ink);
+    background: none;
+  }
+  .a4-help-article { font-size: var(--a4-text-m); line-height: var(--a4-leading); orphans: 3; widows: 3; }
+  .a4-help-article img { max-width: 100%; height: auto; }
+  .a4-help-article .a4-help-code,
+  .a4-help-article .a4-help-pre {
+    border: 1px solid var(--a4-line);
+    background: var(--a4-soft);
+    color: var(--a4-ink);
+  }
+  .a4-help-article .a4-help-pre [class^="a4-help-tok-"] { color: var(--a4-ink); }
+  .a4-help-article .a4-help-pre .a4-help-tok-comment { color: var(--a4-muted); font-style: italic; }
+  .a4-help-article :is(.a4-help-callout, .a4-help-table thead, .a4-help-code) { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .a4-help-article .a4-help-table-wrap { overflow: visible; }
+  .a4-help-article tr { break-inside: avoid; }
+}
+
+/* ---- Report an error (exphelp/report.tpl, workstream H) ----------------------------------------------------- */
+.a4-help-reportpage { display: grid; gap: var(--a4-space-5); }
+.a4-help-issue-jump { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); margin-top: var(--a4-space-3); }
+.a4-help-issue-jump .a4-icon { margin-inline-end: var(--a4-space-1); }
+.a4-help-issue-secwarn { display: flex; gap: var(--a4-space-2); align-items: flex-start; margin: 0; }
+.a4-help-issue-secwarn p { margin: 0; }
+.a4-help-issue-section { display: grid; gap: var(--a4-space-3); scroll-margin-top: var(--a4-space-6); }
+.a4-help-issue-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--a4-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: a4helpissue;
+}
+.a4-help-issue-steps li {
+  position: relative;
+  padding: var(--a4-space-3) var(--a4-space-3) var(--a4-space-3) var(--a4-space-7);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  counter-increment: a4helpissue;
+}
+:where([dir="rtl"]) .a4-help-issue-steps li { padding: var(--a4-space-3) var(--a4-space-7) var(--a4-space-3) var(--a4-space-3); }
+.a4-help-issue-steps li::before {
+  content: counter(a4helpissue);
+  position: absolute;
+  inset-block-start: var(--a4-space-3);
+  inset-inline-start: var(--a4-space-3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--a4-space-5);
+  height: var(--a4-space-5);
+  border-radius: 50%;
+  background-color: var(--a4-accent-soft);
+  color: var(--a4-accent-text);
+  font-size: var(--a4-text-s);
+  font-weight: var(--a4-weight-bold);
+}
+.a4-help-issue-steps h3 { margin: 0 0 var(--a4-space-1); font-size: var(--a4-text-m); color: var(--a4-ink); }
+.a4-help-issue-steps p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-issue-steps.is-compact li { padding-block: var(--a4-space-2); }
+.a4-help-issue-trackers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: var(--a4-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-issue-tracker, .a4-help-issue-extension { display: flex; flex-direction: column; gap: var(--a4-space-2); margin: 0; }
+.a4-help-issue-tracker > p, .a4-help-issue-extension > p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-issue-tracker .a4-actions { margin-top: auto; }
+.a4-help-issue-tracker.is-chosen { border-color: var(--a4-accent); box-shadow: 0 0 0 1px var(--a4-accent); }
+.a4-help-issue-tracker-head { display: flex; align-items: center; gap: var(--a4-space-2); }
+.a4-help-issue-tracker-head h3 { margin: 0; font-size: var(--a4-text-m); color: var(--a4-ink); }
+.a4-help-issue-repo { display: flex; align-items: center; gap: var(--a4-space-1); overflow-wrap: anywhere; font-family: var(--a4-mono); font-size: var(--a4-text-xs); }
+.a4-help-issue-extension-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--a4-space-2); }
+.a4-help-issue-extension-row .a4-field { flex: 1 1 240px; margin: 0; }
+.a4-help-issue-community h3 { display: flex; align-items: center; gap: var(--a4-space-2); margin: 0 0 var(--a4-space-1); font-size: var(--a4-text-m); }
+.a4-help-issue-community p { margin: 0 0 var(--a4-space-2); color: var(--a4-muted); }
+.a4-help-issue-ready { margin: 0; }
+.a4-help-issue-ready p { margin: 0; }
+.a4-help-issue-form { display: grid; gap: var(--a4-space-3); margin: 0; }
+.a4-help-issue-form textarea { min-height: calc(var(--a4-space-7) * 2); resize: vertical; }
+.a4-help-issue-facts { margin: 0; }
+.a4-help-issue-env { position: relative; }
+.a4-help-issue-env .a4-pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.a4-help-issue-env .a4-help-copy { position: absolute; inset-block-start: var(--a4-space-2); inset-inline-end: var(--a4-space-2); }
+.a4-help-issue-security .a4-notice { margin: 0; }
+.a4-help-issue-security .a4-notice p { margin: 0 0 var(--a4-space-2); }
+.a4-help-issue-security-list { display: grid; gap: var(--a4-space-1); margin: 0 0 var(--a4-space-2); padding: 0; list-style: none; }
+.a4-help-issue-security-list a { display: inline-flex; align-items: center; gap: var(--a4-space-2); font-weight: var(--a4-weight-heading); }
+
+/* Forced colors (Windows high contrast) drop backgrounds: a chosen filter, the current topic and the current pager page,
+   which differ only by their background, get a Highlight outline. */
+@media (forced-colors: active) {
+  .a4-help-filter > input:checked + span,
+  .a4-help-topics__list a.a4-tag.is-current,
+  .a4-help-pager__page.is-current { outline: 2px solid Highlight; }
+  .a4-help-reading-option[aria-current="true"] { outline: 2px solid Highlight; outline-offset: -2px; }
+}
+
+/* ---- documentation license (O): the notice under every help page and the dashboard's free documentation block --
+   parts/license_notice.tpl and parts/license_dashboard.tpl (exphelp.ini [License], doc/eng-us/README-LICENSE.md).
+   Tokens only; the notice stays in print, so a printed page carries its license. */
+.a4-help-license {
+  max-width: 80ch;
+  margin: var(--a4-space-5) 0 0;
+  padding: var(--a4-space-3) var(--a4-space-4);
+  border: 1px solid var(--a4-line);
+  border-inline-start: 4px solid var(--a4-info);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-soft);
+  color: var(--a4-ink);
+  font-size: var(--a4-text-s);
+}
+.a4-help-license.is-other { border-inline-start-color: var(--a4-line-strong); }
+.a4-help-license p { margin: 0 0 var(--a4-space-2); }
+.a4-help-license-title {
+  display: flex;
+  align-items: center;
+  gap: var(--a4-space-2);
+  margin: 0 0 var(--a4-space-2);
+  font-size: var(--a4-text-m);
+  font-weight: var(--a4-weight-heading);
+  line-height: var(--a4-leading-tight);
+}
+.a4-help-license-title .a4-icon { color: var(--a4-accent-text); }
+.a4-help-license-copy { color: var(--a4-muted); font-size: var(--a4-text-xs); }
+.a4-help-license-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a4-space-1) var(--a4-space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-license-links a { display: inline-flex; align-items: center; gap: var(--a4-space-1); font-weight: var(--a4-weight-strong); }
+
+.a4-help-freedoc .a4-help-section-head p { margin: var(--a4-space-1) 0 0; color: var(--a4-muted); }
+.a4-help-freedoc-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--a4-space-3) var(--a4-space-4);
+  margin: var(--a4-space-3) 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-freedoc-list li { display: flex; align-items: flex-start; gap: var(--a4-space-2); color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-freedoc-list li > .a4-icon { flex: none; margin-top: var(--a4-space-1); color: var(--a4-accent-text); }
+.a4-help-freedoc-list strong { display: block; color: var(--a4-ink); }
+.a4-help-freedoc .a4-help-license-copy { margin: 0 0 var(--a4-space-3); }
+.a4-help-freedoc-actions { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); }
+
+@media print {
+  .a4-help-license { break-inside: avoid; border-color: var(--a4-line-strong); background: none; }
+  .a4-help-license-links a[href^="http"]::after { content: " (" attr(href) ")"; font-weight: normal; }
+  .a4-help-freedoc-actions { display: none; }
+}
+
+/* ---- landing pages of the audiences (exphelp/audience/<audience>, audience.tpl) -------------------------------- */
+
+.a4-help-landing { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a4-space-5); }
+.a4-help-landing-hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--a4-space-4) var(--a4-space-5);
+  padding: var(--a4-space-6);
+  border-radius: var(--a4-radius-s);
+  background:
+    radial-gradient(60% 120% at 100% 0%, var(--a4-accent-soft), transparent 70%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line), var(--a4-shadow-m);
+}
+.a4-help-landing-hero .a4-help-tile { background-color: var(--a4-card); box-shadow: inset 0 0 0 1px var(--a4-line); }
+.a4-help-landing-intro .a4-help-hero-pre { justify-self: start; }
+.a4-help-landing-hero h1 { margin: 0; color: var(--a4-ink); font-size: var(--a4-text-2xl); line-height: var(--a4-leading-tight); }
+.a4-help-landing-summary { max-width: 70ch; margin: var(--a4-space-2) 0 0; color: var(--a4-muted); font-size: var(--a4-text-m); }
+.a4-help-landing-count { margin: var(--a4-space-1) 0 0; color: var(--a4-muted); font-size: var(--a4-text-s); font-variant-numeric: tabular-nums; }
+.a4-help-landing-search,
+.a4-help-landing-actions { grid-column: 1 / -1; }
+.a4-help-landing-actions { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); }
+.a4-help-landing-block { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--a4-space-3); }
+.a4-help-landing-block.a4-card + .a4-help-landing-block,
+.a4-help-landing-block + .a4-help-landing-block.a4-card { margin-top: 0; }
+.a4-help-landing-path { margin: 0; padding: 0; list-style: none; }
+.a4-help-landing-boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: var(--a4-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-landing-boxes .a4-card + .a4-card { margin-top: 0; }
+.a4-help-landing-box p { margin: var(--a4-space-2) 0 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-landing-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: var(--a4-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-landing-list a {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--a4-space-2);
+  height: 100%;
+  padding: var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+  color: var(--a4-ink);
+  text-decoration: none;
+}
+.a4-help-landing-list a:hover { box-shadow: inset 0 0 0 1px var(--a4-line-strong); }
+.a4-help-landing-list a:hover strong { text-decoration: underline; }
+.a4-help-landing-list .a4-icon { flex: 0 0 auto; margin-top: var(--a4-space-1); color: var(--a4-accent-text); }
+.a4-help-landing-list-text { font-size: var(--a4-text-s); }
+.a4-help-landing-list-text strong { display: block; font-weight: var(--a4-weight-strong); }
+.a4-help-landing-list-text span { color: var(--a4-muted); }
+
+/* the commit log of the developers' landing page (parts/landing_commits.tpl) */
+.a4-help-commits-intro,
+.a4-help-commits-filter { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-commits-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.a4-help-commits-list > li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--a4-space-2) var(--a4-space-3);
+  padding: var(--a4-space-3) 0;
+  border-top: 1px solid var(--a4-line);
+}
+.a4-help-commits-list > li > .a4-icon { margin-top: var(--a4-space-1); color: var(--a4-muted); }
+.a4-help-commits-main { display: grid; gap: var(--a4-space-1); min-width: 0; }
+.a4-help-commits-title { overflow-wrap: anywhere; font-weight: var(--a4-weight-strong); }
+.a4-help-commits-meta { color: var(--a4-muted); font-size: var(--a4-text-xs); }
+.a4-help-commits-details summary { color: var(--a4-muted); font-size: var(--a4-text-xs); cursor: pointer; }
+.a4-help-commits-message {
+  margin: var(--a4-space-2) 0 0;
+  padding: var(--a4-space-3);
+  overflow-x: auto;
+  border-radius: var(--a4-radius-s);
+  background-color: var(--a4-soft);
+  color: var(--a4-ink);
+  font-family: var(--a4-mono);
+  font-size: var(--a4-text-xs);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.a4-help-commits-hash { font-size: var(--a4-text-xs); }
+.a4-help-commits-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--a4-space-2); }
+
+/* ---- Support Exponential (parts/support.tpl: dashboard bottom and landing pages) ------------------------------- */
+
+.a4-help-support {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--a4-space-4);
+  padding: var(--a4-space-5);
+  border-radius: var(--a4-radius-s);
+  background:
+    linear-gradient(120deg, var(--a4-ok-bg), transparent 60%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-ok-line);
+}
+.a4-help-support-head { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: var(--a4-space-4); }
+.a4-help-support .a4-help-tile { color: var(--a4-ok); background-color: var(--a4-card); box-shadow: inset 0 0 0 1px var(--a4-ok-line); }
+.a4-help-support h2 { margin: 0 0 var(--a4-space-1); font-size: var(--a4-text-l); font-weight: var(--a4-weight-heading); }
+.a4-help-support-head p { max-width: 80ch; margin: 0; color: var(--a4-ink); font-size: var(--a4-text-m); }
+.a4-help-support-orgs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: var(--a4-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.a4-help-support-orgs .a4-card + .a4-card { margin-top: 0; }
+.a4-help-support-org { display: grid; align-content: start; gap: var(--a4-space-2); }
+.a4-help-support-org p { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+.a4-help-support-org .a4-help-support-funds-head { color: var(--a4-ink); font-weight: var(--a4-weight-strong); }
+.a4-help-support-funds { display: grid; gap: var(--a4-space-1); margin: 0; padding: 0; list-style: none; font-size: var(--a4-text-s); }
+.a4-help-support-funds li { display: flex; align-items: flex-start; gap: var(--a4-space-2); }
+.a4-help-support-funds .a4-icon { flex: 0 0 auto; margin-top: var(--a4-space-1); color: var(--a4-ok); }
+.a4-help-support-actions { display: flex; flex-wrap: wrap; gap: var(--a4-space-2); margin-top: var(--a4-space-2); }
+.a4-help-support-foot { margin: 0; color: var(--a4-muted); font-size: var(--a4-text-s); }
+
+@media (max-width: 600px) {
+  .a4-help-landing-hero,
+  .a4-help-support { padding: var(--a4-space-4); }
+  .a4-help-landing-hero h1 { font-size: var(--a4-text-xl); }
+  .a4-help-commits-list > li { grid-template-columns: auto minmax(0, 1fr); }
+  .a4-help-commits-hash { grid-column: 2; justify-self: start; }
+}
+@media print {
+  .a4-help-landing-search,
+  .a4-help-landing-actions,
+  .a4-help-support-actions { display: none; }
+}

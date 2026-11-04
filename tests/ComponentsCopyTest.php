@@ -20,13 +20,13 @@ class ExpDocComponentsCopyTest extends \PHPUnit\Framework\TestCase
         {
             $this->markTestSkipped( 'No kernel components.css at ' . $kernel );
         }
-        $copy = file_get_contents( dirname( __DIR__ ) . '/design/doc2026/stylesheets/components.css' );
+        $copy = file_get_contents( dirname( __DIR__ ) . '/design/standard/stylesheets/components.css' );
         // the copy starts with its own comment, then the kernel's file unchanged
         $end = strpos( $copy, "*/\n" );
         $this->assertNotFalse( $end, 'The copy has no leading comment' );
-        // the icon addresses climb two more folders from extension/exp_doc/design/doc2026/stylesheets/
+        // the icon addresses climb two more folders from extension/exp_doc/design/standard/stylesheets/
         $expected = str_replace( 'url(../../../share/icons/', 'url(../../../../../share/icons/', file_get_contents( $kernel ) );
         $this->assertSame( $expected, substr( $copy, $end + 3 ),
-                           'design/doc2026/stylesheets/components.css differs from the kernel\'s design/admin4/stylesheets/components.css: copy it again' );
+                           'design/standard/stylesheets/components.css differs from the kernel\'s design/admin4/stylesheets/components.css: copy it again' );
     }
 }
