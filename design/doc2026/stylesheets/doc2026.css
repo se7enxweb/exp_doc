@@ -1095,3 +1095,21 @@ html[data-a4-theme="dark"] {
     --a4-header-field: var(--a4-field);
     --a4-header-field-line: rgba(255, 255, 255, 0.18);
 }
+
+/* the page tree as a phone's drawer (the header's menu button): above the sticky header (--a4-z-header) and the
+   content, as a menu (--a4-z-menu), scrolling on its own when it is long, over a shade that closes it when tapped
+   (doc2026.js); the help center's pages draw their menu in the same drawer */
+@media (max-width: 899px) {
+    .exp-doc-tree {
+        z-index: var(--a4-z-menu);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+    html.exp-doc-tree-open body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: calc(var(--a4-z-menu) - 1);
+        background: color-mix(in srgb, var(--a4-ink) 35%, transparent);
+    }
+}

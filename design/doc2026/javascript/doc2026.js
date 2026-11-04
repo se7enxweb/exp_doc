@@ -51,7 +51,14 @@
                 doc.documentElement.classList.toggle('exp-doc-tree-open', open);
                 if (open) { const first = tree.querySelector('a'); if (first) { first.focus(); } }
             });
-            doc.addEventListener('keydown', (event) => { if (event.key === 'Escape') { close(); } });
+            const isOpen = () => doc.documentElement.classList.contains('exp-doc-tree-open');
+            doc.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && isOpen()) { close(); drawerButton.focus(); }
+            });
+            // a tap outside the drawer (on the shade over the page) closes it
+            doc.addEventListener('click', (event) => {
+                if (isOpen() && !tree.contains(event.target) && !drawerButton.contains(event.target)) { close(); }
+            });
         }
     }
 
