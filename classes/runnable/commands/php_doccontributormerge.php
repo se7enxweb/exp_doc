@@ -25,12 +25,17 @@ class DocContributorMerge extends \Exponential\Runnable\Command
                 . "  --from=<ref>       a duplicate (may be repeated)\n"
                 . "  --dry-run          count and list only, change nothing\n"
                 . "  --purge            remove the trashed duplicates from the trash too\n"
+                . "  --unlink           instead of --into: remove the relations to --from, a text an import took for a person\n"
+                . "                     (only names the byline reader refuses as names; first link the real people, e.g. with\n"
+                . "                     exp:static-import:bylines --fill --replace-roles); its address is gone afterwards\n"
                 . "  --user=<login>     the user the changes are made as (default admin)\n"
                 . "  --format=json      the report as JSON",
             'use-session' => false, 'use-modules' => true, 'use-extensions' => true
         ) );
-        $options = $this->startup( '[into:][from:*][dry-run][purge][user:][format:]', '', array( 'into' => 'The canonical contributor', 'from' => 'A duplicate',
-                                    'dry-run' => 'Change nothing', 'purge' => 'Purge from the trash', 'user' => 'The user', 'format' => 'text or json' ) );
+        $options = $this->startup( '[into:][from:*][dry-run][purge][unlink][user:][format:]', '', array( 'into' => 'The canonical contributor', 'from' => 'A duplicate',
+                                    'dry-run' => 'Change nothing', 'purge' => 'Purge from the trash', 'unlink' => 'Remove the relations', 'user' => 'The user',
+                                    'format' => 'text or json' ) );
+        $unlink = !empty( $options['unlink'] );
         $into = !empty( $options['into'] ) ? \expDocContributorMerge::resolve( $options['into'] ) : null;
         $from = array();
         foreach ( !empty( $options['from'] ) ? (array)$options['from'] : array() as $reference )
@@ -44,12 +49,20 @@ class DocContributorMerge extends \Exponential\Runnable\Command
             }
             $from[] = $object;
         }
-        if ( !$into || !$from )
+        if ( ( !$into && !$unlink ) || ( $into && $unlink ) || !$from )
         {
-            $this->output( 'FAIL give --into=<contributor> and at least one --from=<contributor>' );
+            $this->output( 'FAIL give --into=<contributor> (or --unlink) and at least one --from=<contributor>' );
             $this->shutdown( 2 );
             return 2;
         }
+        // a real person is merged, never unlinked
+        foreach ( $unlink ? $from : array() as $object )
+            if ( !class_exists( 'expStaticImportByline' ) || \expStaticImportByline::isName( (string)$object->attribute( 'name' ) ) )
+            {
+                $this->output( 'FAIL "' . $object->attribute( 'name' ) . '" is a name; merge it with --into instead' );
+                $this->shutdown( 2 );
+                return 2;
+            }
         $dryRun = !empty( $options['dry-run'] );
         if ( !$dryRun )
         {
@@ -74,8 +87,11 @@ class DocContributorMerge extends \Exponential\Runnable\Command
         }
         else
         {
-            $this->output( sprintf( 'into   object %d node %d "%s" (/%s), %d links before', $report['into']['object_id'], $report['into']['node_id'],
-                                    $report['into']['name'], $report['into']['url_alias'], $report['into']['links'] ) );
+            if ( $report['into'] )
+                $this->output( sprintf( 'into   object %d node %d "%s" (/%s), %d links before', $report['into']['object_id'], $report['into']['node_id'],
+                                        $report['into']['name'], $report['into']['url_alias'], $report['into']['links'] ) );
+            else
+                $this->output( 'unlink the relations to the objects below' );
             foreach ( $report['from'] as $entry )
                 $this->output( sprintf( 'from   object %d node %d "%s" (/%s), %d links, %d addresses%s', $entry['object_id'], $entry['node_id'], $entry['name'],
                                         $entry['url_alias'], $entry['links'], count( $entry['addresses'] ),

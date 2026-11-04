@@ -98,14 +98,15 @@ class expDocContributorMerge
     }
 
     /**
-     * @param eZContentObject $into the canonical contributor
+     * @param eZContentObject|null $into the canonical contributor; null: the relations to $from are removed (a text that
+     *                                   is no person, once the pages relate to the real people)
      * @param eZContentObject[] $from the duplicates
      * @return bool whether everything was merged (in a dry run: whether it could be)
      */
-    public function merge( eZContentObject $into, array $from )
+    public function merge( $into, array $from )
     {
-        $intoID = (int)$into->attribute( 'id' );
-        $this->report['into'] = $this->describe( $into );
+        $intoID = $into instanceof eZContentObject ? (int)$into->attribute( 'id' ) : 0;
+        $this->report['into'] = $into instanceof eZContentObject ? $this->describe( $into ) : null;
         $done = true;
         foreach ( $from as $duplicate )
         {
@@ -120,7 +121,8 @@ class expDocContributorMerge
             $entry['addresses'] = $this->addresses( $duplicate );
             $this->report['from'][$fromID] = $entry;
             $this->repoint( $fromID, $into );
-            $this->mergeProfile( $into, $duplicate );
+            if ( $into instanceof eZContentObject )
+                $this->mergeProfile( $into, $duplicate );
             $remaining = $this->references( $fromID );
             $this->report['remaining'] += $this->dryRun ? 0 : $remaining;
             $this->report['from'][$fromID]['remaining'] = $this->dryRun ? null : $remaining;
@@ -174,10 +176,11 @@ class expDocContributorMerge
      * @param int $fromID
      * @param eZContentObject $into
      */
-    protected function repoint( $fromID, eZContentObject $into )
+    protected function repoint( $fromID, $into )
     {
         $db = eZDB::instance();
-        $intoID = (int)$into->attribute( 'id' );
+        // 0: the relation is removed (an object relation emptied, the item left out of a list)
+        $intoID = $into instanceof eZContentObject ? (int)$into->attribute( 'id' ) : 0;
         $rows = $db->arrayQuery( "SELECT a.id, a.version, a.contentobject_id, a.contentclassattribute_id, a.data_type_string, a.language_code
                                   FROM ezcontentobject_attribute a
                                   WHERE ( a.data_type_string = 'ezobjectrelation' AND a.data_int = $fromID )
@@ -215,8 +218,8 @@ class expDocContributorMerge
             {
                 if ( (int)$item['contentobject_id'] === $fromID )
                 {
-                    // the canonical contributor in the duplicate's place, once
-                    if ( $hasInto )
+                    // the canonical contributor in the duplicate's place, once (none when the relation is removed)
+                    if ( $hasInto || !$intoID )
                         continue;
                     $hasInto = true;
                     $type = new eZObjectRelationListType();
@@ -247,7 +250,7 @@ class expDocContributorMerge
             $exists = (int)$db->arrayQuery( "SELECT COUNT(*) AS n FROM ezcontentobject_link WHERE from_contentobject_id = " . (int)$link['f']
                                             . " AND from_contentobject_version = " . (int)$link['v'] . " AND to_contentobject_id = $intoID"
                                             . " AND contentclassattribute_id = " . (int)$link['ca'] . " AND relation_type & " . (int)$link['t'] )[0]['n'];
-            if ( !$exists )
+            if ( !$exists && $intoID )
                 $object->addContentObjectRelation( $intoID, (int)$link['v'], (int)$link['ca'], (int)$link['t'] );
         }
         foreach ( $this->report['attributes'] as $label => $counts )
@@ -326,7 +329,7 @@ class expDocContributorMerge
      * @param eZContentObject $into
      * @param array $addresses
      */
-    protected function remove( eZContentObject $duplicate, eZContentObject $into, array $addresses )
+    protected function remove( eZContentObject $duplicate, $into, array $addresses )
     {
         $fromID = (int)$duplicate->attribute( 'id' );
         $nodeIDs = array();
@@ -350,7 +353,15 @@ class expDocContributorMerge
             else
                 $this->report['errors'][] = "object $fromID is not in the trash, so it was not purged";
         }
-        // the old addresses: custom aliases of the canonical contributor that redirect there
+        // the old addresses: custom aliases of the canonical contributor that redirect there (a removed text that was no
+        // person has none: its address is gone, 404)
+        if ( !$into instanceof eZContentObject )
+        {
+            foreach ( array_unique( $parents ) as $parentNodeID )
+                if ( $parent = eZContentObjectTreeNode::fetch( $parentNodeID ) )
+                    eZContentCacheManager::clearObjectViewCacheIfNeeded( (int)$parent->attribute( 'contentobject_id' ) );
+            return;
+        }
         $intoNode = $into->mainNode();
         $name = null;
         foreach ( (array)eZURLAliasML::fetchByAction( 'eznode', (int)$intoNode->attribute( 'node_id' ) ) as $element )
