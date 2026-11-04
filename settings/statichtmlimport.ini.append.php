@@ -99,8 +99,17 @@ PanelSelectors[info]=.confluence-information-macro-information
 PanelSelectors[note]=.confluence-information-macro-note
 PanelSelectors[warning]=.confluence-information-macro-warning
 PanelSelectors[tip]=.confluence-information-macro-tip
+# The documentation's own rendered code (<pre class="wordwrap"> with one <span class="line"> per line) stays a literal
+# with its class, so the Classic design draws the same markup; Confluence's code macros become doc_code
+LiteralSelectors[]
+LiteralSelectors[]=pre.wordwrap
 CodeSelectors[]
-CodeSelectors[]=pre
+CodeSelectors[]=.codeContent pre
+CodeSelectors[]=pre.syntaxhighlighter-pre
+EmbedAlignSelectors[]
+EmbedAlignSelectors[center]=.object-center
+EmbedAlignSelectors[left]=.object-left
+EmbedAlignSelectors[right]=.object-right
 CodeLineSelector=span.line
 CodeLanguagePatterns[]
 CodeLanguagePatterns[]=/brush:\s*([a-z0-9+#]+)/i
@@ -168,5 +177,17 @@ AssetAttributeMap[exp_doc_image/source_path]=source_path
 AssetAttributeMap[exp_doc_file/name]=title
 AssetAttributeMap[exp_doc_file/file]=file
 AssetAttributeMap[exp_doc_file/source_path]=source_path
+
+
+# The readers' comments of the old manual pages (#comments-content: one <li> per comment, replies in a nested <ul>)
+# become exp_doc_comment objects below their page, replies below the comment they answer
+CommentsSelector=#comments-content
+CommentClass=exp_doc_comment
+AttributeMap[exp_doc_comment/title]=title
+AttributeMap[exp_doc_comment/author]=author
+AttributeMap[exp_doc_comment/created]=modified
+AttributeMap[exp_doc_comment/text]=body
+AttributeMap[exp_doc_comment/source_path]=source_path
+AttributeMap[exp_doc_comment/import_hash]=import_hash
 
 */ ?>

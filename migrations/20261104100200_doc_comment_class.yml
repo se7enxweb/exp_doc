@@ -1,0 +1,24 @@
+---
+# description: The comment class of the documentation: the readers' comments of the old manual pages, replies below the comment they answer
+- type: content_class
+  mode: ensure
+  identifier: exp_doc_comment
+  remote_id: exp-doc-class-exp_doc_comment
+  language: eng-US
+  name: Doc comment
+  description: A reader's comment on a documentation page; a reply is a child of the comment it answers
+  name_pattern: "<title>"
+  container: true
+  always_available: true
+  sort_field: published
+  sort_order: asc
+  groups:
+    - Documentation
+  attributes:
+    - { identifier: title, type: ezstring, name: Title }
+    - { identifier: author, type: ezstring, name: Author }
+    - { identifier: created, type: ezdatetime, name: Written, translatable: false }
+    - { identifier: text, type: ezxmltext, name: Text }
+    - { identifier: source_path, type: ezstring, name: Source path, searchable: false, translatable: false }
+    - { identifier: metadata, type: xrowmetadata, name: Metadata, category: meta }
+    - { identifier: import_hash, type: ezstring, name: Import hash, category: meta, searchable: false, translatable: false }

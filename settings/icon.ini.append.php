@@ -13,6 +13,7 @@ ClassMap[exp_doc_faq_question]=question-circle.svg
 ClassMap[exp_doc_extension]=puzzle.svg
 ClassMap[exp_doc_image]=image.svg
 ClassMap[exp_doc_file]=file-earmark-arrow-down.svg
+ClassMap[exp_doc_comment]=chat-left-text.svg
 
 [ClassGroupIcons]
 ClassGroupMap[documentation]=journal-text.svg

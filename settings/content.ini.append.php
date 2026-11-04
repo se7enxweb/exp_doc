@@ -8,7 +8,12 @@ AvailableCustomTags[]=doc_panel
 AvailableCustomTags[]=doc_code
 AvailableCustomTags[]=doc_expand
 AvailableCustomTags[]=doc_children
-IsInline[doc_panel]=false
+IsInline# The literal classes of the imported documentation's code blocks
+[literal]
+AvailableClasses[]=wordwrap
+AvailableClasses[]=wordwrap copytoclipboard
+
+[doc_panel]=false
 IsInline[doc_code]=false
 IsInline[doc_expand]=false
 IsInline[doc_children]=false
