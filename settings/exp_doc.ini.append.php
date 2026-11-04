@@ -70,6 +70,8 @@ MenuHideClasses[]=exp_doc_tutorial_step
 MenuHideClasses[]=exp_doc_contributor
 MenuHideClasses[]=exp_doc_historical
 MenuHideClasses[]=comment_historical
+# the readers' new comments (parts/doc_page_comments.tpl lists them)
+MenuHideClasses[]=comment
 # Nodes never listed in the menus, by remote id: the Contributors folder (its people have their own pages, linked
 # from the bylines)
 MenuHideNodeRemoteIDs[]

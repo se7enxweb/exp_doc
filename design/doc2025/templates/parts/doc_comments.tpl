@@ -1,6 +1,6 @@
 {* The historical comments of a Classic page (the class in exp_doc.ini [ClassicSettings] CommentClass,
    comment_historical: the readers' comments of the old site, replies below the comment they answer, in the order of
-   their priority), in the static site's markup:
+   their priority; fetch exp_doc/historical_comments, which falls back to the class before it), in the static site's markup:
    - an ezdoc page: div#comments with the thread (parts/doc_comment_list.tpl), rows alternating comment-bglight /
      comment-bgdark, each with its heading, date, author, text and Reply button, and the "New comment" button;
    - a Confluence page: div#comments-section with "<n> Comment(s)" and ol#page-comments, each comment in its own
@@ -8,23 +8,11 @@
    One listed exception: the comments are collapsed by default (the owner): <details class="exp-doc-comments-toggle">
    with the summary "Comments (<n> historical)" around the static block; the check leaves the wrapper out. Nothing is
    drawn when the page has no comments, as the static site did. *}
-{def $doc_comment_class = ezini( 'ClassicSettings', 'CommentClass', 'exp_doc.ini' )
-     $doc_comments = fetch( 'content', 'list', hash( 'parent_node_id', $node.node_id,
-                                                      'class_filter_type', 'include',
-                                                      'class_filter_array', array( $doc_comment_class ),
-                                                      'sort_by', array( 'priority', true() ) ) )}
-{* until the import has replaced them, the comments of the class before (exp_doc.ini CommentClassBefore) *}
-{if and( $doc_comments|count|not, ezini( 'ClassicSettings', 'CommentClassBefore', 'exp_doc.ini' ) )}
-    {set $doc_comment_class = ezini( 'ClassicSettings', 'CommentClassBefore', 'exp_doc.ini' )
-         $doc_comments = fetch( 'content', 'list', hash( 'parent_node_id', $node.node_id,
-                                                          'class_filter_type', 'include',
-                                                          'class_filter_array', array( $doc_comment_class ),
-                                                          'sort_by', array( 'published', true() ) ) )}
-{/if}
+{def $doc_hist = fetch( 'exp_doc', 'historical_comments', hash( 'node_id', $node.node_id ) )
+     $doc_comment_class = $doc_hist.class
+     $doc_comments = $doc_hist.comments}
 {if $doc_comments|count}
-{def $doc_total = fetch( 'content', 'tree_count', hash( 'parent_node_id', $node.node_id,
-                                                         'class_filter_type', 'include',
-                                                         'class_filter_array', array( $doc_comment_class ) ) )
+{def $doc_total = $doc_hist.total
      $doc_confluence = and( is_set( $node.data_map.source_path ), ezini( 'ClassicSettings', 'ConfluencePrefixes', 'exp_doc.ini' )|contains( $node.data_map.source_path.content|explode( '/' ).0 ) )}
 <details class="exp-doc-comments-toggle"><summary class="exp-doc-comments-summary">{'Comments (%count historical)'|i18n( 'design/exp_doc', '', hash( '%count', $doc_total ) )}</summary>
 {if and( $doc_confluence, eq( $doc_comment_class, ezini( 'ClassicSettings', 'CommentClass', 'exp_doc.ini' ) ) )}
@@ -66,4 +54,4 @@
 </details>
 {undef $doc_total $doc_confluence}
 {/if}
-{undef $doc_comment_class $doc_comments}
+{undef $doc_hist $doc_comment_class $doc_comments}

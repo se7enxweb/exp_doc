@@ -204,6 +204,41 @@ class expDocComment
     }
 
     /**
+     * The historical comments of a page (exp_doc.ini [ClassicSettings] CommentClass, else CommentClassBefore where
+     * the page has none of it yet): the class, the comments directly below the page in the order of their priority,
+     * and how many there are with every reply. Only the page's own thread counts, never the comments of its
+     * subpages.
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => array( 'class' => string, 'comments' => eZContentObjectTreeNode[], 'total' => int ) )
+     */
+    public static function historical( $nodeID )
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $classes = array_filter( array( (string)$ini->variable( 'ClassicSettings', 'CommentClass' ),
+                                        $ini->hasVariable( 'ClassicSettings', 'CommentClassBefore' ) ? (string)$ini->variable( 'ClassicSettings', 'CommentClassBefore' ) : '' ) );
+        foreach ( $classes as $class )
+        {
+            $comments = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
+                                                                        'ClassFilterType' => 'include', 'ClassFilterArray' => array( $class ),
+                                                                        'SortBy' => array( 'priority', true ) ), (int)$nodeID );
+            if ( !is_array( $comments ) || !$comments )
+            {
+                continue;
+            }
+            $total = count( $comments );
+            foreach ( $comments as $comment )
+            {
+                // replies sit below the comment they answer, so everything of the class below a comment is a reply
+                $total += (int)eZContentObjectTreeNode::subTreeCountByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( $class ) ),
+                                                                                $comment->attribute( 'node_id' ) );
+            }
+            return array( 'result' => array( 'class' => $class, 'comments' => $comments, 'total' => $total ) );
+        }
+        return array( 'result' => array( 'class' => reset( $classes ), 'comments' => array(), 'total' => 0 ) );
+    }
+
+    /**
      * The visible comments below a node (a page or a comment), oldest first, as the reader may see them (held ones
      * are hidden by the auto-hold, so readers never get them).
      *

@@ -93,3 +93,17 @@ $FunctionList['comment_thread'] = array( 'name' => 'comment_thread',
                                          'parameters' => array( array( 'name' => 'node_id',
                                                                        'type' => 'integer',
                                                                        'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'historical_comments', hash( 'node_id', <page node id> ) )
+ *       the old site's comments of a page: hash( class, comments (directly below the page), total (with every
+ *       reply, the page's own thread only) )
+ */
+$FunctionList['historical_comments'] = array( 'name' => 'historical_comments',
+                                              'operation_types' => array( 'read' ),
+                                              'call_method' => array( 'class' => 'expDocComment',
+                                                                      'method' => 'historical' ),
+                                              'parameter_type' => 'standard',
+                                              'parameters' => array( array( 'name' => 'node_id',
+                                                                            'type' => 'integer',
+                                                                            'required' => true ) ) );
