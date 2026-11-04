@@ -946,3 +946,22 @@ body.exp-doc {
 .exp-doc-landing-more {
     margin: var(--a4-space-3) 0 0;
 }
+
+/* ---- the Contributors folder's page (parts/doc_contributor_list.tpl, line/exp_doc_contributor.tpl) ------------- */
+.exp-doc-contributor-index-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+    gap: var(--a4-space-3);
+}
+.exp-doc-contributor-line {
+    display: grid;
+    gap: var(--a4-space-1);
+}
+.exp-doc-contributor-line-name {
+    margin: 0;
+    font-size: var(--a4-text-l);
+}
+.exp-doc-contributor-line-counts,
+.exp-doc-contributor-line-roles {
+    margin: 0;
+}

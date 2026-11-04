@@ -104,6 +104,75 @@ class expDocFetch
     }
 
     /**
+     * Every contributor of the site, for the Contributors folder's page: the exp_doc_contributor objects below the
+     * folder (exp_doc.ini [RecentSettings] ContributorFolderRemoteID), each with the number of pages that name them
+     * as writer (written_by), last updater (last_updated_by) and maintainer (maintainers), the current versions of
+     * published pages only; sorted by the sum of the three, then by name.
+     *
+     * @return array array( 'result' => list of array( 'object', 'node', 'name', 'written', 'updated', 'maintained',
+     *               'total', 'roles' (author, updated, maintainer: the roles with at least one page) ) )
+     */
+    public static function contributorList()
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $folder = eZContentObject::fetchByRemoteID( (string)$ini->variable( 'RecentSettings', 'ContributorFolderRemoteID' ) );
+        if ( !$folder || !$folder->mainNode() )
+        {
+            return array( 'result' => array() );
+        }
+        $db = eZDB::instance();
+        $attributeIDs = function ( $identifier ) use ( $db )
+        {
+            $rows = $db->arrayQuery( "SELECT id FROM ezcontentclass_attribute WHERE version = 0 AND identifier = '" . $db->escapeString( $identifier ) . "'" );
+            $ids = array_map( 'intval', array_column( $rows, 'id' ) );
+            return $ids ? implode( ',', $ids ) : '0';
+        };
+        $counts = array( 'written' => array(), 'updated' => array(), 'maintained' => array() );
+        // one aggregate per role: the single relations from the attribute data, the relation list from the links
+        foreach ( array( 'written' => 'written_by', 'updated' => 'last_updated_by' ) as $key => $identifier )
+        {
+            foreach ( $db->arrayQuery( "SELECT ca.data_int AS id, COUNT(*) AS n FROM ezcontentobject_attribute ca, ezcontentobject o
+                                        WHERE ca.contentclassattribute_id IN ( " . $attributeIDs( $identifier ) . " ) AND ca.data_int > 0
+                                        AND o.id = ca.contentobject_id AND o.current_version = ca.version AND o.status = 1
+                                        GROUP BY ca.data_int" ) as $row )
+            {
+                $counts[$key][(int)$row['id']] = (int)$row['n'];
+            }
+        }
+        foreach ( $db->arrayQuery( "SELECT l.to_contentobject_id AS id, COUNT( DISTINCT l.from_contentobject_id ) AS n
+                                    FROM ezcontentobject_link l, ezcontentobject o
+                                    WHERE l.contentclassattribute_id IN ( " . $attributeIDs( 'maintainers' ) . " )
+                                    AND o.id = l.from_contentobject_id AND o.current_version = l.from_contentobject_version AND o.status = 1
+                                    GROUP BY l.to_contentobject_id" ) as $row )
+        {
+            $counts['maintained'][(int)$row['id']] = (int)$row['n'];
+        }
+        $nodes = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( 'exp_doc_contributor' ),
+                                                                 'Depth' => 1, 'DepthOperator' => 'eq' ),
+                                                          $folder->mainNode()->attribute( 'node_id' ) );
+        $result = array();
+        foreach ( is_array( $nodes ) ? $nodes : array() as $node )
+        {
+            $id = (int)$node->attribute( 'contentobject_id' );
+            $entry = array( 'object' => $node->object(), 'node' => $node, 'name' => $node->attribute( 'name' ) );
+            $roles = array();
+            foreach ( array( 'written' => 'author', 'updated' => 'updated', 'maintained' => 'maintainer' ) as $key => $role )
+            {
+                $entry[$key] = isset( $counts[$key][$id] ) ? $counts[$key][$id] : 0;
+                if ( $entry[$key] ) { $roles[] = $role; }
+            }
+            $entry['total'] = $entry['written'] + $entry['updated'] + $entry['maintained'];
+            $entry['roles'] = $roles;
+            $result[] = $entry;
+        }
+        usort( $result, function ( $a, $b )
+        {
+            return $b['total'] <=> $a['total'] ?: strcasecmp( $a['name'], $b['name'] );
+        } );
+        return array( 'result' => $result );
+    }
+
+    /**
      * The object ids of a relation list attribute, in its order.
      *
      * @param eZContentObjectAttribute $attribute

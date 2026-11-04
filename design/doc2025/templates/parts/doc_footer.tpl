@@ -1,7 +1,9 @@
 {* The footer of a Classic page, as on the static site: the logo with the 7x call to action, then the copyright,
    license and social links. The license link points to the imported License page (found by its static file).
-   One addition, the version badge (doc.md: "Runs on Exponential 6.0.15"), closes the copyright block. *}
-{def $doc_license = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'License.html' ) )}
+   Two additions close the copyright block, both listed exceptions of the check: the version badge (doc.md: "Runs on
+   Exponential 6.0.15") and the link to the Contributors page. *}
+{def $doc_license = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'License.html' ) )
+     $doc_people = fetch( 'content', 'object', hash( 'remote_id', ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) ) )}
         <div id="footer-bg">
         <div id="footer" class="container_12">
 
@@ -39,7 +41,7 @@
                 '%cms', concat( '<a href="https://se7enx.com/exponential" title="Exponential CMS">', 'The Exponential CMS'|i18n( 'design/doc2025' ), '</a>' ),
                 '%exponential', '<a href="https://exponential.earth">Exponential</a>',
                 '%community', concat( '<a href="https://share.exponential.earth">', 'Community'|i18n( 'design/doc2025' ), '</a>' ) ) )}<br />
-            <span class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', concat( fetch( 'setup', 'major_version' ), '.', fetch( 'setup', 'minor_version' ), '.', fetch( 'setup', 'release' ) )|wash ) )}</span>
+            <span class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', concat( fetch( 'setup', 'major_version' ), '.', fetch( 'setup', 'minor_version' ), '.', fetch( 'setup', 'release' ) )|wash ) )}</span>{if $doc_people}<span class="exp-doc-runs-on"> &middot; <a href={$doc_people.main_node.url_alias|ezurl}>{'Contributors'|i18n( 'design/exp_doc' )}</a></span>{/if}
         </div>
 
         <div id="footer-connect-social" class="grid_4 right"> <b>{'Find Exponential on Your Favorite Social Network:'|i18n( 'design/doc2025' )}</b>&nbsp;
@@ -50,4 +52,4 @@
 
     </div>
 </div>
-{undef $doc_license}
+{undef $doc_license $doc_people}

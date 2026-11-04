@@ -63,3 +63,15 @@ $FunctionList['contributors'] = array( 'name' => 'contributors',
                                        'parameters' => array( array( 'name' => 'node_id',
                                                                      'type' => 'integer',
                                                                      'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'contributor_list' )
+ *       every contributor below the Contributors folder, each as a hash: object, node, name, written, updated,
+ *       maintained (the number of pages that name them so), total and roles; most pages first
+ */
+$FunctionList['contributor_list'] = array( 'name' => 'contributor_list',
+                                           'operation_types' => array( 'read' ),
+                                           'call_method' => array( 'class' => 'expDocFetch',
+                                                                   'method' => 'contributorList' ),
+                                           'parameter_type' => 'standard',
+                                           'parameters' => array() );

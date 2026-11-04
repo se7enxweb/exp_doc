@@ -16,11 +16,17 @@
     <div class="exp-doc-body" data-exp-doc-body>
 {if and( is_set( $doc_map.body ), $doc_map.body.has_content )}
 {attribute_view_gui attribute=$doc_map.body}
+{elseif and( is_set( $doc_map.description ), $doc_map.description.has_content )}
+{attribute_view_gui attribute=$doc_map.description}
 {elseif is_set( $doc_map.original_html )}
 {$doc_map.original_html.content}
 {/if}
     </div>
 {if is_set( $after_body )}{$after_body}{/if}
+{* the Contributors folder lists every contributor below its own text *}
+{if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
+{* the Contributors folder lists every contributor below its own text *}
+{if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
     {include uri='design:parts/doc_children.tpl' node=$node}
     {include uri='design:parts/doc_contributors.tpl' node=$node}
     {include uri='design:parts/doc_feedback.tpl' node=$node}

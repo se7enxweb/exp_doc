@@ -1,6 +1,7 @@
 {* The footer of a Modern page: the license of the content (the imported License page), the 7x support offer, the
-   community links, the cookie settings, and the version badge "Runs on Exponential 6.0.15". *}
-{def $doc_license = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'License.html' ) )}
+   community links with the Contributors page, the cookie settings, and the version badge "Runs on Exponential 6.0.15". *}
+{def $doc_license = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'License.html' ) )
+     $doc_people = fetch( 'content', 'object', hash( 'remote_id', ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) ) )}
 <footer class="exp-doc-footer">
     <div class="exp-doc-footer-inner">
         <div class="exp-doc-footer-col">
@@ -17,6 +18,7 @@
                 <li><a href="https://exponential.earth">exponential.earth</a></li>
                 <li><a href="https://share.exponential.earth">{'Community'|i18n( 'design/doc2025' )}</a></li>
                 <li><a href="https://github.com/se7enxweb/exponential">GitHub</a></li>
+                {if $doc_people}<li><a href={$doc_people.main_node.url_alias|ezurl}>{'Contributors'|i18n( 'design/exp_doc' )}</a></li>{/if}
                 <li><a href={'exphelp/viewer/ext/exp_doc/headless-access.md'|ezurl}>{'REST and GraphQL'|i18n( 'design/exp_doc' )}</a></li>
                 <li><a href="#cookie-settings">{'Cookie settings'|i18n( 'design/media/pagelayout' )}</a></li>
             </ul>
@@ -24,4 +26,4 @@
     </div>
     <p class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', concat( fetch( 'setup', 'major_version' ), '.', fetch( 'setup', 'minor_version' ), '.', fetch( 'setup', 'release' ) )|wash ) )}</p>
 </footer>
-{undef $doc_license}
+{undef $doc_license $doc_people}
