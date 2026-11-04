@@ -184,7 +184,25 @@ BylineListFields[]
 BylineListFields[]=maintainers
 BylineDateFormats[]
 BylineDateFormats[]=d/m/Y g:i a
+BylineDateFormats[]=M d, Y H:i
+BylineDateFormats[]=M d, Y
 BylineTimezone=Europe/Oslo
+# Confluence's byline is a sentence (li.page-metadata-modification-info), in four variants. The role mapping:
+# "Created by A" is written_by (A), "last modified by B on <date>" is last_updated_by (B) and last_updated_at;
+# "last modified on <date>" with no name, and "Created and last modified by A", credit the change to A; "Created by A on
+# <date>" (never changed since) is written_at. A date link whose title is a fuller date ("May 27, 2014 07:44") counts
+# with that one.
+BylineSentenceSelectors[]
+BylineSentenceSelectors[]=.page-metadata-modification-info
+BylineSentences[]
+BylineSentences[]=/^Created and last modified by (?<written>.+?) on (?<updated_at>.+)$/u
+BylineSentences[]=/^Created by (?<written>.+?), last modified by (?<updated>.+?) on (?<updated_at>.+)$/u
+BylineSentences[]=/^Created by (?<written>.+?), last modified on (?<updated_at>.+)$/u
+BylineSentences[]=/^Created by (?<written>.+?) on (?<written_at>.+)$/u
+# The authors of the readers' comments (the old manual pages' and Confluence's) are contributors of the page too
+BylineCommentAuthorSelectors[]
+BylineCommentAuthorSelectors[]=#comments-content p.author
+BylineCommentAuthorSelectors[]=.comment-header .author
 ContributorClass=exp_doc_contributor
 ContributorNameAttribute=name
 ContributorParentRemoteID=exp-doc-contributors
@@ -237,6 +255,8 @@ AttributeMap[*/written_at]=written_at
 AttributeMap[*/last_updated_by]=last_updated_by
 AttributeMap[*/last_updated_at]=last_updated_at
 AttributeMap[*/maintainers]=maintainers
+# every person the page names, each once (writer, updater, maintainers, comment authors): the "Contributors" list
+AttributeMap[*/contributors]=contributors
 AttributeMap[*/labels]=labels_tags
 AttributeMap[*/metadata]=metadata_xml
 AttributeMap[*/import_hash]=import_hash

@@ -1,0 +1,47 @@
+---
+# description: A Contributors list on every page class: every person the page names, each once (written by, last updated by, maintainers, Confluence created and last modified by, comment authors), as relations to exp_doc_contributor objects
+- type: content_class
+  mode: update
+  class: exp_doc_page
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_section
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_manual
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_version
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial_step
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_faq
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_faq_question
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
+- type: content_class
+  mode: update
+  class: exp_doc_extension
+  add_attributes:
+    - { identifier: contributors, type: ezobjectrelationlist, name: "Contributors" }
