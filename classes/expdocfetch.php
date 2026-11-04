@@ -104,6 +104,47 @@ class expDocFetch
         return array( 'result' => $result );
     }
 
+    /**
+     * The pages a contributor's page lists (fetch exp_doc/contributor_pages): the objects that name the person in any
+     * relation (written_by, last_updated_by, maintainers, contributors), each by its main node, newest change first,
+     * a page of them at a time. Only what a reader may open is counted and listed: visible main nodes (no hidden or
+     * invisible ones), not of the classes the menus leave out (exp_doc.ini [ClassicSettings] MenuHideClasses[]:
+     * historical copies, comments, images ...), and only nodes the current user may read.
+     *
+     * @param int $objectID the contributor object
+     * @param int $offset
+     * @param int $limit
+     * @return array array( 'result' => array( 'nodes' => eZContentObjectTreeNode[], 'count' => int ) )
+     */
+    public static function contributorPages( $objectID, $offset = 0, $limit = 24 )
+    {
+        $db = eZDB::instance();
+        $hide = array();
+        foreach ( (array)eZINI::instance( 'exp_doc.ini' )->variable( 'ClassicSettings', 'MenuHideClasses' ) as $identifier )
+        {
+            $id = eZContentClass::classIDByIdentifier( $identifier );
+            if ( $id ) { $hide[] = (int)$id; }
+        }
+        $where = "FROM ezcontentobject_link l, ezcontentobject o, ezcontentobject_tree t
+                  WHERE l.to_contentobject_id = " . (int)$objectID . "
+                  AND o.id = l.from_contentobject_id AND o.current_version = l.from_contentobject_version AND o.status = 1
+                  AND t.contentobject_id = o.id AND t.node_id = t.main_node_id AND t.is_hidden = 0 AND t.is_invisible = 0"
+               . ( $hide ? " AND o.contentclass_id NOT IN ( " . implode( ',', $hide ) . " )" : '' );
+        $count = $db->arrayQuery( "SELECT COUNT( DISTINCT t.node_id ) AS n " . $where );
+        $rows = $db->arrayQuery( "SELECT DISTINCT t.node_id, o.modified " . $where . " ORDER BY o.modified DESC, t.node_id",
+                                 array( 'offset' => max( 0, (int)$offset ), 'limit' => max( 1, (int)$limit ) ) );
+        $nodes = array();
+        foreach ( $rows as $row )
+        {
+            $node = eZContentObjectTreeNode::fetch( (int)$row['node_id'] );
+            if ( $node instanceof eZContentObjectTreeNode && $node->canRead() )
+            {
+                $nodes[] = $node;
+            }
+        }
+        return array( 'result' => array( 'nodes' => $nodes, 'count' => $count ? (int)$count[0]['n'] : 0 ) );
+    }
+
     /** @var array|null the people of the Contributors page, for the request (people()) */
     protected static $people = null;
 

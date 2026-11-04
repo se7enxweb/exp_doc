@@ -201,3 +201,17 @@ $FunctionList['commenter_list'] = array( 'name' => 'commenter_list',
                                                                  'method' => 'commenterList' ),
                                          'parameter_type' => 'standard',
                                          'parameters' => array() );
+
+/*
+ *   fetch( 'exp_doc', 'contributor_pages', hash( 'object_id', <contributor object id>, 'offset', 0, 'limit', 24 ) )
+ *       the pages that name a contributor, newest change first: hash( nodes, count ), only visible main nodes the
+ *       reader may open, without the classes the menus leave out (historical copies, comments ...)
+ */
+$FunctionList['contributor_pages'] = array( 'name' => 'contributor_pages',
+                                            'operation_types' => array( 'read' ),
+                                            'call_method' => array( 'class' => 'expDocFetch',
+                                                                    'method' => 'contributorPages' ),
+                                            'parameter_type' => 'standard',
+                                            'parameters' => array( array( 'name' => 'object_id', 'type' => 'integer', 'required' => true ),
+                                                                   array( 'name' => 'offset', 'type' => 'integer', 'required' => false, 'default' => 0 ),
+                                                                   array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 24 ) ) );

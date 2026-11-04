@@ -1,14 +1,13 @@
 {* A contributor's page in the Modern design: the name, the picture, short biography and profile link when they are set
    (image, bio, profile_url), then every page
-   that names this person as writer, last updater or maintainer (the pages' relation attributes, read in reverse),
-   newest first, as cards, 24 a page with the kernel's pager (view parameter offset). *}
+   that names this person (fetch exp_doc/contributor_pages: the pages' relations read in reverse, only visible pages
+   the reader may open, no historical copies or comments), newest first, as cards, 24 a page with the kernel's pager
+   (view parameter offset). *}
 {def $doc_limit = 24
      $doc_offset = first_set( $view_parameters.offset, 0 )
-     $doc_total = fetch( 'content', 'reverse_related_objects_count', hash( 'object_id', $node.contentobject_id, 'all_relations', true() ) )
-     $doc_pages = fetch( 'content', 'reverse_related_objects', hash( 'object_id', $node.contentobject_id,
-                                                                    'all_relations', true(),
-                                                                    'sort_by', array( 'modified', false() ),
-                                                                    'offset', $doc_offset, 'limit', $doc_limit ) )}
+     $doc_list = fetch( 'exp_doc', 'contributor_pages', hash( 'object_id', $node.contentobject_id, 'offset', $doc_offset, 'limit', $doc_limit ) )
+     $doc_total = $doc_list.count
+     $doc_pages = $doc_list.nodes}
 <article class="exp-doc-article exp-doc-contributor">
     <header class="exp-doc-article-head">
         <p class="a4-meta">{'Contributor'|i18n( 'design/exp_doc' )}</p>
@@ -27,7 +26,7 @@
         <h2 id="exp-doc-contrib-pages" class="a4-h2">{'Pages (%count)'|i18n( 'design/exp_doc', '', hash( '%count', $doc_total ) )}</h2>
 {if $doc_pages|count}
         <ul class="a4-plain exp-doc-cards">
-        {foreach $doc_pages as $doc_object}{if $doc_object.main_node}<li>{node_view_gui view='line' content_node=$doc_object.main_node}</li>{/if}{/foreach}
+        {foreach $doc_pages as $doc_page}<li>{node_view_gui view='line' content_node=$doc_page}</li>{/foreach}
         </ul>
         {include uri='design:navigator/google.tpl' page_uri=$node.url_alias item_count=$doc_total view_parameters=$view_parameters item_limit=$doc_limit}
 {else}
@@ -35,4 +34,4 @@
 {/if}
     </section>
 </article>
-{undef $doc_limit $doc_offset $doc_total $doc_pages}
+{undef $doc_limit $doc_offset $doc_list $doc_total $doc_pages}
