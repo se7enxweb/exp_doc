@@ -29,6 +29,9 @@ TitleSuffix=Doc
 PathHomeName=7x
 # The static file whose page the path's "documentation" (the site's root) links
 PathRootSource=documentation.html
+# The static start page: the root shows its description; while that is empty, the body of the page imported from
+# this file (hidden since the root took its place)
+RootSource=index.html
 # The first folders of the static paths whose pages come from the Confluence space: their byline is drawn in the
 # Confluence markup (parts/doc_confluence_meta.tpl), not the ezdoc "Written by" box
 ConfluencePrefixes[]

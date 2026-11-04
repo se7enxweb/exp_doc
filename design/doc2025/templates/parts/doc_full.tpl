@@ -2,7 +2,15 @@
    body (the editable XML; the original HTML is shown when the page has no XML body), the page break, the "Written
    by / Last updated by" box when the page has an author, then the comments (parts/doc_comments.tpl), which sit
    outside the page's own three boxes. The pagelayout opens and closes .area-docmain-normal. *}
-{def $doc_map = $node.data_map}
+{def $doc_map = $node.data_map
+     $doc_root_source = false()}
+{* the root (a folder) shows the static start page from its description; while that is empty, the body of the page
+   imported from exp_doc.ini [ClassicSettings] RootSource *}
+{if and( eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ),
+         or( is_set( $doc_map.description )|not, $doc_map.description.has_content|not ) )}
+    {set $doc_root_source = fetch( 'exp_doc', 'node_by_source', hash( 'path', ezini( 'ClassicSettings', 'RootSource', 'exp_doc.ini' ) ) )}
+    {if $doc_root_source}{set $doc_map = $doc_root_source.data_map}{/if}
+{/if}
 <div class="template-design">
 <div class="template-module content-view-full">
 <div class="template-object">
@@ -26,4 +34,4 @@
 </div>
 </div>
 {include uri='design:parts/doc_comments.tpl' node=$node}
-{undef $doc_map}
+{undef $doc_map $doc_root_source}
