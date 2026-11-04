@@ -15,7 +15,7 @@
     <span class="a4-meta">{'Narrow to:'|i18n( 'design/exp_doc' )}</span>
     <ul class="a4-plain">
     {foreach $doc_manuals as $doc_manual}{foreach fetch( 'exp_doc', 'versions', hash( 'parent_node_id', $doc_manual.node_id ) ) as $doc_v}
-        <li>{include uri='design:parts/doc_version_tag.tpl' version=$doc_v href=concat( $doc_base, '/(subtree)/', $doc_v.node_id ) current=eq( first_set( $view_parameters.subtree, '' ), $doc_v.node_id ) label=concat( $doc_manual.name, ' ', $doc_v.name )}</li>
+        <li>{include uri='design:parts/doc_version_tag.tpl' version=$doc_v href=concat( $doc_base, '/(subtree)/', $doc_v.node_id ) current=eq( first_set( $view_parameters.subtree, '' ), $doc_v.node_id ) label=concat( $doc_manual.name, ' ', cond( $doc_v.data_map.version.has_content, $doc_v.data_map.version.content, $doc_v.name ) )}</li>
     {/foreach}{/foreach}
     {foreach $doc_types as $doc_identifier}
         {def $doc_class = fetch( 'content', 'class', hash( 'class_id', $doc_identifier ) )}

@@ -1,14 +1,13 @@
-{* The version switch of a Modern page: when the page is inside a manual version (an exp_doc_version node), the
-   other versions of the same manual, each linking the same page in that version when it exists (the same address
-   below the version), else the version's start. The current version is marked, and its status (current,
-   maintained, legacy, EOL; the attribute status) is shown as a badge. *}
+{* The version switch of a Modern page: when the page is inside a version (an exp_doc_version node), the other
+   versions next to it, each linking the same page in that version when it exists (the same address below the
+   version), else the version's start. The outermost version of the page's path counts: in the tree of 2026-11-04 a
+   version (/exponential/4.7) holds the manuals of that version, which are versions too. The current version is
+   marked, and its status (current, maintained, legacy, EOL; the attribute status) is shown as a badge. *}
 {def $doc_version = false()}
-{if eq( $node.class_identifier, 'exp_doc_version' )}{set $doc_version = $node}{/if}
-{if not( $doc_version )}
-    {foreach $node.path|reverse as $doc_up}
-        {if eq( $doc_up.class_identifier, 'exp_doc_version' )}{set $doc_version = $doc_up}{break}{/if}
-    {/foreach}
-{/if}
+{foreach $node.path as $doc_up}
+    {if eq( $doc_up.class_identifier, 'exp_doc_version' )}{set $doc_version = $doc_up}{break}{/if}
+{/foreach}
+{if and( not( $doc_version ), eq( $node.class_identifier, 'exp_doc_version' ) )}{set $doc_version = $node}{/if}
 {if $doc_version}
 {def $doc_versions = fetch( 'exp_doc', 'versions', hash( 'parent_node_id', $doc_version.parent_node_id ) )
      $doc_rest = $node.url_alias|extract( $doc_version.url_alias|count_chars )

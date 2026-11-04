@@ -32,7 +32,7 @@
             <select id="exp-doc-recent-version" name="Version">
                 <option value="">{'All versions'|i18n( 'design/exp_doc' )}</option>
             {foreach $options.versions as $doc_v}
-                <option value="{$doc_v.node.node_id}"{if and( is_set( $filters.version ), eq( $filters.version, $doc_v.node.node_id ) )} selected{/if}>{$doc_v.manual.name|wash} {$doc_v.node.name|wash}</option>
+                <option value="{$doc_v.node.node_id}"{if and( is_set( $filters.version ), eq( $filters.version, $doc_v.node.node_id ) )} selected{/if}>{$doc_v.manual.name|wash} {cond( $doc_v.node.data_map.version.has_content, $doc_v.node.data_map.version.content, $doc_v.node.name )|wash}</option>
             {/foreach}
             </select>
         </div>

@@ -1,0 +1,12 @@
+---
+# description: A section and a version are named by their title and addressed by their short title, so a container can have a full name and a short address (Exponential Platform at /platform, Exponential Platform Legacy at /platform/legacy, the space EZP at /platform/confluence/ezp, Technical manual 4.7 at /exponential/4.7/technical-manual); an object takes the new name when it is published next
+- type: content_class
+  mode: update
+  class: exp_doc_section
+  name_pattern: "<title>"
+  url_alias_pattern: "<short_title|title>"
+- type: content_class
+  mode: update
+  class: exp_doc_version
+  name_pattern: "<title>"
+  url_alias_pattern: "<short_title|title>"

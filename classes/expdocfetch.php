@@ -295,6 +295,29 @@ class expDocFetch
                                                                  'ClassFilterType' => 'include',
                                                                  'ClassFilterArray' => array( 'exp_doc_version' ) ), (int)$parentNodeID );
         $nodes = is_array( $nodes ) ? $nodes : array();
+        // a manual whose versions are not below it (the tree of 2026-11-04: /exponential/<version>/<manual>): the
+        // versions of that manual are the manuals of the same address inside each version next to the manual
+        $parent = $nodes ? null : eZContentObjectTreeNode::fetch( (int)$parentNodeID );
+        if ( $parent instanceof eZContentObjectTreeNode && $parent->attribute( 'class_identifier' ) === 'exp_doc_manual' )
+        {
+            $slug = basename( (string)$parent->attribute( 'url_alias' ) );
+            $containers = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
+                                                                          'ClassFilterType' => 'include',
+                                                                          'ClassFilterArray' => array( 'exp_doc_version' ) ), (int)$parent->attribute( 'parent_node_id' ) );
+            foreach ( is_array( $containers ) ? $containers : array() as $container )
+            {
+                $children = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
+                                                                            'ClassFilterType' => 'include',
+                                                                            'ClassFilterArray' => array( 'exp_doc_version' ) ), (int)$container->attribute( 'node_id' ) );
+                foreach ( is_array( $children ) ? $children : array() as $child )
+                {
+                    if ( basename( (string)$child->attribute( 'url_alias' ) ) === $slug )
+                    {
+                        $nodes[] = $child;
+                    }
+                }
+            }
+        }
         $keys = array();
         foreach ( $nodes as $i => $node )
         {

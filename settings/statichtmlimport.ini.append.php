@@ -54,12 +54,16 @@ ExcludePaths[]=content/**
 ExcludePaths[]=visual/**
 
 # Confluence's own views of a page (its history, the comparisons of two versions, the old versions, its information
-# and attachments) and its page lists are historical: never pages of the documentation tree, never same-name siblings
-# ("Page History" a thousand times). They go below Historical (exp_doc_historical, under the site root, hidden from the
-# menus by exp_doc.ini MenuHideClasses[]), the views of one page together in a container named after that page below
-# "Page History", each with a name of its own and a relation (history_of) to the current page. A viewpage<id> copy of
-# the current version stays a duplicate of the page (a redirect); only an old version (ajs-latest-page-id differs) is
-# historical. The rule syntax: exp_static_html_imports, doc/rules.md "Routes".
+# and attachments) and its page lists are copies of the Confluence spaces, never pages of the documentation tree and
+# never same-name siblings ("Page History" a thousand times). Every page of the export's pages/ folder goes below
+# Platform > Confluence > Pages (/platform/confluence/pages, exp_doc_historical: hidden from the menus by exp_doc.ini
+# MenuHideClasses[]), grouped by kind (comparisons, page-history, page-information, attachments, versions, copies,
+# page-lists, not-found) and inside each kind by the Confluence space the page names (ajs-space-key), each with a name
+# of its own and a relation (history_of) to the current page. A viewpage<id> copy of the current version stays a
+# duplicate of the page (a redirect); one with content of its own goes to Copies (ParentRules[] below); only an old
+# version (ajs-latest-page-id differs) is routed to Versions. The rule syntax: exp_static_html_imports, doc/rules.md
+# "Routes". (Until 2026-11-04 they went below Historical > Page History, one container per page; the owner moved
+# them below Confluence.)
 RouteMeta[]
 RouteMeta[page_id]=/name="ajs-page-id" content="(\d+)"/
 RouteMeta[latest_id]=/name="ajs-latest-page-id" content="(\d+)"/
@@ -68,19 +72,30 @@ RouteMeta[space]=/name="ajs-space-key" content="([^"]*)"/
 RouteMeta[versions]=/<title>[^<]*\((v\.\d+ vs\.? v\.\d+)\)/
 RouteMeta[view]=/<title>\s*([^<]*?)\s*-\s*[^<-]*-\s*eZ Documentation\s*<\/title>/
 RouteRules[]
-RouteRules[]=pages/diffpagesbyversion*;historical/page-history/{latest_id|page_id}/;{page_title|view}: comparison of {versions|view};;{latest_id|page_id}
-RouteRules[]=pages/viewpreviousversions*;historical/page-history/{latest_id|page_id}/;{page_title|view}: page history;;{latest_id|page_id}
-RouteRules[]=pages/viewinfo*;historical/page-history/{latest_id|page_id}/;{page_title|view}: page information;;{latest_id|page_id}
-RouteRules[]=pages/viewpageattachments*;historical/page-history/{latest_id|page_id}/;{page_title|view}: attachments;;{latest_id|page_id}
-RouteRules[]=pages/viewpage*;historical/page-history/{latest_id}/;{page_title|view}: old version (page id {page_id});latest_id!=page_id;{latest_id}
-RouteRules[]=pages/listpages-*;historical/page-lists/;{view} ({space});
-RouteRules[]=pages/recentlyupdated*;historical/page-lists/;{view} ({space});
-RouteRules[]=pages/viewrecentblogposts*;historical/page-lists/;{view} ({space});
+RouteRules[]=pages/diffpagesbyversion*;display/confluence/pages/comparisons/{space}/;{page_title|view}: comparison of {versions|view};;{latest_id|page_id}
+RouteRules[]=pages/viewpreviousversions*;display/confluence/pages/page-history/{space}/;{page_title|view}: page history;;{latest_id|page_id}
+RouteRules[]=pages/viewinfo*;display/confluence/pages/page-information/{space}/;{page_title|view}: page information;;{latest_id|page_id}
+RouteRules[]=pages/viewpageattachments*;display/confluence/pages/attachments/{space}/;{page_title|view}: attachments;;{latest_id|page_id}
+RouteRules[]=pages/viewpage*;display/confluence/pages/versions/{space}/;{page_title|view}: old version (page id {page_id});latest_id!=page_id;{latest_id}
+RouteRules[]=pages/listpages-*;display/confluence/pages/page-lists/{space}/;{view} ({space});
+RouteRules[]=pages/recentlyupdated*;display/confluence/pages/page-lists/{space}/;{view} ({space});
+RouteRules[]=pages/viewrecentblogposts*;display/confluence/pages/page-lists/{space}/;{view} ({space});
+# The containers: <class>;<title>[;<short title, the address>[;<value>=<pattern>,...]] (exp_doc_historical is named
+# by its short title or title, so the title is the address: /platform/confluence/pages/page-information/EZP)
 RouteContainers[]
-RouteContainers[historical]=exp_doc_historical;Historical
-RouteContainers[historical/page-history]=exp_doc_historical;Page History
-RouteContainers[historical/page-history/*]=exp_doc_historical;{page_title|view}
-RouteContainers[historical/page-lists]=exp_doc_historical;Page Lists
+RouteContainers[display/confluence/pages]=exp_doc_historical;Pages
+RouteContainers[display/confluence/pages/comparisons]=exp_doc_historical;Comparisons
+RouteContainers[display/confluence/pages/page-history]=exp_doc_historical;Page history
+RouteContainers[display/confluence/pages/page-information]=exp_doc_historical;Page information
+RouteContainers[display/confluence/pages/attachments]=exp_doc_historical;Attachments
+RouteContainers[display/confluence/pages/versions]=exp_doc_historical;Versions
+RouteContainers[display/confluence/pages/copies]=exp_doc_historical;Copies
+RouteContainers[display/confluence/pages/page-lists]=exp_doc_historical;Page lists
+RouteContainers[display/confluence/pages/not-found]=exp_doc_historical;Not found
+RouteContainers[display/confluence/pages/*/*]=exp_doc_historical;{space|seg5}
+# The version containers of the Exponential manuals (ParentRules[] below): /exponential/<version>, an exp_doc_version
+# with the version number and its status (VersionStatus[]); the manuals of that version are inside it
+RouteContainers[Exponential/*]=exp_doc_version;{folder};{folder};version={folder}
 # The spec check: two pages of one name below one parent get the space, the page id or a counter added
 SiblingNames=unique
 # The old site's own full URLs in the bodies are links inside the documentation too
@@ -111,7 +126,8 @@ AssetPageMaxText=0
 
 # Confluence's spaces (display/<SPACE>/<page>.html) are flat folders: a page's parent is the nearest page of its
 # breadcrumb (#breadcrumbs: the space, then the ancestors). A space without a page of its own becomes a section
-# named by the breadcrumb's first item (the space's name), and all spaces go into one section "Confluence spaces"
+# named by the breadcrumb's first item (the space's name) and addressed by its key (GroupShortTitles[]); every space
+# is below Platform > Confluence (/platform/confluence/<space>, the owner's decision of 2026-11-04)
 BreadcrumbSelector=#breadcrumbs a
 BreadcrumbPaths[]
 BreadcrumbPaths[]=display/**
@@ -121,46 +137,83 @@ GroupFolders[]=display
 GroupFolders[]=display/*
 GroupTitleSelector=#breadcrumbs li.first a
 GroupTitles[]
-GroupTitles[display]=Platform
+GroupTitles[display]=Exponential Platform
+GroupShortTitles[]
+GroupShortTitles[display/*]={file}
 GroupClass=exp_doc_section
 
-# The products (the landing page's "Products" block): Exponential (Exponential.html), Exponential Platform (the Confluence
-# spaces, /platform) with Legacy, Nexus and DXP below it, and Exponential Basic. The short title is the address. The
-# texts (extension/exp_doc/share/products/*.html) are the facts of the help center's DISTRIBUTIONS.md.
+# The products (the landing page's "Products" block): Exponential (Exponential.html), Exponential Platform (/platform)
+# with Legacy, Nexus and DXP below it, and Exponential Basic. A section is named by its title and addressed by its
+# short title. The texts (extension/exp_doc/share/products/*.html) are the facts of the help center's DISTRIBUTIONS.md.
+# Confluence (/platform/confluence) holds the Confluence spaces and the copies of the export's pages/ folder.
 VirtualPages[]
 VirtualPages[display/]=exp_doc_section;Exponential Platform;Platform;extension/exp_doc/share/products/platform.html
 VirtualPages[display/legacy/]=exp_doc_section;Exponential Platform Legacy;Legacy;extension/exp_doc/share/products/legacy.html
 VirtualPages[display/nexus/]=exp_doc_section;Exponential Platform Nexus;Nexus;extension/exp_doc/share/products/nexus.html
 VirtualPages[display/dxp/]=exp_doc_section;Exponential Platform DXP;DXP;extension/exp_doc/share/products/dxp.html
+VirtualPages[display/confluence/]=exp_doc_section;Confluence;Confluence;extension/exp_doc/share/products/confluence.html
 VirtualPages[basic/]=exp_doc_section;Exponential Basic;Basic;extension/exp_doc/share/products/basic.html
-# The Confluence spaces below their product: the Exponential 5.x manuals (platform and legacy kernel) under Legacy, the
-# eZ Platform developer, technical and user documentation under DXP; the other spaces stay under Platform
-ParentRules[]
-ParentRules[]=display/EZP/;display/legacy/
-ParentRules[]=display/EZP51/;display/legacy/
-ParentRules[]=display/DEVELOPER/;display/dxp/
-ParentRules[]=display/TECHDOC/;display/dxp/
-ParentRules[]=display/USERGUIDE/;display/dxp/
-ParentRules[]=display/USER.html;display/dxp/
+VirtualPages[historical/]=exp_doc_historical;Historical;Historical
+# The space USER has a page of its own (display/USER.html, its home): a section like every other space, its home inside
+VirtualPages[display/USER/]=exp_doc_section;User;USER
+# The version lines of the manuals are addressed by their number: /exponential/4, /exponential/5, /exponential/6
+VirtualPages[Exponential/4.x/]=exp_doc_version;4.x;4
+VirtualPages[Exponential/5.x/]=exp_doc_version;5.x;5
+VirtualPages[Exponential/6.x/]=exp_doc_version;6.x;6
 
-# The top of the site keeps fewer than 10 children (the target tree: doc.md "Target tree"). Only these pages stay at the
-# top: Exponential (every manual, extension, tutorial, FAQ and the rest below it), Platform (the Confluence spaces),
-# Historical, the hidden mirror and the license. A page that has no other parent goes below Exponential, a Confluence
-# page below Platform. The Contributors and Media folders and the site's own pages are not the import's.
+# Fixed parents, before the breadcrumb and the folders (first match wins; {placeholders} are the values of the page's
+# path: {folder} the version folder a version page stands for, {file} the file name; @<remote id> a node outside
+# the import):
+# - the products and Confluence below Platform, every space below Confluence, a space's home page in its space;
+# - each manual version below the version container of its number (Exponential/4.7/: /exponential/4.7), so a version
+#   holds its Technical manual and its User manual (NameRules[] below);
+# - a Confluence page copy with content of its own (pages/viewpage<id>, not an old version) in Pages > Copies;
+# - the list of extensions below Extensions; the image viewers of Media/ in the Media folder.
+ParentRules[]
+ParentRules[]=display/confluence/;display/
+ParentRules[]=display/legacy/;display/
+ParentRules[]=display/nexus/;display/
+ParentRules[]=display/dxp/;display/
+ParentRules[]=display/*/;display/confluence/
+ParentRules[]=display/*.html;display/{file}/
+ParentRules[]=Exponential/*/[0-9]*.html;Exponential/{folder}/
+ParentRules[]=pages/viewpage*;display/confluence/pages/copies/
+ParentRules[]=List-of-Exponential-extensions-and-their-support-options.html;Extensions.html
+ParentRules[]=Media/**;@exp-doc-media
+
+# The version page of a manual inside its version container is named after its manual: "Technical manual 4.7",
+# addressed technical-manual (/exponential/4.7/technical-manual)
+NameRules[]
+NameRules[]=Exponential/Technical-manual/[0-9]*.html;Technical manual {folder};Technical manual
+NameRules[]=Exponential/User-manual/[0-9]*.html;User manual {folder};User manual
+# a Confluence page copy with content of its own: its title and its page id ("1. Getting started (page id 1234)")
+NameRules[]=pages/viewpage*;{title} (page id {page_id})
+
+# The top of the site keeps fewer than 10 children (the owner's decision of 2026-11-04): Exponential (every manual
+# version, Upgrading, Extensions, Tutorials, FAQ, Security and every page without another parent), Platform (the
+# products and Confluence), Basic, Historical (the hidden mirror and the leftovers of earlier runs) and the license.
+# The Contributors and Media folders and the page Privacy and cookies are not the import's.
 TopParentRules[]
 TopParentRules[]=Exponential.html;
 TopParentRules[]=display/;
 TopParentRules[]=basic/;
 TopParentRules[]=historical/;
-TopParentRules[]=doc_hidden.html;
 TopParentRules[]=License.html;
+TopParentRules[]=doc_hidden.html;historical/
 TopParentRules[]=doc_inside_admin.html;doc_hidden.html
 TopParentRules[]=doc_inside_admin/**;doc_hidden.html
-TopParentRules[]=display/**;display/
-TopParentRules[]=pages/**;display/
+TopParentRules[]=display/**;display/confluence/
+TopParentRules[]=pages/**;display/confluence/pages/
+TopParentRules[]=Media/**;@exp-doc-media
 TopParentRules[]=**;Exponential.html
-# The hidden leftovers of earlier runs (pages that became redirects or no pages) go below Historical
+# The hidden leftovers of earlier runs (pages that became redirects or no pages) go below Historical; the "Page Not
+# Found" stubs of the Confluence export to Confluence > Pages > Not found, named by their file; other leftovers of
+# pages/ to Copies
 RetiredParent=historical/
+RetiredRules[]
+RetiredRules[]=pages/**;display/confluence/pages/not-found/;{title}: {file};/^(Page Not Found|404|Not Found)\b/i
+RetiredRules[]=display/**;display/confluence/pages/not-found/;{title}: {seg2}/{file};/^(Page Not Found|404|Not Found)\b/i
+RetiredRules[]=pages/**;display/confluence/pages/copies/
 
 # The authors of the 6.x documentation by the git history of the source repository (se7enxweb/exponential.doc.exponential.earth):
 # the commit identities "7x <info@se7enx.com>" and "Brookins Consulting <info@brookinsconsulting.com>" are both Graham
@@ -180,6 +233,8 @@ GitAuthorMap[info@brookinsconsulting.com]=Graham Brookins
 # small differences its content has (it would be a page named like its version or section, below that one)
 CopyOfPatterns[]
 CopyOfPatterns[]=#^(.+)/\([a-z_]+\)/.*\.html$#
+# the index page of a folder that has a page of its own (Exponential/index.html of Exponential.html) is that page
+CopyOfPatterns[]=#^(Exponential(?:/[^/]+)?)/index\.html$#
 DuplicatePatterns[]
 DuplicatePatterns[]=#\(language\)#
 DuplicatePatterns[]=#^pages/#
