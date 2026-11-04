@@ -6,6 +6,11 @@
  *                parameters: (manual)/<node id> (version)/<node id> (class)/<identifier> (contributor)/<object id>
  *                (range)/24h|7d|30d|all (offset)/<n> (limit)/<n> (feed)/atom. Reached at its URL alias
  *                (exp_doc.ini [RecentSettings] Path, "recent"); the policy doc/read (the Doc reader role).
+ *   doc/new      the pages added, newest first by their first publication on this site (the object's published date);
+ *                the same filters, paging and feed as doc/recent, at its URL alias [RecentSettings] NewPath, "recent/new".
+ *   doc/comments the newest approved comments (never a held one), newest first: (manual) (version) (range) as for
+ *                doc/recent, (type)/readers|all (all: the historical comments too), (offset) (limit), (feed)/atom; at its
+ *                URL alias [RecentSettings] CommentsPath, "recent/comments".
  *   doc/comment  POST only: a reader's comment on a page or a reply to a comment (classes/expdoccomment.php); held
  *                for moderation by the review hold, then back to the page with (comment)/held. The policy doc/read, and
  *                content/create of the comment class where it is stored.
@@ -28,6 +33,15 @@ $ViewList['recent'] = array( 'script' => 'recent.php',
                              'post_action_parameters' => array( 'Filter' => array( 'Manual' => 'Manual', 'Version' => 'Version',
                                                                                    'Class' => 'Class', 'Contributor' => 'Contributor',
                                                                                    'Range' => 'Range', 'Limit' => 'Limit' ) ) );
+$ViewList['new'] = $ViewList['recent'];
+$ViewList['comments'] = array( 'script' => 'comments.php',
+                               'functions' => array( 'read' ),
+                               'params' => array(),
+                               'unordered_params' => array( 'offset' => 'Offset', 'limit' => 'Limit', 'manual' => 'Manual',
+                                                            'version' => 'Version', 'range' => 'Range', 'type' => 'Type', 'feed' => 'Feed' ),
+                               'single_post_actions' => array( 'FilterButton' => 'Filter' ),
+                               'post_action_parameters' => array( 'Filter' => array( 'Manual' => 'Manual', 'Version' => 'Version',
+                                                                                    'Range' => 'Range', 'Type' => 'Type', 'Limit' => 'Limit' ) ) );
 $ViewList['comment'] = array( 'script' => 'comment.php',
                               'functions' => array( 'read' ),
                               'params' => array(),

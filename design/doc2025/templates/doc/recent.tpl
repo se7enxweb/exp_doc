@@ -14,10 +14,10 @@
 <div class="template-object">
 
 <div class="attribute-heading">
-<h1>{'Recent changes'|i18n( 'design/exp_doc' )}</h1>
+<h1>{cond( eq( $mode, 'new' ), 'Recently added'|i18n( 'design/exp_doc' ), 'Recent changes'|i18n( 'design/exp_doc' ) )}</h1>
 </div>
 
-<form class="exp-doc-recent-classic-filters" method="post" action={'doc/recent'|ezurl}>
+<form class="exp-doc-recent-classic-filters" method="post" action={concat( 'doc/', cond( eq( $mode, 'new' ), 'new', 'recent' ) )|ezurl}>
 <p>
     <label for="exp-doc-recent-manual">{'Manual'|i18n( 'design/exp_doc' )}</label>
     <select id="exp-doc-recent-manual" name="Manual">
@@ -66,7 +66,7 @@
 </p>
 </form>
 
-<p>{'%count changed pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) )} &middot; <a href={$feed_uri|ezurl}>{'Atom feed'|i18n( 'design/exp_doc' )}</a></p>
+<p>{cond( eq( $mode, 'new' ), '%count added pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ), '%count changed pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ) )} &middot; <a href={$feed_uri|ezurl}>{'Atom feed'|i18n( 'design/exp_doc' )}</a> &middot; <a href={ezini( 'RecentSettings', 'CommentsPath', 'exp_doc.ini' )|ezurl}>{'Recent comments'|i18n( 'design/exp_doc' )}</a> &middot; <a href={cond( eq( $mode, 'new' ), $changes_uri, $new_uri )|ezurl}>{cond( eq( $mode, 'new' ), 'Recent changes'|i18n( 'design/exp_doc' ), 'Recently added'|i18n( 'design/exp_doc' ) )}</a></p>
 
 {if $groups|count}
 {foreach $groups as $doc_group}
@@ -74,7 +74,7 @@
 <ul>
 {foreach $doc_group.items as $doc_item}
 <li><div><a href={$doc_item.url|ezurl}>{$doc_item.title|wash}</a> ({$doc_types[$doc_item.type]|wash})
-    <br />{if $doc_item.manual}{$doc_item.manual.name|wash}{/if}{if $doc_item.version} {$doc_item.version.name|wash}{/if}{if or( $doc_item.manual, $doc_item.version )} &middot; {/if}{'Changed %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.modified|l10n( 'shorttime' ) ) )}{if $doc_item.by} &middot; {if $doc_item.updated_at}{'Last updated by %name on %date'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ), '%date', $doc_item.updated_at|l10n( 'shortdate' ) ) )}{else}{'Last updated by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ) ) )}{/if}{/if}
+    <br />{if $doc_item.manual}{$doc_item.manual.name|wash}{/if}{if $doc_item.version} {$doc_item.version.name|wash}{/if}{if or( $doc_item.manual, $doc_item.version )} &middot; {/if}{if eq( $mode, 'new' )}{'Added %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.published|l10n( 'shorttime' ) ) )}{if $doc_item.author} &middot; {'Written by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.author.main_node.url_alias|ezurl, '>', $doc_item.author.name|wash, '</a>' ) ) )}{/if}{else}{'Changed %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.modified|l10n( 'shorttime' ) ) )}{/if}{if and( ne( $mode, 'new' ), $doc_item.by )} &middot; {if $doc_item.updated_at}{'Last updated by %name on %date'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ), '%date', $doc_item.updated_at|l10n( 'shortdate' ) ) )}{else}{'Last updated by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ) ) )}{/if}{/if}
     {if $doc_item.excerpt}<br /><em>{$doc_item.excerpt|wash}</em>{/if}</div></li>
 {/foreach}
 </ul>

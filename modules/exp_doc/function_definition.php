@@ -134,3 +134,37 @@ $FunctionList['products'] = array( 'name' => 'products',
                                                            'method' => 'products' ),
                                    'parameter_type' => 'standard',
                                    'parameters' => array() );
+
+/*
+ *   fetch( 'exp_doc', 'recent_comments', hash( 'limit', 8 ) )
+ *       the newest approved readers' comments (never a held one), each as a hash: node, page, subject, excerpt, name,
+ *       date, type and anchor (the comment's id on its page)
+ */
+$FunctionList['recent_comments'] = array( 'name' => 'recent_comments',
+                                          'operation_types' => array( 'read' ),
+                                          'call_method' => array( 'class' => 'expDocComment',
+                                                                  'method' => 'recentList' ),
+                                          'parameter_type' => 'standard',
+                                          'parameters' => array( array( 'name' => 'limit',
+                                                                        'type' => 'integer',
+                                                                        'required' => false,
+                                                                        'default' => 8 ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'recent_pages', hash( 'mode', 'new', 'limit', 8 ) )
+ *       the newest pages: mode new (first published on this site, the object's published date) or changed (the
+ *       newest change); each an entry of expDocRecent::entry() (title, url, manual, version, author, published ...)
+ */
+$FunctionList['recent_pages'] = array( 'name' => 'recent_pages',
+                                       'operation_types' => array( 'read' ),
+                                       'call_method' => array( 'class' => 'expDocRecent',
+                                                               'method' => 'latest' ),
+                                       'parameter_type' => 'standard',
+                                       'parameters' => array( array( 'name' => 'mode',
+                                                                     'type' => 'string',
+                                                                     'required' => false,
+                                                                     'default' => 'new' ),
+                                                              array( 'name' => 'limit',
+                                                                     'type' => 'integer',
+                                                                     'required' => false,
+                                                                     'default' => 8 ) ) );

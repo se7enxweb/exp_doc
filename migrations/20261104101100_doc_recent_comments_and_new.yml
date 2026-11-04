@@ -1,0 +1,12 @@
+---
+# description: The recent comments (doc/comments) at the address recent/comments and the pages added (doc/new) at recent/new, for every reader (the policy doc/read the Doc reader role has)
+- type: url_alias
+  mode: ensure
+  path: recent/comments
+  destination: doc/comments
+  redirect: false
+- type: url_alias
+  mode: ensure
+  path: recent/new
+  destination: doc/new
+  redirect: false

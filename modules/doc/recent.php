@@ -1,6 +1,7 @@
 <?php
 /**
  * doc/recent: the recent changes of the documentation (expDocRecent), in the site's design (design:doc/recent.tpl),
+ * and doc/new: the pages added, newest first by their first publication on this site;
  * or as an Atom feed with (feed)/atom. The filter form posts; the view answers with a redirect to the same list with
  * the filters as view parameters, so every list has an address of its own and no query string.
  *
@@ -10,6 +11,9 @@
  */
 
 $Module = $Params['Module'];
+// doc/new is this view in the mode new: the pages newest first by their first publication ([RecentSettings] NewPath)
+$mode = $Module->currentView() === 'new' ? 'new' : 'changed';
+$pathSetting = $mode === 'new' ? 'NewPath' : 'Path';
 $ini = eZINI::instance( 'exp_doc.ini' );
 $limits = array_map( 'intval', (array)$ini->variable( 'RecentSettings', 'Limits' ) );
 $defaultLimit = (int)$ini->variable( 'RecentSettings', 'DefaultLimit' );
@@ -30,7 +34,7 @@ if ( $Module->isCurrentAction( 'Filter' ) )
     {
         $extra['limit'] = (int)$Module->actionParameter( 'Limit' );
     }
-    return $Module->redirectTo( '/' . expDocRecent::uri( expDocRecent::filters( $posted ), $extra ) );
+    return $Module->redirectTo( '/' . expDocRecent::uri( expDocRecent::filters( $posted ), $extra, $pathSetting ) );
 }
 
 $view = array();
@@ -44,14 +48,14 @@ foreach ( array( 'Manual' => 'manual', 'Version' => 'version', 'Class' => 'class
 $filters = expDocRecent::filters( $view );
 $limit = isset( $Params['Limit'] ) && in_array( (int)$Params['Limit'], $limits, true ) ? (int)$Params['Limit'] : $defaultLimit;
 $offset = isset( $Params['Offset'] ) && ctype_digit( (string)$Params['Offset'] ) ? (int)$Params['Offset'] : 0;
-$title = ezpI18n::tr( 'design/exp_doc', 'Recent changes' );
+$title = $mode === 'new' ? ezpI18n::tr( 'design/exp_doc', 'Recently added' ) : ezpI18n::tr( 'design/exp_doc', 'Recent changes' );
 $host = 'https://' . eZSys::hostname();
 
 if ( isset( $Params['Feed'] ) && $Params['Feed'] === 'atom' )
 {
-    $list = expDocRecent::fetch( $filters, 0, (int)$ini->variable( 'RecentSettings', 'FeedLimit' ) );
-    $self = expDocRecent::uri( $filters, array( 'feed' => 'atom' ) );
-    $page = expDocRecent::uri( $filters );
+    $list = expDocRecent::fetch( $filters, 0, (int)$ini->variable( 'RecentSettings', 'FeedLimit' ), $mode );
+    $self = expDocRecent::uri( $filters, array( 'feed' => 'atom' ), $pathSetting );
+    $page = expDocRecent::uri( $filters, array(), $pathSetting );
     eZURI::transformURI( $self );
     eZURI::transformURI( $page );
     header( 'Content-Type: application/atom+xml; charset=utf-8' );
@@ -59,10 +63,10 @@ if ( isset( $Params['Feed'] ) && $Params['Feed'] === 'atom' )
     eZExecution::cleanExit();
 }
 
-$list = expDocRecent::fetch( $filters, $offset, $limit );
-$feed = expDocRecent::uri( $filters, array( 'feed' => 'atom' ) );
+$list = expDocRecent::fetch( $filters, $offset, $limit, $mode );
+$feed = expDocRecent::uri( $filters, array( 'feed' => 'atom' ), $pathSetting );
 $tpl = eZTemplate::factory();
-$tpl->setVariable( 'groups', expDocRecent::byDay( $list['items'] ) );
+$tpl->setVariable( 'groups', expDocRecent::byDay( $mode === 'new' ? array_map( function ( $item ) { return array_merge( $item, array( 'day' => $item['published_day'] ) ); }, $list['items'] ) : $list['items'] ) );
 $tpl->setVariable( 'count', $list['count'] );
 $tpl->setVariable( 'offset', $offset );
 $tpl->setVariable( 'limit', $limit );
@@ -70,8 +74,12 @@ $tpl->setVariable( 'limits', $limits );
 $tpl->setVariable( 'default_limit', $defaultLimit );
 $tpl->setVariable( 'filters', $filters );
 $tpl->setVariable( 'options', expDocRecent::options() );
-$tpl->setVariable( 'page_uri', expDocRecent::uri( $filters, $limit !== $defaultLimit ? array( 'limit' => $limit ) : array() ) );
-$tpl->setVariable( 'base_uri', expDocRecent::uri( array() ) );
+$tpl->setVariable( 'page_uri', expDocRecent::uri( $filters, $limit !== $defaultLimit ? array( 'limit' => $limit ) : array(), $pathSetting ) );
+$tpl->setVariable( 'base_uri', expDocRecent::uri( array(), array(), $pathSetting ) );
+$tpl->setVariable( 'mode', $mode );
+$tpl->setVariable( 'changes_uri', expDocRecent::uri( array() ) );
+$tpl->setVariable( 'new_uri', expDocRecent::uri( array(), array(), 'NewPath' ) );
+$tpl->setVariable( 'comments_uri', expDocRecent::uri( array(), array(), 'CommentsPath' ) );
 $tpl->setVariable( 'feed_uri', $feed );
 $tpl->setVariable( 'view_parameters', array( 'offset' => $offset ) );
 

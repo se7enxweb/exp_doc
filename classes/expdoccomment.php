@@ -304,6 +304,89 @@ class expDocComment
     }
 
     /**
+     * The newest comments of the site, for the front page's "Recent comments" and the view doc/comments: the
+     * readers' comments ([CommentSettings] Class) that a moderator approved (held ones are hidden by the review hold,
+     * and checked once more), and with type "all" the historical ones too. Filters (view parameters, all optional):
+     * manual and version (node ids: only their pages' comments), range (24h, 7d, 30d, all), type (readers, all).
+     *
+     * @param array $filters
+     * @param int $offset
+     * @param int $limit
+     * @return array array( 'items' => list of array( 'node', 'page', 'subject', 'excerpt', 'name', 'date', 'type',
+     *               'anchor' ), 'count' => int )
+     */
+    public static function recent( array $filters, $offset, $limit )
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $classes = array( (string)$ini->variable( 'CommentSettings', 'Class' ) );
+        if ( isset( $filters['type'] ) && $filters['type'] === 'all' )
+        {
+            $classes[] = (string)$ini->variable( 'ClassicSettings', 'CommentClass' );
+        }
+        $parentID = (int)eZINI::instance( 'content.ini' )->variable( 'NodeSettings', 'RootNode' );
+        if ( isset( $filters['version'] ) )
+        {
+            $parentID = (int)$filters['version'];
+        }
+        elseif ( isset( $filters['manual'] ) )
+        {
+            $parentID = (int)$filters['manual'];
+        }
+        $params = array( 'ClassFilterType' => 'include', 'ClassFilterArray' => $classes, 'SortBy' => array( 'published', false ),
+                         'MainNodeOnly' => true );
+        if ( isset( $filters['range'] ) && isset( expDocRecent::$ranges[$filters['range']] ) && expDocRecent::$ranges[$filters['range']] )
+        {
+            $params['AttributeFilter'] = array( array( 'published', '>=', time() - expDocRecent::$ranges[$filters['range']] ) );
+        }
+        $count = (int)eZContentObjectTreeNode::subTreeCountByNodeID( $params, $parentID );
+        $nodes = eZContentObjectTreeNode::subTreeByNodeID( array_merge( $params, array( 'Offset' => (int)$offset, 'Limit' => (int)$limit ) ), $parentID );
+        $items = array();
+        foreach ( is_array( $nodes ) ? $nodes : array() as $node )
+        {
+            $object = $node->object();
+            if ( class_exists( 'expReviewHold' ) && expReviewHold::isHeld( $object ) )
+            {
+                continue;
+            }
+            $map = $node->dataMap();
+            $reader = $node->attribute( 'class_identifier' ) === $classes[0];
+            if ( $reader )
+            {
+                $text = isset( $map['message'] ) ? $map['message']->toString() : '';
+                $name = isset( $map['author'] ) ? $map['author']->toString() : '';
+                $date = (int)$object->attribute( 'published' );
+            }
+            else
+            {
+                $entry = self::historicalEntry( $node->attribute( 'node_id' ) );
+                $entry = $entry['result'];
+                $text = $entry['body'] ? $map[$entry['body']]->attribute( 'data_text' ) : $entry['html'];
+                $name = $entry['name'];
+                $date = $entry['date'];
+            }
+            $text = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( str_replace( '<', ' <', (string)$text ) ), ENT_QUOTES, 'UTF-8' ) ) );
+            $length = (int)eZINI::instance( 'exp_doc.ini' )->variable( 'RecentSettings', 'ExcerptLength' );
+            $items[] = array( 'node' => $node, 'page' => self::page( $node ), 'subject' => $node->attribute( 'name' ),
+                              'excerpt' => mb_strlen( $text ) > $length ? rtrim( mb_substr( $text, 0, $length ) ) . '…' : $text,
+                              'name' => $name, 'date' => $date, 'type' => $reader ? 'reader' : 'historical',
+                              'anchor' => ( $reader ? 'comment-' : 'historical-comment-' ) . $node->attribute( 'node_id' ) );
+        }
+        return array( 'items' => $items, 'count' => $count );
+    }
+
+    /**
+     * The front page's "Recent comments" (fetch exp_doc/recent_comments): the newest approved readers' comments.
+     *
+     * @param int $limit
+     * @return array array( 'result' => entries of recent() )
+     */
+    public static function recentList( $limit )
+    {
+        $list = self::recent( array(), 0, (int)$limit );
+        return array( 'result' => $list['items'] );
+    }
+
+    /**
      * The visible comments below a node (a page or a comment), oldest first, as the reader may see them (held ones
      * are hidden by the auto-hold, so readers never get them).
      *

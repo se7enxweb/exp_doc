@@ -88,6 +88,38 @@
     <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'Path', 'exp_doc.ini' )|ezurl}>{'See all changes'|i18n( 'design/exp_doc' )}</a></p>
 </section>
 {/if}
+{* the pages added last: newest first by their first publication on this site (the object's published date) *}
+{def $doc_added = fetch( 'exp_doc', 'recent_pages', hash( 'mode', 'new', 'limit', 8 ) )}
+{if $doc_added|count}
+<section class="a4-help-support exp-doc-landing-section is-accent" aria-labelledby="exp-doc-added-title">
+    <h2 id="exp-doc-added-title" class="a4-h2">{'Recently added'|i18n( 'design/exp_doc' )}</h2>
+    <ol class="a4-plain exp-doc-landing-list">
+    {foreach $doc_added as $doc_item}
+        <li><a href={$doc_item.url|ezurl}>{$doc_item.title|wash}</a>
+            <span class="a4-meta">{if $doc_item.manual}{$doc_item.manual.name|wash}{if $doc_item.version} {$doc_item.version.name|wash}{/if} · {/if}{if $doc_item.author}{$doc_item.author.name|wash} · {/if}{$doc_item.published|l10n( 'shortdate' )}</span>
+            {if $doc_item.excerpt}<span class="exp-doc-landing-excerpt">{$doc_item.excerpt|shorten( 120 )|wash}</span>{/if}</li>
+    {/foreach}
+    </ol>
+    <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'NewPath', 'exp_doc.ini' )|ezurl}>{'See all new pages'|i18n( 'design/exp_doc' )}</a></p>
+</section>
+{/if}
+{undef $doc_added}
+{* the newest approved readers' comments (never a held one), each linked to the comment on its page *}
+{def $doc_comments = fetch( 'exp_doc', 'recent_comments', hash( 'limit', 8 ) )}
+<section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-comments-title">
+    <h2 id="exp-doc-comments-title" class="a4-h2">{'Recent comments'|i18n( 'design/exp_doc' )}</h2>
+    {if $doc_comments|count}
+    <ol class="a4-plain exp-doc-landing-list">
+    {foreach $doc_comments as $doc_c}
+        <li><a href={concat( $doc_c.page.url_alias, '#', $doc_c.anchor )|ezurl}>{$doc_c.subject|wash}</a> <span class="a4-meta">{if $doc_c.name|ne( '' )}{$doc_c.name|wash} · {/if}{$doc_c.date|l10n( 'shortdate' )} · {'on %page'|i18n( 'design/exp_doc', '', hash( '%page', $doc_c.page.name|wash ) )}</span></li>
+    {/foreach}
+    </ol>
+    {else}
+    <p class="a4-meta">{'No comments yet. Every page has a form for yours.'|i18n( 'design/exp_doc' )}</p>
+    {/if}
+    <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'CommentsPath', 'exp_doc.ini' )|ezurl}>{'See all comments'|i18n( 'design/exp_doc' )}</a></p>
+</section>
+{undef $doc_comments}
 {if $doc_popular|count}
 <section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-popular-title">
     <h2 id="exp-doc-popular-title" class="a4-h2">{'Most read'|i18n( 'design/exp_doc' )}</h2>

@@ -563,6 +563,54 @@
         <source>You have sent several comments in a short time. Please wait a few minutes and send it again.</source>
         <translation>You have sent several comments in a short time. Please wait a few minutes and send it again.</translation>
     </message>
+    <message>
+        <source>Exponential Foundation and %company</source>
+        <translation>Exponential Foundation and %company</translation>
+    </message>
+    <message>
+        <source>%count comments</source>
+        <translation>%count comments</translation>
+    </message>
+    <message>
+        <source>Date unknown</source>
+        <translation>Date unknown</translation>
+    </message>
+    <message>
+        <source>Historical</source>
+        <translation>Historical</translation>
+    </message>
+    <message>
+        <source>No comment with these filters yet.</source>
+        <translation>No comment with these filters yet.</translation>
+    </message>
+    <message>
+        <source>No comments yet. Every page has a form for yours.</source>
+        <translation>No comments yet. Every page has a form for yours.</translation>
+    </message>
+    <message>
+        <source>Readers’ and historical comments</source>
+        <translation>Readers’ and historical comments</translation>
+    </message>
+    <message>
+        <source>Readers’ comments</source>
+        <translation>Readers’ comments</translation>
+    </message>
+    <message>
+        <source>Recent comments</source>
+        <translation>Recent comments</translation>
+    </message>
+    <message>
+        <source>See all comments</source>
+        <translation>See all comments</translation>
+    </message>
+    <message>
+        <source>Written</source>
+        <translation>Written</translation>
+    </message>
+    <message>
+        <source>on %page</source>
+        <translation>on %page</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

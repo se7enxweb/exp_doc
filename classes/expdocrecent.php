@@ -53,11 +53,12 @@ class expDocRecent
      *
      * @param array $filters
      * @param array $extra more view parameters (offset, limit, feed)
+     * @param string $setting the [RecentSettings] address to start from: Path (the pages) or CommentsPath (the comments)
      * @return string
      */
-    public static function uri( array $filters, array $extra = array() )
+    public static function uri( array $filters, array $extra = array(), $setting = 'Path' )
     {
-        $uri = (string)eZINI::instance( 'exp_doc.ini' )->variable( 'RecentSettings', 'Path' );
+        $uri = (string)eZINI::instance( 'exp_doc.ini' )->variable( 'RecentSettings', $setting );
         foreach ( array_merge( $filters, $extra ) as $key => $value )
         {
             if ( $value !== '' && $value !== null && $value !== false )
@@ -80,9 +81,11 @@ class expDocRecent
      * @param array $filters see filters()
      * @param int $offset
      * @param int $limit
+     * @param string $mode changed (newest change first, by the object's modified date) or new (pages newest first by
+     *        the date they were first published on this site, the object's published date; historical copies left out)
      * @return array array( 'items' => list of entry hashes (see entry()), 'count' => int )
      */
-    public static function fetch( array $filters, $offset, $limit )
+    public static function fetch( array $filters, $offset, $limit, $mode = 'changed' )
     {
         $parentID = (int)eZINI::instance( 'content.ini' )->variable( 'NodeSettings', 'RootNode' );
         if ( isset( $filters['version'] ) )
@@ -94,12 +97,16 @@ class expDocRecent
             $parentID = $filters['manual'];
         }
         $classes = isset( $filters['class'] ) ? array( $filters['class'] ) : self::classes();
+        if ( $mode === 'new' )
+        {
+            $classes = array_values( array_diff( $classes, (array)eZINI::instance( 'exp_doc.ini' )->variable( 'RecentSettings', 'HistoryClasses' ) ) );
+        }
         $params = array( 'ClassFilterType' => 'include', 'ClassFilterArray' => $classes, 'MainNodeOnly' => true,
-                         'SortBy' => array( 'modified', false ) );
+                         'SortBy' => array( $mode === 'new' ? 'published' : 'modified', false ) );
         $attributeFilter = array();
         if ( isset( $filters['range'] ) )
         {
-            $attributeFilter[] = array( 'modified', '>=', time() - self::$ranges[$filters['range']] );
+            $attributeFilter[] = array( $mode === 'new' ? 'published' : 'modified', '>=', time() - self::$ranges[$filters['range']] );
         }
         if ( isset( $filters['contributor'] ) )
         {
@@ -174,6 +181,9 @@ class expDocRecent
             $by = eZContentObject::fetch( (int)$map['last_updated_by']->attribute( 'data_int' ) );
         }
         $updatedAt = isset( $map['last_updated_at'] ) && $map['last_updated_at']->hasContent() ? (int)$map['last_updated_at']->attribute( 'data_int' ) : 0;
+        // the writer (written_by), for the new pages
+        $author = isset( $map['written_by'] ) && $map['written_by']->hasContent() ? eZContentObject::fetch( (int)$map['written_by']->attribute( 'data_int' ) ) : false;
+        $published = (int)$object->attribute( 'published' );
         $excerpt = '';
         if ( isset( $map['body'] ) && $map['body']->hasContent() )
         {
@@ -185,7 +195,9 @@ class expDocRecent
         return array( 'node' => $node, 'title' => $node->attribute( 'name' ), 'url' => $node->attribute( 'url_alias' ),
                       'day' => date( 'Y-m-d', $modified ), 'modified' => $modified, 'type' => $type,
                       'manual' => $manual, 'version' => $version, 'by' => $by instanceof eZContentObject ? $by : false,
-                      'updated_at' => $updatedAt, 'excerpt' => $excerpt );
+                      'updated_at' => $updatedAt, 'excerpt' => $excerpt,
+                      'author' => $author instanceof eZContentObject ? $author : false, 'published' => $published,
+                      'published_day' => date( 'Y-m-d', $published ) );
     }
 
     /**
@@ -257,6 +269,32 @@ class expDocRecent
     }
 
     /**
+     * The front page's lists (fetch exp_doc/recent_pages): the newest entries of a mode, without filters.
+     *
+     * @param string $mode changed or new
+     * @param int $limit
+     * @return array array( 'result' => entries of fetch() )
+     */
+    public static function latest( $mode, $limit )
+    {
+        $list = self::fetch( array(), 0, (int)$limit, $mode === 'new' ? 'new' : 'changed' );
+        return array( 'result' => $list['items'] );
+    }
+
+    /**
+     * The copyright line of the feeds (as the footer has it, without the link): "Copyright © 1998 - <this year>
+     * Exponential Foundation and 7x (except where otherwise noted)."
+     *
+     * @return string
+     */
+    public static function rights()
+    {
+        return ezpI18n::tr( 'design/exp_doc', 'Copyright © 1998 - %year %maker (except where otherwise noted).', null,
+                            array( '%year' => date( 'Y' ),
+                                   '%maker' => ezpI18n::tr( 'design/exp_doc', 'Exponential Foundation and %company', null, array( '%company' => '7x' ) ) ) );
+    }
+
+    /**
      * The Atom feed of the entries.
      *
      * @param array $items entries (see entry())
@@ -277,7 +315,8 @@ class expDocRecent
              . '  <link rel="self" type="application/atom+xml" href="' . $esc( $selfUri ) . '"/>' . "\n"
              . '  <link rel="alternate" type="text/html" href="' . $esc( $pageUri ) . '"/>' . "\n"
              . '  <updated>' . date( DATE_ATOM, $updated ) . "</updated>\n"
-             . '  <author><name>' . $esc( $title ) . "</name></author>\n";
+             . '  <author><name>' . $esc( $title ) . "</name></author>\n"
+             . '  <rights>' . $esc( self::rights() ) . "</rights>\n";
         foreach ( $items as $item )
         {
             $url = $item['url'];

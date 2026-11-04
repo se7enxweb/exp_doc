@@ -41,7 +41,7 @@ ConfluencePrefixes[]=label
 # The meta tags of every page, as on the static site
 MetaTags[]
 MetaTags[author]=7x
-MetaTags[copyright]=7x
+MetaTags[copyright]=Exponential Foundation and 7x
 MetaTags[description]=Exponential Documentation
 MetaTags[keywords]=Exponential, documentation, manual, reference, 7x
 # The caution box above every page (parts/doc_disclaimer.tpl): enabled|disabled
@@ -192,6 +192,10 @@ ManualImages[]=user-manual
 [RecentSettings]
 # The view's address: its URL alias (migrations/20261104100800_doc_recent.yml), from the site's root
 Path=recent
+# The recent comments (the view doc/comments) and their URL alias (migrations/20261104101100_doc_recent_comments_and_new.yml)
+CommentsPath=recent/comments
+# The pages added, newest first (the view doc/new), and its URL alias (the same migration)
+NewPath=recent/new
 # The classes the list takes: the pages, and the historical copies (shown as "moved to history")
 Classes[]
 Classes[]=exp_doc_page

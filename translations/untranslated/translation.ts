@@ -563,6 +563,54 @@
         <source>You have sent several comments in a short time. Please wait a few minutes and send it again.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Exponential Foundation and %company</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%count comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date unknown</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Historical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No comment with these filters yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No comments yet. Every page has a form for yours.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Readers’ and historical comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Readers’ comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See all comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Written</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>on %page</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>
