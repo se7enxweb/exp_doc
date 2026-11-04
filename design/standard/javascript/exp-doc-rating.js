@@ -35,9 +35,10 @@ const setup = (form) => {
     }
     choice.hidden = false;
     form.addEventListener('submit', (event) => event.preventDefault());
-    choice.addEventListener('change', async (event) => {
-        const input = event.target;
-        if (!input || input.name !== 'rating') {
+    // a pointer chooses with a click; the keyboard moves between the stars with the arrow keys (which only select)
+    // and chooses with Enter or Space
+    const send = async (input) => {
+        if (choice.disabled) {
             return;
         }
         choice.disabled = true;
@@ -49,7 +50,8 @@ const setup = (form) => {
                 const count = Number(content.stats.rating_count);
                 const average = Number(content.stats.rounded_average);
                 if (numbers && form.dataset.numbers) {
-                    numbers.textContent = form.dataset.numbers.replace('%average', String(average)).replace('%count', String(count));
+                    const pattern = count === 1 && form.dataset.numbersOne ? form.dataset.numbersOne : form.dataset.numbers;
+                    numbers.textContent = pattern.replace('%average', String(average)).replace('%count', String(count));
                 }
                 status.textContent = form.dataset.thanks;
             } else if (content.already_rated) {
@@ -61,6 +63,18 @@ const setup = (form) => {
         } catch (error) {
             status.textContent = form.dataset.failed;
             choice.disabled = false;
+        }
+    };
+    choice.addEventListener('click', (event) => {
+        if (event.target && event.target.name === 'rating' && event.detail > 0) {
+            send(event.target);
+        }
+    });
+    choice.addEventListener('keydown', (event) => {
+        if ((event.key === 'Enter' || event.key === ' ') && event.target && event.target.name === 'rating') {
+            event.preventDefault();
+            event.target.checked = true;
+            send(event.target);
         }
     });
 };

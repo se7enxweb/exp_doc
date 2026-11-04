@@ -719,6 +719,10 @@
         <source>You have rated this page already.</source>
         <translation>You have rated this page already.</translation>
     </message>
+    <message>
+        <source>%average of 5, 1 rating</source>
+        <translation>%average of 5, 1 rating</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

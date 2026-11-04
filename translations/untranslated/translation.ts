@@ -719,6 +719,10 @@
         <source>You have rated this page already.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%average of 5, 1 rating</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>
