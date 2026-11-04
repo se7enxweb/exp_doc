@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>భాష</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>అన్ని సహాయాన్ని బ్రౌజ్ చేయండి</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>వ్యాఖ్య</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>వ్యాఖ్యలు</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>మెనూ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>పేరు</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ఉత్పత్తులు</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>విషయం</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

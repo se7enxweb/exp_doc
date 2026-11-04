@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Gjuha</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Shfleto gjithë ndihmën</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komenti</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komentet</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyja</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Emri</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produktet</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Subjekti</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

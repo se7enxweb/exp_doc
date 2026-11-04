@@ -155,6 +155,30 @@
         <source>Language</source>
         <translation>שפּראַך</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>דורכבלעטערן די גאַנצע הילף</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>קאָמענטאַר</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>מעניו</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>נאָמען</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>פּראָדוקטן</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>טעמע</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

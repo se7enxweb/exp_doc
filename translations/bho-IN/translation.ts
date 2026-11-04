@@ -167,6 +167,30 @@
         <source>Language</source>
         <translation>भाषा</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>पूरा मदद ब्राउज़ करीं</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>टिप्पणी</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>टिप्पणी</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>मेनू</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>सामान</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>विषय</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Ulimi</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Khetha kuphrawuza usizo lonke</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Umbono</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Amazwana</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Imenyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Igama</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Imikhiqizo</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Isihloko</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Περιήγηση σε όλη τη βοήθεια</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Σχόλιο</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Σχόλια</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Μενού</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Όνομα</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Προϊόντα</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Θέμα</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

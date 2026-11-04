@@ -159,6 +159,30 @@
         <source>Language</source>
         <translation>Taal</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Blaai deur alle hulp</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Opmerking</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Kieslys</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produkte</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Onderwerp</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

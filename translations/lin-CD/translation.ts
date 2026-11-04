@@ -147,6 +147,26 @@
         <source>Language</source>
         <translation>Lokóta</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Tángá lisálisi nyɔ́nsɔ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Likanisi</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Biloko ya kotɛkɛ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Likambo</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

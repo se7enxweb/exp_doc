@@ -407,6 +407,162 @@
         <source>Language</source>
         <translation>Sprache</translation>
     </message>
+    <message>
+        <source>%name on %date</source>
+        <translation>%name am %date</translation>
+    </message>
+    <message>
+        <source>A comment on the documentation waits for moderation.</source>
+        <translation>Ein Kommentar zur Dokumentation wartet auf die Moderation.</translation>
+    </message>
+    <message>
+        <source>Add a comment</source>
+        <translation>Kommentar schreiben</translation>
+    </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Alle Hilfeseiten</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
+    </message>
+    <message>
+        <source>Comment waiting: %subject</source>
+        <translation>Kommentar wartet: %subject</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentare</translation>
+    </message>
+    <message>
+        <source>Comments (%count historical)</source>
+        <translation>Kommentare (%count aus dem Archiv)</translation>
+    </message>
+    <message>
+        <source>Comments are read by a moderator before they appear.</source>
+        <translation>Kommentare werden von einer Moderation gelesen, bevor sie erscheinen.</translation>
+    </message>
+    <message>
+        <source>Comments cannot be added here.</source>
+        <translation>Hier können keine Kommentare geschrieben werden.</translation>
+    </message>
+    <message>
+        <source>Drag, or use the arrow keys, to resize the menu</source>
+        <translation>Ziehen oder mit den Pfeiltasten die Breite des Menüs ändern</translation>
+    </message>
+    <message>
+        <source>Drag, or use the arrow keys, to resize the page tree</source>
+        <translation>Ziehen oder mit den Pfeiltasten die Breite des Seitenbaums ändern</translation>
+    </message>
+    <message>
+        <source>E-mail (optional, never shown)</source>
+        <translation>E-Mail (freiwillig, wird nie angezeigt)</translation>
+    </message>
+    <message>
+        <source>Leave this field empty</source>
+        <translation>Dieses Feld bitte leer lassen</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menü</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>On the page %page</source>
+        <translation>Auf der Seite %page</translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation>Seite</translation>
+    </message>
+    <message>
+        <source>Please give your name.</source>
+        <translation>Bitte geben Sie Ihren Namen an.</translation>
+    </message>
+    <message>
+        <source>Please write your comment.</source>
+        <translation>Bitte schreiben Sie Ihren Kommentar.</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produkte</translation>
+    </message>
+    <message>
+        <source>Release or delete it in the administration: Dashboard &gt; Recent content, filter "Held".</source>
+        <translation>Freigeben oder löschen in der Administration: Dashboard &gt; Neue Inhalte, Filter „Zurückgehalten“.</translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation>Antworten</translation>
+    </message>
+    <message>
+        <source>Resize the menu</source>
+        <translation>Breite des Menüs ändern</translation>
+    </message>
+    <message>
+        <source>Resize the page tree</source>
+        <translation>Breite des Seitenbaums ändern</translation>
+    </message>
+    <message>
+        <source>Send the comment</source>
+        <translation>Kommentar senden</translation>
+    </message>
+    <message>
+        <source>Send the reply</source>
+        <translation>Antwort senden</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Betreff</translation>
+    </message>
+    <message>
+        <source>Thank you. Your comment awaits moderation and appears here once a moderator has approved it.</source>
+        <translation>Vielen Dank. Ihr Kommentar wartet auf die Moderation und erscheint hier, sobald er freigegeben ist.</translation>
+    </message>
+    <message>
+        <source>Thank you. Your comment is published.</source>
+        <translation>Vielen Dank. Ihr Kommentar ist veröffentlicht.</translation>
+    </message>
+    <message>
+        <source>The comment could not be saved. Please try again later.</source>
+        <translation>Der Kommentar konnte nicht gespeichert werden. Bitte versuchen Sie es später noch einmal.</translation>
+    </message>
+    <message>
+        <source>The comment is too long.</source>
+        <translation>Der Kommentar ist zu lang.</translation>
+    </message>
+    <message>
+        <source>The e-mail address is not valid.</source>
+        <translation>Die E-Mail-Adresse ist ungültig.</translation>
+    </message>
+    <message>
+        <source>The name is too long.</source>
+        <translation>Der Name ist zu lang.</translation>
+    </message>
+    <message>
+        <source>The subject is too long.</source>
+        <translation>Der Betreff ist zu lang.</translation>
+    </message>
+    <message>
+        <source>The text of this comment was not kept.</source>
+        <translation>Der Text dieses Kommentars ist nicht erhalten.</translation>
+    </message>
+    <message>
+        <source>Unknown author</source>
+        <translation>Unbekannter Autor</translation>
+    </message>
+    <message>
+        <source>Written by readers of the earlier documentation sites, kept as they were.</source>
+        <translation>Geschrieben von Lesern der früheren Dokumentationsseiten, unverändert erhalten.</translation>
+    </message>
+    <message>
+        <source>You have sent several comments in a short time. Please wait a few minutes and send it again.</source>
+        <translation>Sie haben in kurzer Zeit mehrere Kommentare gesendet. Bitte warten Sie einige Minuten und senden Sie ihn dann noch einmal.</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

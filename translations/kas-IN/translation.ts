@@ -151,6 +151,30 @@
         <source>Language</source>
         <translation>زَبان</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>سٲری مَدَد براوُز کٔرِو</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>تبصرہ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>مینیو</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ناو</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>مَصنوعات</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>موضوع</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

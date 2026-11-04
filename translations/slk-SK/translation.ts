@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Jazyk</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Prehľadávať celého pomocníka</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komentár</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komentáre</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Ponuka</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Názov</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produkty</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Predmet</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

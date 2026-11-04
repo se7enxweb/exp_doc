@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>ଭାଷା</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ସମସ୍ତ ସାହାଯ୍ୟ ବ୍ରାଉଜ୍ କରନ୍ତୁ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ମନ୍ତବ୍ୟ</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>ମନ୍ତବ୍ୟ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ମେନୁ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ନାମ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ଉତ୍ପାଦ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ବିଷୟ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Hizkuntza</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Arakatu laguntza guztia</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Iruzkina</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Iruzkinak</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menua</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Izena</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produktuak</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Gaia</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

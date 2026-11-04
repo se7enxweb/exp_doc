@@ -151,6 +151,34 @@
         <source>Language</source>
         <translation>Giella</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Bláđđet buot veahki</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommeantta</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommeanttat</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Fálaldat</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Namma</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Buvttat</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Fáddá</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

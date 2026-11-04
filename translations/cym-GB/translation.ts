@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Iaith</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Pori&apos;r cymorth i gyd</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Sylw</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Sylwadau</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Dewislen</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Enw</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Cynhyrchion</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Pwnc</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

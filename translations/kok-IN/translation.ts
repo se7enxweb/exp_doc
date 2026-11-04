@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>भास</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>सगळी मदत ब्राउझ करात</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>टिपणी</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>टिप्पण्यो</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>मेनू</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>नांव</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>उत्पादनां</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>विशय</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

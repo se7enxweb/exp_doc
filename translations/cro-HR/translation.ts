@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>Jezik</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Pregledaj cijelu pomoć</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komentar</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komentari</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Izbornik</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naziv</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Proizvodi</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Predmet</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

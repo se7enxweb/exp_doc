@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Lugha</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Vinjari msaada wote</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Maoni</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Maoni</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Jina</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Bidhaa</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Mada</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

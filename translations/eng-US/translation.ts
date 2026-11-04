@@ -407,6 +407,162 @@
         <source>Language</source>
         <translation>Language</translation>
     </message>
+    <message>
+        <source>%name on %date</source>
+        <translation>%name on %date</translation>
+    </message>
+    <message>
+        <source>A comment on the documentation waits for moderation.</source>
+        <translation>A comment on the documentation waits for moderation.</translation>
+    </message>
+    <message>
+        <source>Add a comment</source>
+        <translation>Add a comment</translation>
+    </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Browse all help</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Comment</translation>
+    </message>
+    <message>
+        <source>Comment waiting: %subject</source>
+        <translation>Comment waiting: %subject</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Comments</translation>
+    </message>
+    <message>
+        <source>Comments (%count historical)</source>
+        <translation>Comments (%count historical)</translation>
+    </message>
+    <message>
+        <source>Comments are read by a moderator before they appear.</source>
+        <translation>Comments are read by a moderator before they appear.</translation>
+    </message>
+    <message>
+        <source>Comments cannot be added here.</source>
+        <translation>Comments cannot be added here.</translation>
+    </message>
+    <message>
+        <source>Drag, or use the arrow keys, to resize the menu</source>
+        <translation>Drag, or use the arrow keys, to resize the menu</translation>
+    </message>
+    <message>
+        <source>Drag, or use the arrow keys, to resize the page tree</source>
+        <translation>Drag, or use the arrow keys, to resize the page tree</translation>
+    </message>
+    <message>
+        <source>E-mail (optional, never shown)</source>
+        <translation>E-mail (optional, never shown)</translation>
+    </message>
+    <message>
+        <source>Leave this field empty</source>
+        <translation>Leave this field empty</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Name</translation>
+    </message>
+    <message>
+        <source>On the page %page</source>
+        <translation>On the page %page</translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation>Page</translation>
+    </message>
+    <message>
+        <source>Please give your name.</source>
+        <translation>Please give your name.</translation>
+    </message>
+    <message>
+        <source>Please write your comment.</source>
+        <translation>Please write your comment.</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Products</translation>
+    </message>
+    <message>
+        <source>Release or delete it in the administration: Dashboard &gt; Recent content, filter "Held".</source>
+        <translation>Release or delete it in the administration: Dashboard &gt; Recent content, filter "Held".</translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation>Reply</translation>
+    </message>
+    <message>
+        <source>Resize the menu</source>
+        <translation>Resize the menu</translation>
+    </message>
+    <message>
+        <source>Resize the page tree</source>
+        <translation>Resize the page tree</translation>
+    </message>
+    <message>
+        <source>Send the comment</source>
+        <translation>Send the comment</translation>
+    </message>
+    <message>
+        <source>Send the reply</source>
+        <translation>Send the reply</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Subject</translation>
+    </message>
+    <message>
+        <source>Thank you. Your comment awaits moderation and appears here once a moderator has approved it.</source>
+        <translation>Thank you. Your comment awaits moderation and appears here once a moderator has approved it.</translation>
+    </message>
+    <message>
+        <source>Thank you. Your comment is published.</source>
+        <translation>Thank you. Your comment is published.</translation>
+    </message>
+    <message>
+        <source>The comment could not be saved. Please try again later.</source>
+        <translation>The comment could not be saved. Please try again later.</translation>
+    </message>
+    <message>
+        <source>The comment is too long.</source>
+        <translation>The comment is too long.</translation>
+    </message>
+    <message>
+        <source>The e-mail address is not valid.</source>
+        <translation>The e-mail address is not valid.</translation>
+    </message>
+    <message>
+        <source>The name is too long.</source>
+        <translation>The name is too long.</translation>
+    </message>
+    <message>
+        <source>The subject is too long.</source>
+        <translation>The subject is too long.</translation>
+    </message>
+    <message>
+        <source>The text of this comment was not kept.</source>
+        <translation>The text of this comment was not kept.</translation>
+    </message>
+    <message>
+        <source>Unknown author</source>
+        <translation>Unknown author</translation>
+    </message>
+    <message>
+        <source>Written by readers of the earlier documentation sites, kept as they were.</source>
+        <translation>Written by readers of the earlier documentation sites, kept as they were.</translation>
+    </message>
+    <message>
+        <source>You have sent several comments in a short time. Please wait a few minutes and send it again.</source>
+        <translation>You have sent several comments in a short time. Please wait a few minutes and send it again.</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

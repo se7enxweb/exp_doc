@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>ภาษา</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>เรียกดูวิธีใช้ทั้งหมด</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ความคิดเห็น</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>ความคิดเห็น</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>เมนู</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ชื่อ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>สินค้า</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>หัวเรื่อง</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

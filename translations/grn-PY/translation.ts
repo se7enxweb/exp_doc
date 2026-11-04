@@ -171,6 +171,34 @@
         <source>Language</source>
         <translation>Ñe&apos;ẽ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Eguata opaite pytyvõ rupi</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Je&apos;epy</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Je&apos;epy</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Poravorã</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Téra</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Mba&apos;erepy</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Téma</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

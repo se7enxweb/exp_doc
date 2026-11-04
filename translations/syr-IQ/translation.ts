@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>ܠܫܢܐ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ܚܝܪܐ ܒܟܠ ܥܘܕܪܢܐ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ܦܘܫܩܐ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ܡܢܘ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ܫܡܐ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ܬܘܠ̈ܕܐ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ܡܠܬܐ ܕܫܠܝܚܘܬܐ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

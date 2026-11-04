@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Lingwa</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Esplora l-għajnuna kollha</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kumment</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kummenti</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Isem</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Prodotti</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Suġġett</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

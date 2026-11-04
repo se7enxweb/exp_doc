@@ -407,6 +407,162 @@
         <source>Language</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%name on %date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A comment on the documentation waits for moderation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add a comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse all help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comment waiting: %subject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments (%count historical)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments are read by a moderator before they appear.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comments cannot be added here.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drag, or use the arrow keys, to resize the menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Drag, or use the arrow keys, to resize the page tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>E-mail (optional, never shown)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Leave this field empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>On the page %page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please give your name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please write your comment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release or delete it in the administration: Dashboard &gt; Recent content, filter "Held".</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resize the menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resize the page tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send the comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send the reply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you. Your comment awaits moderation and appears here once a moderator has approved it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you. Your comment is published.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The comment could not be saved. Please try again later.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The comment is too long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The e-mail address is not valid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name is too long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The subject is too long.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The text of this comment was not kept.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unknown author</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Written by readers of the earlier documentation sites, kept as they were.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have sent several comments in a short time. Please wait a few minutes and send it again.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

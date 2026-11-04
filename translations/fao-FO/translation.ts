@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Mál</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Blaða í allari hjálpini</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Viðmerking</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Viðmerkingar</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Valmynd</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Navn</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Vørur</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Evni</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

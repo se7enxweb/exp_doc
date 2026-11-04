@@ -151,6 +151,34 @@
         <source>Language</source>
         <translation>Idioma</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Procurar toda a ajuda</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Comentário</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Comentários</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nome</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produtos</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Assunto</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Cànan</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Brabhsaich a&apos; chobhair gu lèir</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Beachd</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Beachdan</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Clàr-taice</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ainm</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Bathar</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Cuspair</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

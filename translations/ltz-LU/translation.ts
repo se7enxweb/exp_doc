@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Sprooch</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>All Hëllef duerchsichen</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menü</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Numm</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produiten</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Sujet</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

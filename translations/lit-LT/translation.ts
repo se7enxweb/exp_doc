@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>Kalba</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Naršyti visą žinyną</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komentaras</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komentarai</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Meniu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Pavadinimas</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produktai</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Tema</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

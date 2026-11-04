@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Teanga</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Brabhsáil an chabhair go léir</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Trácht</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Roghchlár</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ainm</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Táirgí</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Ábhar</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

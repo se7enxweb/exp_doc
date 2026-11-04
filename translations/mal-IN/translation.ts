@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>ഭാഷ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>എല്ലാ സഹായവും ബ്രൗസ് ചെയ്യുക</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>അഭിപ്രായം</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>അഭിപ്രായങ്ങൾ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>മെനു</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>പേര്</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ഉൽപ്പന്നങ്ങൾ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>വിഷയം</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

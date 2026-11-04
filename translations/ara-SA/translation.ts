@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>اللغة</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>تصفّح كل المساعدة</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>التعليق</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>التعليقات</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>القائمة</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>الاسم</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>المنتجات</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>الموضوع</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

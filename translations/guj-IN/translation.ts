@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>ભાષા</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>બધી સહાય બ્રાઉઝ કરો</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ટિપ્પણી</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>ટિપ્પણીઓ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>મેનુ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>નામ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ઉત્પાદનો</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>વિષય</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

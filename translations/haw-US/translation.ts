@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>ʻŌlelo</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>E kele i ke kōkua a pau</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Manaʻo</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Nā manaʻo</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Papa kuhikuhi</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Inoa</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Nā huahana</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Kumuhana</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

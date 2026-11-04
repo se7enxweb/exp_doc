@@ -139,6 +139,30 @@
         <source>Design</source>
         <translation>Design</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Browse all di help</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Comment</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Comments</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Products</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Subject</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

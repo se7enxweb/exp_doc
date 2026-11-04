@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Basa</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Jlajah kabeh pitulung</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komentar</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komentar</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Jeneng</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produk</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Subjek</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

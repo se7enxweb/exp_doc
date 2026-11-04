@@ -151,6 +151,34 @@
         <source>Language</source>
         <translation>言語</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>すべてのヘルプを参照</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>コメント</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>コメント</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>メニュー</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名前</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>商品</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>件名</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

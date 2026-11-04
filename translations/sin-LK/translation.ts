@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>භාෂාව</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>සියලු උදව් පිරික්සන්න</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>අදහස</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>අදහස්</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>මෙනුව</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>නම</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>නිෂ්පාදන</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>මාතෘකාව</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

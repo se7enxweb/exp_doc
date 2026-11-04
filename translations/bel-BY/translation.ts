@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Мова</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Праглядзець усю даведку</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Каментарый</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Каментарыі</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Меню</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Назва</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Тавары</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Тэма</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

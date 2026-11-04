@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Totum auxilium perlustrare</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Commentarium</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Commentarii</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Index</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nomen</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Merces</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Argumentum</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Språk</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Bla gjennom all hjelp</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentar</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentarer</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Meny</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Navn</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produkter</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Emne</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

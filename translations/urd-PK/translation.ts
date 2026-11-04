@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>زبان</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>تمام مدد براؤز کریں</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>تبصرہ</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>تبصرے</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>مینو</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>نام</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>مصنوعات</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>موضوع</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

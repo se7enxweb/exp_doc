@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Afaan</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Gargaarsa hunda ilaali</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Yaada</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Yaada</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menuu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Maqaa</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Oomishoota</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Dhimma</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

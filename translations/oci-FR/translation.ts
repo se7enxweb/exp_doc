@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Lenga</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Percórrer tota l&apos;ajuda</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Comentari</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Comentaris</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menut</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nom</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produches</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Subjècte</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

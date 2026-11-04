@@ -151,6 +151,30 @@
         <source>Language</source>
         <translation>Rũthiomi</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Rora ũteithio wothe</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Ũgwati</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Rĩĩtwa</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Indo cia wendia</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Ũhoro wa kĩongo</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

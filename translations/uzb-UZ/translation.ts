@@ -147,6 +147,30 @@
         <source>Language</source>
         <translation>Til</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Barcha yordamni koʻrib chiqing</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Izoh</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Izohlar</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyu</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Mahsulotlar</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Mavzu</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

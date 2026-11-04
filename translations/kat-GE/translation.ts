@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>ენა</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>მთელი დახმარების დათვალიერება</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>კომენტარი</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>კომენტარები</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>მენიუ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>სახელი</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>პროდუქტები</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>თემა</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

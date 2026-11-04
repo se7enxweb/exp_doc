@@ -147,6 +147,30 @@
         <source>Language</source>
         <translation>Simi</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Llapa yanapayta purimuy</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Rimariy</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Akllana</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Suti</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ranqhanakuna</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Imapaq</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

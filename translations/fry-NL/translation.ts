@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Taal</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Troch alle help blêdzje</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentaar</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Namme</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produkten</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Ûnderwerp</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

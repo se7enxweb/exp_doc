@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>ቋንቋ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ሁሉንም እገዛ ያስሱ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>አስተያየት</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>አስተያየቶች</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ምናሌ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ስም</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ምርቶች</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ርዕስ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

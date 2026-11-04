@@ -155,6 +155,30 @@
         <source>Language</source>
         <translation>לשנא</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>חירא בכל עודרנא</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>פושקא</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>מנו</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>שמא</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>תולדא</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>מלתא דשליחותא</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

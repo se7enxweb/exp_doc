@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>ಭಾಷೆ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ಎಲ್ಲಾ ಸಹಾಯವನ್ನು ಬ್ರೌಸ್ ಮಾಡಿ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ಕಾಮೆಂಟ್</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>ಕಾಮೆಂಟ್‌ಗಳು</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ಮೆನು</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ಹೆಸರು</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ಉತ್ಪನ್ನಗಳು</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ವಿಷಯ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

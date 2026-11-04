@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Tungumál</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Fletta í allri hjálpinni</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Athugasemd</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Athugasemdir</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Valmynd</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Vörur</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Efni</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

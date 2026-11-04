@@ -151,6 +151,34 @@
         <source>Language</source>
         <translation>Ziman</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Li hemû alîkariyê gerîn</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Şîrove</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Şîrove</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menû</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nav</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Berhem</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Mijar</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Тел</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Бөтен ярдәмне карап чыгу</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Аңлатма</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Меню</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Исем</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Товарлар</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Тема</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

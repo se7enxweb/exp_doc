@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Reo</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Pūtirotiro i te āwhina katoa</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kōrero</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Ngā kōrero</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Tahua</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ingoa</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Hua</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Kaupapa</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

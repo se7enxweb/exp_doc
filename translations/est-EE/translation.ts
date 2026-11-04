@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Keel</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Sirvi kogu abi</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Kommentaar</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Kommentaarid</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menüü</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nimi</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Tooted</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Teema</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

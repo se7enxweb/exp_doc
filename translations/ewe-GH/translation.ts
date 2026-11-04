@@ -159,6 +159,30 @@
         <source>Language</source>
         <translation>Gbe</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Tsa kpekpeɖeŋu katã</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Nyaɖeɖe</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ŋkɔ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Adzɔnuwo</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Nyadzɔdzɔ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

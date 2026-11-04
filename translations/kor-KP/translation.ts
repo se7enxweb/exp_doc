@@ -159,6 +159,26 @@
         <source>Language</source>
         <translation>언어</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>모든 도움말 찾아보기</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>차림표</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>이름</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>상품</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>제목</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

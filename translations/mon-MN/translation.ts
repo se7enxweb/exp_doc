@@ -151,6 +151,30 @@
         <source>Language</source>
         <translation>Хэл</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Бүх тусламжийг үзэх</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Сэтгэгдэл</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Цэс</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Нэр</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Бүтээгдэхүүнүүд</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Сэдэв</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

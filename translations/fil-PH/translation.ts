@@ -151,6 +151,34 @@
         <source>Language</source>
         <translation>Wika</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Mag-browse sa lahat ng tulong</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komento</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Mga komento</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Pangalan</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Mga produkto</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Paksa</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

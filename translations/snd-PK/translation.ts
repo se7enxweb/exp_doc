@@ -155,6 +155,30 @@
         <source>Language</source>
         <translation>ٻولي</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>سڄي مدد براؤز ڪريو</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>تبصرو</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>مينيو</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>نالو</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>پراڊڪٽ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>موضوع</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

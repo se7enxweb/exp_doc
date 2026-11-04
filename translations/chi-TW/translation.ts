@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>語言</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>瀏覽所有說明</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>留言</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>留言</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>選單</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名稱</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>商品</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>主旨</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

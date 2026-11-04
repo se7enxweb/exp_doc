@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Јазик</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Прегледај ја целата помош</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Коментар</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Коментари</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Мени</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Име</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Производи</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Тема</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

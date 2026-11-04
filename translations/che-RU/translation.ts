@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Мотт</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Массо гӀо схьалаха</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Хьехам</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Меню</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ЦӀе</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Товарш</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Тема</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

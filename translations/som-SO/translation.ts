@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Luqad</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Baadh dhammaan caawimaadda</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Faallo</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Faallooyin</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Magac</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Alaabta</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Mawduuc</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

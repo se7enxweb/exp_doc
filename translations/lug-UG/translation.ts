@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Olulimi</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Lambula obuyambi bwonna</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Endowooza</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Erinnya</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ebyamaguzi</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Omutwe</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

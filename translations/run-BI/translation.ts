@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Ururimi</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Kuraba imfashanyo yose</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Igitekerezo</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Ibitekerezo</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Izina</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ibicuruzwa</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Insiguro y&apos;umutwe</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

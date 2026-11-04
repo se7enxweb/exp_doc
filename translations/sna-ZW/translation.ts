@@ -155,6 +155,30 @@
         <source>Language</source>
         <translation>Mutauro</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Ongorora rubatsiro rwese</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Mhinduro</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Zita</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Zvigadzirwa</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Musoro</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

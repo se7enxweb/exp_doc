@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Bahasa</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Semak imbas semua bantuan</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komen</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komen</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nama</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produk</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Subjek</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

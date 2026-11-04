@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>Ulwimi</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Khangela konke Ukuncedwa</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Inkcazo</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Izimvo</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Imenyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Igama</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Iimveliso</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Isihloko</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

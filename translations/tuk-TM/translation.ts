@@ -151,6 +151,30 @@
         <source>Language</source>
         <translation>Dil</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Ähli kömegi gözden geçiriň</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Teswir</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menýu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ady</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Harytlar</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Tema</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

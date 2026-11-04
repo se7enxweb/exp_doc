@@ -159,6 +159,30 @@
         <source>Language</source>
         <translation>Harshe</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Bincika duka Taimako</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Sharhi</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Suna</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Kaya</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Maudu&apos;i</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

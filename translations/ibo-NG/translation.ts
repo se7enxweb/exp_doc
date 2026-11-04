@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Asụsụ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Chọgharịa Enyemaka niile</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Nkọwa</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Nkọwa</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Aha</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ngwaahịa</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Isiokwu</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

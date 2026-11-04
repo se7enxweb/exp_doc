@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>ژبه</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ټوله مرسته لټول</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>تبصره</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>مینو</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>نوم</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>محصولات</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>موضوع</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

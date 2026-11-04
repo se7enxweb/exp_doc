@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Nyelv</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>A teljes súgó böngészése</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Megjegyzés</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menü</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Név</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Termékek</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Tárgy</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>بولی</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ساری مدد براؤز کرو</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>تبصرہ</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>تبصرے</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>مینیو</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ناں</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>پراڈکٹ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>موضوع</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

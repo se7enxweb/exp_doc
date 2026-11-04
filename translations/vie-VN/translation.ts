@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Ngôn ngữ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Duyệt toàn bộ trợ giúp</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Bình luận</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Bình luận</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Trình đơn</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Tên</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Sản phẩm</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Chủ đề</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

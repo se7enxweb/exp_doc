@@ -163,6 +163,30 @@
         <source>Language</source>
         <translation>Lea</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Vakavakai ʻi he tokoni kotoa</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Fakakaukau</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Mēnū</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Hingoa</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ngaahi koloa</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Kaveinga</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

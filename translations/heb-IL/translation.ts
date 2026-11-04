@@ -151,6 +151,30 @@
         <source>Language</source>
         <translation>שפה</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>עיון בכל העזרה</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>הערה</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>תפריט</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>שם</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>מוצרים</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>נושא</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

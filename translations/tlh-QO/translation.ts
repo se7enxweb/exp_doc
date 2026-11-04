@@ -139,6 +139,30 @@
         <source>Language</source>
         <translation>Hol</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>QaH naQ yIlegh</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ja&apos;ghach</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>HIDjolev</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>pong</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ngevlu&apos;bogh Dochmey</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>QIn pong</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

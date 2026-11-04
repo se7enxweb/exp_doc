@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>ພາສາ</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ທ່ອງເບິ່ງຊ່ວຍເຫຼືອທັງໝົດ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ຄຳເຫັນ</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>ຄວາມຄິດເຫັນ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ເມນູ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ຊື່</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ສິນຄ້າ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ຫົວເລື່ອງ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

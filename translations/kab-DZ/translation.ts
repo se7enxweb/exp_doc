@@ -171,6 +171,34 @@
         <source>Language</source>
         <translation>Tutlayt</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Inig deg tallalt akk</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Awennit</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Iwenniten</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Umuɣ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Isem</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ifarisen</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Asentel</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

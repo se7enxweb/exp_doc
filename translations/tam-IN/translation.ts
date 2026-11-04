@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>மொழி</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>அனைத்து உதவியையும் உலாவு</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>கருத்து</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>கருத்துகள்</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>பட்டி</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>பெயர்</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>பொருட்கள்</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>பொருள்</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

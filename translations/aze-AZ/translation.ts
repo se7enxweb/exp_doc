@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>Dil</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Bütün köməyə baxın</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Şərh</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Şərhlər</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ad</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Məhsullar</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Mövzu</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

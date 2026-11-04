@@ -159,6 +159,30 @@
         <source>Language</source>
         <translation>भाशा</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>सारी मदद ब्राउज करो</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>टिप्पणी</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>टिप्पणियां</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>मेन्यू</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>उत्पाद</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>विशा</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

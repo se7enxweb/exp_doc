@@ -163,6 +163,34 @@
         <source>Language</source>
         <translation>ဘာသာစကား</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>အကူအညီအားလုံးကို ရှာကြည့်ရန်</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>မှတ်ချက်</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>မှတ်ချက်များ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>မီနူး</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>အမည်</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ထုတ်ကုန်များ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ခေါင်းစဉ်</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

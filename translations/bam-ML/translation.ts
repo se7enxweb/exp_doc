@@ -155,6 +155,34 @@
         <source>Language</source>
         <translation>Kan</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Dɛmɛ bɛɛ yaala</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Hakilina</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Hakilinaw</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menyu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Tɔgɔ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Feerefɛnw</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Kuntilenna</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

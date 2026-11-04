@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Lingvo</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Foliumi la tutan helpon</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Komento</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Komentoj</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menuo</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nomo</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produktoj</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Temo</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

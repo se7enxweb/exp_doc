@@ -155,6 +155,30 @@
         <source>Language</source>
         <translation>राव</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>जोबोद मददखौ नाय</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>मंनाय</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>मेनु</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>मुं</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>बस्तु-गुदिफोर</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>बिसोय</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

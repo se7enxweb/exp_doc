@@ -159,6 +159,26 @@
         <source>Language</source>
         <translation>ߞߊ߲</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>ߘߍߡߍ ߓߍߍ ߦߊߟߊ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ߤߊߞߌߟߌߣߊ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ߡߍߣߌߦߎ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ߝߍߙߍߝߍ߲ߟߎ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ߞߎ߲ߕߌߟߍ߲ߣߊ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

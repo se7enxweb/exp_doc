@@ -159,6 +159,30 @@
         <source>Language</source>
         <translation>زمان</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>گەڕان بە هەموو یارمەتییەکاندا</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>تێبینی</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>مینیو</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ناو</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>بەرهەمەکان</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>بابەت</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

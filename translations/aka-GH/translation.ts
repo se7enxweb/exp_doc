@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Kasa</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Hwɛ mmoa nyinaa</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Nkyerɛwee</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Nsɛm a wɔka</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Din</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Nneɛma a wɔtɔn</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Asɛmti</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

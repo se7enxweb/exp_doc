@@ -151,6 +151,30 @@
         <source>Language</source>
         <translation>Язык</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Просмотреть всю справку</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Комментарий</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Комментарии</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Меню</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Товары</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Тема</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

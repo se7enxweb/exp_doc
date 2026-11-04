@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Yezh</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Furchal en holl skoazell</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Evezhiadenn</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Evezhiadennoù</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Lañser</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Anv</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Produioù</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Danvez</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

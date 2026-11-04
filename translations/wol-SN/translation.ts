@@ -167,6 +167,30 @@
         <source>Language</source>
         <translation>Làkk</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Wëndeelu ndimbal bépp</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Xalaat</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Tur</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Marsandiis yi</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Mbir</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

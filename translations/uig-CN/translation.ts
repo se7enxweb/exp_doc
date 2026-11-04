@@ -163,6 +163,26 @@
         <source>Language</source>
         <translation>تىل</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>بارلىق ياردەمنى كۆرۈڭ</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>ئىنكاس</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>تىزىملىك</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>مەھسۇلاتلار</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ماۋزۇ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

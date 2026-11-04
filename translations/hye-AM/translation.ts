@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Լեզու</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Զննել ողջ օգնությունը</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Մեկնաբանություն</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Մեկնաբանություններ</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Ընտրացանկ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Անուն</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Ապրանքներ</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Թեմա</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

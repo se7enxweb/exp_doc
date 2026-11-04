@@ -167,6 +167,30 @@
         <source>Language</source>
         <translation>Èdè</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Ṣàwárí gbogbo Ìrànlọ́wọ́</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Àsọyé</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Àtòjọ àṣàyàn</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Orúkọ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Àwọn ọjà</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Kókó ọ̀rọ̀</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

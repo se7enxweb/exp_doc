@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Lingua</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Sfegliar tut l&apos;agid</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Commentar</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Commentaris</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Num</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Products</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Tema</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>Fiteny</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Tsirihina ny fanampiana rehetra</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Fanehoan-kevitra</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Hevitra</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menio</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Anarana</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Vokatra</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Lohahevitra</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -159,6 +159,34 @@
         <source>Language</source>
         <translation>ភាសា</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>រកមើលជំនួយទាំងអស់</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>មតិយោបល់</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>មតិយោបល់</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>ម៉ឺនុយ</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>ឈ្មោះ</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>ផលិតផល</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>ប្រធានបទ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -167,6 +167,34 @@
         <source>Language</source>
         <translation>Taal</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Door alle help bladeren</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Opmerking</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Reacties</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Menu</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Naam</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Producten</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Onderwerp</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

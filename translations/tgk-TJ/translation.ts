@@ -151,6 +151,34 @@
         <source>Language</source>
         <translation>Забон</translation>
     </message>
+    <message>
+        <source>Browse all help</source>
+        <translation>Дидани тамоми кӯмак</translation>
+    </message>
+    <message>
+        <source>Comment</source>
+        <translation>Шарҳ</translation>
+    </message>
+    <message>
+        <source>Comments</source>
+        <translation>Шарҳҳо</translation>
+    </message>
+    <message>
+        <source>Menu</source>
+        <translation>Меню</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Ном</translation>
+    </message>
+    <message>
+        <source>Products</source>
+        <translation>Маҳсулот</translation>
+    </message>
+    <message>
+        <source>Subject</source>
+        <translation>Мавзӯъ</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>
