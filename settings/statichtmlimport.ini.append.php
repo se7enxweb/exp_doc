@@ -118,11 +118,26 @@ GroupFolders[]=display/*
 GroupTitleSelector=#breadcrumbs li.first a
 GroupTitles[]
 GroupTitles[display]=Platform
-# The section of all Confluence spaces is the Platform landing: its text is the Confluence documentation center's start
-# page (display/MAIN/ExponentialPlatformDocumentationCenter.html); its children are the spaces
-GroupBodyFrom[]
-GroupBodyFrom[display]=display/MAIN/ExponentialPlatformDocumentationCenter.html
 GroupClass=exp_doc_section
+
+# The products (the landing page's "Products" block): Exponential (Exponential.html), Exponential Platform (the Confluence
+# spaces, /platform) with Legacy, Nexus and DXP below it, and Exponential Basic. The short title is the address. The
+# texts (extension/exp_doc/share/products/*.html) are the facts of the help center's DISTRIBUTIONS.md.
+VirtualPages[]
+VirtualPages[display/]=exp_doc_section;Exponential Platform;Platform;extension/exp_doc/share/products/platform.html
+VirtualPages[display/legacy/]=exp_doc_section;Exponential Platform Legacy;Legacy;extension/exp_doc/share/products/legacy.html
+VirtualPages[display/nexus/]=exp_doc_section;Exponential Platform Nexus;Nexus;extension/exp_doc/share/products/nexus.html
+VirtualPages[display/dxp/]=exp_doc_section;Exponential Platform DXP;DXP;extension/exp_doc/share/products/dxp.html
+VirtualPages[basic/]=exp_doc_section;Exponential Basic;Basic;extension/exp_doc/share/products/basic.html
+# The Confluence spaces below their product: the Exponential 5.x manuals (platform and legacy kernel) under Legacy, the
+# eZ Platform developer, technical and user documentation under DXP; the other spaces stay under Platform
+ParentRules[]
+ParentRules[]=display/EZP/;display/legacy/
+ParentRules[]=display/EZP51/;display/legacy/
+ParentRules[]=display/DEVELOPER/;display/dxp/
+ParentRules[]=display/TECHDOC/;display/dxp/
+ParentRules[]=display/USERGUIDE/;display/dxp/
+ParentRules[]=display/USER.html;display/dxp/
 
 # The top of the site keeps fewer than 10 children (the target tree: doc.md "Target tree"). Only these pages stay at the
 # top: Exponential (every manual, extension, tutorial, FAQ and the rest below it), Platform (the Confluence spaces),
@@ -131,6 +146,7 @@ GroupClass=exp_doc_section
 TopParentRules[]
 TopParentRules[]=Exponential.html;
 TopParentRules[]=display/;
+TopParentRules[]=basic/;
 TopParentRules[]=historical/;
 TopParentRules[]=doc_hidden.html;
 TopParentRules[]=License.html;
