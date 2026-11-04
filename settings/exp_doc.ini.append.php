@@ -130,6 +130,8 @@ LandingHeading=Documentation
 LandingText=Install, configure, extend and run Exponential: manuals for every version, tutorials, FAQ and the extensions.
 # How many levels the page tree (parts/doc_tree.tpl) draws below the manual version
 TreeDepth=3
+# How many of the site's top pages the tree of a page outside the manuals lists (then a link to all of them)
+SiteTreeLimit=40
 # The classes that count as pages (recently changed on the front page)
 PageClasses[]
 PageClasses[]=exp_doc_page

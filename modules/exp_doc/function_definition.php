@@ -36,10 +36,10 @@ $FunctionList['versions'] = array( 'name' => 'versions',
                                                                  'required' => true ) ) );
 
 /*
- *   fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', <node id> ) )
+ *   fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', <node id> ) ) [, 'limit', <n>]
  *       the children of a node as the menus list them: in the parent's sort order, without the classes of
  *       exp_doc.ini [ClassicSettings] MenuHideClasses[] and the nodes of MenuHideNodeRemoteIDs[] (the Contributors
- *       folder); used by the Classic menus and Modern's page tree and child cards
+ *       folder), at most limit of them; used by the Classic menus and Modern's page tree and child cards
  */
 $FunctionList['menu_children'] = array( 'name' => 'menu_children',
                                         'operation_types' => array( 'read' ),
@@ -48,7 +48,11 @@ $FunctionList['menu_children'] = array( 'name' => 'menu_children',
                                         'parameter_type' => 'standard',
                                         'parameters' => array( array( 'name' => 'parent_node_id',
                                                                       'type' => 'integer',
-                                                                      'required' => true ) ) );
+                                                                      'required' => true ),
+                                                               array( 'name' => 'limit',
+                                                                      'type' => 'integer',
+                                                                      'required' => false,
+                                                                      'default' => false ) ) );
 
 /*
  *   fetch( 'exp_doc', 'contributors', hash( 'node_id', <page node id> ) )

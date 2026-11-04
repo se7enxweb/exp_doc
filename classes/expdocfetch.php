@@ -195,9 +195,10 @@ class expDocFetch
      * Only nodes the reader may see.
      *
      * @param int $parentNodeID
+     * @param int|false $limit at most this many (false: all)
      * @return array array( 'result' => eZContentObjectTreeNode[] )
      */
-    public static function menuChildren( $parentNodeID )
+    public static function menuChildren( $parentNodeID, $limit = false )
     {
         $parent = eZContentObjectTreeNode::fetch( (int)$parentNodeID );
         if ( !$parent instanceof eZContentObjectTreeNode )
@@ -208,6 +209,11 @@ class expDocFetch
         $hideClasses = $ini->hasVariable( 'ClassicSettings', 'MenuHideClasses' ) ? (array)$ini->variable( 'ClassicSettings', 'MenuHideClasses' ) : array();
         $hideNodes = $ini->hasVariable( 'ClassicSettings', 'MenuHideNodeRemoteIDs' ) ? (array)$ini->variable( 'ClassicSettings', 'MenuHideNodeRemoteIDs' ) : array();
         $params = array( 'Depth' => 1, 'DepthOperator' => 'eq', 'SortBy' => $parent->sortArray() );
+        if ( $limit && (int)$limit > 0 )
+        {
+            // a few more than asked: the hidden remote ids are left out after the fetch
+            $params['Limit'] = (int)$limit + count( $hideNodes );
+        }
         if ( $hideClasses )
         {
             $params['ClassFilterType'] = 'exclude';
@@ -221,6 +227,10 @@ class expDocFetch
             {
                 $result[] = $child;
             }
+        }
+        if ( $limit && (int)$limit > 0 )
+        {
+            $result = array_slice( $result, 0, (int)$limit );
         }
         return array( 'result' => $result );
     }

@@ -2,7 +2,7 @@
    branch; the branch of the page shown is drawn open, the others are drawn when opened (their children come from
    the server as a link list, [ModernSettings] TreeDepth levels deep, or max_depth; the branch of the page shown always,
    so the tree also works without JavaScript). *}
-{def $doc_items = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $parent.node_id ) )
+{def $doc_items = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $parent.node_id, 'limit', first_set( $limit, false() ) ) )
      $doc_max = first_set( $max_depth, ezini( 'ModernSettings', 'TreeDepth', 'exp_doc.ini' ) )}
 {if $doc_items|count}
 <ul class="exp-doc-tree-list{if gt( $depth, 1 )} exp-doc-tree-sub{/if}">
@@ -27,6 +27,9 @@
     </li>
     {undef $doc_open $doc_has}
 {/foreach}
+{if and( is_set( $limit ), $limit, eq( $doc_items|count, $limit ) )}
+    <li class="exp-doc-tree-item exp-doc-tree-more"><div class="exp-doc-tree-row"><a href={$parent.url_alias|ezurl}>{'All pages'|i18n( 'design/exp_doc' )}</a></div></li>
+{/if}
 </ul>
 {/if}
 {undef $doc_items $doc_max}
