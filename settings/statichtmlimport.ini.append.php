@@ -263,7 +263,8 @@ GitAuthorMap[info@brookinsconsulting.com]=Brookins Consulting
 #    eZ-Publish/ to Exponential/), the last commit that changed it, leaving out the site-wide rewrites (commits of
 #    more than 1000 files: branding, headers, footers);
 #  - then the file's meta date tags (Confluence's confluence-request-time is the day of the export), the file time,
-#    and for a section without a file of its own its children's dates. The day of the run only when nothing gives one.
+#    for a section without a file of its own its children's dates, and for a history container without children yet
+#    the dates of the page it is the history of. The day of the run only when nothing gives one.
 DateRules[]
 DateRules[]=created;git;first;git;Exponential/*/6.x/**,Exponential/*/6*.html
 DateRules[]=created;attribute;written_at;byline
@@ -272,6 +273,7 @@ DateRules[]=created;git;first
 DateRules[]=created;meta;dcterms.created,dcterms.issued,article:published_time,datePublished
 DateRules[]=created;mtime
 DateRules[]=created;children
+DateRules[]=created;relation;history_of
 DateRules[]=modified;git;last;git;Exponential/*/6.x/**,Exponential/*/6*.html
 DateRules[]=modified;attribute;last_updated_at;byline
 DateRules[]=modified;attribute;created;comment
@@ -280,6 +282,7 @@ DateRules[]=modified;git;last,nobulk
 DateRules[]=modified;meta;dcterms.modified,article:modified_time,dateModified,last-modified,confluence-request-time
 DateRules[]=modified;mtime
 DateRules[]=modified;children
+DateRules[]=modified;relation;history_of
 DateGitBulkCommitFiles=1000
 DateGitPathAliases[]
 DateGitPathAliases[]=#(^|[/-])Expon?ential(?=[-/.]|$)#;$1eZ-Publish
