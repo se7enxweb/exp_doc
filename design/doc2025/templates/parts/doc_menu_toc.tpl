@@ -3,10 +3,7 @@
    children, [ClassicSettings] TocDepth levels (2, as the static site); li.currentnode for the page shown, li.last for the last item of a list. Hidden nodes and
    the classes in [ClassicSettings] MenuHideClasses[] (images, files) are left out. *}
 {def $doc_hide = ezini( 'ClassicSettings', 'MenuHideClasses', 'exp_doc.ini' )
-     $doc_chapters = fetch( 'content', 'list', hash( 'parent_node_id', $root.node_id,
-                                                      'sort_by', $root.sort_array,
-                                                      'class_filter_type', 'exclude',
-                                                      'class_filter_array', $doc_hide ) )}
+     $doc_chapters = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $root.node_id ) )}
                         <div class="attribute-heading"><h2 class="bullet"><a href={$root.url_alias|ezurl}>{'Table of contents'|i18n( 'design/doc2025' )}</a></h2></div>
 
 <div class="boxcontent">

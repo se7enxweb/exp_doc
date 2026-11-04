@@ -40,6 +40,42 @@ class expDocFetch
     }
 
     /**
+     * The children of a node as the documentation's menus list them: in the parent's sort order, without the classes
+     * of exp_doc.ini [ClassicSettings] MenuHideClasses[] and the nodes named by remote id in MenuHideNodeRemoteIDs[].
+     * Only nodes the reader may see.
+     *
+     * @param int $parentNodeID
+     * @return array array( 'result' => eZContentObjectTreeNode[] )
+     */
+    public static function menuChildren( $parentNodeID )
+    {
+        $parent = eZContentObjectTreeNode::fetch( (int)$parentNodeID );
+        if ( !$parent instanceof eZContentObjectTreeNode )
+        {
+            return array( 'result' => array() );
+        }
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $hideClasses = $ini->hasVariable( 'ClassicSettings', 'MenuHideClasses' ) ? (array)$ini->variable( 'ClassicSettings', 'MenuHideClasses' ) : array();
+        $hideNodes = $ini->hasVariable( 'ClassicSettings', 'MenuHideNodeRemoteIDs' ) ? (array)$ini->variable( 'ClassicSettings', 'MenuHideNodeRemoteIDs' ) : array();
+        $params = array( 'Depth' => 1, 'DepthOperator' => 'eq', 'SortBy' => $parent->sortArray() );
+        if ( $hideClasses )
+        {
+            $params['ClassFilterType'] = 'exclude';
+            $params['ClassFilterArray'] = array_values( $hideClasses );
+        }
+        $children = eZContentObjectTreeNode::subTreeByNodeID( $params, $parent->attribute( 'node_id' ) );
+        $result = array();
+        foreach ( is_array( $children ) ? $children : array() as $child )
+        {
+            if ( !in_array( $child->attribute( 'remote_id' ), $hideNodes, true ) )
+            {
+                $result[] = $child;
+            }
+        }
+        return array( 'result' => $result );
+    }
+
+    /**
      * The version nodes (exp_doc_version) below a manual, newest first by their version number: the attribute
      * version, else the node's name; "x" (6.x) counts as the highest number of its line, and anything that is not a
      * number sorts last. Only nodes the reader may see.

@@ -810,3 +810,10 @@ body.exp-doc {
     box-sizing: border-box;
     justify-content: space-between;
 }
+
+/* a contributor's picture */
+.exp-doc-contributor-image {
+    max-width: 8rem;
+    height: auto;
+    border-radius: var(--a4-radius-s);
+}

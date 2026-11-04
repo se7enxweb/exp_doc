@@ -50,6 +50,11 @@ MenuHideClasses[]=exp_doc_image
 MenuHideClasses[]=exp_doc_file
 MenuHideClasses[]=exp_doc_faq_question
 MenuHideClasses[]=exp_doc_tutorial_step
+MenuHideClasses[]=exp_doc_contributor
+# Nodes never listed in the menus, by remote id: the Contributors folder (its people have their own pages, linked
+# from the bylines)
+MenuHideNodeRemoteIDs[]
+MenuHideNodeRemoteIDs[]=exp-doc-contributors
 # The social links of the footer: SocialLinks[<label>]=<address>
 SocialLinks[]
 SocialLinks[YouTube]=https://www.youtube.com/@ExponentialCMSInsights

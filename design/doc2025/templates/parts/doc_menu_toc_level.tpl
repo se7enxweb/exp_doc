@@ -1,10 +1,7 @@
 {* One level of the open chapter in the Classic table of contents (parts/doc_menu_toc.tpl): the children of
    $parent; every child that is on the page's path, or is the page, opens its own children, down to
    [ClassicSettings] TocDepth levels. *}
-{def $doc_items = fetch( 'content', 'list', hash( 'parent_node_id', $parent.node_id,
-                                                   'sort_by', $parent.sort_array,
-                                                   'class_filter_type', 'exclude',
-                                                   'class_filter_array', $hide ) )
+{def $doc_items = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $parent.node_id ) )
      $doc_max = ezini( 'ClassicSettings', 'TocDepth', 'exp_doc.ini' )}
 {if $doc_items|count}
             <ul>

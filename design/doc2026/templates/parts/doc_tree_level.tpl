@@ -1,10 +1,7 @@
 {* One level of the Modern page tree (parts/doc_tree.tpl). A page with children gets a button that opens its
    branch; the branch of the page shown is drawn open, the others are drawn when opened (their children come from
    the server as a link list, [ModernSettings] TreeDepth levels deep, so the tree also works without JavaScript). *}
-{def $doc_items = fetch( 'content', 'list', hash( 'parent_node_id', $parent.node_id,
-                                                   'sort_by', $parent.sort_array,
-                                                   'class_filter_type', 'exclude',
-                                                   'class_filter_array', ezini( 'ClassicSettings', 'MenuHideClasses', 'exp_doc.ini' ) ) )
+{def $doc_items = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $parent.node_id ) )
      $doc_max = ezini( 'ModernSettings', 'TreeDepth', 'exp_doc.ini' )}
 {if $doc_items|count}
 <ul class="exp-doc-tree-list{if gt( $depth, 1 )} exp-doc-tree-sub{/if}">
