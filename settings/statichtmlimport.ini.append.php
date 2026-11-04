@@ -381,12 +381,19 @@ AssetAttributeMap[exp_doc_file/source_path]=source_path
 # The readers' comments of the old manual pages (#comments-content: one <li> per comment, replies in a nested <ul>)
 # become exp_doc_comment objects below their page, replies below the comment they answer
 CommentsSelector=#comments-content
-CommentClass=exp_doc_comment
-AttributeMap[exp_doc_comment/title]=title
-AttributeMap[exp_doc_comment/author]=author
-AttributeMap[exp_doc_comment/created]=modified
-AttributeMap[exp_doc_comment/text]=body
-AttributeMap[exp_doc_comment/source_path]=source_path
-AttributeMap[exp_doc_comment/import_hash]=import_hash
+# Confluence's comment threads (ol#page-comments, li.comment-thread, replies in an ol inside the li)
+ConfluenceCommentsSelector=#page-comments
+# Every comment is a comment_historical with all its data (the old exp_doc_comment objects are replaced on the next run
+# or by `exp:static-import:relink --comments`, ClassChange=replace): replies are children of the comment they answer
+CommentClass=comment_historical
+CommentMarkers[]
+CommentMarkers[]=class-comment
+CommentMarkers[]=comment-thread
+AttributeMap[comment_historical/author]=written_by
+AttributeMap[comment_historical/author_name]=author_name
+AttributeMap[comment_historical/created]=modified
+AttributeMap[comment_historical/source_comment_id]=comment_id
+AttributeMap[comment_historical/source_parent_id]=parent_comment_id
+AttributeMap[comment_historical/source_url]=source_url
 
 */ ?>

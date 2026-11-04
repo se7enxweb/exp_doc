@@ -16,6 +16,7 @@ ClassMap[exp_doc_file]=file-earmark-arrow-down.svg
 ClassMap[exp_doc_comment]=chat-left-text.svg
 ClassMap[exp_doc_contributor]=person-circle.svg
 ClassMap[exp_doc_historical]=clock-history.svg
+ClassMap[comment_historical]=chat-left-dots.svg
 
 [ClassGroupIcons]
 ClassGroupMap[documentation]=journal-text.svg

@@ -1,0 +1,28 @@
+---
+# description: The class comment_historical: every reader's comment of the static documentation (the old manual pages' and Confluence's), with all its data, below its page or the comment it answers
+- type: content_class
+  mode: ensure
+  identifier: comment_historical
+  remote_id: exp-doc-class-comment_historical
+  language: eng-US
+  name: Historical comment
+  description: A reader's comment of the static documentation, kept with all its data; replies are its children
+  name_pattern: "<title>"
+  container: true
+  always_available: true
+  sort_field: published
+  sort_order: asc
+  groups:
+    - Documentation
+  attributes:
+    - { identifier: title, type: ezstring, name: Subject, required: true }
+    - { identifier: body, type: ezxmltext, name: Text }
+    - { identifier: original_html, type: eztext, name: "Original HTML", searchable: false, translatable: false }
+    - { identifier: author, type: ezobjectrelation, name: Author }
+    - { identifier: author_name, type: ezstring, name: "Author (as written)" }
+    - { identifier: created, type: ezdatetime, name: "Written at", translatable: false }
+    - { identifier: source_comment_id, type: ezstring, name: "Source comment id", searchable: false, translatable: false }
+    - { identifier: source_parent_id, type: ezstring, name: "Source parent comment id", searchable: false, translatable: false }
+    - { identifier: source_url, type: ezstring, name: "Source address", searchable: false, translatable: false }
+    - { identifier: import_hash, type: ezstring, name: "Import hash", category: meta, searchable: false, translatable: false }
+    - { identifier: metadata, type: xrowmetadata, name: Metadata, category: meta }
