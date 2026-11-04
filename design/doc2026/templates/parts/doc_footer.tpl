@@ -4,7 +4,7 @@
 <footer class="exp-doc-footer">
     <div class="exp-doc-footer-inner">
         <div class="exp-doc-footer-col">
-            <p class="exp-doc-footer-brand">{'Exponential Documentation'|i18n( 'design/exp_doc' )}</p>
+            <p class="exp-doc-footer-brand"><a class="exp-doc-footer-logo" href={'/'|ezurl}>{include uri='design:exp_doc/logo.tpl'}</a> <span>{'Documentation'|i18n( 'design/exp_doc' )}</span></p>
             <p>{'Copyright © 1998 - %year %maker (except where otherwise noted).'|i18n( 'design/exp_doc', '', hash( '%year', currentdate()|datetime( 'custom', '%Y' ), '%maker', '<a href="https://se7enx.com">7x</a>' ) )}</p>
             <p>{'Content license: %license'|i18n( 'design/exp_doc', '', hash( '%license', concat( '<a href=', cond( $doc_license, $doc_license.url_alias, '/' )|ezurl, '>', 'GNU Free Documentation License v1.2+'|i18n( 'design/doc2025' ), '</a>' ) ) )}</p>
         </div>

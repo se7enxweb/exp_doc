@@ -18,6 +18,7 @@ For each page:
   * text is compared with its whitespace collapsed; attributes in any order;
   * the decided modern exceptions of the rebranding rule: the copyright's end year (any "1998 - <year>"), and the
     head's meta author and copyright (7x), which lie outside the compared page area;
+  * the brand: the official Exponential logo (svg.exp-logo) in place of the static logo image in the header;
 - screenshot (--screenshots): both pages at the given width, the exceptions hidden, compared pixel by pixel;
   a page passes when at most --threshold of its pixels differ (0.005 = 0.5 %, doc.md wave 5 answer 23).
 Writes <out>/report.json (every page), <out>/report.md (per layout family: pages, markup equal, screenshot equal,
@@ -105,6 +106,10 @@ class Normalizer:
 
     def _skip(self, el):
         if not isinstance(el.tag, str) or el.tag in DROP_TAGS:
+            return True
+        # the brand: the official logo (an inline svg.exp-logo) replaced the static logo image in the header
+        if 'exp-logo' in (el.get('class') or '').split() or (el.tag == 'img' and (el.get('src') or '').endswith('exponential.png')
+                                                              and any(a.get('id') == 'logo' for a in el.iterancestors())):
             return True
         if el.tag == 'input' and (el.get('type') or '').lower() == HIDDEN_INPUT:
             return True

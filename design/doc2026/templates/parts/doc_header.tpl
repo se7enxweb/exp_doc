@@ -8,8 +8,7 @@
             <span aria-hidden="true">&#9776;</span>
         </button>
         <a class="exp-doc-brand" href={'/'|ezurl}>
-            <img src={'images/exponential-mark.svg'|ezdesign} alt="" width="28" height="28">
-            <span class="exp-doc-brand-name">{'Exponential'|i18n( 'design/exp_doc' )}</span>
+            {include uri='design:exp_doc/logo.tpl'}
             <span class="exp-doc-brand-sub">{'Documentation'|i18n( 'design/exp_doc' )}</span>
         </a>
         <form class="exp-doc-search" role="search" method="post" action={'content/search'|ezurl}>

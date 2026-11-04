@@ -35,3 +35,13 @@
     display: inline-block;
     margin-top: 0.5em;
 }
+
+/* The official Exponential logo in the header (design:exp_doc/logo.tpl, the owner's decided exception): the size of
+   the static site's logo image, the colors of the static (light) design; the front square keeps its orange */
+#logo .exp-logo {
+    display: block;
+    width: auto;
+    height: 45px;
+}
+.exp-logo__ink { fill: #212529; }
+.exp-logo__paper { fill: #f8f9fa; }
