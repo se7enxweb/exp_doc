@@ -1103,6 +1103,9 @@ html[data-a4-theme="dark"] {
     .exp-doc-tree {
         z-index: var(--a4-z-menu);
         overflow-y: auto;
+        height: 100vh;
+        height: 100dvh;
+        max-height: none;
         overscroll-behavior: contain;
     }
     html.exp-doc-tree-open body::after {
