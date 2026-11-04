@@ -19,7 +19,8 @@
     </summary>
     <ul class="exp-doc-version-list">
     {foreach $doc_versions as $doc_other}
-        {def $doc_same = cond( $doc_rest, fetch( 'content', 'node', hash( 'node_path', concat( $doc_other.url_alias, $doc_rest ) ) ), $doc_other )}
+        {* the site's PathPrefix (websites/documentation) is part of a node's path, not of its address *}
+        {def $doc_same = cond( $doc_rest, fetch( 'content', 'node', hash( 'node_path', concat( cond( ezini( 'SiteAccessSettings', 'PathPrefix' ), concat( ezini( 'SiteAccessSettings', 'PathPrefix' ), '/' ), '' ), $doc_other.url_alias, $doc_rest ) ) ), $doc_other )}
         <li>{include uri='design:parts/doc_version_tag.tpl' version=$doc_other href=cond( $doc_same, $doc_same.url_alias, $doc_other.url_alias ) current=eq( $doc_other.node_id, $doc_version.node_id ) label=cond( $doc_same, $doc_other.name, concat( $doc_other.name, ' ', '(start page)'|i18n( 'design/exp_doc' ) ) )}</li>
         {undef $doc_same}
     {/foreach}
