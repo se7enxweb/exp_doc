@@ -1133,3 +1133,9 @@ html[data-a4-theme="dark"] {
         border-inline-start: 0;
     }
 }
+
+/* a card's rating (parts/doc_line.tpl): the small read-only stars below its name */
+.exp-doc-card-rating {
+    display: block;
+    font-size: var(--a4-text-s);
+}

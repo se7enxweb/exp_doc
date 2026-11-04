@@ -1,0 +1,100 @@
+/*
+ * The star rating of the documentation designs (exp_doc/rating_form.tpl, exp_doc/rating_stars.tpl): small stars from
+ * the shared star icon (components.css .a4-bi-star's mask) in the accent colour, a half star as a half filled one,
+ * and the radio buttons of the rating as stars that fill up to the one under the pointer or the focus. Tokens with
+ * their dark values in Modern; Classic, which has no tokens on its static pages, takes the static site's colours as
+ * the fallback values.
+ *
+ * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
+ * @license GNU General Public License v2.0 (or any later version)
+ */
+
+.exp-doc-rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25em 0.75em;
+  margin: 0.5em 0;
+  font-size: var(--a4-text-s, 0.85em);
+  color: var(--a4-muted, #555);
+}
+.exp-doc-rating-average {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+.exp-doc-stars {
+  display: inline-flex;
+  gap: 1px;
+  vertical-align: -0.1em;
+}
+.exp-doc-star {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-color: var(--a4-line, #ccc);
+  -webkit-mask: url(../images/exp-doc-star.svg) center / contain no-repeat;
+  mask: url(../images/exp-doc-star.svg) center / contain no-repeat;
+}
+.exp-doc-star.is-full {
+  background-color: var(--a4-accent, #f26a21);
+}
+.exp-doc-star.is-half {
+  background: linear-gradient(90deg, var(--a4-accent, #f26a21) 50%, var(--a4-line, #ccc) 50%);
+}
+.exp-doc-rating-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15em;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.exp-doc-rating-choice[hidden] {
+  display: none;
+}
+.exp-doc-rating-choice legend {
+  float: left;
+  margin-inline-end: 0.4em;
+  padding: 0;
+}
+.exp-doc-rating-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.exp-doc-rating-label {
+  cursor: pointer;
+  font-size: 1.15em;
+  line-height: 1;
+}
+.exp-doc-rating-label .exp-doc-star {
+  background-color: var(--a4-line, #ccc);
+}
+/* pointing at a star fills it and the ones before it (the labels after it go back to empty); once a choice is made,
+   the stars up to the chosen one stay filled */
+.exp-doc-rating-choice:hover .exp-doc-rating-label .exp-doc-star,
+.exp-doc-rating-choice:has(.exp-doc-rating-input:checked) .exp-doc-rating-label .exp-doc-star {
+  background-color: var(--a4-accent, #f26a21);
+}
+.exp-doc-rating-label:hover ~ .exp-doc-rating-label .exp-doc-star,
+.exp-doc-rating-input:checked + .exp-doc-rating-label ~ .exp-doc-rating-label .exp-doc-star {
+  background-color: var(--a4-line, #ccc);
+}
+.exp-doc-rating-input:focus-visible + .exp-doc-rating-label {
+  outline: 2px solid var(--a4-ring, #c2410c);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.exp-doc-rating-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.exp-doc-rating-choice:disabled .exp-doc-rating-label {
+  cursor: default;
+}

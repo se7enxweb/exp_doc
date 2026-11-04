@@ -32,6 +32,8 @@
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
 
 {if and( is_set( $doc_map.source_path ), ezini( 'ClassicSettings', 'ConfluencePrefixes', 'exp_doc.ini' )|contains( $doc_map.source_path.content|explode( '/' ).0 ) )}{include uri='design:parts/doc_confluence_meta.tpl' node=$node}<div class="break"></div>{else}<div class="break"></div>{include uri='design:parts/doc_pageinfo.tpl' node=$node}{/if}{include uri='design:parts/doc_contributors.tpl' node=$node}
+{* the page's rating (a listed exception of the check: form.exp-doc-rating) *}
+{include uri='design:exp_doc/rating_form.tpl' node=$node}
 <hr class="hide" />
 
 </div>

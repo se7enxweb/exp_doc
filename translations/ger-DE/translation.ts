@@ -683,6 +683,42 @@
         <source>last comment %age ago (%date)</source>
         <translation>letzter Kommentar vor %age (%date)</translation>
     </message>
+    <message>
+        <source>%average of 5, %count ratings</source>
+        <translation>%average von 5, %count Bewertungen</translation>
+    </message>
+    <message>
+        <source>%n stars</source>
+        <translation>%n Sterne</translation>
+    </message>
+    <message>
+        <source>1 star</source>
+        <translation>1 Stern</translation>
+    </message>
+    <message>
+        <source>No ratings yet</source>
+        <translation>Noch keine Bewertungen</translation>
+    </message>
+    <message>
+        <source>Rate this page</source>
+        <translation>Diese Seite bewerten</translation>
+    </message>
+    <message>
+        <source>Rated %average out of 5 by %count readers</source>
+        <translation>Mit %average von 5 bewertet, von %count Lesern</translation>
+    </message>
+    <message>
+        <source>Thank you for rating.</source>
+        <translation>Danke für Ihre Bewertung.</translation>
+    </message>
+    <message>
+        <source>The rating could not be saved.</source>
+        <translation>Die Bewertung konnte nicht gespeichert werden.</translation>
+    </message>
+    <message>
+        <source>You have rated this page already.</source>
+        <translation>Sie haben diese Seite schon bewertet.</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
 {ezscript_load( array( 'a4_head.js' ) )}
-{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'a4-theme-toggle.css', 'doc2026.css' ) )}
+{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'a4-theme-toggle.css', 'exp-doc-rating.css', 'doc2026.css' ) )}
 <link rel="stylesheet" href={'stylesheets/doc2026-print.css'|ezdesign} media="print">
 {include uri='design:parts/doc_head.tpl' path=$doc_path node=$doc_node is_front=$doc_is_front}
 </head>
@@ -71,6 +71,7 @@
 <script type="application/json" id="exp-doc-strings">{json_encode( hash( 'copy', 'Copy'|i18n( 'design/exp_doc' ), 'copied', 'Copied'|i18n( 'design/exp_doc' ), 'copyLink', 'Copy the link to this heading'|i18n( 'design/exp_doc' ), ) )}</script>
 {ezscript_load( array( 'doc2026.js' ) )}
 <script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>
+<script type="module" src={'javascript/exp-doc-rating.js'|ezdesign}></script>
 </body>
 </html>
 {undef $doc_root_id $doc_path $doc_seen $doc_node $doc_is_front}

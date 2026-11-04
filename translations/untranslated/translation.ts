@@ -683,6 +683,42 @@
         <source>last comment %age ago (%date)</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%average of 5, %count ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%n stars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 star</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No ratings yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rate this page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rated %average out of 5 by %count readers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Thank you for rating.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The rating could not be saved.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You have rated this page already.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

@@ -1,0 +1,85 @@
+---
+# description: A star rating (ezsrrating, the extension ezstarrating) on every class of the Documentation group, and the right of every reader (the Doc reader role) to rate: the ezjscore call ezstarrating_rate and ezstarrating_user_has_rated
+- type: content_class
+  mode: update
+  class: exp_doc_faq
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_faq_question
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_comment
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_contributor
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_extension
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_file
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_historical
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_image
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_manual
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_page
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_section
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial_step
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_version
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: comment_historical
+  add_attributes:
+    - { identifier: rating, type: ezsrrating, name: Rating, category: meta, searchable: false, translatable: false }
+- type: role
+  mode: update
+  role: "Doc reader"
+  add_policies:
+    - module: ezjscore
+      function: call
+      limitations:
+        FunctionList: [ ezstarrating_rate, ezstarrating_user_has_rated ]

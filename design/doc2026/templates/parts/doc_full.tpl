@@ -13,6 +13,7 @@
     <header class="exp-doc-article-head">
         <h1 class="exp-doc-title">{$node.name|wash}</h1>
         {include uri='design:parts/doc_byline.tpl' node=$node}
+        {include uri='design:exp_doc/rating_form.tpl' node=$node}
     </header>
 {if is_set( $before_body )}{$before_body}{/if}
     <div class="exp-doc-body" data-exp-doc-body>

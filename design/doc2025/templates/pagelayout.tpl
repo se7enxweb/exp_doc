@@ -29,9 +29,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}
 {* the help center's views (exphelp/*): its own components and styles, light, inside the Classic frame *}
-{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'doc2025.css' ) )}
+{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'exp-doc-rating.css', 'doc2025.css' ) )}
 {else}
-{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'doc2025.css' ) )}
+{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'exp-doc-rating.css', 'doc2025.css' ) )}
 {/if}
 <link type="text/css" rel="stylesheet" href={'stylesheets/print.css'|ezdesign} media="print" />
 {include uri='design:parts/doc_head.tpl' path=$doc_path is_front=$doc_is_front}
@@ -80,6 +80,7 @@
 {include uri='design:exp_doc/cookie_consent.tpl'}
 {include uri='design:parts/expwt_page_toolbar.tpl'}
 {if $doc_help}<script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>{/if}
+<script type="module" src={'javascript/exp-doc-rating.js'|ezdesign}></script>
 </body>
 </html>
 {undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_help}
