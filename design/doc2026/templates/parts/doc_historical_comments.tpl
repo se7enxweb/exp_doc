@@ -5,6 +5,12 @@
 {def $doc_class = ezini( 'ClassicSettings', 'CommentClass', 'exp_doc.ini' )
      $doc_total = fetch( 'content', 'tree_count', hash( 'parent_node_id', $node.node_id,
                                                          'class_filter_type', 'include', 'class_filter_array', array( $doc_class ) ) )}
+{* until the import has replaced them, the comments of the class before (exp_doc.ini CommentClassBefore) *}
+{if and( $doc_total|not, ezini( 'ClassicSettings', 'CommentClassBefore', 'exp_doc.ini' ) )}
+    {set $doc_class = ezini( 'ClassicSettings', 'CommentClassBefore', 'exp_doc.ini' )
+         $doc_total = fetch( 'content', 'tree_count', hash( 'parent_node_id', $node.node_id,
+                                                             'class_filter_type', 'include', 'class_filter_array', array( $doc_class ) ) )}
+{/if}
 {if $doc_total}
 <section class="exp-doc-historical-comments" aria-labelledby="exp-doc-historical-comments-title">
     <details class="exp-doc-historical-toggle">

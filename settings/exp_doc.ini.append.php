@@ -58,6 +58,9 @@ TocDepth=2
 # The class of the historical comments of the old site under a page (parts/doc_comments.tpl in Classic,
 # parts/doc_historical_comments.tpl in Modern; replies are their children, in the order of their priority)
 CommentClass=comment_historical
+# The class of the comments before comment_historical: listed where a page has none of CommentClass yet (lane 2's
+# relink replaces and hides them; empty this once it has run)
+CommentClassBefore=exp_doc_comment
 # Classes never listed in the menus
 MenuHideClasses[]
 MenuHideClasses[]=exp_doc_image

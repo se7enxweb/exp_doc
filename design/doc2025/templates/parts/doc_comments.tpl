@@ -13,13 +13,21 @@
                                                       'class_filter_type', 'include',
                                                       'class_filter_array', array( $doc_comment_class ),
                                                       'sort_by', array( 'priority', true() ) ) )}
+{* until the import has replaced them, the comments of the class before (exp_doc.ini CommentClassBefore) *}
+{if and( $doc_comments|count|not, ezini( 'ClassicSettings', 'CommentClassBefore', 'exp_doc.ini' ) )}
+    {set $doc_comment_class = ezini( 'ClassicSettings', 'CommentClassBefore', 'exp_doc.ini' )
+         $doc_comments = fetch( 'content', 'list', hash( 'parent_node_id', $node.node_id,
+                                                          'class_filter_type', 'include',
+                                                          'class_filter_array', array( $doc_comment_class ),
+                                                          'sort_by', array( 'published', true() ) ) )}
+{/if}
 {if $doc_comments|count}
 {def $doc_total = fetch( 'content', 'tree_count', hash( 'parent_node_id', $node.node_id,
                                                          'class_filter_type', 'include',
                                                          'class_filter_array', array( $doc_comment_class ) ) )
      $doc_confluence = and( is_set( $node.data_map.source_path ), ezini( 'ClassicSettings', 'ConfluencePrefixes', 'exp_doc.ini' )|contains( $node.data_map.source_path.content|explode( '/' ).0 ) )}
 <details class="exp-doc-comments-toggle"><summary class="exp-doc-comments-summary">{'Comments (%count historical)'|i18n( 'design/exp_doc', '', hash( '%count', $doc_total ) )}</summary>
-{if $doc_confluence}
+{if and( $doc_confluence, eq( $doc_comment_class, ezini( 'ClassicSettings', 'CommentClass', 'exp_doc.ini' ) ) )}
 <div id="comments-section" class="pageSection group">
                 <div class="section-header">
             <h2 id="comments-section-title" class="section-title">
