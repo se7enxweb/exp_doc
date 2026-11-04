@@ -185,6 +185,16 @@ RemoveSelectors[]=.search-macro
 RemoveSelectors[]=#comments-section
 RemoveSelectors[]=.class-comment
 RemoveSelectors[]=.pageSectionHeader
+# Confluence's chrome, in the views without #main-content (page history, information, attachments): the page tools,
+# the header, the breadcrumb and the footer are no text of the page
+RemoveSelectors[]=#navigation
+RemoveSelectors[]=#header
+RemoveSelectors[]=#footer
+RemoveSelectors[]=#breadcrumb-section
+RemoveSelectors[]=#title-heading
+RemoveSelectors[]=#page-metadata-banner
+RemoveSelectors[]=.aui-header
+RemoveSelectors[]=#sidebar
 UnwrapSelectors[]
 UnwrapSelectors[]=.template-object
 UnwrapSelectors[]=.template-module
