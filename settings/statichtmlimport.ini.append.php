@@ -5,6 +5,10 @@
 # below the "Documentation" site root. The rule keys are described in exp_static_html_imports'
 # statichtmlimport.ini.append.php; ./console exp:doc:import runs it with these defaults.
 
+# Known variants of a contributor's name: one person (case, dots and extra spaces do not count)
+[ContributorAliases]
+Map[graham b]=Graham Brookins
+
 [Type_doc-html]
 SourceRepository=https://github.com/se7enxweb/exponential.doc.exponential.earth.git
 SourceBranch=master

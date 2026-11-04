@@ -17,6 +17,9 @@ designs.
   type, `--doc-html`, and its rules (`settings/statichtmlimport.ini.append.php`).
   - It can run again: changed pages are updated, and edits made in the CMS are kept.
   - Old paths redirect to the new pages.
+  - Known variants of a contributor's name are one person (`[ContributorAliases] Map[]`). Duplicates made earlier
+    are merged with `./console exp:doc:contributor-merge --into=<contributor> --from=<duplicate> [--dry-run]`: every
+    relation points at the canonical contributor, the duplicate goes to the trash, and its address redirects.
 - **Two designs.**
   - **Classic** (`design/doc2025`): the static site, exactly.
   - **Modern** (`design/doc2026`, linked as `design/doc`).
