@@ -69,14 +69,16 @@ kernel's help page *REST API v1 and v2* (`guides/rest-api-v1-and-v2.md`).
 
 | Class | What it is | Fields worth reading |
 |---|---|---|
-| `exp_doc_page` | a page | `title`, `body`, `labels`, `written_by`, `last_updated_by`, `maintainers` |
+| `exp_doc_page` | a page | `title`, `body`, `labels`, `written_by`, `last_updated_by`, `maintainers`, `contributors`, `history_of` |
 | `exp_doc_section` | a section of pages | as a page |
 | `exp_doc_manual` | a manual (Technical, User ...) | `summary`, `audience`, `cover` |
 | `exp_doc_version` | a version of a manual | `version`, `status`, `released`, `eol`, `release_notes` |
 | `exp_doc_tutorial`, `exp_doc_tutorial_step` | a tutorial and its steps | `level`, `duration`, `prerequisites`, `step_number` |
 | `exp_doc_faq`, `exp_doc_faq_question` | an FAQ group and one question | `question`, `answer` |
 | `exp_doc_extension` | an extension's page | `extension_name`, `repository`, `packagist`, `compatibility`, `license`, `status` |
-| `exp_doc_contributor` | a person who wrote or maintains pages | the pages that name them, through the relations |
+| `exp_doc_contributor` | a person who wrote, maintains or commented on pages | the pages that name them, through the relations |
+| `exp_doc_historical` | a container of the page history | `title`, `history_of` |
+| `comment_historical` | a reader's comment | `title`, `body`, `author`, `author_name`, `created`, `source_parent_id` |
 | `exp_doc_image`, `exp_doc_file` | an image or a file of the pages | `image` or `file`, `alt`, `caption`, `credit` |
 
 ## 5. Troubleshooting
