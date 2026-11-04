@@ -243,7 +243,7 @@ class expDocComment
      *   - name: the author relation's contributor, else author_name, else the old class's author, else the name in
      *     the comment's own markup (original_html: Confluence h4.author, ezdoc p.author);
      *   - contributor: the contributor's node, or false;
-     *   - date: created, else the object's publication;
+     *   - date: created (0 when the import did not store it);
      *   - body: the identifier of the XML attribute with content (body, the old class's text), or '' when there is
      *     none; then html: original_html, the comment's own markup, to show as it was.
      *
@@ -286,7 +286,8 @@ class expDocComment
         {
             $entry['name'] = trim( html_entity_decode( strip_tags( $match[1] ), ENT_QUOTES, 'UTF-8' ) );
         }
-        $entry['date'] = $has( 'created' ) ? (int)$map['created']->attribute( 'data_int' ) : (int)$node->object()->attribute( 'published' );
+        // the date the reader wrote it; never the import's publication date, which would look like a date of 2026
+        $entry['date'] = $has( 'created' ) ? (int)$map['created']->attribute( 'data_int' ) : 0;
         foreach ( array( 'body', 'text' ) as $identifier )
         {
             if ( $has( $identifier ) )

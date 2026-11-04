@@ -13,7 +13,7 @@
 </div>
 
 <div class="attribute-byline float-break">
- <p class="date">{$doc_e.date|datetime( 'custom', '%l %d %F %Y %g:%i:%s %a' )}</p>
+ <p class="date">{if $doc_e.date}{$doc_e.date|datetime( 'custom', '%l %d %F %Y %g:%i:%s %a' )}{/if}</p>
  <p class="author">{$doc_e.name|wash}</p>
 </div>
 
