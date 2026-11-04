@@ -20,3 +20,17 @@ $FunctionList['node_by_source'] = array( 'name' => 'node_by_source',
                                          'parameters' => array( array( 'name' => 'path',
                                                                        'type' => 'string',
                                                                        'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'versions', hash( 'parent_node_id', <manual node id> ) )
+ *       the manual's version nodes (exp_doc_version), newest first by version number (6.x before 5.x before 4.7,
+ *       compared as versions, not as text; "x" counts as the highest of its line)
+ */
+$FunctionList['versions'] = array( 'name' => 'versions',
+                                   'operation_types' => array( 'read' ),
+                                   'call_method' => array( 'class' => 'expDocFetch',
+                                                           'method' => 'versions' ),
+                                   'parameter_type' => 'standard',
+                                   'parameters' => array( array( 'name' => 'parent_node_id',
+                                                                 'type' => 'integer',
+                                                                 'required' => true ) ) );

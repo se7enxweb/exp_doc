@@ -129,6 +129,11 @@ PageClasses[]=exp_doc_extension
 FeedbackAttributes[]
 FeedbackAttributes[]=feedback_helpful
 FeedbackAttributes[]=feedback_comment
+# The version statuses that count as supported: those versions get the accent outline and a "Supported" badge
+# (parts/doc_version_tag.tpl); the other statuses (legacy, EOL) show as their own badge
+SupportedStatuses[]
+SupportedStatuses[]=current
+SupportedStatuses[]=maintained
 # The content types offered as quick filters above the search results (content/search.tpl)
 SearchQuickClasses[]
 SearchQuickClasses[]=exp_doc_tutorial

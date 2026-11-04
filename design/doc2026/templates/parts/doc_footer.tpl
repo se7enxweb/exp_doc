@@ -17,6 +17,7 @@
                 <li><a href="https://exponential.earth">exponential.earth</a></li>
                 <li><a href="https://share.exponential.earth">{'Community'|i18n( 'design/doc2025' )}</a></li>
                 <li><a href="https://github.com/se7enxweb/exponential">GitHub</a></li>
+                <li><a href={'exp_doc/help/ext/exp_doc/headless-access.md'|ezurl}>{'REST and GraphQL'|i18n( 'design/exp_doc' )}</a></li>
                 <li><a href="#cookie-settings">{'Cookie settings'|i18n( 'design/media/pagelayout' )}</a></li>
             </ul>
         </div>

@@ -753,3 +753,60 @@ body.exp-doc {
 .exp-doc-footer-logo {
     display: inline-block;
 }
+
+/* ---- versions as tags (parts/doc_version_tag.tpl): supported releases (status current or maintained) carry the
+   accent outline and a "Supported" badge; legacy and EOL show their status without the outline --------------------- */
+.exp-doc-version-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--a4-space-1);
+    padding: var(--a4-space-1) var(--a4-space-2);
+    border: 1px solid var(--a4-line);
+    border-radius: var(--a4-radius-s);
+    background: var(--a4-surface);
+    color: var(--a4-ink);
+    font-size: var(--a4-text-s);
+    text-decoration: none;
+}
+.exp-doc-version-tag:hover {
+    border-color: var(--a4-line-strong);
+}
+.exp-doc-version-tag.is-supported {
+    border: 2px solid var(--a4-accent);
+    background: var(--a4-accent-soft);
+    font-weight: var(--a4-weight-strong);
+}
+.exp-doc-version-tag.is-current,
+.exp-doc-version-tag[aria-current] {
+    box-shadow: 0 0 0 2px var(--a4-ring);
+}
+.exp-doc-version-badge {
+    padding: 0 var(--a4-space-1);
+    border-radius: var(--a4-radius-s);
+    font-size: var(--a4-text-xs);
+    font-weight: var(--a4-weight-strong);
+    text-transform: uppercase;
+    letter-spacing: var(--a4-tracking);
+    background: var(--a4-soft);
+    color: var(--a4-muted);
+}
+.exp-doc-version-badge.is-supported {
+    background: var(--a4-accent-strong);
+    color: var(--a4-on-accent);
+}
+.exp-doc-version-badge.is-legacy {
+    background: var(--a4-warn-bg);
+    color: var(--a4-warn);
+}
+.exp-doc-version-badge.is-eol {
+    background: var(--a4-bad-bg);
+    color: var(--a4-bad);
+}
+.exp-doc-version-list li {
+    margin: var(--a4-space-1) 0;
+}
+.exp-doc-version-list .exp-doc-version-tag {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+}

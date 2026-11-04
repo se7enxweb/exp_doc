@@ -24,9 +24,7 @@
     <h2 id="exp-doc-manuals-title" class="a4-h2">{'Manuals'|i18n( 'design/exp_doc' )}</h2>
     <ul class="a4-plain exp-doc-manuals">
     {foreach $doc_manuals as $doc_manual}
-        {def $doc_versions = fetch( 'content', 'list', hash( 'parent_node_id', $doc_manual.node_id,
-                                                              'class_filter_type', 'include', 'class_filter_array', array( 'exp_doc_version' ),
-                                                              'sort_by', $doc_manual.sort_array ) )}
+        {def $doc_versions = fetch( 'exp_doc', 'versions', hash( 'parent_node_id', $doc_manual.node_id ) )}
         <li class="a4-card exp-doc-manual">
             {if and( is_set( $doc_manual.data_map.cover ), $doc_manual.data_map.cover.has_content )}
             <img class="exp-doc-manual-cover" src={$doc_manual.data_map.cover.content.medium.url|ezroot} alt="" width="{$doc_manual.data_map.cover.content.medium.width}" height="{$doc_manual.data_map.cover.content.medium.height}" loading="lazy">
@@ -36,7 +34,7 @@
             {if and( is_set( $doc_manual.data_map.audience ), $doc_manual.data_map.audience.has_content )}<p class="a4-meta">{'For: %audience'|i18n( 'design/exp_doc', '', hash( '%audience', $doc_manual.data_map.audience.content|wash ) )}</p>{/if}
             {if $doc_versions|count}
             <ul class="a4-plain exp-doc-manual-versions" aria-label="{'Versions'|i18n( 'design/exp_doc' )}">
-                {foreach $doc_versions as $doc_v}<li><a class="a4-tag" href={$doc_v.url_alias|ezurl}>{$doc_v.name|wash}</a></li>{/foreach}
+                {foreach $doc_versions as $doc_v}<li>{include uri='design:parts/doc_version_tag.tpl' version=$doc_v}</li>{/foreach}
             </ul>
             {/if}
         </li>

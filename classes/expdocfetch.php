@@ -40,6 +40,54 @@ class expDocFetch
     }
 
     /**
+     * The version nodes (exp_doc_version) below a manual, newest first by their version number: the attribute
+     * version, else the node's name; "x" (6.x) counts as the highest number of its line, and anything that is not a
+     * number sorts last. Only nodes the reader may see.
+     *
+     * @param int $parentNodeID
+     * @return array array( 'result' => eZContentObjectTreeNode[] )
+     */
+    public static function versions( $parentNodeID )
+    {
+        $nodes = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
+                                                                 'ClassFilterType' => 'include',
+                                                                 'ClassFilterArray' => array( 'exp_doc_version' ) ), (int)$parentNodeID );
+        $nodes = is_array( $nodes ) ? $nodes : array();
+        $keys = array();
+        foreach ( $nodes as $i => $node )
+        {
+            $keys[$i] = self::versionKey( $node );
+        }
+        uksort( $nodes, function ( $a, $b ) use ( $keys )
+        {
+            if ( $keys[$a] === null || $keys[$b] === null )
+                return ( $keys[$a] === null ) - ( $keys[$b] === null );
+            return version_compare( $keys[$b], $keys[$a] );
+        } );
+        return array( 'result' => array_values( $nodes ) );
+    }
+
+    /**
+     * The comparable version of a version node ("6.x" becomes "6.99999"), or null when it has none.
+     *
+     * @param eZContentObjectTreeNode $node
+     * @return string|null
+     */
+    public static function versionKey( eZContentObjectTreeNode $node )
+    {
+        $map = $node->dataMap();
+        foreach ( array( isset( $map['version'] ) ? $map['version']->toString() : '', (string)$node->attribute( 'name' ) ) as $text )
+        {
+            $text = trim( strtolower( $text ) );
+            if ( preg_match( '/^\d+(\.(\d+|x))*$/', $text ) )
+            {
+                return str_replace( 'x', '99999', $text );
+            }
+        }
+        return null;
+    }
+
+    /**
      * The main node id of the published object whose source_path is $path, or 0.
      *
      * @param string $path
