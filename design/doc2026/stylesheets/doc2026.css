@@ -43,8 +43,7 @@ body.exp-doc {
     flex-wrap: wrap;
     align-items: center;
     gap: var(--a4-space-3);
-    max-width: 90rem;
-    margin: 0 auto;
+    margin: 0;
     padding: var(--a4-space-2) var(--a4-space-4);
 }
 .exp-doc-brand {
@@ -147,8 +146,7 @@ body.exp-doc {
     grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr) minmax(12rem, 15rem);
     gap: var(--a4-space-5);
     width: 100%;
-    max-width: 90rem;
-    margin: 0 auto;
+    margin: 0;
     padding: var(--a4-space-5) var(--a4-space-4);
     box-sizing: border-box;
     flex: 1 0 auto;
@@ -161,8 +159,7 @@ body.exp-doc {
 }
 .exp-doc-main-front {
     width: 100%;
-    max-width: 90rem;
-    margin: 0 auto;
+    margin: 0;
     padding: var(--a4-space-5) var(--a4-space-4);
     box-sizing: border-box;
     flex: 1 0 auto;
@@ -304,7 +301,7 @@ body.exp-doc {
     margin: 0 0 var(--a4-space-4);
 }
 .exp-doc-body {
-    max-width: var(--a4-content-max);
+    min-width: 0;
 }
 .exp-doc-body h2,
 .exp-doc-body h3,
@@ -532,8 +529,7 @@ body.exp-doc {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     gap: var(--a4-space-5);
-    max-width: 90rem;
-    margin: 0 auto;
+    margin: 0;
     padding: var(--a4-space-6) var(--a4-space-4) var(--a4-space-3);
 }
 .exp-doc-footer-brand {
@@ -547,8 +543,7 @@ body.exp-doc {
     margin-bottom: var(--a4-space-1);
 }
 .exp-doc-runs-on {
-    max-width: 90rem;
-    margin: 0 auto;
+    margin: 0;
     padding: 0 var(--a4-space-4) var(--a4-space-5);
 }
 
@@ -564,7 +559,7 @@ body.exp-doc {
 @media (max-width: 899px) {
     .exp-doc-frame {
         grid-template-columns: minmax(0, 1fr);
-        padding: var(--a4-space-3);
+        padding: var(--a4-space-4);
     }
     .exp-doc-tree-button {
         display: inline-flex;
@@ -855,4 +850,27 @@ body.exp-doc {
 .exp-doc-hero-help {
     margin: var(--a4-space-4) 0 0;
     text-align: center;
+}
+
+/* ---- full width (the owner: "ditch the constrained display container css styles so this displays full width"):
+   the help center's own containers take the whole content column on this site, like every other page; wide tables
+   and code still scroll inside their own box (help.css / the rules above) ----------------------------------------- */
+.exp-doc .a4-help-frame,
+.exp-doc .a4-help-article,
+.exp-doc .a4-help-summary,
+.exp-doc .a4-help-toc-fold,
+.exp-doc .a4-help-foot,
+.exp-doc .a4-help-workflow,
+.exp-doc .a4-help-catintro,
+.exp-doc .a4-help-hero-sub,
+.exp-doc .a4-help-pager {
+    max-width: none;
+}
+.exp-doc .a4-help-article pre {
+    max-width: 100%;
+    overflow-x: auto;
+}
+.exp-doc-main,
+.exp-doc-main-front {
+    min-width: 0;
 }
