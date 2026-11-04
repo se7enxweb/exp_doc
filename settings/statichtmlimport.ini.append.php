@@ -102,6 +102,17 @@ SiblingNames=unique
 LinkHosts[]
 LinkHosts[]=exponential.doc.exponential.earth
 LinkHosts[]=doc.ez.no
+LinkHosts[]=doc.exponential.earth
+# ez.no and share.ez.no: a page of theirs that is in this import is linked to its node, the others stay links there
+LinkHostsIfImported[]
+LinkHostsIfImported[]=ez.no
+LinkHostsIfImported[]=share.ez.no
+# The export is an HTTrack mirror: each file names the address it was copied from, so the old site's own addresses
+# (doc.ez.no/Exponential/Technical-manual/4.7, written as Exponential/Technical-manual/4.html) resolve to their pages
+SourceAddressPattern=/<!-- Mirrored from (\S+) by HTTrack/
+# Confluence's login links carry the page they lead back to
+LinkForwardParameters[]
+LinkForwardParameters[]=os_destination
 SiblingNameSuffix= ({space|page_id|n})
 # A comment's subject is content as written: a second comment of the same subject gets the suffix in its object name
 # (its address is made unique by the kernel), never in its title
