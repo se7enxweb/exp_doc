@@ -424,7 +424,6 @@ body.exp-doc {
 }
 .exp-doc-card {
     display: grid;
-    grid-template-columns: auto 1fr;
     gap: var(--a4-space-1) var(--a4-space-2);
     height: 100%;
     box-sizing: border-box;
@@ -440,7 +439,6 @@ body.exp-doc {
     font-weight: var(--a4-weight-strong);
 }
 .exp-doc-card-text {
-    grid-column: 2;
     color: var(--a4-muted);
     font-size: var(--a4-text-s);
 }
