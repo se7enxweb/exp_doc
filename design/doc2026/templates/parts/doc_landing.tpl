@@ -3,6 +3,8 @@
      readers) and exp_doc.ini [ModernSettings] LandingHeading;
    - a card for every manual (its cover or icon, summary and audience, and its versions), .a4-help-about and
      .a4-help-grow in turn;
+   - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
+     the same cards with the Supported badge where it applies;
    - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
      an .a4-help-support box. *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
@@ -52,6 +54,27 @@
     </ul>
 </section>
 {/if}
+
+{* the products (fetch exp_doc/products, [ModernSettings] ProductList[]): the same faded cards as the manuals *}
+{def $doc_products = fetch( 'exp_doc', 'products' )
+     $doc_supported = ezini( 'ModernSettings', 'SupportedStatuses', 'exp_doc.ini' )}
+{if $doc_products|count}
+<section class="exp-doc-landing-section" aria-labelledby="exp-doc-products-title">
+    <h2 id="exp-doc-products-title" class="a4-h2">{'Products'|i18n( 'design/exp_doc' )}</h2>
+    <ul class="a4-plain exp-doc-manuals exp-doc-products">
+    {foreach $doc_products as $doc_index => $doc_product}
+        <li class="{cond( $doc_index|mod( 2 ), 'a4-help-grow', 'a4-help-about' )} exp-doc-manual">
+            <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon {cond( eq( $doc_product.path, 'exponential' ), 'a4-bi-journal-text', 'a4-bi-box-seam' )}"></span></span>
+            <div class="exp-doc-manual-body">
+                <h3 class="exp-doc-manual-name"><a href={$doc_product.path|ezurl}>{$doc_product.name|wash}</a>{if $doc_supported|contains( $doc_product.status )} <span class="exp-doc-version-badge is-supported">{'Supported'|i18n( 'design/exp_doc' )}</span>{/if}</h3>
+                {if $doc_product.text}<p class="exp-doc-manual-summary">{$doc_product.text|wash}</p>{/if}
+            </div>
+        </li>
+    {/foreach}
+    </ul>
+</section>
+{/if}
+{undef $doc_products $doc_supported}
 
 <div class="exp-doc-landing-columns">
 {if $doc_recent|count}

@@ -174,6 +174,52 @@ class expDocFetch
     }
 
     /**
+     * The products of the front page (exp_doc.ini [ModernSettings] ProductList[]: "<path>;<name>;<one line>[;<status>]"),
+     * in that order. Each is drawn from its container node when the node exists at that path below the site's root
+     * (its name, its short text and its status attribute), else from the setting, so the cards are there before the
+     * containers are.
+     *
+     * @return array array( 'result' => list of array( 'path', 'node' (or false), 'name', 'text', 'status' ) )
+     */
+    public static function products()
+    {
+        $prefix = eZURLAliasML::getPathPrefix();
+        $result = array();
+        foreach ( (array)eZINI::instance( 'exp_doc.ini' )->variable( 'ModernSettings', 'ProductList' ) as $line )
+        {
+            $parts = array_map( 'trim', explode( ';', (string)$line ) );
+            if ( count( $parts ) < 2 || $parts[0] === '' )
+            {
+                continue;
+            }
+            $path = trim( $parts[0], '/' );
+            $entry = array( 'path' => $path, 'node' => false, 'name' => $parts[1], 'text' => isset( $parts[2] ) ? $parts[2] : '',
+                            'status' => isset( $parts[3] ) ? strtolower( $parts[3] ) : '' );
+            $node = eZContentObjectTreeNode::fetchByURLPath( strtolower( ( $prefix ? $prefix . '/' : '' ) . $path ) );
+            if ( $node instanceof eZContentObjectTreeNode && $node->canRead() )
+            {
+                $map = $node->dataMap();
+                $entry['node'] = $node;
+                $entry['name'] = $node->attribute( 'name' );
+                foreach ( array( 'short_description', 'summary', 'intro' ) as $identifier )
+                {
+                    if ( isset( $map[$identifier] ) && $map[$identifier]->hasContent() )
+                    {
+                        $entry['text'] = trim( preg_replace( '/\s+/u', ' ', strip_tags( $map[$identifier]->attribute( 'data_text' ) ) ) );
+                        break;
+                    }
+                }
+                if ( isset( $map['status'] ) && $map['status']->hasContent() )
+                {
+                    $entry['status'] = strtolower( trim( $map['status']->toString() ) );
+                }
+            }
+            $result[] = $entry;
+        }
+        return array( 'result' => $result );
+    }
+
+    /**
      * The object ids of a relation list attribute, in its order.
      *
      * @param eZContentObjectAttribute $attribute

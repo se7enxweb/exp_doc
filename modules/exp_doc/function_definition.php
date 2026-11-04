@@ -122,3 +122,15 @@ $FunctionList['historical_comment'] = array( 'name' => 'historical_comment',
                                              'parameters' => array( array( 'name' => 'node_id',
                                                                            'type' => 'integer',
                                                                            'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'products' )
+ *       the products of the front page, in the order of exp_doc.ini [ModernSettings] ProductList[]: path, node (the
+ *       product's container, or false while it does not exist), name, text (one line) and status
+ */
+$FunctionList['products'] = array( 'name' => 'products',
+                                   'operation_types' => array( 'read' ),
+                                   'call_method' => array( 'class' => 'expDocFetch',
+                                                           'method' => 'products' ),
+                                   'parameter_type' => 'standard',
+                                   'parameters' => array() );
