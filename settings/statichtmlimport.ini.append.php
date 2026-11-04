@@ -52,6 +52,15 @@ ExcludePaths[]=extension/**
 ExcludePaths[]=download/**
 ExcludePaths[]=content/**
 ExcludePaths[]=visual/**
+# Confluence's own views of a page (its history, versions, info, attachments, page lists, blog and update lists)
+# are no documentation; pages/viewpage<id>.html is a page by its id (a copy, or a page of its own, by its breadcrumb)
+ExcludePaths[]=pages/diffpagesbyversion*
+ExcludePaths[]=pages/viewpreviousversions*
+ExcludePaths[]=pages/viewinfo*
+ExcludePaths[]=pages/viewpageattachments*
+ExcludePaths[]=pages/listpages-*
+ExcludePaths[]=pages/viewrecentblogposts*
+ExcludePaths[]=pages/recentlyupdated*
 
 # The export's error pages are no pages; its redirect stubs (a meta refresh) become redirects
 NotFoundTitlePatterns[]
@@ -75,6 +84,7 @@ AssetPageMaxText=0
 BreadcrumbSelector=#breadcrumbs a
 BreadcrumbPaths[]
 BreadcrumbPaths[]=display/**
+BreadcrumbPaths[]=pages/**
 GroupFolders[]
 GroupFolders[]=display
 GroupFolders[]=display/*
