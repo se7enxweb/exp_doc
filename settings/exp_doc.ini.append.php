@@ -129,6 +129,11 @@ PageClasses[]=exp_doc_extension
 FeedbackAttributes[]
 FeedbackAttributes[]=feedback_helpful
 FeedbackAttributes[]=feedback_comment
+# The content types offered as quick filters above the search results (content/search.tpl)
+SearchQuickClasses[]
+SearchQuickClasses[]=exp_doc_tutorial
+SearchQuickClasses[]=exp_doc_faq
+SearchQuickClasses[]=exp_doc_extension
 # The admin siteaccess's address prefix, for "Edit this page"
 AdminPrefix=admin
 # The image size embedded images are shown at

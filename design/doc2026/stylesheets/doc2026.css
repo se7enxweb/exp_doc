@@ -697,3 +697,34 @@ body.exp-doc {
     color: var(--a4-muted);
     font-size: var(--a4-text-s);
 }
+
+/* ---- the search page: the quick filters above the kernel's filtered search, and its --exps-* tokens set from the
+   admin4 tokens (stylesheets/front_search.css reads them) ---------------------------------------------------------- */
+.exp-doc-search-page {
+    --exps-ink: var(--a4-ink);
+    --exps-muted: var(--a4-muted);
+    --exps-line: var(--a4-line);
+    --exps-surface: var(--a4-surface);
+    --exps-surface-alt: var(--a4-soft);
+    --exps-accent: var(--a4-accent-strong);
+    --exps-accent-ink: var(--a4-on-accent);
+    --exps-accent-soft: var(--a4-accent-soft);
+    --exps-bad: var(--a4-bad);
+    --exps-mark: var(--a4-accent-soft);
+    --exps-font: var(--a4-font);
+    --exps-text-s: var(--a4-text-s);
+    --exps-shadow: var(--a4-shadow-m);
+    --exps-radius: var(--a4-radius-s);
+}
+.exp-doc-quickfilters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--a4-space-2);
+    margin: 0 0 var(--a4-space-4);
+}
+.exp-doc-quickfilters ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--a4-space-2);
+}
