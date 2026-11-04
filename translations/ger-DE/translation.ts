@@ -639,6 +639,50 @@
         <source>All pages of %name</source>
         <translation>Alle Seiten von %name</translation>
     </message>
+    <message>
+        <source>%count people</source>
+        <translation>%count Personen</translation>
+    </message>
+    <message>
+        <source>%n days</source>
+        <translation>%n Tagen</translation>
+    </message>
+    <message>
+        <source>%n months</source>
+        <translation>%n Monaten</translation>
+    </message>
+    <message>
+        <source>%n years</source>
+        <translation>%n Jahren</translation>
+    </message>
+    <message>
+        <source>1 comment</source>
+        <translation>1 Kommentar</translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation>einem Tag</translation>
+    </message>
+    <message>
+        <source>1 month</source>
+        <translation>einem Monat</translation>
+    </message>
+    <message>
+        <source>1 year</source>
+        <translation>einem Jahr</translation>
+    </message>
+    <message>
+        <source>Commenters</source>
+        <translation>Kommentierende</translation>
+    </message>
+    <message>
+        <source>and %count comments</source>
+        <translation>und %count Kommentare</translation>
+    </message>
+    <message>
+        <source>last comment %age ago (%date)</source>
+        <translation>letzter Kommentar vor %age (%date)</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

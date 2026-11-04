@@ -639,6 +639,50 @@
         <source>All pages of %name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%count people</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%n days</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%n months</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%n years</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 day</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 month</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 year</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commenters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>and %count comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>last comment %age ago (%date)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

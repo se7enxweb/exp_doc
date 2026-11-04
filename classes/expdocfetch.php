@@ -1,4 +1,56 @@
-<?php
+    /** @var array|null the people of the Contributors page, for the request (people()) */
+    protected static $people = null;
+
+    /**
+     * The Contributors page's main list (fetch exp_doc/contributor_list): everyone with at least one authoring role,
+     * most pages first; see people().
+     *
+     * @return array array( 'result' => entries of people() )
+     */
+    public static function contributorList()
+    {
+        $people = self::people();
+        return array( 'result' => $people['authors'] );
+    }
+
+    /**
+     * The Contributors page's "Commenters" (fetch exp_doc/commenter_list): the people whose only role is the author of
+     * historical comments, most comments first; see people().
+     *
+     * @return array array( 'result' => entries of people() )
+     */
+    public static function commenterList()
+    {
+        $people = self::people();
+        return array( 'result' => $people['commenters'] );
+    }
+
+    /**
+     * Every contributor of the site: the exp_doc_contributor objects below the Contributors folder (exp_doc.ini
+     * [RecentSettings] ContributorFolderRemoteID), each with the number of pages that name them as writer (written_by;
+     * Confluence's "created by" is mapped there), last updater (last_updated_by, "last modified by") and maintainer
+     * (maintainers), the current versions of published pages only, and the historical comments they wrote (the
+     * comment class's author relation: how many, and the newest one's written date). Aggregate queries, one per role,
+     * never one per person. Split by role: authors (at least one page; most pages first, then by name), commenters
+     * (comments only; most comments first, then by name), and the count of those with neither (their comments not
+     * converted yet).
+     *
+     * @return array array( 'authors', 'commenters' => list of array( 'object', 'node', 'name', 'written', 'updated',
+     *               'maintained', 'total', 'comments', 'last_comment', 'roles' ), 'neither' => int )
+     */
+    protected static function people()
+    {
+        if ( self::$people !== null )
+        {
+            return self::$people;
+        }
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $folder = eZContentObject::fetchByRemoteID( (string)$ini->variable( 'RecentSettings', 'ContributorFolderRemoteID' ) );
+        $result = array( 'authors' => array(), 'commenters' => array(), 'neither' => 0 );
+        if ( !$folder || !$folder->mainNode() )
+        {
+            return self::$people = $result;
+        }<?php
 /**
  * The template fetch functions of exp_doc (modules/exp_doc/function_definition.php).
  *
@@ -148,10 +200,35 @@ class expDocFetch
         {
             $counts['maintained'][(int)$row['id']] = (int)$row['n'];
         }
+        // the comments: the historical comments' author relation, how many and the newest one's written date, in one
+        // aggregate (the readers' new comments name their author as text, so they are not counted here)
+        $commentClass = (string)$ini->variable( 'ClassicSettings', 'CommentClass' );
+        $classAttribute = function ( $identifier ) use ( $db, $commentClass )
+        {
+            $rows = $db->arrayQuery( "SELECT a.id FROM ezcontentclass_attribute a, ezcontentclass c WHERE a.version = 0 AND c.version = 0
+                                      AND a.contentclass_id = c.id AND c.identifier = '" . $db->escapeString( $commentClass ) . "'
+                                      AND a.identifier = '" . $db->escapeString( $identifier ) . "'" );
+            return $rows ? (int)$rows[0]['id'] : 0;
+        };
+        $comments = array();
+        $authorAttribute = $classAttribute( 'author' );
+        $createdAttribute = $classAttribute( 'created' );
+        if ( $authorAttribute )
+        {
+            foreach ( $db->arrayQuery( "SELECT ca.data_int AS id, COUNT(*) AS n, MAX( cd.data_int ) AS latest
+                                        FROM ezcontentobject_attribute ca, ezcontentobject o, ezcontentobject_attribute cd
+                                        WHERE ca.contentclassattribute_id = $authorAttribute AND ca.data_int > 0
+                                        AND o.id = ca.contentobject_id AND o.current_version = ca.version AND o.status = 1
+                                        AND cd.contentobject_id = ca.contentobject_id AND cd.version = ca.version
+                                        AND cd.language_code = ca.language_code AND cd.contentclassattribute_id = " . (int)$createdAttribute . "
+                                        GROUP BY ca.data_int" ) as $row )
+            {
+                $comments[(int)$row['id']] = array( (int)$row['n'], (int)$row['latest'] );
+            }
+        }
         $nodes = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( 'exp_doc_contributor' ),
                                                                  'Depth' => 1, 'DepthOperator' => 'eq' ),
                                                           $folder->mainNode()->attribute( 'node_id' ) );
-        $result = array();
         foreach ( is_array( $nodes ) ? $nodes : array() as $node )
         {
             $id = (int)$node->attribute( 'contentobject_id' );
@@ -163,14 +240,32 @@ class expDocFetch
                 if ( $entry[$key] ) { $roles[] = $role; }
             }
             $entry['total'] = $entry['written'] + $entry['updated'] + $entry['maintained'];
+            $entry['comments'] = isset( $comments[$id] ) ? $comments[$id][0] : 0;
+            $entry['last_comment'] = isset( $comments[$id] ) ? $comments[$id][1] : 0;
+            if ( $entry['comments'] ) { $roles[] = 'commenter'; }
             $entry['roles'] = $roles;
-            $result[] = $entry;
+            if ( $entry['total'] )
+            {
+                $result['authors'][] = $entry;
+            }
+            elseif ( $entry['comments'] )
+            {
+                $result['commenters'][] = $entry;
+            }
+            else
+            {
+                $result['neither']++;
+            }
         }
-        usort( $result, function ( $a, $b )
+        usort( $result['authors'], function ( $a, $b )
         {
             return $b['total'] <=> $a['total'] ?: strcasecmp( $a['name'], $b['name'] );
         } );
-        return array( 'result' => $result );
+        usort( $result['commenters'], function ( $a, $b )
+        {
+            return $b['comments'] <=> $a['comments'] ?: strcasecmp( $a['name'], $b['name'] );
+        } );
+        return self::$people = $result;
     }
 
     /**

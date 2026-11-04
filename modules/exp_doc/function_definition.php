@@ -189,3 +189,15 @@ $FunctionList['comment_children'] = array( 'name' => 'comment_children',
                                                                   array( 'name' => 'class',
                                                                          'type' => 'string',
                                                                          'required' => true ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'commenter_list' )
+ *       the people of the Contributors page whose only role is the author of historical comments, most comments
+ *       first: the entries of contributor_list with comments (how many) and last_comment (the newest one's date)
+ */
+$FunctionList['commenter_list'] = array( 'name' => 'commenter_list',
+                                         'operation_types' => array( 'read' ),
+                                         'call_method' => array( 'class' => 'expDocFetch',
+                                                                 'method' => 'commenterList' ),
+                                         'parameter_type' => 'standard',
+                                         'parameters' => array() );
