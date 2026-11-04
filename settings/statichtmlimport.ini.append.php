@@ -178,6 +178,7 @@ VirtualPages[display/dxp/]=exp_doc_section;Exponential Platform DXP;DXP;extensio
 VirtualPages[display/confluence/]=exp_doc_section;Confluence;Confluence;extension/exp_doc/share/products/confluence.html
 VirtualPages[basic/]=exp_doc_section;Exponential Basic;Basic;extension/exp_doc/share/products/basic.html
 VirtualPages[historical/]=exp_doc_historical;Historical;Historical
+VirtualPages[historical/hidden-mirror/]=exp_doc_historical;Hidden mirror;Hidden mirror
 # The space USER has a page of its own (display/USER.html, its home): a section like every other space, its home inside
 VirtualPages[display/USER/]=exp_doc_section;User;USER
 # The version lines of the manuals are addressed by their number: /exponential/4, /exponential/5, /exponential/6
@@ -223,9 +224,9 @@ TopParentRules[]=display/;
 TopParentRules[]=basic/;
 TopParentRules[]=historical/;
 TopParentRules[]=License.html;
-TopParentRules[]=doc_hidden.html;historical/
-TopParentRules[]=doc_inside_admin.html;doc_hidden.html
-TopParentRules[]=doc_inside_admin/**;doc_hidden.html
+TopParentRules[]=doc_hidden/**;historical/hidden-mirror/
+TopParentRules[]=doc_inside_admin.html;historical/hidden-mirror/
+TopParentRules[]=doc_inside_admin/**;historical/hidden-mirror/
 TopParentRules[]=display/**;display/confluence/
 TopParentRules[]=pages/**;display/confluence/pages/
 TopParentRules[]=Media/**;@exp-doc-media
@@ -296,6 +297,12 @@ CopyOfPatterns[]=#^(.+)/\([a-z_]+\)/.*\.html$#
 # a folder's index page with the same visible text as the page next to the folder (Exponential/index.html of
 # Exponential.html: only their stylesheet links differ) is that page: one node, the index page's path redirects to it
 FolderIndexCopies=enabled
+# the hidden mirror's old front page (doc_hidden.html, the 5.x era start page) is the site's front page: its node is
+# merged into the root and its path redirects there (so does the mirror's index stub); the mirror's pages go into
+# Historical > Hidden mirror (/historical/hidden-mirror), nested by their folders (the owner's decision of 2026-11-04)
+CopyOfPaths[]
+CopyOfPaths[doc_hidden.html]=index.html
+CopyOfPaths[doc_hidden/index.html]=index.html
 DuplicatePatterns[]
 DuplicatePatterns[]=#\(language\)#
 DuplicatePatterns[]=#^pages/#
