@@ -57,7 +57,31 @@ ExcludePaths[]=visual/**
 NotFoundTitlePatterns[]
 NotFoundTitlePatterns[]=/^404\b/
 NotFoundTitlePatterns[]=/^Not Found$/i
+NotFoundTitlePatterns[]=/^Page Not Found\b/i
+# the old site's own error pages ("kernel (1) / Error - Doc" access denied, "kernel (20) / Error - Doc" no module)
+NotFoundTitlePatterns[]=/^kernel \(\d+\) \/ Error\b/
 ExcludePaths[]=favicon.html
+
+# Files with a page suffix that are no HTML (the export saved fonts and gzip files as .html) are never pages
+SkipBinaryPages=enabled
+# The viewer pages of one image or file (Technical-manual/<version>/Images/...: one <img>, no text) are that image:
+# it becomes an exp_doc_image in the Media folder and the viewer's old path redirects to it
+AssetPages=enabled
+AssetPageMaxText=0
+
+# Confluence's spaces (display/<SPACE>/<page>.html) are flat folders: a page's parent is the nearest page of its
+# breadcrumb (#breadcrumbs: the space, then the ancestors). A space without a page of its own becomes a section
+# named by the breadcrumb's first item (the space's name), and all spaces go into one section "Confluence spaces"
+BreadcrumbSelector=#breadcrumbs a
+BreadcrumbPaths[]
+BreadcrumbPaths[]=display/**
+GroupFolders[]
+GroupFolders[]=display
+GroupFolders[]=display/*
+GroupTitleSelector=#breadcrumbs li.first a
+GroupTitles[]
+GroupTitles[display]=Confluence spaces
+GroupClass=exp_doc_section
 
 # Copies of pages: view-parameter variants, the Confluence page-id copies and the hidden mirror. Each becomes a
 # redirect to the page with the same content; one with content of its own is imported (hidden when below doc_hidden)
