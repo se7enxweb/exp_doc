@@ -627,6 +627,10 @@
         <source>See all new pages</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Replying to %name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

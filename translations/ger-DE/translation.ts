@@ -627,6 +627,10 @@
         <source>See all new pages</source>
         <translation>Alle neuen Seiten</translation>
     </message>
+    <message>
+        <source>Replying to %name</source>
+        <translation>Antwort an %name</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>
