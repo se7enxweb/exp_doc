@@ -90,6 +90,8 @@ class Normalizer:
             path = path[len(site_path):]
         path = re.sub(r'/\(design\)/[a-z0-9_]+$', '', path)
         path = urllib.parse.unquote(path.rstrip('/') or '/')
+        if path == '/':
+            return 'page:index.html'  # the site's root is the static start page (owner, 2026-11-04)
         if path in self.url_to_static:
             return 'page:' + self.url_to_static[path]
         return 'url:' + path

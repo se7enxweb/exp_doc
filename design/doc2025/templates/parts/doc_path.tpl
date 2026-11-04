@@ -1,6 +1,10 @@
 {* The path of a Classic page, as on the static site: "7x / documentation / faq / installation".
    The first item names the site's maker (exp_doc.ini [ClassicSettings] PathHomeName) and links the site's front;
-   then every node of the path, in lower case, linked, except the current page, which is plain text. *}
+   then every node of the path, in lower case, linked, except the current page, which is plain text. The site's
+   root ("documentation") links the page imported from [ClassicSettings] PathRootSource (the static
+   documentation.html), as the static site's path did; the front page itself is the static index.html. *}
+{def $doc_root_id = ezini( 'NodeSettings', 'RootNode', 'content.ini' )
+     $doc_root_page = fetch( 'exp_doc', 'node_by_source', hash( 'path', ezini( 'ClassicSettings', 'PathRootSource', 'exp_doc.ini' ) ) )}
 <!-- Path area: START -->
 <div id="path">
 
@@ -11,7 +15,11 @@
 <p> <a href={'/'|ezurl}>{ezini( 'ClassicSettings', 'PathHomeName', 'exp_doc.ini' )|wash}</a>{foreach $path as $item}
                         /
     {if $item.url}
+        {if and( is_set( $item.node_id ), eq( $item.node_id, $doc_root_id ), $doc_root_page )}
+                        <a href={$doc_root_page.url_alias|ezurl}>{$item.text|downcase|wash}</a>
+        {else}
                         <a href={cond( is_set( $item.url_alias ), $item.url_alias, $item.url )|ezurl}>{$item.text|downcase|wash}</a>
+        {/if}
     {else}
                             {$item.text|downcase|wash}
     {/if}
@@ -23,3 +31,4 @@
 
 </div>
 <!-- Path area: END -->
+{undef $doc_root_id $doc_root_page}

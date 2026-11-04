@@ -25,6 +25,8 @@ SiteName=Exponential 6.0 CMS Documentation
 TitleSuffix=Doc
 # The first item of the path line, linking the front page
 PathHomeName=7x
+# The static file whose page the path's "documentation" (the site's root) links
+PathRootSource=documentation.html
 # The meta tags of every page, as on the static site
 MetaTags[]
 MetaTags[author]=7x
