@@ -52,15 +52,38 @@ ExcludePaths[]=extension/**
 ExcludePaths[]=download/**
 ExcludePaths[]=content/**
 ExcludePaths[]=visual/**
-# Confluence's own views of a page (its history, versions, info, attachments, page lists, blog and update lists)
-# are no documentation; pages/viewpage<id>.html is a page by its id (a copy, or a page of its own, by its breadcrumb)
-ExcludePaths[]=pages/diffpagesbyversion*
-ExcludePaths[]=pages/viewpreviousversions*
-ExcludePaths[]=pages/viewinfo*
-ExcludePaths[]=pages/viewpageattachments*
-ExcludePaths[]=pages/listpages-*
-ExcludePaths[]=pages/viewrecentblogposts*
-ExcludePaths[]=pages/recentlyupdated*
+
+# Confluence's own views of a page (its history, the comparisons of two versions, the old versions, its information
+# and attachments) and its page lists are historical: never pages of the documentation tree, never same-name siblings
+# ("Page History" a thousand times). They go below Historical (exp_doc_historical, under the site root, hidden from the
+# menus by exp_doc.ini MenuHideClasses[]), the views of one page together in a container named after that page below
+# "Page History", each with a name of its own and a relation (history_of) to the current page. A viewpage<id> copy of
+# the current version stays a duplicate of the page (a redirect); only an old version (ajs-latest-page-id differs) is
+# historical. The rule syntax: exp_static_html_imports, doc/rules.md "Routes".
+RouteMeta[]
+RouteMeta[page_id]=/name="ajs-page-id" content="(\d+)"/
+RouteMeta[latest_id]=/name="ajs-latest-page-id" content="(\d+)"/
+RouteMeta[page_title]=/name="ajs-page-title" content="([^"]*)"/
+RouteMeta[space]=/name="ajs-space-key" content="([^"]*)"/
+RouteMeta[versions]=/<title>[^<]*\((v\.\d+ vs\.? v\.\d+)\)/
+RouteMeta[view]=/<title>\s*([^<]*?)\s*-\s*[^<-]*-\s*eZ Documentation\s*<\/title>/
+RouteRules[]
+RouteRules[]=pages/diffpagesbyversion*;historical/page-history/{latest_id|page_id}/;{page_title|view}: comparison of {versions|view};;{latest_id|page_id}
+RouteRules[]=pages/viewpreviousversions*;historical/page-history/{latest_id|page_id}/;{page_title|view}: page history;;{latest_id|page_id}
+RouteRules[]=pages/viewinfo*;historical/page-history/{latest_id|page_id}/;{page_title|view}: page information;;{latest_id|page_id}
+RouteRules[]=pages/viewpageattachments*;historical/page-history/{latest_id|page_id}/;{page_title|view}: attachments;;{latest_id|page_id}
+RouteRules[]=pages/viewpage*;historical/page-history/{latest_id}/;{page_title|view}: old version (page id {page_id});latest_id!=page_id;{latest_id}
+RouteRules[]=pages/listpages-*;historical/page-lists/;{view} ({space});
+RouteRules[]=pages/recentlyupdated*;historical/page-lists/;{view} ({space});
+RouteRules[]=pages/viewrecentblogposts*;historical/page-lists/;{view} ({space});
+RouteContainers[]
+RouteContainers[historical]=exp_doc_historical;Historical
+RouteContainers[historical/page-history]=exp_doc_historical;Page History
+RouteContainers[historical/page-history/*]=exp_doc_historical;{page_title|view}
+RouteContainers[historical/page-lists]=exp_doc_historical;Page Lists
+# The spec check: two pages of one name below one parent get the space, the page id or a counter added
+SiblingNames=unique
+SiblingNameSuffix= ({space|page_id|n})
 
 # The export's error pages are no pages; its redirect stubs (a meta refresh) become redirects
 NotFoundTitlePatterns[]
@@ -118,6 +141,8 @@ MetaSelectors[]
 MetaSelectors[byline]=.page-metadata, .attribute-byline
 MetaSelectors[labels]=.label-list .aui-label a, .labels a.label
 PageIdPatterns[]
+# Confluence names the page in its head (ajs-page-id); a pageId= link may be another page's
+PageIdPatterns[]=/name="ajs-page-id" content="(\d+)"/
 PageIdPatterns[]=/pageId=(\d+)/
 
 RemoveSelectors[]
@@ -240,6 +265,8 @@ AttributeMap[folder/description]=body
 
 # Which class a page becomes; the first match wins
 ClassRules[]
+# the historical copies and views (RouteRules[] above): pages of their own, in the Historical containers
+ClassRules[]=pages/*.html;exp_doc_page
 ClassRules[]=Exponential/Technical-manual.html;exp_doc_manual
 ClassRules[]=Exponential/User-manual.html;exp_doc_manual
 ClassRules[]=Exponential/Technical-manual/[0-9]*.html;exp_doc_version
@@ -269,6 +296,8 @@ AttributeMap[*/last_updated_at]=last_updated_at
 AttributeMap[*/maintainers]=maintainers
 # every person the page names, each once (writer, updater, maintainers, comment authors): the "Contributors" list
 AttributeMap[*/contributors]=contributors
+# a historical copy, version or view: the current page it belongs to (RouteRules[])
+AttributeMap[*/history_of]=history_of
 AttributeMap[*/labels]=labels_tags
 AttributeMap[*/metadata]=metadata_xml
 AttributeMap[*/import_hash]=import_hash

@@ -1,0 +1,34 @@
+---
+# description: The Historical container class (exp_doc_historical) for the old copies, versions and views of the documentation's pages (Confluence's page history, comparisons, page information, attachments and page lists), and history_of on the page classes: the current page a historical copy belongs to
+- type: content_class
+  mode: ensure
+  identifier: exp_doc_historical
+  remote_id: exp-doc-class-exp_doc_historical
+  language: eng-US
+  name: Doc historical
+  description: A container of historical copies, versions and views of documentation pages; browsable, never in the menus
+  name_pattern: "<short_title|title>"
+  container: true
+  always_available: true
+  sort_field: name
+  sort_order: asc
+  groups:
+    - Documentation
+  attributes:
+    - { identifier: title, type: ezstring, name: Title, required: true }
+    - { identifier: short_title, type: ezstring, name: "Short title" }
+    - { identifier: body, type: ezxmltext, name: Body }
+    - { identifier: source_path, type: ezstring, name: "Source path", searchable: false, translatable: false }
+    - { identifier: history_of, type: ezobjectrelation, name: "History of" }
+    - { identifier: metadata, type: xrowmetadata, name: Metadata, category: meta }
+    - { identifier: import_hash, type: ezstring, name: "Import hash", category: meta, searchable: false, translatable: false }
+- type: content_class
+  mode: update
+  class: exp_doc_page
+  add_attributes:
+    - { identifier: history_of, type: ezobjectrelation, name: "History of" }
+- type: content_class
+  mode: update
+  class: exp_doc_section
+  add_attributes:
+    - { identifier: history_of, type: ezobjectrelation, name: "History of" }

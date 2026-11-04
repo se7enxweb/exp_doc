@@ -61,6 +61,7 @@ MenuHideClasses[]=exp_doc_file
 MenuHideClasses[]=exp_doc_faq_question
 MenuHideClasses[]=exp_doc_tutorial_step
 MenuHideClasses[]=exp_doc_contributor
+MenuHideClasses[]=exp_doc_historical
 # Nodes never listed in the menus, by remote id: the Contributors folder (its people have their own pages, linked
 # from the bylines)
 MenuHideNodeRemoteIDs[]
