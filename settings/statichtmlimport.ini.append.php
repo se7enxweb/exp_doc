@@ -83,6 +83,10 @@ RouteContainers[historical/page-history/*]=exp_doc_historical;{page_title|view}
 RouteContainers[historical/page-lists]=exp_doc_historical;Page Lists
 # The spec check: two pages of one name below one parent get the space, the page id or a counter added
 SiblingNames=unique
+# The old site's own full URLs in the bodies are links inside the documentation too
+LinkHosts[]
+LinkHosts[]=exponential.doc.exponential.earth
+LinkHosts[]=doc.ez.no
 SiblingNameSuffix= ({space|page_id|n})
 
 # The export's error pages are no pages; its redirect stubs (a meta refresh) become redirects
