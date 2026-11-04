@@ -68,7 +68,7 @@ class expDocFetch
         $author = $single( 'written_by' );
         $updater = $single( 'last_updated_by' );
         $maintainers = isset( $map['maintainers'] ) ? self::relationIDs( $map['maintainers'] ) : array();
-        // comment authors, by name (comments carry the author as text)
+        // comment authors, by name (author_name, as the source wrote it; the old class kept it in author)
         $commented = array();
         $commentClass = eZINI::instance( 'exp_doc.ini' )->variable( 'ClassicSettings', 'CommentClass' );
         $comments = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( $commentClass ),
@@ -76,7 +76,8 @@ class expDocFetch
         foreach ( is_array( $comments ) ? $comments : array() as $comment )
         {
             $cmap = $comment->dataMap();
-            $name = isset( $cmap['author'] ) ? mb_strtolower( trim( $cmap['author']->toString() ) ) : '';
+            $name = isset( $cmap['author_name'] ) ? $cmap['author_name']->toString() : ( isset( $cmap['author'] ) ? $cmap['author']->toString() : '' );
+            $name = mb_strtolower( trim( $name ) );
             if ( $name !== '' && !isset( $commented[$name] ) )
             {
                 $commented[$name] = isset( $cmap['created'] ) && $cmap['created']->hasContent() ? (int)$cmap['created']->attribute( 'data_int' ) : (int)$comment->object()->attribute( 'published' );

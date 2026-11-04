@@ -62,3 +62,12 @@
 .exp-doc-helplink {
     margin-right: auto;
 }
+
+/* The historical comments, collapsed by default (parts/doc_comments.tpl, a listed exception): the summary line in
+   the static comments' heading style */
+.exp-doc-comments-toggle > summary {
+    cursor: pointer;
+    margin: 1em 0;
+    font-size: 1.2em;
+    font-weight: bold;
+}

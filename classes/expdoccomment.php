@@ -1,0 +1,221 @@
+<?php
+/**
+ * Readers' comments on the documentation pages (the view doc/comment, exp_doc.ini [CommentSettings]).
+ *
+ * A comment is an object of the kernel's comment class (a container, so a reply sits below the comment it answers),
+ * created and published with the kernel's publish operation as the reader who sends it. Moderation is the kernel's
+ * own: the review hold's auto-hold (content.ini [ReviewHoldSettings] of the site siteaccess) puts the first
+ * publication of a reader's comment into review_hold/held and hides its location, so no page, fetch, feed or search
+ * shows it; a moderator releases it in Dashboard > Recent content (moderation/recent), which reveals it.
+ *
+ * Spam protection: the form token (ezformtoken checks every POST), a honeypot field that people leave empty, and a
+ * rate limit per address (the kernel's expRequestThresholdCounter, with the address as the request classifier's
+ * salted hash, never stored as it is).
+ *
+ * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
+ * @license GNU General Public License v2.0 (or any later version)
+ * @package exp_doc
+ */
+
+class expDocComment
+{
+    /** submit() results */
+    const HELD = 'held';
+    const PUBLISHED = 'published';
+    const IGNORED = 'ignored';
+    const INVALID = 'invalid';
+    const LIMITED = 'limited';
+    const REFUSED = 'refused';
+    const FAILED = 'failed';
+
+    /**
+     * Checks a submission and returns the errors (field => message), empty when it may be stored.
+     *
+     * @param array $input name, email, subject, message
+     * @return array
+     */
+    public static function errors( array $input )
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $errors = array();
+        $name = trim( (string)$input['name'] );
+        $message = trim( (string)$input['message'] );
+        if ( $name === '' )
+        {
+            $errors['name'] = ezpI18n::tr( 'design/exp_doc', 'Please give your name.' );
+        }
+        elseif ( mb_strlen( $name ) > (int)$ini->variable( 'CommentSettings', 'NameLength' ) )
+        {
+            $errors['name'] = ezpI18n::tr( 'design/exp_doc', 'The name is too long.' );
+        }
+        if ( trim( (string)$input['email'] ) !== '' && !eZMail::validate( trim( (string)$input['email'] ) ) )
+        {
+            $errors['email'] = ezpI18n::tr( 'design/exp_doc', 'The e-mail address is not valid.' );
+        }
+        if ( mb_strlen( trim( (string)$input['subject'] ) ) > (int)$ini->variable( 'CommentSettings', 'SubjectLength' ) )
+        {
+            $errors['subject'] = ezpI18n::tr( 'design/exp_doc', 'The subject is too long.' );
+        }
+        if ( mb_strlen( $message ) < 3 )
+        {
+            $errors['message'] = ezpI18n::tr( 'design/exp_doc', 'Please write your comment.' );
+        }
+        elseif ( mb_strlen( $message ) > (int)$ini->variable( 'CommentSettings', 'MessageLength' ) )
+        {
+            $errors['message'] = ezpI18n::tr( 'design/exp_doc', 'The comment is too long.' );
+        }
+        return $errors;
+    }
+
+    /**
+     * Whether a node takes comments: a page of [CommentSettings] PageClasses[], or a comment below one.
+     *
+     * @param eZContentObjectTreeNode $node
+     * @return bool
+     */
+    public static function takesComments( eZContentObjectTreeNode $node )
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $class = $node->attribute( 'class_identifier' );
+        if ( in_array( $class, (array)$ini->variable( 'CommentSettings', 'PageClasses' ), true ) )
+        {
+            return true;
+        }
+        return $class === $ini->variable( 'CommentSettings', 'Class' ) && self::page( $node ) !== null;
+    }
+
+    /**
+     * The page a comment belongs to: the nearest ancestor (or the node itself) that is not a comment.
+     *
+     * @param eZContentObjectTreeNode $node
+     * @return eZContentObjectTreeNode|null
+     */
+    public static function page( eZContentObjectTreeNode $node )
+    {
+        $commentClass = eZINI::instance( 'exp_doc.ini' )->variable( 'CommentSettings', 'Class' );
+        while ( $node instanceof eZContentObjectTreeNode && $node->attribute( 'class_identifier' ) === $commentClass )
+        {
+            $node = $node->fetchParent();
+        }
+        return $node instanceof eZContentObjectTreeNode ? $node : null;
+    }
+
+    /**
+     * Counts one submission of the current address and tells whether it is over the limit.
+     *
+     * @return bool true when the address sent more than [CommentSettings] RateLimit in the window
+     */
+    public static function overLimit()
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $ip = eZSys::clientIP();
+        $counter = new expRequestThresholdCounter( eZSys::cacheDirectory() . '/exp_doc/comment-rate', (int)$ini->variable( 'CommentSettings', 'RateWindow' ) );
+        $key = expRequestClassifier::instance()->ipKey( $ip === false ? '' : $ip );
+        return $counter->hit( $key ) > (int)$ini->variable( 'CommentSettings', 'RateLimit' );
+    }
+
+    /**
+     * Stores a comment below $parent as the current user and publishes it with the kernel's operation (the review
+     * hold's auto-hold decides whether it is shown). The caller has checked the form token, the honeypot and the
+     * rate limit.
+     *
+     * @param eZContentObjectTreeNode $parent a page or a comment
+     * @param array $input name, email, subject, message
+     * @return array array( 'status' => HELD|PUBLISHED|REFUSED|FAILED, 'object' => eZContentObject|null )
+     */
+    public static function submit( eZContentObjectTreeNode $parent, array $input )
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $class = eZContentClass::fetchByIdentifier( $ini->variable( 'CommentSettings', 'Class' ) );
+        if ( !$class || !self::takesComments( $parent )
+             || $parent->checkAccess( 'create', $class->attribute( 'id' ), $parent->attribute( 'contentclass_id' ) ) != 1 )
+        {
+            return array( 'status' => self::REFUSED, 'object' => null );
+        }
+        $subject = trim( (string)$input['subject'] );
+        $message = trim( (string)$input['message'] );
+        if ( $subject === '' )
+        {
+            $subject = mb_substr( preg_replace( '/\s+/u', ' ', $message ), 0, 60 );
+        }
+        $attributes = array( 'subject' => $subject, 'author' => trim( (string)$input['name'] ), 'message' => $message );
+        if ( trim( (string)$input['email'] ) !== '' )
+        {
+            $attributes['email'] = trim( (string)$input['email'] );
+        }
+        $object = eZContentFunctions::createAndPublishObject( array( 'class_identifier' => $class->attribute( 'identifier' ),
+                                                                    'parent_node_id' => $parent->attribute( 'node_id' ),
+                                                                    'creator_id' => eZUser::currentUserID(),
+                                                                    'attributes' => $attributes ) );
+        if ( !$object instanceof eZContentObject )
+        {
+            return array( 'status' => self::FAILED, 'object' => null );
+        }
+        $held = class_exists( 'expReviewHold' ) && expReviewHold::isHeld( $object );
+        if ( $held )
+        {
+            self::notify( $object, $parent );
+        }
+        return array( 'status' => $held ? self::HELD : self::PUBLISHED, 'object' => $object );
+    }
+
+    /**
+     * Mails the notice of a comment that waits for moderation: the page, the name, the subject and the message,
+     * and where to release it (Dashboard > Recent content). The e-mail address the reader gave is not in it.
+     *
+     * @param eZContentObject $object
+     * @param eZContentObjectTreeNode $parent
+     * @return bool
+     */
+    public static function notify( eZContentObject $object, eZContentObjectTreeNode $parent )
+    {
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $recipient = trim( (string)$ini->variable( 'CommentSettings', 'Recipient' ) );
+        if ( $recipient === '' )
+        {
+            $recipient = trim( (string)$ini->variable( 'DocSettings', 'FeedbackRecipient' ) );
+        }
+        if ( $recipient === '' )
+        {
+            $recipient = (string)eZINI::instance()->variable( 'MailSettings', 'AdminEmail' );
+        }
+        if ( !eZMail::validate( $recipient ) )
+        {
+            eZDebug::writeWarning( 'No valid recipient for the comment notice', __METHOD__ );
+            return false;
+        }
+        $page = self::page( $parent );
+        $host = 'https://' . eZSys::hostname();
+        $pageUrl = $page ? $page->attribute( 'url_alias' ) : '';
+        eZURI::transformURI( $pageUrl );
+        $map = $object->dataMap();
+        $body = ezpI18n::tr( 'design/exp_doc', 'A comment on the documentation waits for moderation.' ) . "\n\n"
+              . ezpI18n::tr( 'design/exp_doc', 'Page' ) . ': ' . ( $page ? $page->attribute( 'name' ) : '' ) . "\n" . $host . $pageUrl . "\n"
+              . ezpI18n::tr( 'design/exp_doc', 'Name' ) . ': ' . $map['author']->toString() . "\n"
+              . ezpI18n::tr( 'design/exp_doc', 'Subject' ) . ': ' . $map['subject']->toString() . "\n\n"
+              . $map['message']->toString() . "\n\n"
+              . ezpI18n::tr( 'design/exp_doc', 'Release or delete it in the administration: Dashboard > Recent content, filter "Held".' ) . "\n";
+        $mail = new eZMail();
+        $mail->setSender( (string)$ini->variable( 'CommentSettings', 'Sender' ) );
+        $mail->setReceiver( $recipient );
+        $mail->setSubject( ezpI18n::tr( 'design/exp_doc', 'Comment waiting: %subject', null, array( '%subject' => $map['subject']->toString() ) ) );
+        $mail->setBody( $body );
+        return (bool)eZMailTransport::send( $mail );
+    }
+
+    /**
+     * The visible comments below a node (a page or a comment), oldest first, as the reader may see them (held ones
+     * are hidden by the auto-hold, so readers never get them).
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => eZContentObjectTreeNode[] )
+     */
+    public static function thread( $nodeID )
+    {
+        $class = eZINI::instance( 'exp_doc.ini' )->variable( 'CommentSettings', 'Class' );
+        $nodes = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
+                                                                 'ClassFilterType' => 'include', 'ClassFilterArray' => array( $class ),
+                                                                 'SortBy' => array( 'published', true ) ), (int)$nodeID );
+        return array( 'result' => is_array( $nodes ) ? $nodes : array() );
+    }
+}

@@ -41,6 +41,9 @@ EXCEPTION_IDS = {'exp-doc-switches', 'exp-cc', 'expwt', 'exp-wt', 'ezwt', 'exp-c
 # the decided additions left out of the comparison: the version badge, and the page's Contributors list (a
 # list the static site did not have, owner 2026-11-04)
 EXCEPTION_CLASSES = {'exp-doc-runs-on', 'exp-doc-contributors'}
+# wrappers that are an exception while what they hold is static markup: compared as if they were not there
+UNWRAP_TAGS = {'details'}
+UNWRAP_CLASSES = {'exp-doc-comments-toggle'}
 # Decided modern exceptions in text (doc.md, the rebranding rule): the copyright runs to the current year, so any
 # end year of "1998 - <year>" counts as equal
 YEAR_RANGE = re.compile(r'(\b1998\s*-\s*)\d{4}\b')
@@ -130,6 +133,16 @@ class Normalizer:
 
     def _walk(self, el, side, page_path, out, depth):
         if self._skip(el):
+            return
+        if el.tag in UNWRAP_TAGS and set((el.get('class') or '').split()) & UNWRAP_CLASSES:
+            # a listed exception that only wraps static markup (the collapsed historical comments): its children
+            # count as if the wrapper were not there, its summary not at all
+            for child in el:
+                if child.tag != 'summary':
+                    self._walk(child, side, page_path, out, depth)
+                    tail = YEAR_RANGE.sub(r"\g<1>YEAR", re.sub(r"\s+", " ", child.tail or "").strip())
+                    if tail:
+                        out.append(('text', depth, tail))
             return
         attrs = []
         for name, value in el.attrib.items():

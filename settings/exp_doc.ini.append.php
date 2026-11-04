@@ -55,8 +55,9 @@ ListRootClasses[]=exp_doc_section
 ListRootClasses[]=exp_doc_faq
 # How deep the open chapter of a table of contents unfolds
 TocDepth=2
-# The class of the comments listed under a page (parts/doc_comments.tpl)
-CommentClass=exp_doc_comment
+# The class of the historical comments of the old site under a page (parts/doc_comments.tpl in Classic,
+# parts/doc_historical_comments.tpl in Modern; replies are their children, in the order of their priority)
+CommentClass=comment_historical
 # Classes never listed in the menus
 MenuHideClasses[]
 MenuHideClasses[]=exp_doc_image
@@ -196,12 +197,38 @@ FeedLimit=30
 ExcerptLength=220
 # The contributors of the filter: the Contributors folder's exp_doc_contributor objects, by name, at most this many
 ContributorFolderRemoteID=exp-doc-contributors
+ContributorLimit=500
 
 # The Platform container (the Confluence spaces, made by the import from display/): Modern draws a landing page for it
 [PlatformSettings]
 RemoteID=staticimport-doc-html-e4fd3481c5e8112931e161ebbc5af0ff
 # How many recently changed pages of the platform the landing lists
 RecentLimit=8
-ContributorLimit=500
+
+# Readers' comments on the pages (Modern: parts/doc_page_comments.tpl; the view doc/comment, classes/expdoccomment.php).
+# A new comment is held and hidden by the kernel's review hold (settings/siteaccess/site/content.ini.append.php) until
+# a moderator releases it in Dashboard > Recent content.
+[CommentSettings]
+# The class of the comments, and the page classes that take them
+Class=comment
+PageClasses[]
+PageClasses[]=exp_doc_page
+PageClasses[]=exp_doc_section
+PageClasses[]=exp_doc_tutorial
+PageClasses[]=exp_doc_faq
+PageClasses[]=exp_doc_extension
+# At most RateLimit comments from one address per RateWindow seconds
+RateLimit=5
+RateWindow=600
+# The longest name, subject and message (characters)
+NameLength=100
+SubjectLength=150
+MessageLength=5000
+# The notice of a comment that waits: to Recipient (empty: [DocSettings] FeedbackRecipient, then site.ini
+# [MailSettings] AdminEmail), from Sender
+Recipient=
+Sender=support@se7enx.com
+# How deep replies are drawn (deeper ones are listed at the last level)
+MaxDepth=6
 
 */ ?>

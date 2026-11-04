@@ -31,6 +31,8 @@
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
     {include uri='design:parts/doc_children.tpl' node=$node}
     {include uri='design:parts/doc_contributors.tpl' node=$node}
+    {include uri='design:parts/doc_historical_comments.tpl' node=$node}
+    {include uri='design:parts/doc_page_comments.tpl' node=$node}
     {include uri='design:parts/doc_feedback.tpl' node=$node}
     {include uri='design:parts/doc_edit_link.tpl' node=$node}
 </article>

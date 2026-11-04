@@ -6,6 +6,9 @@
  *                parameters: (manual)/<node id> (version)/<node id> (class)/<identifier> (contributor)/<object id>
  *                (range)/24h|7d|30d|all (offset)/<n> (limit)/<n> (feed)/atom. Reached at its URL alias
  *                (exp_doc.ini [RecentSettings] Path, "recent"); the policy doc/read (the Doc reader role).
+ *   doc/comment  POST only: a reader's comment on a page or a reply to a comment (classes/expdoccomment.php); held
+ *                for moderation by the review hold, then back to the page with (comment)/held. The policy doc/read, and
+ *                content/create of the comment class where it is stored.
  *
  * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
  * @license GNU General Public License v2.0 (or any later version)
@@ -25,6 +28,13 @@ $ViewList['recent'] = array( 'script' => 'recent.php',
                              'post_action_parameters' => array( 'Filter' => array( 'Manual' => 'Manual', 'Version' => 'Version',
                                                                                    'Class' => 'Class', 'Contributor' => 'Contributor',
                                                                                    'Range' => 'Range', 'Limit' => 'Limit' ) ) );
+$ViewList['comment'] = array( 'script' => 'comment.php',
+                              'functions' => array( 'read' ),
+                              'params' => array(),
+                              'single_post_actions' => array( 'CommentButton' => 'Comment' ),
+                              'post_action_parameters' => array( 'Comment' => array( 'ParentNodeID' => 'ParentNodeID', 'Name' => 'CommentName',
+                                                                                       'Email' => 'CommentEmail', 'Subject' => 'CommentSubject',
+                                                                                       'Message' => 'CommentMessage', 'Website' => 'CommentWebsite' ) ) );
 
 $FunctionList = array();
 $FunctionList['read'] = array();

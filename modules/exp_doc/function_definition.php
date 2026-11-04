@@ -79,3 +79,17 @@ $FunctionList['contributor_list'] = array( 'name' => 'contributor_list',
                                                                    'method' => 'contributorList' ),
                                            'parameter_type' => 'standard',
                                            'parameters' => array() );
+
+/*
+ *   fetch( 'exp_doc', 'comment_thread', hash( 'node_id', <page or comment node id> ) )
+ *       the readers' comments directly below a page or a comment, oldest first, as the reader may see them (a comment
+ *       held for moderation is hidden, so readers never get it)
+ */
+$FunctionList['comment_thread'] = array( 'name' => 'comment_thread',
+                                         'operation_types' => array( 'read' ),
+                                         'call_method' => array( 'class' => 'expDocComment',
+                                                                 'method' => 'thread' ),
+                                         'parameter_type' => 'standard',
+                                         'parameters' => array( array( 'name' => 'node_id',
+                                                                       'type' => 'integer',
+                                                                       'required' => true ) ) );

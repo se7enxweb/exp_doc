@@ -1,0 +1,22 @@
+---
+# description: Readers' comments on the documentation pages: the kernel's comment class becomes a container (replies to replies) with an e-mail address for the moderators only, anonymous readers may create comments below the page classes and below comments in the Doc section, and the Editors may release what the review hold's auto-hold held (the role Review hold)
+- type: content_class
+  mode: update
+  class: comment
+  container: true
+  add_attributes:
+    - { identifier: email, type: ezemail, name: "E-mail (seen by the moderators only)", searchable: false, translatable: false }
+- type: role
+  mode: update
+  role: "Doc reader"
+  add_policies:
+    - module: content
+      function: create
+      limitations:
+        Class: [ comment ]
+        ParentClass: [ exp_doc_page, exp_doc_section, exp_doc_tutorial, exp_doc_faq, exp_doc_extension, comment ]
+        Section: [ exp_doc ]
+- type: role
+  mode: assign
+  role: "Review hold"
+  groups: [ "remote:3c160cca19fb135f83bd02d911f04db2" ]

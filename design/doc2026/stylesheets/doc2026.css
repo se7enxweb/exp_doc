@@ -964,3 +964,77 @@ body.exp-doc {
 .exp-doc-contributor-line-roles {
     margin: 0;
 }
+
+/* ---- comments: the historical ones (collapsed, parts/doc_historical_comments.tpl) and the readers' new ones
+   (parts/doc_page_comments.tpl, the form parts/doc_comment_form.tpl); replies indented below what they answer ---- */
+.exp-doc-historical-comments,
+.exp-doc-page-comments {
+    margin: var(--a4-space-6) 0 0;
+}
+.exp-doc-historical-toggle > summary {
+    cursor: pointer;
+}
+.exp-doc-historical-toggle > summary > h2 {
+    display: inline;
+    margin: 0;
+}
+.exp-doc-comment-thread {
+    display: grid;
+    gap: var(--a4-space-3);
+    margin: var(--a4-space-3) 0 0;
+}
+.exp-doc-comment-thread.is-reply {
+    padding-inline-start: var(--a4-space-5);
+    border-inline-start: 2px solid var(--a4-line);
+}
+.exp-doc-comment-card {
+    display: grid;
+    gap: var(--a4-space-2);
+}
+.exp-doc-comment-head,
+.exp-doc-comment-head p,
+.exp-doc-comment-subject {
+    margin: 0;
+}
+.exp-doc-comment-subject {
+    font-size: var(--a4-text-l);
+}
+.exp-doc-comment-text {
+    overflow-wrap: anywhere;
+}
+.exp-doc-comment-reply > summary,
+.exp-doc-comment-add > summary {
+    cursor: pointer;
+}
+.exp-doc-comment-reply > summary {
+    color: var(--a4-accent-text);
+}
+.exp-doc-comment-add {
+    margin: var(--a4-space-4) 0 0;
+}
+.exp-doc-comment-status {
+    margin: var(--a4-space-3) 0;
+}
+.exp-doc-comment-form {
+    display: grid;
+    gap: var(--a4-space-3);
+    margin: var(--a4-space-3) 0 0;
+}
+.exp-doc-comment-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+    gap: var(--a4-space-3);
+}
+.exp-doc-comment-form textarea {
+    width: 100%;
+}
+/* the honeypot: out of sight and out of the accessibility tree (aria-hidden), never display:none, which some robots
+   look for */
+.exp-doc-comment-trap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
