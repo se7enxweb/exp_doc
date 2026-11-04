@@ -14,9 +14,10 @@
 <!-- Path content: START -->
 <p> <a href={'/'|ezurl}>{ezini( 'ClassicSettings', 'PathHomeName', 'exp_doc.ini' )|wash}</a>{foreach $path as $item}
                         /
-    {if and( not( $item.url ), is_set( $item.node_id ), eq( $item.node_id, $doc_root_id ), $doc_root_page )}
-        {* the front page: the static index.html sat below documentation, as "exponential" *}
-                        <a href={$doc_root_page.url_alias|ezurl}>{$item.text|downcase|wash}</a>
+    {if and( not( $item.url ), is_set( $item.node_id ), eq( $item.node_id, $doc_root_id ) )}
+        {* the front page: the static index.html sat below documentation, as "exponential" (the root itself is
+           linked while documentation.html is not imported) *}
+                        <a href={cond( $doc_root_page, $doc_root_page.url_alias, "/" )|ezurl}>{$item.text|downcase|wash}</a>
         
                         /
                             {ezini( 'ClassicSettings', 'FrontHeading', 'exp_doc.ini' )|downcase|wash}
