@@ -117,8 +117,30 @@ GroupFolders[]=display
 GroupFolders[]=display/*
 GroupTitleSelector=#breadcrumbs li.first a
 GroupTitles[]
-GroupTitles[display]=Confluence spaces
+GroupTitles[display]=Platform
+# The section of all Confluence spaces is the Platform landing: its text is the Confluence documentation center's start
+# page (display/MAIN/ExponentialPlatformDocumentationCenter.html); its children are the spaces
+GroupBodyFrom[]
+GroupBodyFrom[display]=display/MAIN/ExponentialPlatformDocumentationCenter.html
 GroupClass=exp_doc_section
+
+# The top of the site keeps fewer than 10 children (the target tree: doc.md "Target tree"). Only these pages stay at the
+# top: Exponential (every manual, extension, tutorial, FAQ and the rest below it), Platform (the Confluence spaces),
+# Historical, the hidden mirror and the license. A page that has no other parent goes below Exponential, a Confluence
+# page below Platform. The Contributors and Media folders and the site's own pages are not the import's.
+TopParentRules[]
+TopParentRules[]=Exponential.html;
+TopParentRules[]=display/;
+TopParentRules[]=historical/;
+TopParentRules[]=doc_hidden.html;
+TopParentRules[]=License.html;
+TopParentRules[]=doc_inside_admin.html;doc_hidden.html
+TopParentRules[]=doc_inside_admin/**;doc_hidden.html
+TopParentRules[]=display/**;display/
+TopParentRules[]=pages/**;display/
+TopParentRules[]=**;Exponential.html
+# The hidden leftovers of earlier runs (pages that became redirects or no pages) go below Historical
+RetiredParent=historical/
 
 # Copies of pages: view-parameter variants, the Confluence page-id copies and the hidden mirror. Each becomes a
 # redirect to the page with the same content; one with content of its own is imported (hidden when below doc_hidden)
