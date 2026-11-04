@@ -88,6 +88,7 @@ class Normalizer:
         site_path = urllib.parse.urlparse(self.site).path.rstrip('/')
         if site_path and path.startswith(site_path):
             path = path[len(site_path):]
+        path = re.sub(r'/\(design\)/[a-z0-9_]+$', '', path)
         path = urllib.parse.unquote(path.rstrip('/') or '/')
         if path in self.url_to_static:
             return 'page:' + self.url_to_static[path]
@@ -108,6 +109,9 @@ class Normalizer:
         if not isinstance(el.tag, str) or el.tag in DROP_TAGS:
             return True
         # the brand: the official logo (an inline svg.exp-logo) replaced the static logo image in the header
+        if el.tag == 'a' and el.getparent() is not None and 'grid_3' in (el.getparent().get('class') or '') \
+                and any(a.get('id') == 'logo' for a in el.iterancestors()):
+            return True  # the logo's link: the brand exception, with the logo it carries
         if 'exp-logo' in (el.get('class') or '').split() or (el.tag == 'img' and (el.get('src') or '').endswith('exponential.png')
                                                               and any(a.get('id') == 'logo' for a in el.iterancestors())):
             return True
@@ -188,6 +192,7 @@ def main():
     ap.add_argument('--screenshots', action='store_true')
     ap.add_argument('--width', type=int, default=1440)
     ap.add_argument('--threshold', type=float, default=0.005)
+    ap.add_argument('--design', default='', help='a design for the kernel design switch, e.g. doc2025 (adds /(design)/<name>)')
     args = ap.parse_args()
 
     pairs = []
@@ -198,6 +203,8 @@ def main():
             if len(parts) != 2:
                 continue
             static_path, url = parts
+            if '#' in static_path:
+                continue  # a comment or another part of a page: drawn by its page, not a page of its own
             pairs.append((static_path, url))
             path = urllib.parse.urlparse(url).path
             site_path = urllib.parse.urlparse(args.site).path.rstrip('/')
@@ -226,6 +233,8 @@ def main():
     for static_path, url in pairs:
         family = '/'.join(catalog.get(static_path, ['?', '?'])[:2])
         static_url = args.static_base.rstrip('/') + '/' + static_path
+        if args.design:
+            url = url.rstrip('/') + '/(design)/' + args.design
         row = {'static': static_path, 'url': url, 'family': family}
         try:
             a = norm.tree(fetch(static_url), 'static', static_path)

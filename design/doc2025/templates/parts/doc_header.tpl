@@ -6,7 +6,7 @@
 	    <div id="logo" class="container_12">
 
     <div class="grid_3">
-        <a href={'/'|ezurl} title="Exponential Platform, CXM &amp; CMS" class="exp-logo-link">
+        <a href={'/'|ezurl} title="Exponential Platform, CXM &amp; CMS">
             {include uri='design:exp_doc/logo.tpl'}
         </a>
     </div>

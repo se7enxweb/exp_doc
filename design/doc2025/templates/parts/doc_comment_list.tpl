@@ -11,12 +11,12 @@
 </div>
 
 <div class="attribute-byline float-break">
- <p class="date">{cond( is_set( $comment.data_map.date ), $comment.data_map.date.content.timestamp, $comment.object.published )|datetime( 'custom', '%l %d %F %Y %g:%i:%s %a' )}</p>
+ <p class="date">{cond( and( is_set( $comment.data_map.created ), $comment.data_map.created.has_content ), $comment.data_map.created.content.timestamp, $comment.object.published )|datetime( 'custom', '%l %d %F %Y %g:%i:%s %a' )}</p>
  <p class="author">{$comment.data_map.author.content|wash}</p>
 </div>
 
 <div class="attribute-short">
-{$comment.data_map.text.content|wash|nl2br}
+{$comment.data_map.text.content.output.output_text}
 </div>
 
 <input class="button" type="submit" name="NewButton" value="{'Reply'|i18n( 'design/doc2025' )}" />
