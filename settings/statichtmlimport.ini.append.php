@@ -169,6 +169,19 @@ ContributorSection=exp_doc
 # The front page of the export (index.html) is the content of the Documentation site's root node itself, not a page
 # of its own; its old path redirects to the root. Exponential.html stays the "Exponential" section.
 RootPage=index.html
+
+# The site-wide default meta description is no description of a page: its first paragraph is
+IgnoreDescriptions[]
+IgnoreDescriptions[]=Exponential Documentation
+
+# The status of each manual version (exp_doc_version/status, the badge on the start page): the 6 line is current;
+# 3.x, 4.x and the 5 era are end of life (none is verified as maintained)
+VersionStatus[]
+VersionStatus[6*]=current
+VersionStatus[5*]=EOL
+VersionStatus[4*]=EOL
+VersionStatus[3*]=EOL
+AttributeMap[exp_doc_version/status]=version_status
 AttributeMap[folder/description]=body
 
 # Which class a page becomes; the first match wins
