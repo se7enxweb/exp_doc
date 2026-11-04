@@ -249,7 +249,9 @@ MessageLength=5000
 # [MailSettings] AdminEmail), from Sender
 Recipient=
 Sender=support@se7enx.com
-# How deep replies are drawn (deeper ones are listed at the last level)
+# How deep the readers' replies are drawn (the historical comments are drawn to any depth)
 MaxDepth=6
+# From this level on, a phone keeps the indent of the level above and a historical reply says whom it answers
+IndentDepth=4
 
 */ ?>

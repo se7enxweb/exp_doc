@@ -393,6 +393,22 @@ class expDocComment
     }
 
     /**
+     * The historical comments directly below a page or a comment (fetch exp_doc/comment_children), in their stored
+     * order (the priority the import gives them: the order of the source), for a thread drawn level by level.
+     *
+     * @param int $nodeID
+     * @param string $class the comment class (fetch exp_doc/historical_comments tells it)
+     * @return array array( 'result' => eZContentObjectTreeNode[] )
+     */
+    public static function children( $nodeID, $class )
+    {
+        $nodes = eZContentObjectTreeNode::subTreeByNodeID( array( 'Depth' => 1, 'DepthOperator' => 'eq',
+                                                                 'ClassFilterType' => 'include', 'ClassFilterArray' => array( (string)$class ),
+                                                                 'SortBy' => array( array( 'priority', true ), array( 'published', true ) ) ), (int)$nodeID );
+        return array( 'result' => is_array( $nodes ) ? $nodes : array() );
+    }
+
+    /**
      * The visible comments below a node (a page or a comment), oldest first, as the reader may see them (held ones
      * are hidden by the auto-hold, so readers never get them).
      *

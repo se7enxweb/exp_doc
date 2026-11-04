@@ -1,5 +1,6 @@
 {* One level of a Classic comment thread (parts/doc_comments.tpl): each comment in its row, its replies nested
-   inside the row, as on the static site. The author, date and text are what fetch exp_doc/historical_comment finds
+   inside the row as the static site nested them (fetch exp_doc/comment_children, each comment's replies in their
+   stored order, to any depth). The author, date and text are what fetch exp_doc/historical_comment finds
    stored first (author: relation, author_name, the old author, the comment's own markup; text: body, the old text,
    else the comment's own markup original_html). *}
 <ul>{foreach $comments as $doc_index => $comment}{def $doc_e = fetch( 'exp_doc', 'historical_comment', hash( 'node_id', $comment.node_id ) )}    <li class="{cond( $doc_index|mod( 2 )|eq( 0 ), 'comment-bglight', 'comment-bgdark' )}"><div class="padding">
@@ -29,10 +30,7 @@
 
 </form>
 
-{def $doc_replies = fetch( 'content', 'list', hash( 'parent_node_id', $comment.node_id,
-                                                     'class_filter_type', 'include',
-                                                     'class_filter_array', array( $class ),
-                                                     'sort_by', array( 'priority', true() ) ) )}
+{def $doc_replies = fetch( 'exp_doc', 'comment_children', hash( 'node_id', $comment.node_id, 'class', $class ) )}
 {if $doc_replies|count}
 {include uri='design:parts/doc_comment_list.tpl' comments=$doc_replies class=$class page=$page}
 {/if}

@@ -1116,3 +1116,20 @@ html[data-a4-theme="dark"] {
         background: color-mix(in srgb, var(--a4-ink) 35%, transparent);
     }
 }
+
+/* historical comment threads (parts/doc_historical_comment_thread.tpl): every level indented with its thread line;
+   on a phone the levels from [CommentSettings] IndentDepth on keep the indent of the level above, and the reply
+   names the author it answers instead */
+.exp-doc-comment-replyto {
+    margin: 0 0 var(--a4-space-1);
+    font-style: italic;
+}
+@media (max-width: 599px) {
+    .exp-doc-comment-thread.is-reply {
+        padding-inline-start: var(--a4-space-3);
+    }
+    .exp-doc-comment-thread.is-deep {
+        padding-inline-start: 0;
+        border-inline-start: 0;
+    }
+}

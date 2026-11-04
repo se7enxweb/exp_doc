@@ -168,3 +168,20 @@ $FunctionList['recent_pages'] = array( 'name' => 'recent_pages',
                                                                      'type' => 'integer',
                                                                      'required' => false,
                                                                      'default' => 8 ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'comment_children', hash( 'node_id', <page or comment node id>, 'class', <comment class> ) )
+ *       the comments of that class directly below the node, in their stored order (priority, then publication): one
+ *       level of a thread; the templates ask again for each comment's own replies
+ */
+$FunctionList['comment_children'] = array( 'name' => 'comment_children',
+                                           'operation_types' => array( 'read' ),
+                                           'call_method' => array( 'class' => 'expDocComment',
+                                                                   'method' => 'children' ),
+                                           'parameter_type' => 'standard',
+                                           'parameters' => array( array( 'name' => 'node_id',
+                                                                         'type' => 'integer',
+                                                                         'required' => true ),
+                                                                  array( 'name' => 'class',
+                                                                         'type' => 'string',
+                                                                         'required' => true ) ) );
