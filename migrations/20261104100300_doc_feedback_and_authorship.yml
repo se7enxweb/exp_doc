@@ -1,0 +1,74 @@
+---
+# description: "Last updated by" and "Written by" of the source on the page classes, and the two answers of "Was this page helpful?" (information collectors)
+- type: content_class
+  mode: update
+  class: exp_doc_page
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_section
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_manual
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_version
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_tutorial_step
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_faq
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_faq_question
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }
+- type: content_class
+  mode: update
+  class: exp_doc_extension
+  add_attributes:
+    - { identifier: modifier, type: ezstring, name: "Last updated by" }
+    - { identifier: source_created, type: ezdatetime, name: Written in the source, translatable: false }
+    - { identifier: feedback_helpful, type: ezselection, name: "Was this page helpful?", information_collector: true, required: false, settings: { data_int1: 0, data_text5: '<?xml version="1.0" encoding="utf-8"?><ezselection><options><option id="0" name="Yes"/><option id="1" name="No"/></options></ezselection>' } }
+    - { identifier: feedback_comment, type: eztext, name: "Your comment", information_collector: true, required: false }

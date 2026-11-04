@@ -53,6 +53,12 @@ ExcludePaths[]=download/**
 ExcludePaths[]=content/**
 ExcludePaths[]=visual/**
 
+# The export's error pages are no pages; its redirect stubs (a meta refresh) become redirects
+NotFoundTitlePatterns[]
+NotFoundTitlePatterns[]=/^404\b/
+NotFoundTitlePatterns[]=/^Not Found$/i
+ExcludePaths[]=favicon.html
+
 # Copies of pages: view-parameter variants, the Confluence page-id copies and the hidden mirror. Each becomes a
 # redirect to the page with the same content; one with content of its own is imported (hidden when below doc_hidden)
 DuplicatePatterns[]
@@ -82,6 +88,7 @@ PageIdPatterns[]=/pageId=(\d+)/
 
 RemoveSelectors[]
 RemoveSelectors[]=.attribute-byline
+RemoveSelectors[]=.pageinfo
 RemoveSelectors[]=.page-metadata
 RemoveSelectors[]=.copytoclipboard
 RemoveSelectors[]=#likes-and-labels-container
@@ -163,6 +170,8 @@ AttributeMap[*/original_html]=original_html
 AttributeMap[*/source_path]=source_path
 AttributeMap[*/source_page_id]=page_id
 AttributeMap[*/author]=author
+AttributeMap[*/modifier]=modifier
+AttributeMap[*/source_created]=created
 AttributeMap[*/source_modified]=modified
 AttributeMap[*/labels]=labels_tags
 AttributeMap[*/metadata]=metadata_xml
