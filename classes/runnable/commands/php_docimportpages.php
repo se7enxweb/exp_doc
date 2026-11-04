@@ -23,7 +23,7 @@ class DocImportPages extends \Exponential\Command\Extension\ExpStaticHtmlImports
                 $hasType = true;
         if ( !$hasType )
         {
-            $_SERVER['argv'][] = '--doc-html';
+            $_SERVER['argv'][] = '--type=doc-html';
             $GLOBALS['argv'] = $_SERVER['argv'];
         }
         return parent::run();
