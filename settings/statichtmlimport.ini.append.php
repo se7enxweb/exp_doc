@@ -166,6 +166,11 @@ ContributorNameAttribute=name
 ContributorParentRemoteID=exp-doc-contributors
 ContributorSection=exp_doc
 
+# The front page of the export (index.html) is the content of the Documentation site's root node itself, not a page
+# of its own; its old path redirects to the root. Exponential.html stays the "Exponential" section.
+RootPage=index.html
+AttributeMap[folder/description]=body
+
 # Which class a page becomes; the first match wins
 ClassRules[]
 ClassRules[]=Exponential/Technical-manual.html;exp_doc_manual
