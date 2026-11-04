@@ -33,7 +33,7 @@
 <div id="footer-connect-bg">
     <div id="footer" class="container_12">
         <div id="footer-connect-copyright" class="grid_8 alpha omega">
-            {'Copyright © 1998 - %year %maker (except where otherwise noted). All rights reserved.'|i18n( 'design/doc2025', '', hash( '%year', currentdate()|datetime( 'custom', '%Y' ), '%maker', '<a href="https://se7enx.com">7x</a>' ) )}
+            {'Copyright © 1998 - %year %maker (except where otherwise noted). All rights reserved.'|i18n( 'design/doc2025', '', hash( '%year', currentdate()|datetime( 'custom', '%Y' ), '%maker', 'Exponential Foundation and %company'|i18n( 'design/exp_doc', '', hash( '%company', '<a href="https://se7enx.com">7x</a>' ) ) ) )}
             <br/>
             {'License for this Website Content:'|i18n( 'design/doc2025' )} <a href={cond( $doc_license, $doc_license.url_alias, '/' )|ezurl}>{'GNU Free Documentation License v1.2+'|i18n( 'design/doc2025' )}</a>
             <br/><br/>

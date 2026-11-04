@@ -17,7 +17,8 @@ For each page:
     static file its page came from (through the map); images by file name;
   * text is compared with its whitespace collapsed; attributes in any order;
   * the decided modern exceptions of the rebranding rule: the copyright's end year (any "1998 - <year>"), and the
-    head's meta author and copyright (7x), which lie outside the compared page area;
+    head's meta author and copyright (7x, Exponential Foundation and 7x), which lie outside the compared page area;
+    the holder "Exponential Foundation and" before 7x in the footer's copyright (owner 2026-11-04);
   * the brand: the official Exponential logo (svg.exp-logo) in place of the static logo image in the header;
 - screenshot (--screenshots): both pages at the given width, the exceptions hidden, compared pixel by pixel;
   a page passes when at most --threshold of its pixels differ (0.005 = 0.5 %, doc.md wave 5 answer 23).
@@ -47,6 +48,16 @@ UNWRAP_CLASSES = {'exp-doc-comments-toggle'}
 # Decided modern exceptions in text (doc.md, the rebranding rule): the copyright runs to the current year, so any
 # end year of "1998 - <year>" counts as equal
 YEAR_RANGE = re.compile(r'(\b1998\s*-\s*)\d{4}\b')
+# ... and the holder named before 7x (owner 2026-11-04: "Exponential Foundation and 7x"), so the dynamic
+# "1998 - <year> Exponential Foundation and <a>7x</a>" equals the static "1998 - <year> <a>7x</a>"
+HOLDER = re.compile(r'(\b1998 - YEAR) Exponential Foundation and$')
+
+
+def norm_text(text):
+    """A text or tail as compared: whitespace collapsed, the copyright's end year and holder normalized."""
+    return HOLDER.sub(r'\1', YEAR_RANGE.sub(r'\g<1>YEAR', re.sub(r'\s+', ' ', text).strip()))
+
+
 DROP_TAGS = {'script', 'noscript', 'style', 'exp-wt'}
 # hidden form fields carry internal ids (node and class ids of the old site and of this one)
 HIDDEN_INPUT = 'hidden'
@@ -140,7 +151,7 @@ class Normalizer:
             for child in el:
                 if child.tag != 'summary':
                     self._walk(child, side, page_path, out, depth)
-                    tail = YEAR_RANGE.sub(r"\g<1>YEAR", re.sub(r"\s+", " ", child.tail or "").strip())
+                    tail = norm_text(child.tail or "")
                     if tail:
                         out.append(('text', depth, tail))
             return
@@ -158,12 +169,12 @@ class Normalizer:
                 value = posixpath.basename(urllib.parse.urlparse(value).path)
             attrs.append('%s=%s' % (name, value))
         out.append(('open', depth, el.tag, tuple(sorted(attrs))))
-        text = YEAR_RANGE.sub(r"\g<1>YEAR", re.sub(r"\s+", " ", el.text or "").strip())
+        text = norm_text(el.text or "")
         if text:
             out.append(('text', depth, text))
         for child in el:
             self._walk(child, side, page_path, out, depth + 1)
-            tail = YEAR_RANGE.sub(r"\g<1>YEAR", re.sub(r"\s+", " ", child.tail or "").strip())
+            tail = norm_text(child.tail or "")
             if tail:
                 out.append(("text", depth, tail))
         out.append(('close', depth, el.tag))
