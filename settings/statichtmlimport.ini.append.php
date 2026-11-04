@@ -227,6 +227,38 @@ GitAuthorMap[]
 GitAuthorMap[info@se7enx.com]=Graham Brookins
 GitAuthorMap[info@brookinsconsulting.com]=Graham Brookins
 
+# The real dates of every object (published = first published, modified = last changed), never the day of the import
+# (exp:static-import:dates brings the objects of earlier runs in step). <field>;<source>[;<arguments>[;<label>[;<paths>]]],
+# the first rule of a field that gives a date wins:
+#  - the 6.x pages carry the byline of the 4.x page they were copied from, so their own dates are their git history
+#    (added with the 6.0 documentation in 2024, changed until 2025);
+#  - every other page: its own byline (the documentation's "Written by / Last updated by", Confluence's "Created by
+#    ... on / last modified by ... on"), a comment its own date;
+#  - then the source repository's history: the commit that added the file (under its name before the rename of
+#    eZ-Publish/ to Exponential/), the last commit that changed it, leaving out the site-wide rewrites (commits of
+#    more than 1000 files: branding, headers, footers);
+#  - then the file's meta date tags (Confluence's confluence-request-time is the day of the export), the file time,
+#    and for a section without a file of its own its children's dates. The day of the run only when nothing gives one.
+DateRules[]
+DateRules[]=created;git;first;git;Exponential/*/6.x/**,Exponential/*/6*.html
+DateRules[]=created;attribute;written_at;byline
+DateRules[]=created;attribute;created;comment
+DateRules[]=created;git;first
+DateRules[]=created;meta;dcterms.created,dcterms.issued,article:published_time,datePublished
+DateRules[]=created;mtime
+DateRules[]=created;children
+DateRules[]=modified;git;last;git;Exponential/*/6.x/**,Exponential/*/6*.html
+DateRules[]=modified;attribute;last_updated_at;byline
+DateRules[]=modified;attribute;created;comment
+DateRules[]=modified;attribute;written_at;byline
+DateRules[]=modified;git;last,nobulk
+DateRules[]=modified;meta;dcterms.modified,article:modified_time,dateModified,last-modified,confluence-request-time
+DateRules[]=modified;mtime
+DateRules[]=modified;children
+DateGitBulkCommitFiles=1000
+DateGitPathAliases[]
+DateGitPathAliases[]=#(^|[/-])Expon?ential(?=[-/.]|$)#;$1eZ-Publish
+
 # Copies of pages: view-parameter variants, the Confluence page-id copies and the hidden mirror. Each becomes a
 # redirect to the page with the same content; one with content of its own is imported (hidden when below doc_hidden)
 # A copy under a view parameter (".../(language)/eng-GB.html") is always a redirect to the page it copies, whatever
