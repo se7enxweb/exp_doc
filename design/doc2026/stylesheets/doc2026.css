@@ -646,3 +646,54 @@ body.exp-doc {
     color: var(--a4-surface);
     border-color: var(--a4-ink);
 }
+
+/* ---- class parts: the tutorial summary, the extension facts, the FAQ answers ------------------------------------- */
+.exp-doc-tutorial-box,
+.exp-doc-extension-box {
+    margin: 0 0 var(--a4-space-4);
+}
+.exp-doc-facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+    gap: var(--a4-space-2) var(--a4-space-4);
+    margin: 0;
+}
+.exp-doc-facts dt {
+    color: var(--a4-muted);
+    font-size: var(--a4-text-xs);
+    text-transform: uppercase;
+    letter-spacing: var(--a4-tracking);
+}
+.exp-doc-facts dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.exp-doc-faq-item {
+    border-bottom: 1px solid var(--a4-line);
+    padding: var(--a4-space-2) 0;
+}
+.exp-doc-faq-item > summary {
+    cursor: pointer;
+    font-weight: var(--a4-weight-strong);
+}
+.exp-doc-faq-answer {
+    padding: var(--a4-space-2) 0 0;
+}
+.exp-doc-expand {
+    margin: var(--a4-space-3) 0;
+    padding: var(--a4-space-2) var(--a4-space-3);
+    border: 1px solid var(--a4-line);
+    border-radius: var(--a4-radius-s);
+}
+.exp-doc-expand > summary {
+    cursor: pointer;
+    font-weight: var(--a4-weight-strong);
+}
+.exp-doc-figure {
+    margin: var(--a4-space-4) 0;
+}
+.exp-doc-figure figcaption {
+    margin-top: var(--a4-space-1);
+    color: var(--a4-muted);
+    font-size: var(--a4-text-s);
+}

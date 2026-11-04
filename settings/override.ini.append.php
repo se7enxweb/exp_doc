@@ -29,19 +29,19 @@ Match[class_identifier]=exp_doc_version
 
 [full_exp_doc_faq]
 Source=node/view/full.tpl
-MatchFile=full/exp_doc_page.tpl
+MatchFile=full/exp_doc_faq.tpl
 Subdir=templates
 Match[class_identifier]=exp_doc_faq
 
 [full_exp_doc_tutorial]
 Source=node/view/full.tpl
-MatchFile=full/exp_doc_page.tpl
+MatchFile=full/exp_doc_tutorial.tpl
 Subdir=templates
 Match[class_identifier]=exp_doc_tutorial
 
 [full_exp_doc_extension]
 Source=node/view/full.tpl
-MatchFile=full/exp_doc_page.tpl
+MatchFile=full/exp_doc_extension.tpl
 Subdir=templates
 Match[class_identifier]=exp_doc_extension
 
