@@ -281,6 +281,8 @@ class expDocComment
         {
             $entry['name'] = trim( $map['author']->toString() );
         }
+        // the import kept some names with their character references (Kara&#347;): shown as the characters
+        $entry['name'] = html_entity_decode( $entry['name'], ENT_QUOTES | ENT_HTML5, 'UTF-8' );
         if ( $entry['name'] === '' && $html !== ''
              && preg_match( '#<(?:h4|p)[^>]*class="[^"]*\bauthor\b[^"]*"[^>]*>(.*?)</(?:h4|p)>#si', $html, $match ) )
         {
@@ -366,7 +368,11 @@ class expDocComment
             }
             $text = trim( preg_replace( '/\s+/u', ' ', html_entity_decode( strip_tags( str_replace( '<', ' <', (string)$text ) ), ENT_QUOTES, 'UTF-8' ) ) );
             $length = (int)eZINI::instance( 'exp_doc.ini' )->variable( 'RecentSettings', 'ExcerptLength' );
-            $items[] = array( 'node' => $node, 'page' => self::page( $node ), 'subject' => $node->attribute( 'name' ),
+            // the subject as written (subject, or title for a historical one), not the node's name, which can carry the
+            // import's " (2)" for a second comment of the same subject
+            $subject = isset( $map['subject'] ) && $map['subject']->hasContent() ? $map['subject']->toString()
+                     : ( isset( $map['title'] ) && $map['title']->hasContent() ? $map['title']->toString() : $node->attribute( 'name' ) );
+            $items[] = array( 'node' => $node, 'page' => self::page( $node ), 'subject' => $subject,
                               'excerpt' => mb_strlen( $text ) > $length ? rtrim( mb_substr( $text, 0, $length ) ) . '…' : $text,
                               'name' => $name, 'date' => $date, 'type' => $reader ? 'reader' : 'historical',
                               'anchor' => ( $reader ? 'comment-' : 'historical-comment-' ) . $node->attribute( 'node_id' ) );

@@ -9,7 +9,7 @@
 <form method="post" action={'content/action'|ezurl}>
 
 <div id="comment{$comment.node_id}" class="attribute-heading">
-<h2>{$comment.name|wash}</h2>
+<h2>{if and( is_set( $comment.data_map.title ), $comment.data_map.title.has_content )}{$comment.data_map.title.content|wash}{else}{$comment.name|wash}{/if}</h2>
 </div>
 
 <div class="attribute-byline float-break">

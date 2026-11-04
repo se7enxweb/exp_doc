@@ -13,7 +13,7 @@
     <li class="exp-doc-comment" id="historical-comment-{$doc_item.node_id}">
         <article class="a4-card exp-doc-comment-card" aria-labelledby="historical-comment-{$doc_item.node_id}-subject">
             <header class="exp-doc-comment-head">
-                <h3 class="exp-doc-comment-subject" id="historical-comment-{$doc_item.node_id}-subject">{$doc_item.name|wash}</h3>
+                <h3 class="exp-doc-comment-subject" id="historical-comment-{$doc_item.node_id}-subject">{if and( is_set( $doc_item.data_map.title ), $doc_item.data_map.title.has_content )}{$doc_item.data_map.title.content|wash}{else}{$doc_item.name|wash}{/if}</h3>
                 <p class="a4-meta">{if $doc_e.contributor}<a href={$doc_e.contributor.url_alias|ezurl}>{$doc_e.name|wash}</a>{elseif $doc_e.name}{$doc_e.name|wash}{else}{'Unknown author'|i18n( 'design/exp_doc' )}{/if}{if $doc_e.date} · <time datetime="{$doc_e.date|datetime( 'custom', '%Y-%m-%dT%H:%i' )}">{$doc_e.date|l10n( 'shortdatetime' )}</time>{/if}</p>
             </header>
             <div class="exp-doc-comment-text">{if $doc_e.body}{attribute_view_gui attribute=$doc_item.data_map[$doc_e.body]}{elseif $doc_e.html}{$doc_e.html}{else}<p class="a4-meta">{'The text of this comment was not kept.'|i18n( 'design/exp_doc' )}</p>{/if}</div>
