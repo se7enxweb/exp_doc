@@ -75,6 +75,8 @@ class Normalizer:
             path = parsed.path.lstrip('/')
         else:
             path = posixpath.normpath(posixpath.join(posixpath.dirname(page_path), parsed.path))
+            while path.startswith("../"):
+                path = path[3:]  # above the site root: a browser stays at the root
         if path.endswith('/') or path == '':
             path = path + 'index.html'
         return 'page:' + urllib.parse.unquote(path)
@@ -197,6 +199,7 @@ def main():
     ap.add_argument('--width', type=int, default=1440)
     ap.add_argument('--threshold', type=float, default=0.005)
     ap.add_argument('--design', default='', help='a design for the kernel design switch, e.g. doc2025 (adds /(design)/<name>)')
+    ap.add_argument('--dump', action='store_true', help='also write both normalized token lists of every page to <out>/tokens/, one per line, for diff -u')
     args = ap.parse_args()
 
     pairs = []
@@ -243,6 +246,12 @@ def main():
         try:
             a = norm.tree(fetch(static_url), 'static', static_path)
             b = norm.tree(fetch(url), 'dynamic', static_path)
+            if args.dump:
+                os.makedirs(os.path.join(args.out, 'tokens'), exist_ok=True)
+                stem = os.path.join(args.out, 'tokens', re.sub(r'[^A-Za-z0-9._-]+', '_', static_path))
+                for side, tokens in (('static', a), ('dynamic', b)):
+                    with open('%s.%s.txt' % (stem, side), 'w') as fh:
+                        fh.write('\n'.join(repr(t) for t in tokens) + '\n')
             diff = first_difference(a, b)
             row['markup_equal'] = diff is None
             if diff:
