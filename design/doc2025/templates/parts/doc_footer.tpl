@@ -41,7 +41,7 @@
                 '%cms', concat( '<a href="https://se7enx.com/exponential" title="Exponential CMS">', 'The Exponential CMS'|i18n( 'design/doc2025' ), '</a>' ),
                 '%exponential', '<a href="https://exponential.earth">Exponential</a>',
                 '%community', concat( '<a href="https://share.exponential.earth">', 'Community'|i18n( 'design/doc2025' ), '</a>' ) ) )}<br />
-            <span class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', concat( fetch( 'setup', 'major_version' ), '.', fetch( 'setup', 'minor_version' ), '.', fetch( 'setup', 'release' ) )|wash ) )}</span>{if $doc_people}<span class="exp-doc-runs-on"> &middot; <a href={$doc_people.main_node.url_alias|ezurl}>{'Contributors'|i18n( 'design/exp_doc' )}</a></span>{/if}
+            <span class="exp-doc-runs-on">{'Runs on Exponential %version'|i18n( 'design/doc2025', '', hash( '%version', concat( fetch( 'setup', 'major_version' ), '.', fetch( 'setup', 'minor_version' ), '.', fetch( 'setup', 'release' ) )|wash ) )}</span>{if $doc_people}<span class="exp-doc-runs-on"> &middot; <a href={$doc_people.main_node.url_alias|ezurl}>{'Contributors'|i18n( 'design/exp_doc' )}</a></span>{/if}<span class="exp-doc-runs-on"> &middot; <a href={concat( 'content/view/sitemap/', ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )|ezurl}>{'Sitemap'|i18n( 'design/exp_doc' )}</a></span>
         </div>
 
         <div id="footer-connect-social" class="grid_4 right"> <b>{'Find Exponential on Your Favorite Social Network:'|i18n( 'design/doc2025' )}</b>&nbsp;

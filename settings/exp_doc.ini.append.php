@@ -73,6 +73,8 @@ MenuHideClasses[]=comment
 # from the bylines)
 MenuHideNodeRemoteIDs[]
 MenuHideNodeRemoteIDs[]=exp-doc-contributors
+# the media folder (images and files of the pages, not pages)
+MenuHideNodeRemoteIDs[]=exp-doc-media
 # The social links of the footer: SocialLinks[<label>]=<address>
 SocialLinks[]
 SocialLinks[YouTube]=https://www.youtube.com/@ExponentialCMSInsights
@@ -148,6 +150,8 @@ ProductList[]=basic;Exponential Basic;The documentation of Exponential Basic.;cu
 TreeDepth=3
 # How many of the site's top pages the tree of a page outside the manuals lists (then a link to all of them)
 SiteTreeLimit=40
+# How many children of each top page the site map (node/view/sitemap.tpl) lists, then a link to the page
+SitemapChildren=30
 # The classes that count as pages (recently changed on the front page)
 PageClasses[]
 PageClasses[]=exp_doc_page

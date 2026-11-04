@@ -19,6 +19,7 @@
                 <li><a href="https://share.exponential.earth">{'Community'|i18n( 'design/doc2025' )}</a></li>
                 <li><a href="https://github.com/se7enxweb/exponential">GitHub</a></li>
                 {if $doc_people}<li><a href={$doc_people.main_node.url_alias|ezurl}>{'Contributors'|i18n( 'design/exp_doc' )}</a></li>{/if}
+                <li><a href={concat( 'content/view/sitemap/', ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )|ezurl}>{'Sitemap'|i18n( 'design/exp_doc' )}</a></li>
                 <li><a href={'exphelp/viewer/ext/exp_doc/headless-access.md'|ezurl}>{'REST and GraphQL'|i18n( 'design/exp_doc' )}</a></li>
                 <li><a href="#cookie-settings">{'Cookie settings'|i18n( 'design/media/pagelayout' )}</a></li>
             </ul>

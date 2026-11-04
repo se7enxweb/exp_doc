@@ -631,6 +631,14 @@
         <source>Replying to %name</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Sitemap</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All pages of %name</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

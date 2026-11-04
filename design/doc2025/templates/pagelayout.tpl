@@ -18,7 +18,8 @@
 {if not( $doc_seen )}{set $doc_path = $module_result.path}{/if}
 {def $doc_node_id = $module_result.node_id
      $doc_is_front = false()}
-{if and( is_set( $module_result.node_id ), eq( $module_result.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}
+{if and( is_set( $module_result.node_id ), eq( $module_result.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ),
+         or( is_set( $module_result.content_info.viewmode )|not, eq( $module_result.content_info.viewmode, 'full' ) ) )}
     {set $doc_is_front = true()}
 {/if}
 <!DOCTYPE html>

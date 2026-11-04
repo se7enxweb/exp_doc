@@ -17,7 +17,8 @@
 {if not( $doc_seen )}{set $doc_path = $module_result.path}{/if}
 {def $doc_node = cond( and( is_set( $module_result.node_id ), $module_result.node_id ),
                        fetch( 'content', 'node', hash( 'node_id', $module_result.node_id ) ), false() )
-     $doc_is_front = and( $doc_node, eq( $doc_node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}
+     $doc_is_front = and( $doc_node, eq( $doc_node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ),
+                          or( is_set( $module_result.content_info.viewmode )|not, eq( $module_result.content_info.viewmode, 'full' ) ) )}
 <!DOCTYPE html>
 <html lang="{$site.http_equiv.Content-language|wash}" class="exp-doc-modern">
 <head>

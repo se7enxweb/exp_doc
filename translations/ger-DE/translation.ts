@@ -631,6 +631,14 @@
         <source>Replying to %name</source>
         <translation>Antwort an %name</translation>
     </message>
+    <message>
+        <source>Sitemap</source>
+        <translation>Sitemap</translation>
+    </message>
+    <message>
+        <source>All pages of %name</source>
+        <translation>Alle Seiten von %name</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>
