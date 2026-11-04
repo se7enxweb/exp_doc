@@ -4,7 +4,8 @@
    Twitter tags. The social image is the manual's own when one was generated for it (exp_doc.ini [BrandSettings]
    ManualImages[]), else the default. Parameters: title, description, url (absolute), manual (the page's manual
    node, or false). *}
-{def $doc_image = 'images/og-default.png'}
+{def $doc_image = 'images/og-default.png'
+     $doc_host = concat( 'https://', ezsys( 'hostname' ) )}
 {if and( $manual, ezini( 'BrandSettings', 'ManualImages', 'exp_doc.ini' )|contains( $manual.name|downcase|explode( ' ' )|implode( '-' ) ) )}
     {set $doc_image = concat( 'images/og-', $manual.name|downcase|explode( ' ' )|implode( '-' ), '.png' )}
 {/if}
@@ -18,7 +19,7 @@
     <meta property="og:title" content="{$title|wash}">
     <meta property="og:description" content="{$description|wash}">
     <meta property="og:url" content="{$url|wash}">
-    <meta property="og:image" content={$doc_image|ezdesign( 'double', 'full' )}>
+    <meta property="og:image" content="{concat( $doc_host, $doc_image|ezdesign( 'no' ) )|wash}">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -26,5 +27,5 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{$title|wash}">
     <meta name="twitter:description" content="{$description|wash}">
-    <meta name="twitter:image" content={$doc_image|ezdesign( 'double', 'full' )}>
-{undef $doc_image}
+    <meta name="twitter:image" content="{concat( $doc_host, $doc_image|ezdesign( 'no' ) )|wash}">
+{undef $doc_image $doc_host}
