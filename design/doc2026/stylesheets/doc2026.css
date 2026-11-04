@@ -456,21 +456,17 @@ body.exp-doc {
 }
 
 /* ---- the front page --------------------------------------------------------------------------------------- */
-.exp-doc-hero {
-    padding: var(--a4-space-7) var(--a4-space-4);
-    text-align: center;
-}
+/* the hero is the help center's (.a4-help-hero: its fades, padding and heading); the heading holds the official logo
+   in place of the word "Exponential", one line high */
 .exp-doc-hero-title {
-    margin: 0 0 var(--a4-space-3);
-    font-size: var(--a4-text-3xl);
-    font-weight: var(--a4-weight-heading);
-    line-height: var(--a4-leading-tight);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--a4-space-3);
 }
-.exp-doc-hero-text {
-    max-width: 60ch;
-    margin: 0 auto var(--a4-space-5);
-    color: var(--a4-muted);
-    font-size: var(--a4-text-l);
+.exp-doc-hero-logo .exp-logo {
+    height: calc(1em * var(--a4-leading-tight));
 }
 .exp-doc-hero-search {
     position: relative;
@@ -487,10 +483,13 @@ body.exp-doc {
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: var(--a4-space-4);
 }
-.exp-doc-manual {
+/* a manual card is the help center's faded box (.a4-help-about / .a4-help-grow: the tile, then this body) */
+.exp-doc-manual-body {
     display: flex;
     flex-direction: column;
     gap: var(--a4-space-2);
+    min-width: 0;
+    height: 100%;
 }
 .exp-doc-manual-cover {
     width: 100%;

@@ -125,6 +125,8 @@ Links[]=Extensions/Exponential-extensions/Exponential-Extension-for-Oracle-R-dat
 SiteName=Exponential Documentation
 SiteDescription=The documentation of Exponential: installation, configuration, development and every extension.
 LandingTitle=Exponential Documentation
+# The landing heading after the official logo, which stands for the word "Exponential" (named so for screen readers)
+LandingHeading=Documentation
 LandingText=Install, configure, extend and run Exponential: manuals for every version, tutorials, FAQ and the extensions.
 # How many levels the page tree (parts/doc_tree.tpl) draws below the manual version
 TreeDepth=3

@@ -1,6 +1,10 @@
-{* The landing page of the Modern design (the front page): a large search, a card for every manual (its cover or
-   icon, summary and audience, and its versions), the recently changed pages, and the most read pages (the
-   kernel's view counts, no third-party tracker). *}
+{* The landing page of the Modern design (the front page), in the help center's components and their color fades:
+   - a large search in the hero (.a4-help-hero), its heading the official logo (named "Exponential" for screen
+     readers) and exp_doc.ini [ModernSettings] LandingHeading;
+   - a card for every manual (its cover or icon, summary and audience, and its versions), .a4-help-about and
+     .a4-help-grow in turn;
+   - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
+     an .a4-help-support box. *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
                                                      'class_filter_type', 'include', 'class_filter_array', array( 'exp_doc_manual' ),
                                                      'sort_by', array( 'priority', true() ), 'limit', 24 ) )
@@ -8,9 +12,9 @@
                                                     'class_filter_type', 'include', 'class_filter_array', ezini( 'ModernSettings', 'PageClasses', 'exp_doc.ini' ),
                                                     'sort_by', array( 'modified', false() ), 'limit', 8 ) )
      $doc_popular = fetch( 'content', 'view_top_list', hash( 'limit', 8 ) )}
-<section class="exp-doc-hero" aria-labelledby="exp-doc-hero-title">
-    <h1 id="exp-doc-hero-title" class="exp-doc-hero-title">{ezini( 'ModernSettings', 'LandingTitle', 'exp_doc.ini' )|wash}</h1>
-    <p class="exp-doc-hero-text">{ezini( 'ModernSettings', 'LandingText', 'exp_doc.ini' )|wash}</p>
+<section class="a4-help-hero exp-doc-hero" aria-labelledby="exp-doc-hero-title">
+    <h1 id="exp-doc-hero-title" class="exp-doc-hero-title"><span class="exp-doc-hero-logo">{include uri='design:exp_doc/logo.tpl'}</span> {ezini( 'ModernSettings', 'LandingHeading', 'exp_doc.ini' )|wash}</h1>
+    <p class="a4-help-hero-sub">{ezini( 'ModernSettings', 'LandingText', 'exp_doc.ini' )|wash}</p>
     <form class="exp-doc-hero-search" role="search" method="post" action={'content/search'|ezurl}>
         <label class="a4-sr-only" for="exp-doc-hero-search-text">{'Search the documentation'|i18n( 'design/exp_doc' )}</label>
         <input type="search" id="exp-doc-hero-search-text" name="SearchText" placeholder="{'What are you looking for?'|i18n( 'design/exp_doc' )}" autocomplete="off">
@@ -26,7 +30,9 @@
     <ul class="a4-plain exp-doc-manuals">
     {foreach $doc_manuals as $doc_manual}
         {def $doc_versions = fetch( 'exp_doc', 'versions', hash( 'parent_node_id', $doc_manual.node_id ) )}
-        <li class="a4-card exp-doc-manual">
+        <li class="{cond( $doc_manual.number|mod( 2 ), 'a4-help-grow', 'a4-help-about' )} exp-doc-manual">
+            <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon a4-bi-journal-text"></span></span>
+            <div class="exp-doc-manual-body">
             {if and( is_set( $doc_manual.data_map.cover ), $doc_manual.data_map.cover.has_content )}
             <img class="exp-doc-manual-cover" src={$doc_manual.data_map.cover.content.medium.url|ezroot} alt="" width="{$doc_manual.data_map.cover.content.medium.width}" height="{$doc_manual.data_map.cover.content.medium.height}" loading="lazy">
             {/if}
@@ -38,6 +44,7 @@
                 {foreach $doc_versions as $doc_v}<li>{include uri='design:parts/doc_version_tag.tpl' version=$doc_v}</li>{/foreach}
             </ul>
             {/if}
+            </div>
         </li>
         {undef $doc_versions}
     {/foreach}
@@ -47,7 +54,7 @@
 
 <div class="exp-doc-landing-columns">
 {if $doc_recent|count}
-<section class="exp-doc-landing-section" aria-labelledby="exp-doc-recent-title">
+<section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-recent-title">
     <h2 id="exp-doc-recent-title" class="a4-h2">{'Recently changed'|i18n( 'design/exp_doc' )}</h2>
     <ol class="a4-plain exp-doc-landing-list">
     {foreach $doc_recent as $doc_item}
@@ -57,7 +64,7 @@
 </section>
 {/if}
 {if $doc_popular|count}
-<section class="exp-doc-landing-section" aria-labelledby="exp-doc-popular-title">
+<section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-popular-title">
     <h2 id="exp-doc-popular-title" class="a4-h2">{'Most read'|i18n( 'design/exp_doc' )}</h2>
     <ol class="a4-plain exp-doc-landing-list">
     {foreach $doc_popular as $doc_item}
