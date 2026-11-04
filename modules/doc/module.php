@@ -11,6 +11,9 @@
  *   doc/comments the newest approved comments (never a held one), newest first: (manual) (version) (range) as for
  *                doc/recent, (type)/readers|all (all: the historical comments too), (offset) (limit), (feed)/atom; at its
  *                URL alias [RecentSettings] CommentsPath, "recent/comments".
+ *   doc/ratings  the newest ratings of pages (ezstarrating_data, never who rated), newest first: (manual) (version)
+ *                (range) as for doc/recent, (stars)/<least stars>, (offset) (limit), (feed)/atom; at its URL alias
+ *                [RecentSettings] RatingsPath, "recent/ratings".
  *   doc/comment  POST only: a reader's comment on a page or a reply to a comment (classes/expdoccomment.php); held
  *                for moderation by the review hold, then back to the page with (comment)/held. The policy doc/read, and
  *                content/create of the comment class where it is stored.
@@ -42,6 +45,14 @@ $ViewList['comments'] = array( 'script' => 'comments.php',
                                'single_post_actions' => array( 'FilterButton' => 'Filter' ),
                                'post_action_parameters' => array( 'Filter' => array( 'Manual' => 'Manual', 'Version' => 'Version',
                                                                                     'Range' => 'Range', 'Type' => 'Type', 'Limit' => 'Limit' ) ) );
+$ViewList['ratings'] = array( 'script' => 'ratings.php',
+                              'functions' => array( 'read' ),
+                              'params' => array(),
+                              'unordered_params' => array( 'offset' => 'Offset', 'limit' => 'Limit', 'manual' => 'Manual',
+                                                           'version' => 'Version', 'range' => 'Range', 'stars' => 'Stars', 'feed' => 'Feed' ),
+                              'single_post_actions' => array( 'FilterButton' => 'Filter' ),
+                              'post_action_parameters' => array( 'Filter' => array( 'Manual' => 'Manual', 'Version' => 'Version',
+                                                                                   'Range' => 'Range', 'Stars' => 'Stars', 'Limit' => 'Limit' ) ) );
 $ViewList['comment'] = array( 'script' => 'comment.php',
                               'functions' => array( 'read' ),
                               'params' => array(),

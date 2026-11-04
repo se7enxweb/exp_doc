@@ -1139,3 +1139,12 @@ html[data-a4-theme="dark"] {
     display: block;
     font-size: var(--a4-text-s);
 }
+
+/* "Recent ratings" on the front page: the help center's .a4-help-support box with the info fade (blue) in place of its
+   green one; the tokens carry the dark values */
+.a4-help-support.is-info {
+    background:
+        linear-gradient(120deg, var(--a4-info-bg), transparent 60%),
+        var(--a4-card);
+    box-shadow: inset 0 0 0 1px var(--a4-line);
+}

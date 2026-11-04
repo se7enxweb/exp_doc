@@ -1,0 +1,7 @@
+---
+# description: The newest ratings of the documentation pages (doc/ratings) at the address recent/ratings, for every reader (the policy doc/read the Doc reader role has)
+- type: url_alias
+  mode: ensure
+  path: recent/ratings
+  destination: doc/ratings
+  redirect: false

@@ -195,6 +195,8 @@ Path=recent
 CommentsPath=recent/comments
 # The pages added, newest first (the view doc/new), and its URL alias (the same migration)
 NewPath=recent/new
+# The newest ratings (the view doc/ratings), and its URL alias (migrations/20261104101400_doc_recent_ratings.yml)
+RatingsPath=recent/ratings
 # The classes the list takes: the pages, and the historical copies (shown as "moved to history")
 Classes[]
 Classes[]=exp_doc_page

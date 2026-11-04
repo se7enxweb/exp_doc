@@ -66,7 +66,7 @@
 </p>
 </form>
 
-<p>{cond( eq( $mode, 'new' ), '%count added pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ), '%count changed pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ) )} &middot; <a href={$feed_uri|ezurl}>{'Atom feed'|i18n( 'design/exp_doc' )}</a> &middot; <a href={ezini( 'RecentSettings', 'CommentsPath', 'exp_doc.ini' )|ezurl}>{'Recent comments'|i18n( 'design/exp_doc' )}</a> &middot; <a href={cond( eq( $mode, 'new' ), $changes_uri, $new_uri )|ezurl}>{cond( eq( $mode, 'new' ), 'Recent changes'|i18n( 'design/exp_doc' ), 'Recently added'|i18n( 'design/exp_doc' ) )}</a></p>
+<p>{cond( eq( $mode, 'new' ), '%count added pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ), '%count changed pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ) )} &middot; <a href={$feed_uri|ezurl}>{'Atom feed'|i18n( 'design/exp_doc' )}</a> &middot; <a href={ezini( 'RecentSettings', 'CommentsPath', 'exp_doc.ini' )|ezurl}>{'Recent comments'|i18n( 'design/exp_doc' )}</a> &middot; <a href={cond( eq( $mode, 'new' ), $changes_uri, $new_uri )|ezurl}>{cond( eq( $mode, 'new' ), 'Recent changes'|i18n( 'design/exp_doc' ), 'Recently added'|i18n( 'design/exp_doc' ) )}</a> &middot; <a href={ezini( 'RecentSettings', 'RatingsPath', 'exp_doc.ini' )|ezurl}>{'Recent ratings'|i18n( 'design/exp_doc' )}</a></p>
 
 {if $groups|count}
 {foreach $groups as $doc_group}

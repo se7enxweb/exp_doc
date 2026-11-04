@@ -723,6 +723,66 @@
         <source>%average of 5, 1 rating</source>
         <translation>%average of 5, 1 rating</translation>
     </message>
+    <message>
+        <source>%age ago</source>
+        <translation>%age ago</translation>
+    </message>
+    <message>
+        <source>%count ratings</source>
+        <translation>%count ratings</translation>
+    </message>
+    <message>
+        <source>%n hours</source>
+        <translation>%n hours</translation>
+    </message>
+    <message>
+        <source>%n minutes</source>
+        <translation>%n minutes</translation>
+    </message>
+    <message>
+        <source>1 hour</source>
+        <translation>1 hour</translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation>1 minute</translation>
+    </message>
+    <message>
+        <source>Any stars</source>
+        <translation>Any stars</translation>
+    </message>
+    <message>
+        <source>At least</source>
+        <translation>At least</translation>
+    </message>
+    <message>
+        <source>No rating with these filters yet.</source>
+        <translation>No rating with these filters yet.</translation>
+    </message>
+    <message>
+        <source>No ratings yet. Every page has stars for yours.</source>
+        <translation>No ratings yet. Every page has stars for yours.</translation>
+    </message>
+    <message>
+        <source>Rated</source>
+        <translation>Rated</translation>
+    </message>
+    <message>
+        <source>Rated %stars of 5; the page now has %average of 5 from %count ratings</source>
+        <translation>Rated %stars of 5; the page now has %average of 5 from %count ratings</translation>
+    </message>
+    <message>
+        <source>Recent ratings</source>
+        <translation>Recent ratings</translation>
+    </message>
+    <message>
+        <source>See all ratings</source>
+        <translation>See all ratings</translation>
+    </message>
+    <message>
+        <source>The page now: %average of 5, %count ratings</source>
+        <translation>The page now: %average of 5, %count ratings</translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

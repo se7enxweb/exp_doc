@@ -723,6 +723,66 @@
         <source>%average of 5, 1 rating</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>%age ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%count ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%n hours</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%n minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 hour</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1 minute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Any stars</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>At least</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No rating with these filters yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No ratings yet. Every page has stars for yours.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rated %stars of 5; the page now has %average of 5 from %count ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See all ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The page now: %average of 5, %count ratings</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>design/doc2025</name>

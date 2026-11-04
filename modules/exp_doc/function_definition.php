@@ -215,3 +215,15 @@ $FunctionList['contributor_pages'] = array( 'name' => 'contributor_pages',
                                             'parameters' => array( array( 'name' => 'object_id', 'type' => 'integer', 'required' => true ),
                                                                    array( 'name' => 'offset', 'type' => 'integer', 'required' => false, 'default' => 0 ),
                                                                    array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 24 ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'recent_ratings', hash( 'limit', 8 ) )
+ *       the newest ratings of pages a reader may open, each as a hash: node, stars (given), time, average and count
+ *       (the page's now); never who rated
+ */
+$FunctionList['recent_ratings'] = array( 'name' => 'recent_ratings',
+                                         'operation_types' => array( 'read' ),
+                                         'call_method' => array( 'class' => 'expDocRating',
+                                                                 'method' => 'latest' ),
+                                         'parameter_type' => 'standard',
+                                         'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 8 ) ) );

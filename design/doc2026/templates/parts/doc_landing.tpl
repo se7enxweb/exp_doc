@@ -120,6 +120,24 @@
     <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'CommentsPath', 'exp_doc.ini' )|ezurl}>{'See all comments'|i18n( 'design/exp_doc' )}</a></p>
 </section>
 {undef $doc_comments}
+{* the newest ratings of pages a reader may open (never who rated), each with the stars given, how long ago, and the
+   page's average now *}
+{def $doc_ratings = fetch( 'exp_doc', 'recent_ratings', hash( 'limit', 8 ) )}
+<section class="a4-help-support exp-doc-landing-section is-info" aria-labelledby="exp-doc-ratings-title">
+    <h2 id="exp-doc-ratings-title" class="a4-h2">{'Recent ratings'|i18n( 'design/exp_doc' )}</h2>
+    {if $doc_ratings|count}
+    <ol class="a4-plain exp-doc-landing-list">
+    {foreach $doc_ratings as $doc_r}
+        {set-block variable=$doc_ago}{include uri='design:exp_doc/time_ago.tpl' time=$doc_r.time}{/set-block}
+        <li><a href={$doc_r.node.url_alias|ezurl}>{$doc_r.node.name|wash}</a> {include uri='design:exp_doc/rating_stars.tpl' rating=hash( 'rating_average', $doc_r.stars, 'rating_count', 1 )} <span class="a4-meta">{'%age ago'|i18n( 'design/exp_doc', '', hash( '%age', $doc_ago|trim ) )} · {'The page now: %average of 5, %count ratings'|i18n( 'design/exp_doc', '', hash( '%average', $doc_r.average, '%count', $doc_r.count ) )}</span></li>
+    {/foreach}
+    </ol>
+    {else}
+    <p class="a4-meta">{'No ratings yet. Every page has stars for yours.'|i18n( 'design/exp_doc' )}</p>
+    {/if}
+    <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'RatingsPath', 'exp_doc.ini' )|ezurl}>{'See all ratings'|i18n( 'design/exp_doc' )}</a></p>
+</section>
+{undef $doc_ratings}
 {if $doc_popular|count}
 <section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-popular-title">
     <h2 id="exp-doc-popular-title" class="a4-h2">{'Most read'|i18n( 'design/exp_doc' )}</h2>
