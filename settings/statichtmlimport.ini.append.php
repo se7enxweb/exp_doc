@@ -88,6 +88,10 @@ LinkHosts[]
 LinkHosts[]=exponential.doc.exponential.earth
 LinkHosts[]=doc.ez.no
 SiblingNameSuffix= ({space|page_id|n})
+# A comment's subject is content as written: a second comment of the same subject gets the suffix in its object name
+# (its address is made unique by the kernel), never in its title
+SiblingNameKeepsTitle[]
+SiblingNameKeepsTitle[]=comment_historical
 
 # The export's error pages are no pages; its redirect stubs (a meta refresh) become redirects
 NotFoundTitlePatterns[]
