@@ -122,6 +122,10 @@ GroupClass=exp_doc_section
 
 # Copies of pages: view-parameter variants, the Confluence page-id copies and the hidden mirror. Each becomes a
 # redirect to the page with the same content; one with content of its own is imported (hidden when below doc_hidden)
+# A copy under a view parameter (".../(language)/eng-GB.html") is always a redirect to the page it copies, whatever
+# small differences its content has (it would be a page named like its version or section, below that one)
+CopyOfPatterns[]
+CopyOfPatterns[]=#^(.+)/\([a-z_]+\)/.*\.html$#
 DuplicatePatterns[]
 DuplicatePatterns[]=#\(language\)#
 DuplicatePatterns[]=#^pages/#
