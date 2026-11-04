@@ -1,7 +1,8 @@
 <?php /* #?ini charset="utf-8"?
 
-# The views of the documentation classes. Every design of the site has the same files (doc2025 Classic, doc2026
-# Modern), so the rules hold whichever design is chosen.
+# The views of the documentation classes on the front siteaccess site only (the admin keeps its own templates; a rule
+# here in the global settings sent the admin to templates that only the doc designs have). Every design of the site
+# has the same files (doc2025 Classic, doc2026 Modern), so the rules hold whichever design is chosen.
 
 [full_exp_doc_page]
 Source=node/view/full.tpl
