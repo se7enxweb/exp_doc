@@ -63,7 +63,7 @@
     <h2 id="exp-doc-products-title" class="a4-h2">{'Products'|i18n( 'design/exp_doc' )}</h2>
     <ul class="a4-plain exp-doc-manuals exp-doc-products">
     {foreach $doc_products as $doc_index => $doc_product}
-        <li class="{cond( $doc_index|mod( 2 ), 'a4-help-grow', 'a4-help-about' )} exp-doc-manual">
+        <li class="{cond( $doc_index|mod( 2 ), 'a4-help-grow', 'a4-help-about' )} exp-doc-manual{if $doc_supported|contains( $doc_product.status )} is-supported{/if}">
             <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon {cond( eq( $doc_product.path, 'exponential' ), 'a4-bi-journal-text', 'a4-bi-box-seam' )}"></span></span>
             <div class="exp-doc-manual-body">
                 <h3 class="exp-doc-manual-name"><a href={$doc_product.path|ezurl}>{$doc_product.name|wash}</a>{if $doc_supported|contains( $doc_product.status )} <span class="exp-doc-version-badge is-supported">{'Supported'|i18n( 'design/exp_doc' )}</span>{/if}</h3>

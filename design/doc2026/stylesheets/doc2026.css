@@ -1064,3 +1064,8 @@ body.exp-doc {
         grid-row: auto;
     }
 }
+
+/* a supported product's card: the accent outline of a supported version (.exp-doc-version-tag.is-supported) */
+.exp-doc-manual.is-supported {
+    box-shadow: inset 0 0 0 2px var(--a4-accent);
+}

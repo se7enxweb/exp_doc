@@ -175,9 +175,9 @@ class expDocFetch
 
     /**
      * The products of the front page (exp_doc.ini [ModernSettings] ProductList[]: "<path>;<name>;<one line>[;<status>]"),
-     * in that order. Each is drawn from its container node when the node exists at that path below the site's root
-     * (its name, its short text and its status attribute), else from the setting, so the cards are there before the
-     * containers are.
+     * in that order. The name is always the setting's (the owner's product names); the short text and the status come
+     * from the product's container node when it exists at that path below the site's root, else from the setting, so
+     * the cards are there before the containers are.
      *
      * @return array array( 'result' => list of array( 'path', 'node' (or false), 'name', 'text', 'status' ) )
      */
@@ -200,7 +200,6 @@ class expDocFetch
             {
                 $map = $node->dataMap();
                 $entry['node'] = $node;
-                $entry['name'] = $node->attribute( 'name' );
                 foreach ( array( 'short_description', 'summary', 'intro' ) as $identifier )
                 {
                     if ( isset( $map[$identifier] ) && $map[$identifier]->hasContent() )

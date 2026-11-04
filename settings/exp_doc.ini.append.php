@@ -136,16 +136,17 @@ LandingTitle=Exponential Documentation
 LandingHeading=Documentation
 LandingText=Install, configure, extend and run Exponential: manuals for every version, tutorials, FAQ and the extensions.
 # The products of the front page, in this order: "<path below the site's root>;<name>;<one line>[;<status>]".
-# The card takes the name, short text and status of the container node at that path once it exists; until then
+# The name is always this one (the owner's product names); the short text and status come from the container node at
+# that path once it exists, until then
 # these (plain lines on purpose: the containers carry the products' own texts). A status of [ModernSettings]
 # SupportedStatuses[] gets the Supported badge.
 ProductList[]
 ProductList[]=exponential;Exponential;Manuals, tutorials, upgrading and the extensions of Exponential.;current
-ProductList[]=platform;Exponential Platform;The documentation of Exponential Platform.
-ProductList[]=platform/legacy;Exponential Platform Legacy;The documentation of Exponential Platform Legacy.
-ProductList[]=platform/nexus;Exponential Platform Nexus;The documentation of Exponential Platform Nexus.
-ProductList[]=platform/dxp;Exponential Platform DXP;The documentation of Exponential Platform DXP.
-ProductList[]=basic;Exponential Basic;The documentation of Exponential Basic.
+ProductList[]=platform;Exponential Platform;The documentation of Exponential Platform.;current
+ProductList[]=platform/legacy;Exponential Platform Legacy;The documentation of Exponential Platform Legacy.;current
+ProductList[]=platform/nexus;Exponential Platform Nexus;The documentation of Exponential Platform Nexus.;current
+ProductList[]=platform/dxp;Exponential Platform DXP;The documentation of Exponential Platform DXP.;current
+ProductList[]=basic;Exponential Basic;The documentation of Exponential Basic.;current
 # How many levels the page tree (parts/doc_tree.tpl) draws below the manual version
 TreeDepth=3
 # How many of the site's top pages the tree of a page outside the manuals lists (then a link to all of them)
