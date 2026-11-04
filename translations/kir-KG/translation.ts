@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.0">
+<context>
+    <name>design/exp_doc</name>
+    <message>
+        <source>Author</source>
+        <translation>Автор</translation>
+    </message>
+    <message>
+        <source>Updated</source>
+        <translation>Жаңыртылган</translation>
+    </message>
+    <message>
+        <source>Maintainer</source>
+        <translation>Тейлөөчү</translation>
+    </message>
+    <message>
+        <source>Show more</source>
+        <translation>Дагы көрсөтүү</translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation>Жаңы</translation>
+    </message>
+    <message>
+        <source>Any time</source>
+        <translation>Каалаган убакыт</translation>
+    </message>
+    <message>
+        <source>Last 7 days</source>
+        <translation>Акыркы 7 күн</translation>
+    </message>
+    <message>
+        <source>Last 30 days</source>
+        <translation>Акыркы 30 күн</translation>
+    </message>
+    <message>
+        <source>Recent changes</source>
+        <translation>Акыркы өзгөрүүлөр</translation>
+    </message>
+    <message>
+        <source>All manuals</source>
+        <translation>Бардык колдонмолор</translation>
+    </message>
+    <message>
+        <source>Version</source>
+        <translation>Версия</translation>
+    </message>
+    <message>
+        <source>All versions</source>
+        <translation>Бардык версиялар</translation>
+    </message>
+    <message>
+        <source>Anyone</source>
+        <translation>Каалаган адам</translation>
+    </message>
+    <message>
+        <source>Per page</source>
+        <translation>Баракта</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>Көрсөтүү</translation>
+    </message>
+    <message>
+        <source>Clear the filters</source>
+        <translation>Чыпкаларды тазалоо</translation>
+    </message>
+    <message>
+        <source>Changed %time</source>
+        <translation>Өзгөртүлгөн: %time</translation>
+    </message>
+    <message>
+        <source>Contributors</source>
+        <translation>Салым кошкондор</translation>
+    </message>
+    <message>
+        <source>Contributor</source>
+        <translation>Салым кошуучу</translation>
+    </message>
+    <message>
+        <source>Profile</source>
+        <translation>Профиль</translation>
+    </message>
+    <message>
+        <source>Extension</source>
+        <translation>Кеңейтүү</translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation>Статус</translation>
+    </message>
+    <message>
+        <source>License</source>
+        <translation>Лицензия</translation>
+    </message>
+    <message>
+        <source>Source</source>
+        <translation>Булак</translation>
+    </message>
+    <message>
+        <source>Level</source>
+        <translation>Деңгээл</translation>
+    </message>
+    <message>
+        <source>Duration</source>
+        <translation>Узактыгы</translation>
+    </message>
+    <message>
+        <source>Steps</source>
+        <translation>Кадамдар</translation>
+    </message>
+    <message>
+        <source>On this page</source>
+        <translation>Бул баракта</translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation>Көчүрүү</translation>
+    </message>
+    <message>
+        <source>Copied</source>
+        <translation>Көчүрүлдү</translation>
+    </message>
+    <message>
+        <source>by %name</source>
+        <translation>өзгөрткөн: %name</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Издөө</translation>
+    </message>
+    <message>
+        <source>Open the help center</source>
+        <translation>Жардам борборун ачуу</translation>
+    </message>
+    <message>
+        <source>Manuals</source>
+        <translation>Колдонмолор</translation>
+    </message>
+    <message>
+        <source>Versions</source>
+        <translation>Версиялар</translation>
+    </message>
+    <message>
+        <source>%count pages</source>
+        <translation>%count барак</translation>
+    </message>
+    <message>
+        <source>Version %version</source>
+        <translation>Версия %version</translation>
+    </message>
+    <message>
+        <source>Help center</source>
+        <translation>Жардам борбору</translation>
+    </message>
+    <message>
+        <source>Design</source>
+        <translation>Дизайн</translation>
+    </message>
+    <message>
+        <source>Language</source>
+        <translation>Тил</translation>
+    </message>
+</context>
+<context>
+    <name>design/doc2025</name>
+    <message>
+        <source>Comments</source>
+        <translation>Комментарийлер</translation>
+    </message>
+    <message>
+        <source>New comment</source>
+        <translation>Жаңы комментарий</translation>
+    </message>
+    <message>
+        <source>Community</source>
+        <translation>Жамаат</translation>
+    </message>
+    <message>
+        <source>Quick links</source>
+        <translation>Тез шилтемелер</translation>
+    </message>
+</context>
+</TS>
