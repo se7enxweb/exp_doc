@@ -1,0 +1,84 @@
+/*
+ * The resizable side column of the documentation designs (javascript/exp-doc-resizer.js): a handle on the side
+ * column's inner edge, the width as --exp-doc-side on the grid, and the drawer of a small screen. Tokens only; the
+ * Classic help center pages load components.css, so the --a4-* tokens are there in both designs.
+ *
+ * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
+ * @license GNU General Public License v2.0 (or any later version)
+ */
+
+.exp-doc-resizer {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-end: calc(var(--a4-space-2) * -1);
+  z-index: 2;
+  width: var(--a4-space-3);
+  cursor: col-resize;
+  touch-action: none;
+}
+.exp-doc-resizer::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  width: 2px;
+  background-color: transparent;
+  transition: background-color var(--a4-duration, 0.15s);
+}
+.exp-doc-resizer:hover::after,
+.exp-doc-resizer:focus-visible::after,
+.is-resizing .exp-doc-resizer::after {
+  background-color: var(--a4-accent);
+}
+.exp-doc-resizer:focus-visible {
+  outline: 2px solid var(--a4-ring);
+  outline-offset: 0;
+}
+.is-resizing {
+  cursor: col-resize;
+  user-select: none;
+}
+.exp-doc-drawer-toggle[hidden] {
+  display: none;
+}
+
+/* Classic's help center pages: the static float columns become a grid with a resizable menu */
+#main.exp-doc-resizable {
+  display: grid;
+  grid-template-columns: var(--exp-doc-side, clamp(14rem, 20vw, 22rem)) minmax(0, 1fr);
+  column-gap: var(--a4-space-5);
+  align-items: start;
+}
+#main.exp-doc-resizable::after {
+  display: none;
+}
+#main.exp-doc-resizable > .area-docmenu-normal,
+#main.exp-doc-resizable > .area-docmain-normal {
+  float: none;
+  width: auto;
+  min-width: 0;
+}
+#main.exp-doc-resizable > [data-exp-side] {
+  position: relative;
+}
+#main.exp-doc-resizable > .exp-doc-drawer-toggle {
+  display: none;
+}
+
+/* a small screen: one column, the handle gone, the side column a drawer above the content */
+@media (max-width: 899px) {
+  #main.exp-doc-resizable {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .exp-doc-resizer {
+    display: none;
+  }
+  #main.exp-doc-resizable > .exp-doc-drawer-toggle:not([hidden]) {
+    display: inline-flex;
+    justify-self: start;
+    margin: 0 0 var(--a4-space-3);
+  }
+  .has-drawer:not(.is-drawer-open) > [data-exp-side] {
+    display: none;
+  }
+}

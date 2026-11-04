@@ -4,7 +4,9 @@
      deep (parts/doc_menu_toc.tpl);
    - ListRootClasses[] (the FAQ and similar sections): the section's name and its pages as a flat list
      (parts/doc_menu_list.tpl);
-   - none of them: the quick links (parts/doc_menu_quicklinks.tpl). *}
+   - none of them: the quick links (parts/doc_menu_quicklinks.tpl).
+   resizable (the help center's pages): the column takes the id exp-doc-side and the resize handle
+   (javascript/exp-doc-resizer.js). *}
 {def $doc_menu_root = false()
      $doc_menu_kind = 'quicklinks'
      $doc_toc_classes = ezini( 'ClassicSettings', 'TocRootClasses', 'exp_doc.ini' )
@@ -25,7 +27,7 @@
         {/if}
     {/if}
 {/foreach}
-<div class="template-design area-docmenu-normal">
+<div class="template-design area-docmenu-normal"{if and( is_set( $resizable ), $resizable )} id="exp-doc-side" data-exp-side{/if}>
 <div class="template-module">
 <div class="template-object">
 <div id="contentmenu">
@@ -41,5 +43,6 @@
 </div>
 </div>
 </div>
+{if and( is_set( $resizable ), $resizable )}<div class="exp-doc-resizer" data-exp-resizer role="separator" aria-orientation="vertical" aria-controls="exp-doc-side" tabindex="0" aria-label="{'Resize the menu'|i18n( 'design/exp_doc' )}" title="{'Drag, or use the arrow keys, to resize the menu'|i18n( 'design/exp_doc' )}"></div>{/if}
 </div>
 {undef $doc_menu_root $doc_menu_kind $doc_toc_classes $doc_list_classes $doc_candidate $doc_ids}

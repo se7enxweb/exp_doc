@@ -16,7 +16,7 @@
 {/foreach}
 {def $doc_site_wide = not( $doc_root )}
 {if $doc_site_wide}{set $doc_root = fetch( 'content', 'node', hash( 'node_id', ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}{/if}
-<nav id="exp-doc-tree" class="exp-doc-tree" aria-labelledby="exp-doc-tree-title" data-exp-doc-tree>
+<nav id="exp-doc-tree" class="exp-doc-tree" aria-labelledby="exp-doc-tree-title" data-exp-doc-tree data-exp-side>
     <h2 id="exp-doc-tree-title" class="exp-doc-tree-title"><a href={$doc_root.url_alias|ezurl}{if and( $node, eq( $doc_root.node_id, $node.node_id ) )} aria-current="page"{/if}>{$doc_root.name|wash}</a></h2>
     {include uri='design:parts/doc_tree_level.tpl' parent=$doc_root path_ids=$doc_ids current_id=cond( $node, $node.node_id, 0 ) depth=1 max_depth=cond( $doc_site_wide, 1, ezini( 'ModernSettings', 'TreeDepth', 'exp_doc.ini' ) )
              limit=cond( $doc_site_wide, ezini( 'ModernSettings', 'SiteTreeLimit', 'exp_doc.ini' ), false() )}

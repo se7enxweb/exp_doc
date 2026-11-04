@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
 {ezscript_load( array( 'doc2026-theme.js' ) )}
-{ezcss_load( array( 'components.css', 'exphelp.css', 'doc2026.css' ) )}
+{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'doc2026.css' ) )}
 <link rel="stylesheet" href={'stylesheets/doc2026-print.css'|ezdesign} media="print">
 {include uri='design:parts/doc_head.tpl' path=$doc_path node=$doc_node is_front=$doc_is_front}
 </head>
@@ -39,12 +39,13 @@
 </main>
 {else}
 {def $doc_module_menu = and( is_set( $module_result.left_menu ), $module_result.left_menu )}
-<div class="exp-doc-frame{if $doc_module_menu} is-module{/if}">
+<div class="exp-doc-frame{if $doc_module_menu} is-module{/if}" data-exp-resizable="doc-modern-tree" data-min="208" data-max="480">
     {if and( is_set( $module_result.left_menu ), $module_result.left_menu )}
-    <div id="exp-doc-tree" class="exp-doc-tree exp-doc-tree-module" data-exp-doc-tree>{include uri=$module_result.left_menu uri_string=$site.uri.original_uri}</div>
+    <div id="exp-doc-tree" class="exp-doc-tree exp-doc-tree-module" data-exp-doc-tree data-exp-side>{include uri=$module_result.left_menu uri_string=$site.uri.original_uri}</div>
     {else}
     {include uri='design:parts/doc_tree.tpl' node=$doc_node path=$doc_path}
     {/if}
+    <div class="exp-doc-resizer" data-exp-resizer role="separator" aria-orientation="vertical" aria-controls="exp-doc-tree" tabindex="0" aria-label="{'Resize the page tree'|i18n( 'design/exp_doc' )}" title="{'Drag, or use the arrow keys, to resize the page tree'|i18n( 'design/exp_doc' )}"></div>
     <main id="exp-doc-main" class="exp-doc-main" tabindex="-1">
         {include uri='design:parts/doc_crumbs.tpl' path=$doc_path}
         {$module_result.content}
@@ -67,6 +68,7 @@
 {include uri='design:parts/expwt_page_toolbar.tpl'}
 <script type="application/json" id="exp-doc-strings">{json_encode( hash( 'copy', 'Copy'|i18n( 'design/exp_doc' ), 'copied', 'Copied'|i18n( 'design/exp_doc' ), 'copyLink', 'Copy the link to this heading'|i18n( 'design/exp_doc' ), 'themeSystem', 'System'|i18n( 'design/exp_doc' ), 'themeLight', 'Light'|i18n( 'design/exp_doc' ), 'themeDark', 'Dark'|i18n( 'design/exp_doc' ) ) )}</script>
 {ezscript_load( array( 'doc2026.js' ) )}
+<script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>
 </body>
 </html>
 {undef $doc_root_id $doc_path $doc_seen $doc_node $doc_is_front}

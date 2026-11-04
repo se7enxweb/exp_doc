@@ -28,7 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}
 {* the help center's views (exphelp/*): its own components and styles, light, inside the Classic frame *}
-{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'doc2025.css' ) )}
+{ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'doc2025.css' ) )}
 {else}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'doc2025.css' ) )}
 {/if}
@@ -52,9 +52,13 @@
 {include uri='design:parts/doc_disclaimer.tpl'}
 
 <div id="page-width5">
-<div id="main" class="float-break">
+{def $doc_help = and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}
+{* the help center's pages (not part of the static site): the menu is a resizable column, a drawer on a small screen
+   (javascript/exp-doc-resizer.js, shared with Modern) *}
+<div id="main" class="float-break{if $doc_help} exp-doc-resizable{/if}"{if $doc_help} data-exp-resizable="doc-classic-help" data-min="224" data-max="480"{/if}>
+{if $doc_help}<button type="button" class="button exp-doc-drawer-toggle" data-exp-drawer-toggle aria-controls="exp-doc-side" aria-expanded="false" hidden>{'Menu'|i18n( 'design/exp_doc' )}</button>{/if}
 
-{include uri='design:parts/doc_menu.tpl' path=$doc_path node_id=$doc_node_id}
+{include uri='design:parts/doc_menu.tpl' path=$doc_path node_id=$doc_node_id resizable=$doc_help}
 <div class="area-docmain-normal">
 {if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}<div class="a4-page exp-doc-help-classic">{$module_result.content}</div>{else}{$module_result.content}{/if}
 </div>
@@ -74,6 +78,7 @@
 
 {include uri='design:exp_doc/cookie_consent.tpl'}
 {include uri='design:parts/expwt_page_toolbar.tpl'}
+{if $doc_help}<script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>{/if}
 </body>
 </html>
-{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front}
+{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_help}

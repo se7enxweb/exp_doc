@@ -143,7 +143,7 @@ body.exp-doc {
 /* ---- the three columns ------------------------------------------------------------------------------------ */
 .exp-doc-frame {
     display: grid;
-    grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr) minmax(12rem, 15rem);
+    grid-template-columns: var(--exp-doc-side, minmax(15rem, 18rem)) minmax(0, 1fr) minmax(12rem, 15rem);
     gap: var(--a4-space-5);
     width: 100%;
     margin: 0;
@@ -549,7 +549,7 @@ body.exp-doc {
 /* ---- narrower windows ------------------------------------------------------------------------------------- */
 @media (max-width: 1199px) {
     .exp-doc-frame {
-        grid-template-columns: minmax(14rem, 17rem) minmax(0, 1fr);
+        grid-template-columns: var(--exp-doc-side, minmax(14rem, 17rem)) minmax(0, 1fr);
     }
     .exp-doc-onpage {
         display: none;
@@ -877,7 +877,7 @@ body.exp-doc {
    pages with fewer than two headings (doc2026.js) */
 .exp-doc-frame.is-module,
 .exp-doc-frame.no-onpage {
-    grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+    grid-template-columns: var(--exp-doc-side, minmax(15rem, 18rem)) minmax(0, 1fr);
 }
 @media (max-width: 899px) {
     .exp-doc-frame.is-module,
@@ -1043,4 +1043,24 @@ body.exp-doc {
 .exp-doc-hero .a4-help-hero-actions {
     flex-wrap: wrap;
     gap: var(--a4-space-2);
+}
+
+/* the page tree's width handle (javascript/exp-doc-resizer.js, stylesheets/exp-doc-resizer.css): it shares the tree's
+   grid cell, standing on its inner edge in the gap, the whole height of the page; the tree scrolls on its own */
+.exp-doc-frame > .exp-doc-tree,
+.exp-doc-frame > .exp-doc-resizer {
+    grid-column: 1;
+    grid-row: 1;
+}
+.exp-doc-frame > .exp-doc-resizer {
+    position: relative;
+    inset: auto;
+    justify-self: end;
+    align-self: stretch;
+    margin-inline-end: calc(var(--a4-space-5) / -2 - var(--a4-space-3) / 2);
+}
+@media (max-width: 899px) {
+    .exp-doc-frame > .exp-doc-tree {
+        grid-row: auto;
+    }
 }
