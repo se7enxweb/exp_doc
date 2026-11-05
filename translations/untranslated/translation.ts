@@ -1045,7 +1045,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The ready-to-run copy of the partner distribution CJW Exponential Platform Nexus, tuned for SQLite: the Composer vendor directory and the SQLite databases are in the repository.</source>
+        <source>Tuned for SQLite: the CJW example site with the Composer vendor directory and the SQLite databases in the repository, so it runs without Composer or an install step.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

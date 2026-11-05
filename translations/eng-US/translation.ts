@@ -1045,8 +1045,8 @@
         <translation>Symfony and Twig, Node.js for the assets</translation>
     </message>
     <message>
-        <source>The ready-to-run copy of the partner distribution CJW Exponential Platform Nexus, tuned for SQLite: the Composer vendor directory and the SQLite databases are in the repository.</source>
-        <translation>The ready-to-run copy of the partner distribution CJW Exponential Platform Nexus, tuned for SQLite: the Composer vendor directory and the SQLite databases are in the repository.</translation>
+        <source>Tuned for SQLite: the CJW example site with the Composer vendor directory and the SQLite databases in the repository, so it runs without Composer or an install step.</source>
+        <translation>Tuned for SQLite: the CJW example site with the Composer vendor directory and the SQLite databases in the repository, so it runs without Composer or an install step.</translation>
     </message>
     <message>
         <source>CJW Exponential Platform Nexus with its CJW example site, as a ready-to-run installation</source>
