@@ -7,7 +7,8 @@
 
    The data is exp_doc.ini: the products, their names and paths from [ModernSettings] ProductList[] (in that order, the
    ones with a [ChooseProduct_<path, "_" for "/">] group), their facts from those groups, "How to choose" and the
-   recommended product from [ChooseSettings]. Every text of the settings goes through the translation (design/exp_doc),
+   recommended product from [ChooseSettings]; the recommendation's "Fastest way to try it" line, the ready-to-run starter
+   of [StarterSettings] Recommended with RecommendedText, also on the front page. Every text of the settings goes through the translation (design/exp_doc),
    so the catalogues translate it and a text an editor changed shows in English until its entry is changed too.
 
    Variables: framed (optional, true: drawn in its own .a4-help-frame), frame_class (optional, more classes of that
@@ -49,6 +50,16 @@
     {set $doc_choose_line = $doc_choose_link|explode( ';' )}
     {if and( eq( $doc_choose_line.0, 'install' ), eq( $doc_choose_install, '' ) )}{set $doc_choose_install = $doc_choose_line.1}{/if}
 {/foreach}
+{/if}
+{* the fastest way to start the recommended product: [StarterSettings] Recommended, its name and first link, and the
+   line RecommendedText; empty: no line *}
+{def $doc_choose_starter = concat( 'Starter_', ezini( 'StarterSettings', 'Recommended', 'exp_doc.ini' ) )
+     $doc_choose_starter_url = ''}
+{if and( ezini_hasvariable( $doc_choose_starter, 'Name', 'exp_doc.ini' ), ezini_hasvariable( $doc_choose_starter, 'Links', 'exp_doc.ini' ) )}
+    {foreach ezini( $doc_choose_starter, 'Links', 'exp_doc.ini' ) as $doc_choose_link}
+        {set $doc_choose_line = $doc_choose_link|explode( ';' )}
+        {if and( $doc_choose_line|count|ge( 2 ), eq( $doc_choose_starter_url, '' ) )}{set $doc_choose_starter_url = $doc_choose_line.1}{/if}
+    {/foreach}
 {/if}
 {if is_set( $heading )}{set $doc_choose_heading = $heading}{/if}
 {if is_set( $more )}{if and( $more, $doc_choose_products|count|lt( $doc_choose_all ) )}{set $doc_choose_more = ezini( 'ChooseSettings', 'ChoosePath', 'exp_doc.ini' )}{/if}{/if}
@@ -106,6 +117,7 @@
     <div class="exp-doc-choose-pick">
         <p class="exp-doc-choose-pick-lead"><strong>{'The best user experience and the most features are in Exponential 6, not in Platform, Basic or even DXP.'|i18n( 'design/exp_doc' )}</strong></p>
         <p>{'Not sure? Choose Exponential 6.x today and get started fast.'|i18n( 'design/exp_doc' )}</p>
+        {if ne( $doc_choose_starter_url, '' )}<p class="exp-doc-choose-pick-starter"><span>{'Fastest way to try it:'|i18n( 'design/exp_doc' )}</span> <a href={if $doc_choose_starter_url|contains( '://' )}"{$doc_choose_starter_url|wash}" rel="noopener noreferrer"{else}{$doc_choose_starter_url|ezurl}{/if}>{ezini( $doc_choose_starter, 'Name', 'exp_doc.ini' )|wash}</a>{if ezini_hasvariable( 'StarterSettings', 'RecommendedText', 'exp_doc.ini' )}{if ne( ezini( 'StarterSettings', 'RecommendedText', 'exp_doc.ini' ), '' )} <span>{ezini( 'StarterSettings', 'RecommendedText', 'exp_doc.ini' )|i18n( 'design/exp_doc' )|wash}</span>{/if}{/if}</p>{/if}
         <p class="exp-doc-choose-pick-actions">
             {if ne( $doc_choose_install, '' )}<a class="a4-btn a4-btn-primary a4-btn-large" href={if $doc_choose_install|contains( '://' )}"{$doc_choose_install|wash}" rel="noopener noreferrer"{else}{$doc_choose_install|ezurl}{/if}><span class="a4-icon a4-bi-download" aria-hidden="true"></span> {'Install Exponential 6'|i18n( 'design/exp_doc' )}</a>{/if}
             <a class="a4-btn a4-btn-large" href={$doc_choose_pick|ezurl}>{'More about Exponential 6'|i18n( 'design/exp_doc' )}</a>
@@ -120,5 +132,5 @@
 </section>
 {if and( is_set( $framed ), $framed )}</div>{/if}
 {/if}
-{undef $doc_choose_all $doc_choose_more $doc_choose_heading $doc_choose_pick $doc_choose_products $doc_choose_names $doc_choose_group $doc_choose_line $doc_choose_install $doc_choose_labels $doc_choose_links_group}
+{undef $doc_choose_all $doc_choose_more $doc_choose_heading $doc_choose_pick $doc_choose_products $doc_choose_names $doc_choose_group $doc_choose_line $doc_choose_install $doc_choose_labels $doc_choose_links_group $doc_choose_starter $doc_choose_starter_url}
 {/if}

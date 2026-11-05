@@ -8,7 +8,18 @@
    Variables (all optional): only (the ProductList paths to show, in ProductList order; empty or unset: all),
    more (true: a link to the page of all products when some were left out), heading (false: no "Products" heading,
    the page's own title names the list), list_class (the list's grid; default Modern's exp-doc-manuals), badge_class
-   (the Supported badge's classes; default Modern's). *}
+   (the Supported badge's classes; default Modern's), starters (true: under each product a "Starter:" line linking to
+   the cards of its ready-to-run starters on the same page, exp_doc/landing_starters.tpl: the [StarterSettings]
+   Starters[] of Kind distribution whose Product is the product's path; the page of every product only). *}
+{def $doc_starters = array()
+     $doc_product_starters = array()}
+{if and( is_set( $starters ), $starters )}
+{foreach ezini( 'StarterSettings', 'Starters', 'exp_doc.ini' ) as $doc_starter_key}
+    {if and( ezini_hasvariable( concat( 'Starter_', $doc_starter_key ), 'Name', 'exp_doc.ini' ), ezini_hasvariable( concat( 'Starter_', $doc_starter_key ), 'Product', 'exp_doc.ini' ), ezini_hasvariable( concat( 'Starter_', $doc_starter_key ), 'Kind', 'exp_doc.ini' ) )}
+    {if eq( ezini( concat( 'Starter_', $doc_starter_key ), 'Kind', 'exp_doc.ini' ), 'distribution' )}{set $doc_starters = $doc_starters|append( hash( 'key', $doc_starter_key, 'name', ezini( concat( 'Starter_', $doc_starter_key ), 'Name', 'exp_doc.ini' ), 'product', ezini( concat( 'Starter_', $doc_starter_key ), 'Product', 'exp_doc.ini' ) ) )}{/if}
+    {/if}
+{/foreach}
+{/if}
 {def $doc_products = fetch( 'exp_doc', 'products' )
      $doc_supported = ezini( 'ModernSettings', 'SupportedStatuses', 'exp_doc.ini' )
      $doc_shown = array()
@@ -39,6 +50,9 @@
             <div class="exp-doc-manual-body">
                 <h3 class="exp-doc-manual-name"><a href={$doc_product.path|ezurl}>{$doc_product.name|wash}</a>{if $doc_supported|contains( $doc_product.status )} <span class="{$doc_badge_class|wash}">{'Supported'|i18n( 'design/exp_doc' )}</span>{/if}</h3>
                 {if $doc_product.text}<p class="exp-doc-manual-summary">{$doc_product.text|wash}</p>{/if}
+                {set $doc_product_starters = array()}
+                {foreach $doc_starters as $doc_starter}{if eq( $doc_starter.product, $doc_product.path )}{set $doc_product_starters = $doc_product_starters|append( $doc_starter )}{/if}{/foreach}
+                {if $doc_product_starters|count}<p class="a4-meta exp-doc-manual-starter"><span>{'Starter:'|i18n( 'design/exp_doc' )}</span> {foreach $doc_product_starters as $doc_starter}<a href="#exp-doc-starter-{$doc_starter.key|wash}">{$doc_starter.name|wash}</a>{delimiter}, {/delimiter}{/foreach}</p>{/if}
             </div>
         </li>
     {/foreach}
@@ -48,4 +62,4 @@
     {/if}
 </section>
 {/if}
-{undef $doc_products $doc_supported $doc_shown $doc_list_class $doc_badge_class $doc_heading $doc_more}
+{undef $doc_products $doc_supported $doc_shown $doc_list_class $doc_badge_class $doc_heading $doc_more $doc_starters $doc_product_starters}

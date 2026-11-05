@@ -861,6 +861,274 @@
         <translation>Welche passt zu mir?</translation>
     </message>
     <message>
+        <source>Starter distributions</source>
+        <translation>Starter-Distributionen</translation>
+    </message>
+    <message>
+        <source>Ready-to-run installations, one GitHub repository each: the Composer vendor directory is included and SQLite is set up, so a clone is most of the installation. The static site starter is a template for static publishing, not a product.</source>
+        <translation>Startklare Installationen, jede ein eigenes GitHub-Repository: Das Composer-Vendor-Verzeichnis ist enthalten und SQLite eingerichtet, sodass ein Klonen den größten Teil der Installation erledigt. Der Static Site Starter ist eine Vorlage für statisches Veröffentlichen, kein Produkt.</translation>
+    </message>
+    <message>
+        <source>Template repository</source>
+        <translation>Vorlagen-Repository</translation>
+    </message>
+    <message>
+        <source>Release %version</source>
+        <translation>Release %version</translation>
+    </message>
+    <message>
+        <source>A template for</source>
+        <translation>Eine Vorlage für</translation>
+    </message>
+    <message>
+        <source>Starts</source>
+        <translation>Startet</translation>
+    </message>
+    <message>
+        <source>The ready-to-run copy of the partner distribution</source>
+        <translation>Die startklare Kopie der Partner-Distribution</translation>
+    </message>
+    <message>
+        <source>Product and kernel</source>
+        <translation>Produkt und Kernel</translation>
+    </message>
+    <message>
+        <source>Stack and database</source>
+        <translation>Stack und Datenbank</translation>
+    </message>
+    <message>
+        <source>How to get it running</source>
+        <translation>So läuft es</translation>
+    </message>
+    <message>
+        <source>Commands from the README</source>
+        <translation>Befehle aus der README</translation>
+    </message>
+    <message>
+        <source>How to choose a starter</source>
+        <translation>So wählen Sie einen Starter</translation>
+    </message>
+    <message>
+        <source>Product page</source>
+        <translation>Produktseite</translation>
+    </message>
+    <message>
+        <source>Guide</source>
+        <translation>Anleitung</translation>
+    </message>
+    <message>
+        <source>Starter:</source>
+        <translation>Starter:</translation>
+    </message>
+    <message>
+        <source>Fastest way to try it:</source>
+        <translation>Am schnellsten ausprobieren:</translation>
+    </message>
+    <message>
+        <source>Exponential 6 ready to run on SQLite, with the Composer vendor directory included: clone it and serve it.</source>
+        <translation>Exponential 6 startklar auf SQLite, mit dem Composer-Vendor-Verzeichnis: klonen und ausliefern.</translation>
+    </message>
+    <message>
+        <source>You want to try Exponential 6 in minutes on SQLite, with nothing to install but PHP</source>
+        <translation>Sie möchten Exponential 6 in Minuten auf SQLite ausprobieren und außer PHP nichts installieren</translation>
+    </message>
+    <message>
+        <source>You want Symfony 7.4 with Exponential 6 inside, the Composer vendor directory already in place</source>
+        <translation>Sie möchten Symfony 7.4 mit Exponential 6 darin, das Composer-Vendor-Verzeichnis schon an seinem Platz</translation>
+    </message>
+    <message>
+        <source>You want the finished Nexus v5 site with its SQLite database and vendor directory already in the repository</source>
+        <translation>Sie möchten die fertige Nexus-v5-Site, deren SQLite-Datenbank und Vendor-Verzeichnis schon im Repository liegen</translation>
+    </message>
+    <message>
+        <source>You want the CJW example site of Nexus (Symfony 3.4 with Exponential 6) ready to run on SQLite</source>
+        <translation>Sie möchten die CJW-Beispielsite von Nexus (Symfony 3.4 mit Exponential 6) startklar auf SQLite</translation>
+    </message>
+    <message>
+        <source>You want the Symfony-only Platform v5 with its SQLite database and vendor directory already in the repository</source>
+        <translation>Sie möchten die reine Symfony-Plattform v5, deren SQLite-Datenbank und Vendor-Verzeichnis schon im Repository liegen</translation>
+    </message>
+    <message>
+        <source>You want a free static copy of your Exponential site on GitHub Pages, built by GitHub Actions</source>
+        <translation>Sie möchten eine kostenlose statische Kopie Ihrer Exponential-Site auf GitHub Pages, gebaut von GitHub Actions</translation>
+    </message>
+    <message>
+        <source>Exponential 6 as a ready-to-run installation: the whole kernel with the Composer vendor directory and a small SQLite database already in the repository.</source>
+        <translation>Exponential 6 als startklare Installation: der ganze Kernel, mit dem Composer-Vendor-Verzeichnis und einer kleinen SQLite-Datenbank schon im Repository.</translation>
+    </message>
+    <message>
+        <source>A default installation of Exponential, preconfigured for immediate use without any configuration</source>
+        <translation>Eine Standardinstallation von Exponential, vorkonfiguriert für den sofortigen Einsatz ohne jede Konfiguration</translation>
+    </message>
+    <message>
+        <source>Exponential 6.0.13, the kernel of release 1.0.0.7; the features new in 6.0.15, such as static publishing, are not in it yet</source>
+        <translation>Exponential 6.0.13, der Kernel von Release 1.0.0.7; die Neuerungen von 6.0.15, etwa das statische Veröffentlichen, sind noch nicht enthalten</translation>
+    </message>
+    <message>
+        <source>Trying Exponential 6 in minutes, and starting a new site from a working installation</source>
+        <translation>Exponential 6 in Minuten ausprobieren und eine neue Site von einer laufenden Installation aus beginnen</translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel in plain PHP, no Symfony; SQLite (var/storage/sqlite3/starter.db included); Composer vendor directory included</source>
+        <translation>Der Kernel von Exponential 6 in reinem PHP, ohne Symfony; SQLite (var/storage/sqlite3/starter.db enthalten); Composer-Vendor-Verzeichnis enthalten</translation>
+    </message>
+    <message>
+        <source>8.1 to 8.5</source>
+        <translation>8.1 bis 8.5</translation>
+    </message>
+    <message>
+        <source>Clone the repository and serve its folder with a web server (the README names the PHP built-in server, Apache and Nginx). The README gives the starting password of the admin account: change it at the first login</source>
+        <translation>Klonen Sie das Repository und liefern Sie seinen Ordner mit einem Webserver aus (die README nennt den eingebauten Server von PHP, Apache und Nginx). Das Startpasswort des Kontos admin steht in der README: Ändern Sie es bei der ersten Anmeldung</translation>
+    </message>
+    <message>
+        <source>One stack: PHP and Exponential's templates; nothing to set up before the first page</source>
+        <translation>Ein Stack: PHP und die Templates von Exponential; vor der ersten Seite ist nichts einzurichten</translation>
+    </message>
+    <message>
+        <source>Exponential Platform Legacy v5 with the Composer vendor directory in the repository and SQLite set up in .env: Symfony 7.4 LTS with a full Exponential 6 inside.</source>
+        <translation>Exponential Platform Legacy v5 mit dem Composer-Vendor-Verzeichnis im Repository und SQLite in .env eingerichtet: Symfony 7.4 LTS mit einem vollständigen Exponential 6 darin.</translation>
+    </message>
+    <message>
+        <source>The Platform v5 project skeleton of Exponential Platform Legacy, with the legacy bridge enabled by default</source>
+        <translation>Das Projektgerüst von Exponential Platform Legacy für Platform v5, mit standardmäßig aktivierter Legacy Bridge</translation>
+    </message>
+    <message>
+        <source>Exponential Platform Legacy, the Platform v5 (5.0) line: the Platform v5 kernel and the Exponential 6 kernel side by side</source>
+        <translation>Exponential Platform Legacy, die Linie Platform v5 (5.0): der Kernel von Platform v5 und der Kernel von Exponential 6 nebeneinander</translation>
+    </message>
+    <message>
+        <source>Teams that want Symfony 7.4 and the Exponential 6 administration, templates and extensions in one project</source>
+        <translation>Teams, die Symfony 7.4 und die Administration, Templates und Erweiterungen von Exponential 6 in einem Projekt möchten</translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS with the legacy bridge and Exponential Layouts; SQLite by default, MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included</source>
+        <translation>Symfony 7.4 LTS mit der Legacy Bridge und Exponential Layouts; standardmäßig SQLite, MySQL, MariaDB oder PostgreSQL über DATABASE_URL; Composer-Vendor-Verzeichnis enthalten</translation>
+    </message>
+    <message>
+        <source>8.3 or later</source>
+        <translation>8.3 oder neuer</translation>
+    </message>
+    <message>
+        <source>Clone the repository: the vendor directory is in it, so the README's Composer step is done. For SQLite set MESSENGER_TRANSPORT_DSN=sync:// in .env.local (README step 2); the install command creates the database; the README lists the steps for the assets and the REST key before the start</source>
+        <translation>Klonen Sie das Repository: Das Vendor-Verzeichnis liegt darin, der Composer-Schritt der README ist also erledigt. Setzen Sie für SQLite MESSENGER_TRANSPORT_DSN=sync:// in .env.local (Schritt 2 der README); der Installationsbefehl legt die Datenbank an; die README nennt die Schritte für die Assets und den REST-Schlüssel vor dem Start</translation>
+    </message>
+    <message>
+        <source>The Nexus v5 site as a repository of its own, with the Composer vendor directory and the SQLite database var/data_dev.db already included.</source>
+        <translation>Die Nexus-v5-Site als eigenes Repository, mit dem Composer-Vendor-Verzeichnis und der SQLite-Datenbank var/data_dev.db schon enthalten.</translation>
+    </message>
+    <message>
+        <source>The Exponential Platform Nexus v5 site: the 7x fork of the Netgen media site blueprint on Platform v5</source>
+        <translation>Die Site von Exponential Platform Nexus v5: der 7x-Fork der Vorlage Netgen Media Site auf Platform v5</translation>
+    </message>
+    <message>
+        <source>Exponential Platform Nexus as on the 1.3.0.x line (Platform v5), without the Exponential 6 kernel</source>
+        <translation>Exponential Platform Nexus wie auf der Linie 1.3.0.x (Platform v5), ohne den Kernel von Exponential 6</translation>
+    </message>
+    <message>
+        <source>A finished Symfony website with Exponential Layouts and demo content, to try or to build on</source>
+        <translation>Eine fertige Symfony-Website mit Exponential Layouts und Demo-Inhalten, zum Ausprobieren oder Weiterbauen</translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS with Exponential Layouts, Tags and the Netgen site API; SQLite by default (var/data_dev.db included), MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included</source>
+        <translation>Symfony 7.4 LTS mit Exponential Layouts, Tags und der Netgen Site API; standardmäßig SQLite (var/data_dev.db enthalten), MySQL, MariaDB oder PostgreSQL über DATABASE_URL; Composer-Vendor-Verzeichnis enthalten</translation>
+    </message>
+    <message>
+        <source>8.4 or later (tested on 8.5)</source>
+        <translation>8.4 oder neuer (getestet mit 8.5)</translation>
+    </message>
+    <message>
+        <source>Clone the repository: the vendor directory and the SQLite database are in it, so the README's Composer and install steps are done. Build the assets with Node.js 22 and Yarn and create the REST key as the README's steps 6 to 12 say, then start the Symfony server</source>
+        <translation>Klonen Sie das Repository: Vendor-Verzeichnis und SQLite-Datenbank liegen darin, die Composer- und Installationsschritte der README sind also erledigt. Bauen Sie die Assets mit Node.js 22 und Yarn und erzeugen Sie den REST-Schlüssel, wie die Schritte 6 bis 12 der README sagen, dann starten Sie den Symfony-Server</translation>
+    </message>
+    <message>
+        <source>Symfony and Twig, Node.js for the assets</source>
+        <translation>Symfony und Twig, Node.js für die Assets</translation>
+    </message>
+    <message>
+        <source>The ready-to-run copy of the partner distribution CJW Exponential Platform Nexus, tuned for SQLite: the Composer vendor directory and the SQLite databases are in the repository.</source>
+        <translation>Die startklare Kopie der Partner-Distribution CJW Exponential Platform Nexus, abgestimmt auf SQLite: Das Composer-Vendor-Verzeichnis und die SQLite-Datenbanken liegen im Repository.</translation>
+    </message>
+    <message>
+        <source>CJW Exponential Platform Nexus with its CJW example site, as a ready-to-run installation</source>
+        <translation>CJW Exponential Platform Nexus mit seiner CJW-Beispielsite, als startklare Installation</translation>
+    </message>
+    <message>
+        <source>Exponential Platform Nexus 1.0.0.x (the eZ Platform 2.5 generation) with the Exponential 6 kernel through the legacy bridge</source>
+        <translation>Exponential Platform Nexus 1.0.0.x (die Generation eZ Platform 2.5) mit dem Kernel von Exponential 6 über die Legacy Bridge</translation>
+    </message>
+    <message>
+        <source>Trying the CJW example site, and Symfony based Exponential Platform (Legacy) applications that start from it</source>
+        <translation>Die CJW-Beispielsite ausprobieren, und Symfony-basierte Anwendungen mit Exponential Platform (Legacy), die von ihr ausgehen</translation>
+    </message>
+    <message>
+        <source>Symfony 3.4 with the Exponential 6 kernel; SQLite (var/data_dev.db and var/data_prod.db included); Composer vendor directory included</source>
+        <translation>Symfony 3.4 mit dem Kernel von Exponential 6; SQLite (var/data_dev.db und var/data_prod.db enthalten); Composer-Vendor-Verzeichnis enthalten</translation>
+    </message>
+    <message>
+        <source>8.3 to 8.5</source>
+        <translation>8.3 bis 8.5</translation>
+    </message>
+    <message>
+        <source>Install it with git clone and point a web server at its web/ folder; the repository carries the Apache and Nginx configurations in doc/apache2 and doc/nginx</source>
+        <translation>Installieren Sie es mit git clone und richten Sie einen Webserver auf seinen Ordner web/; die Konfigurationen für Apache und Nginx liegen im Repository in doc/apache2 und doc/nginx</translation>
+    </message>
+    <message>
+        <source>Exponential Platform DXP v5 as a ready-to-run repository: the skeleton with the Composer vendor directory and the SQLite database var/data_dev.db included.</source>
+        <translation>Exponential Platform DXP v5 als startklares Repository: das Gerüst mit dem Composer-Vendor-Verzeichnis und der SQLite-Datenbank var/data_dev.db.</translation>
+    </message>
+    <message>
+        <source>The Platform v5 skeleton of Exponential Platform DXP, with no legacy bridge and no Exponential 6 kernel</source>
+        <translation>Das Gerüst von Exponential Platform DXP für Platform v5, ohne Legacy Bridge und ohne Kernel von Exponential 6</translation>
+    </message>
+    <message>
+        <source>Exponential Platform DXP, Platform v5</source>
+        <translation>Exponential Platform DXP, Platform v5</translation>
+    </message>
+    <message>
+        <source>Trying the Symfony-only platform, and new Symfony projects</source>
+        <translation>Die reine Symfony-Plattform ausprobieren, und neue Symfony-Projekte</translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS, Symfony only; SQLite by default (var/data_dev.db included), MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included</source>
+        <translation>Symfony 7.4 LTS, nur Symfony; standardmäßig SQLite (var/data_dev.db enthalten), MySQL, MariaDB oder PostgreSQL über DATABASE_URL; Composer-Vendor-Verzeichnis enthalten</translation>
+    </message>
+    <message>
+        <source>Clone the repository: the vendor directory and the SQLite database are in it, so the README's Composer and install steps are done. For SQLite set MESSENGER_TRANSPORT_DSN=sync:// in .env.local, build the assets with Node.js 20 and Yarn and create the REST key as the README's steps 5 to 8 say, then start the Symfony server</source>
+        <translation>Klonen Sie das Repository: Vendor-Verzeichnis und SQLite-Datenbank liegen darin, die Composer- und Installationsschritte der README sind also erledigt. Setzen Sie für SQLite MESSENGER_TRANSPORT_DSN=sync:// in .env.local, bauen Sie die Assets mit Node.js 20 und Yarn und erzeugen Sie den REST-Schlüssel, wie die Schritte 5 bis 8 der README sagen, dann starten Sie den Symfony-Server</translation>
+    </message>
+    <message>
+        <source>Not a product but a GitHub template repository for static publishing: it builds a static copy of an Exponential site with GitHub Actions and hosts it free on GitHub Pages.</source>
+        <translation>Kein Produkt, sondern ein GitHub-Vorlagen-Repository für statisches Veröffentlichen: Es baut mit GitHub Actions eine statische Kopie einer Exponential-Site und stellt sie kostenlos auf GitHub Pages bereit.</translation>
+    </message>
+    <message>
+        <source>A template that publishes plain HTML pages and files, with no PHP and no database on the public side, while editors keep working in Exponential</source>
+        <translation>Eine Vorlage, die einfache HTML-Seiten und Dateien veröffentlicht, ohne PHP und ohne Datenbank auf der öffentlichen Seite, während die Redaktion weiter in Exponential arbeitet</translation>
+    </message>
+    <message>
+        <source>Exponential with static publishing, new in 6.0.15; until that release the workflow installs the main branch</source>
+        <translation>Exponential mit statischem Veröffentlichen, neu in 6.0.15; bis zu diesem Release installiert der Workflow den Branch main</translation>
+    </message>
+    <message>
+        <source>Site owners who want a free, fast, static public copy of an Exponential site</source>
+        <translation>Site-Betreiber, die eine kostenlose, schnelle, statische öffentliche Kopie einer Exponential-Site möchten</translation>
+    </message>
+    <message>
+        <source>GitHub Actions and GitHub Pages; the build installs Exponential with Composer on SQLite and makes the copy with exp:static:build</source>
+        <translation>GitHub Actions und GitHub Pages; der Build installiert Exponential mit Composer auf SQLite und erstellt die Kopie mit exp:static:build</translation>
+    </message>
+    <message>
+        <source>8.3 in the workflow; 8.0 or later to build on your own computer</source>
+        <translation>8.3 im Workflow; 8.0 oder neuer für den Build auf dem eigenen Rechner</translation>
+    </message>
+    <message>
+        <source>Click Use this template, set Settings &gt; Pages &gt; Source to GitHub Actions, add your site (or leave data/ empty for the default site package) and push to main. On your own computer the README's two commands build the copy and serve it</source>
+        <translation>Klicken Sie auf Use this template, setzen Sie Settings &gt; Pages &gt; Source auf GitHub Actions, fügen Sie Ihre Site hinzu (oder lassen Sie data/ leer für das Standard-Site-Paket) und pushen Sie nach main. Auf dem eigenen Rechner bauen die zwei Befehle der README die Kopie und liefern sie aus</translation>
+    </message>
+    <message>
+        <source>GitHub Actions and Pages; the help center's guide walks through every step</source>
+        <translation>GitHub Actions und Pages; die Anleitung im Hilfezentrum führt durch jeden Schritt</translation>
+    </message>
+    <message>
         <source>Community and partner distributions</source>
         <translation>Distributionen der Community und von Partnern</translation>
     </message>

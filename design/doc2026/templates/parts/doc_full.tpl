@@ -6,7 +6,8 @@
    children=false() to leave out the child cards. The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl),
    a product's container its landing page (parts/doc_product_landing.tpl, fetch exp_doc/product_landing), and the
    Confluence container its spaces (parts/doc_platform_landing.tpl). A page of exp_doc.ini [PageDisplaySettings] draws
-   its list after its own text: every product (exp_doc/landing_products.tpl) or every choice (exp_doc/landing_choose.tpl). *}
+   its list after its own text: every product (exp_doc/landing_products.tpl) or every choice (exp_doc/landing_choose.tpl),
+   then the ready-to-run starters (exp_doc/landing_starters.tpl) and the partner distributions. *}
 {def $doc_product_landing = fetch( 'exp_doc', 'product_landing', hash( 'node_id', $node.node_id ) )
      $doc_page_displays = ezini( 'PageDisplaySettings', 'Display', 'exp_doc.ini' )
      $doc_page_display = ''}
@@ -39,8 +40,8 @@
 {$doc_map.original_html.content}
 {/if}
     </div>
-{if eq( $doc_page_display, 'products' )}{include uri='design:exp_doc/landing_products.tpl' heading=false()}{include uri='design:exp_doc/landing_partners.tpl' badge_class='exp-doc-version-badge is-supported'}
-{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' heading=false()}{include uri='design:exp_doc/landing_partners.tpl' badge_class='exp-doc-version-badge is-supported' needs=true()}{/if}
+{if eq( $doc_page_display, 'products' )}{include uri='design:exp_doc/landing_products.tpl' heading=false() starters=true()}{include uri='design:exp_doc/landing_starters.tpl'}{include uri='design:exp_doc/landing_partners.tpl' badge_class='exp-doc-version-badge is-supported'}
+{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' heading=false()}{include uri='design:exp_doc/landing_starters.tpl' needs=true()}{include uri='design:exp_doc/landing_partners.tpl' badge_class='exp-doc-version-badge is-supported' needs=true()}{/if}
 {if is_set( $after_body )}{$after_body}{/if}
 {* the Contributors folder lists every contributor below its own text *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}

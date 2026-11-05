@@ -186,3 +186,38 @@
 .exp-doc-partners .exp-doc-choose-needs li a {
   white-space: normal;
 }
+
+/* "Starter distributions" (exp_doc/landing_starters.tpl): the cards of the partner distributions, with the product the
+   starter starts (or the partner distribution it copies) as a line under the name, and its commands as code, one per
+   line, wrapping on a phone instead of widening the card */
+.exp-doc-starter-for {
+  margin: 0;
+  color: var(--a4-muted);
+  font-size: var(--a4-text-s);
+}
+.exp-doc-starter-for a {
+  font-weight: var(--a4-weight-strong);
+}
+.exp-doc-starter-commands {
+  display: grid;
+  gap: var(--a4-space-1);
+  padding: var(--a4-space-2) var(--a4-space-3);
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-code-bg);
+  color: var(--a4-code-ink);
+  font-family: var(--a4-mono);
+  font-size: var(--a4-text-xs);
+  overflow-wrap: anywhere;
+}
+.exp-doc-starter-commands > span {
+  display: block;
+  min-width: 0;
+}
+/* the "Starter:" line of a product card on the page of every product, and the recommendation's "Fastest way to try it" */
+.exp-doc-manual-starter {
+  margin: var(--a4-space-2) 0 0;
+  overflow-wrap: anywhere;
+}
+.exp-doc-choose-pick .exp-doc-choose-pick-starter a {
+  font-weight: var(--a4-weight-strong);
+}

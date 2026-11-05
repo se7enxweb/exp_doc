@@ -535,7 +535,8 @@ Learning=Small and easy to understand
 # out. One group per distribution, [PartnerProduct_<key>], shown in the order of Products[]: Name (never translated),
 # Status (a status of [ModernSettings] SupportedStatuses[] gets the Supported badge), Text (the short text), the facts
 # of [ChooseProduct_*] (What, BestFor, Stack, Admin, Features, PHP, Learning) and Links[]=<kind>;<address> as in
-# [ProductLanding_*] (also: starter, demo); the name links to the first link. Every text goes through the translation
+# [ProductLanding_*] (also: starter, demo; an address beginning with # is a card on the same page, the starter's card in
+# "Starter distributions"); the name links to the first link. Every text goes through the translation
 # (design/exp_doc). Every fact was read from the distribution's own repositories (README, composer.json, package.xml)
 # and the help center's page of cjw_multisite on 2026-11-05; never add one they do not state.
 [PartnerSettings]
@@ -562,7 +563,7 @@ PHP=8.0 to 8.5 (8.5 recommended)
 Learning=Two kernels: Symfony and Twig, and Exponential's templates for the legacy side
 Links[]
 Links[]=install;https://github.com/se7enxweb/cjw-exponential-platform-nexus/blob/master/doc/INSTALL.md
-Links[]=starter;https://github.com/se7enxweb/cjw-exponential-platform-nexus-starter
+Links[]=starter;#exp-doc-starter-cjw_nexus_starter
 Links[]=source;https://github.com/se7enxweb/cjw-exponential-platform-nexus
 Links[]=package;https://packagist.org/packages/se7enxweb/cjw-exponential-media-site-data
 Links[]=website;https://platform.exponential.earth
@@ -585,6 +586,178 @@ Links[]=install;exphelp/viewer/help/site-packages/cjw-multisite/README.md
 Links[]=demo;https://site.cjw.demo.exponential.earth
 Links[]=source;https://github.com/se7enxweb/cjw_multisite-ezpackage
 Links[]=package;https://packagist.org/packages/se7enxweb/cjw_themes_jumper
+
+# "Starter distributions" (exp_doc/landing_starters.tpl): ready-to-run installations, one GitHub repository each, on the
+# page of every product after the products and on the page of every choice after "Choosing a product" (with the "How to
+# choose" lines below); never on the front page. One group per starter, [Starter_<key>], shown in the order of
+# Starters[]: Name (never translated), Version (the newest release tag; empty: none), Kind (distribution: a ready-to-run
+# installation of a product; template: a template repository, not a product), Product (the ProductList path of the
+# product it starts: its card on the page of every product gets a "Starter:" line for every distribution of Kind
+# distribution, and its name links to the product), Partner (a [PartnerSettings] Products[] key: the starter is the
+# ready-to-run copy of that partner distribution, whose card links back here), Text (the short text), the facts What,
+# Starts, BestFor, Stack, PHP, Run and Learning, Commands[] (shown as code, never translated) and Links[]=<kind>;<address>
+# as in [ProductLanding_*] (also: product, guide). Every text goes through the translation (design/exp_doc). Every fact
+# was read from the starter's own repository (README, composer.json, .env, the files of its newest tag) and the help
+# center (DISTRIBUTIONS.md, features/6.0/platform-nexus-starter.md, guides/host-static-sites-on-github-pages.md) on
+# 2026-11-05; never add one they do not state. The CJW Nexus starter shows here, not twice: the partner card of CJW
+# Exponential Platform Nexus links its "Ready-to-run starter" button to this card.
+[StarterSettings]
+Starters[]
+Starters[]=exponential_starter
+Starters[]=platform_legacy_starter
+Starters[]=platform_nexus_starter
+Starters[]=cjw_nexus_starter
+Starters[]=platform_dxp_starter
+Starters[]=static_site_starter
+# The starter of the recommendation of "Choosing a product" ([ChooseSettings] Recommended), also on the front page:
+# "Fastest way to try it:", its name linked to its first link, then RecommendedText; empty: no line
+Recommended=exponential_starter
+RecommendedText=Exponential 6 ready to run on SQLite, with the Composer vendor directory included: clone it and serve it.
+# "How to choose" on the page of every choice: <key>;<the need it answers>, in this order
+Needs[]
+Needs[]=exponential_starter;You want to try Exponential 6 in minutes on SQLite, with nothing to install but PHP
+Needs[]=platform_legacy_starter;You want Symfony 7.4 with Exponential 6 inside, the Composer vendor directory already in place
+Needs[]=platform_nexus_starter;You want the finished Nexus v5 site with its SQLite database and vendor directory already in the repository
+Needs[]=cjw_nexus_starter;You want the CJW example site of Nexus (Symfony 3.4 with Exponential 6) ready to run on SQLite
+Needs[]=platform_dxp_starter;You want the Symfony-only Platform v5 with its SQLite database and vendor directory already in the repository
+Needs[]=static_site_starter;You want a free static copy of your Exponential site on GitHub Pages, built by GitHub Actions
+
+# se7enxweb/exponential-starter, tag 1.0.0.7 (2026-11-04): lib/version.php 6.0.13, var/storage/sqlite3/starter.db, vendor/
+[Starter_exponential_starter]
+Name=Exponential Starter Distribution (ESD)
+Version=1.0.0.7
+Kind=distribution
+Product=exponential
+Text=Exponential 6 as a ready-to-run installation: the whole kernel with the Composer vendor directory and a small SQLite database already in the repository.
+What=A default installation of Exponential, preconfigured for immediate use without any configuration
+Starts=Exponential 6.0.13, the kernel of release 1.0.0.7; the features new in 6.0.15, such as static publishing, are not in it yet
+BestFor=Trying Exponential 6 in minutes, and starting a new site from a working installation
+Stack=The Exponential 6 kernel in plain PHP, no Symfony; SQLite (var/storage/sqlite3/starter.db included); Composer vendor directory included
+PHP=8.1 to 8.5
+Run=Clone the repository and serve its folder with a web server (the README names the PHP built-in server, Apache and Nginx). The README gives the starting password of the admin account: change it at the first login
+Commands[]
+Commands[]=git clone https://github.com/se7enxweb/exponential-starter.git
+Learning=One stack: PHP and Exponential's templates; nothing to set up before the first page
+Links[]
+Links[]=source;https://github.com/se7enxweb/exponential-starter
+Links[]=product;exponential
+
+# se7enxweb/exponential-platform-legacy-starter, tag 1.0.0.2 (2026-11-04): composer.json se7enxweb/exponential-platform-legacy
+# (exponential-platform-dxp dev-5.x-LB, legacy-bridge ^5.0, Netgen Layouts), .env DATABASE_URL sqlite, vendor/, no database file
+[Starter_platform_legacy_starter]
+Name=Exponential Platform Legacy Starter Distribution (EPLSD)
+Version=1.0.0.2
+Kind=distribution
+Product=platform/legacy
+Text=Exponential Platform Legacy v5 with the Composer vendor directory in the repository and SQLite set up in .env: Symfony 7.4 LTS with a full Exponential 6 inside.
+What=The Platform v5 project skeleton of Exponential Platform Legacy, with the legacy bridge enabled by default
+Starts=Exponential Platform Legacy, the Platform v5 (5.0) line: the Platform v5 kernel and the Exponential 6 kernel side by side
+BestFor=Teams that want Symfony 7.4 and the Exponential 6 administration, templates and extensions in one project
+Stack=Symfony 7.4 LTS with the legacy bridge and Exponential Layouts; SQLite by default, MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included
+PHP=8.3 or later
+Run=Clone the repository: the vendor directory is in it, so the README's Composer step is done. For SQLite set MESSENGER_TRANSPORT_DSN=sync:// in .env.local (README step 2); the install command creates the database; the README lists the steps for the assets and the REST key before the start
+Commands[]
+Commands[]=git clone https://github.com/se7enxweb/exponential-platform-legacy-starter.git
+Commands[]=cd exponential-platform-legacy-starter
+Commands[]=php bin/console exponential:install --no-interaction exponential-oss
+Commands[]=symfony server:start
+Learning=Two stacks: Symfony and Exponential 6
+Links[]
+Links[]=source;https://github.com/se7enxweb/exponential-platform-legacy-starter
+Links[]=product;platform/legacy
+
+# se7enxweb/exponential-platform-nexus-starter, tag 1.0.0.1 (2026-11-04): PHP >=8.4, se7enxweb/exponential-platform-dxp and the
+# Netgen media site packages, .env DATABASE_URL sqlite, var/data_dev.db, vendor/; help center features/6.0/platform-nexus-starter.md
+[Starter_platform_nexus_starter]
+Name=Exponential Platform Nexus Starter Distribution (EPNSD)
+Version=1.0.0.1
+Kind=distribution
+Product=platform/nexus
+Text=The Nexus v5 site as a repository of its own, with the Composer vendor directory and the SQLite database var/data_dev.db already included.
+What=The Exponential Platform Nexus v5 site: the 7x fork of the Netgen media site blueprint on Platform v5
+Starts=Exponential Platform Nexus as on the 1.3.0.x line (Platform v5), without the Exponential 6 kernel
+BestFor=A finished Symfony website with Exponential Layouts and demo content, to try or to build on
+Stack=Symfony 7.4 LTS with Exponential Layouts, Tags and the Netgen site API; SQLite by default (var/data_dev.db included), MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included
+PHP=8.4 or later (tested on 8.5)
+Run=Clone the repository: the vendor directory and the SQLite database are in it, so the README's Composer and install steps are done. Build the assets with Node.js 22 and Yarn and create the REST key as the README's steps 6 to 12 say, then start the Symfony server
+Commands[]
+Commands[]=git clone https://github.com/se7enxweb/exponential-platform-nexus-starter.git
+Commands[]=cd exponential-platform-nexus-starter
+Commands[]=symfony server:start
+Learning=Symfony and Twig, Node.js for the assets
+Links[]
+Links[]=source;https://github.com/se7enxweb/exponential-platform-nexus-starter
+Links[]=guide;exphelp/viewer/features/6.0/platform-nexus-starter.md
+Links[]=product;platform/nexus
+
+# se7enxweb/cjw-exponential-platform-nexus-starter, tag 1.0.0.8 (2026-11-04): composer.json se7enxweb/cjw-exponential-platform-nexus,
+# app/config/parameters.yml pdo_sqlite data_dev.db, var/data_dev.db and data_prod.db, ezpublish_legacy/, vendor/, web/ (doc/apache2
+# vhost.template DocumentRoot web); help center DISTRIBUTIONS.md: "a ready-to-run copy tuned for SQLite. Install it with git clone."
+[Starter_cjw_nexus_starter]
+Name=CJW Exponential Platform Nexus Starter
+Version=1.0.0.8
+Kind=distribution
+Product=platform/nexus
+Partner=cjw_nexus
+Text=The ready-to-run copy of the partner distribution CJW Exponential Platform Nexus, tuned for SQLite: the Composer vendor directory and the SQLite databases are in the repository.
+What=CJW Exponential Platform Nexus with its CJW example site, as a ready-to-run installation
+Starts=Exponential Platform Nexus 1.0.0.x (the eZ Platform 2.5 generation) with the Exponential 6 kernel through the legacy bridge
+BestFor=Trying the CJW example site, and Symfony based Exponential Platform (Legacy) applications that start from it
+Stack=Symfony 3.4 with the Exponential 6 kernel; SQLite (var/data_dev.db and var/data_prod.db included); Composer vendor directory included
+PHP=8.3 to 8.5
+Run=Install it with git clone and point a web server at its web/ folder; the repository carries the Apache and Nginx configurations in doc/apache2 and doc/nginx
+Commands[]
+Commands[]=git clone https://github.com/se7enxweb/cjw-exponential-platform-nexus-starter.git
+Learning=Two kernels: Symfony and Twig, and Exponential's templates for the legacy side
+Links[]
+Links[]=source;https://github.com/se7enxweb/cjw-exponential-platform-nexus-starter
+Links[]=product;platform/nexus
+
+# se7enxweb/exponential-platform-dxp-starter, tag 1.0.0.0 (2026-04-26): composer.json se7enxweb/exponential-platform-dxp-skeleton,
+# PHP >=8.3, .env DATABASE_URL sqlite, var/data_dev.db, vendor/
+[Starter_platform_dxp_starter]
+Name=Exponential Platform DXP Starter Distribution (EPDSD)
+Version=1.0.0.0
+Kind=distribution
+Product=platform/dxp
+Text=Exponential Platform DXP v5 as a ready-to-run repository: the skeleton with the Composer vendor directory and the SQLite database var/data_dev.db included.
+What=The Platform v5 skeleton of Exponential Platform DXP, with no legacy bridge and no Exponential 6 kernel
+Starts=Exponential Platform DXP, Platform v5
+BestFor=Trying the Symfony-only platform, and new Symfony projects
+Stack=Symfony 7.4 LTS, Symfony only; SQLite by default (var/data_dev.db included), MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included
+PHP=8.3 or later
+Run=Clone the repository: the vendor directory and the SQLite database are in it, so the README's Composer and install steps are done. For SQLite set MESSENGER_TRANSPORT_DSN=sync:// in .env.local, build the assets with Node.js 20 and Yarn and create the REST key as the README's steps 5 to 8 say, then start the Symfony server
+Commands[]
+Commands[]=git clone https://github.com/se7enxweb/exponential-platform-dxp-starter.git
+Commands[]=cd exponential-platform-dxp-starter
+Commands[]=symfony server:start
+Learning=Symfony only
+Links[]
+Links[]=source;https://github.com/se7enxweb/exponential-platform-dxp-starter
+Links[]=product;platform/dxp
+
+# se7enxweb/exponential-static-site-starter, a template repository without tags: its README and the help center's guide
+# guides/host-static-sites-on-github-pages.md
+[Starter_static_site_starter]
+Name=Exponential static site starter
+Version=
+Kind=template
+Product=exponential
+Text=Not a product but a GitHub template repository for static publishing: it builds a static copy of an Exponential site with GitHub Actions and hosts it free on GitHub Pages.
+What=A template that publishes plain HTML pages and files, with no PHP and no database on the public side, while editors keep working in Exponential
+Starts=Exponential with static publishing, new in 6.0.15; until that release the workflow installs the main branch
+BestFor=Site owners who want a free, fast, static public copy of an Exponential site
+Stack=GitHub Actions and GitHub Pages; the build installs Exponential with Composer on SQLite and makes the copy with exp:static:build
+PHP=8.3 in the workflow; 8.0 or later to build on your own computer
+Run=Click Use this template, set Settings > Pages > Source to GitHub Actions, add your site (or leave data/ empty for the default site package) and push to main. On your own computer the README's two commands build the copy and serve it
+Commands[]
+Commands[]=bash scripts/build-static-site.sh
+Commands[]=php -S 127.0.0.1:8090 -t build/site
+Learning=GitHub Actions and Pages; the help center's guide walks through every step
+Links[]
+Links[]=source;https://github.com/se7enxweb/exponential-static-site-starter
+Links[]=guide;exphelp/viewer/guides/host-static-sites-on-github-pages.md
+Links[]=product;exponential
 
 # Readers' comments on the pages (Modern: parts/doc_page_comments.tpl; the view doc/comment, classes/expdoccomment.php).
 # A new comment is held and hidden by the kernel's review hold (settings/siteaccess/site/content.ini.append.php) until

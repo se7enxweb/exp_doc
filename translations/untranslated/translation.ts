@@ -861,6 +861,274 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Starter distributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready-to-run installations, one GitHub repository each: the Composer vendor directory is included and SQLite is set up, so a clone is most of the installation. The static site starter is a template for static publishing, not a product.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Release %version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A template for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The ready-to-run copy of the partner distribution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product and kernel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stack and database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>How to get it running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands from the README</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>How to choose a starter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Product page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Guide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fastest way to try it:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential 6 ready to run on SQLite, with the Composer vendor directory included: clone it and serve it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want to try Exponential 6 in minutes on SQLite, with nothing to install but PHP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want Symfony 7.4 with Exponential 6 inside, the Composer vendor directory already in place</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want the finished Nexus v5 site with its SQLite database and vendor directory already in the repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want the CJW example site of Nexus (Symfony 3.4 with Exponential 6) ready to run on SQLite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want the Symfony-only Platform v5 with its SQLite database and vendor directory already in the repository</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want a free static copy of your Exponential site on GitHub Pages, built by GitHub Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential 6 as a ready-to-run installation: the whole kernel with the Composer vendor directory and a small SQLite database already in the repository.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A default installation of Exponential, preconfigured for immediate use without any configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential 6.0.13, the kernel of release 1.0.0.7; the features new in 6.0.15, such as static publishing, are not in it yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying Exponential 6 in minutes, and starting a new site from a working installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel in plain PHP, no Symfony; SQLite (var/storage/sqlite3/starter.db included); Composer vendor directory included</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.1 to 8.5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clone the repository and serve its folder with a web server (the README names the PHP built-in server, Apache and Nginx). The README gives the starting password of the admin account: change it at the first login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One stack: PHP and Exponential's templates; nothing to set up before the first page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform Legacy v5 with the Composer vendor directory in the repository and SQLite set up in .env: Symfony 7.4 LTS with a full Exponential 6 inside.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Platform v5 project skeleton of Exponential Platform Legacy, with the legacy bridge enabled by default</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform Legacy, the Platform v5 (5.0) line: the Platform v5 kernel and the Exponential 6 kernel side by side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Teams that want Symfony 7.4 and the Exponential 6 administration, templates and extensions in one project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS with the legacy bridge and Exponential Layouts; SQLite by default, MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.3 or later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clone the repository: the vendor directory is in it, so the README's Composer step is done. For SQLite set MESSENGER_TRANSPORT_DSN=sync:// in .env.local (README step 2); the install command creates the database; the README lists the steps for the assets and the REST key before the start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Nexus v5 site as a repository of its own, with the Composer vendor directory and the SQLite database var/data_dev.db already included.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential Platform Nexus v5 site: the 7x fork of the Netgen media site blueprint on Platform v5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform Nexus as on the 1.3.0.x line (Platform v5), without the Exponential 6 kernel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A finished Symfony website with Exponential Layouts and demo content, to try or to build on</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS with Exponential Layouts, Tags and the Netgen site API; SQLite by default (var/data_dev.db included), MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.4 or later (tested on 8.5)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clone the repository: the vendor directory and the SQLite database are in it, so the README's Composer and install steps are done. Build the assets with Node.js 22 and Yarn and create the REST key as the README's steps 6 to 12 say, then start the Symfony server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony and Twig, Node.js for the assets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The ready-to-run copy of the partner distribution CJW Exponential Platform Nexus, tuned for SQLite: the Composer vendor directory and the SQLite databases are in the repository.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CJW Exponential Platform Nexus with its CJW example site, as a ready-to-run installation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform Nexus 1.0.0.x (the eZ Platform 2.5 generation) with the Exponential 6 kernel through the legacy bridge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying the CJW example site, and Symfony based Exponential Platform (Legacy) applications that start from it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 3.4 with the Exponential 6 kernel; SQLite (var/data_dev.db and var/data_prod.db included); Composer vendor directory included</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.3 to 8.5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Install it with git clone and point a web server at its web/ folder; the repository carries the Apache and Nginx configurations in doc/apache2 and doc/nginx</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform DXP v5 as a ready-to-run repository: the skeleton with the Composer vendor directory and the SQLite database var/data_dev.db included.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Platform v5 skeleton of Exponential Platform DXP, with no legacy bridge and no Exponential 6 kernel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform DXP, Platform v5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Trying the Symfony-only platform, and new Symfony projects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS, Symfony only; SQLite by default (var/data_dev.db included), MySQL, MariaDB or PostgreSQL by DATABASE_URL; Composer vendor directory included</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clone the repository: the vendor directory and the SQLite database are in it, so the README's Composer and install steps are done. For SQLite set MESSENGER_TRANSPORT_DSN=sync:// in .env.local, build the assets with Node.js 20 and Yarn and create the REST key as the README's steps 5 to 8 say, then start the Symfony server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not a product but a GitHub template repository for static publishing: it builds a static copy of an Exponential site with GitHub Actions and hosts it free on GitHub Pages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A template that publishes plain HTML pages and files, with no PHP and no database on the public side, while editors keep working in Exponential</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential with static publishing, new in 6.0.15; until that release the workflow installs the main branch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Site owners who want a free, fast, static public copy of an Exponential site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GitHub Actions and GitHub Pages; the build installs Exponential with Composer on SQLite and makes the copy with exp:static:build</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.3 in the workflow; 8.0 or later to build on your own computer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click Use this template, set Settings &gt; Pages &gt; Source to GitHub Actions, add your site (or leave data/ empty for the default site package) and push to main. On your own computer the README's two commands build the copy and serve it</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GitHub Actions and Pages; the help center's guide walks through every step</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Community and partner distributions</source>
         <translation type="unfinished"></translation>
     </message>

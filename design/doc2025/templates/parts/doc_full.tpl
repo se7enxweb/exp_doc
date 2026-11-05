@@ -10,7 +10,8 @@
      $doc_page_displays = ezini( 'PageDisplaySettings', 'Display', 'exp_doc.ini' )
      $doc_page_display = ''}
 {* a page of exp_doc.ini [PageDisplaySettings]: its list after its own text (every product, exp_doc/landing_products.tpl,
-   in the product box's cards; every choice, exp_doc/landing_choose.tpl), a listed exception like the front page's
+   in the product box's cards; every choice, exp_doc/landing_choose.tpl; then the ready-to-run starters,
+   exp_doc/landing_starters.tpl, and the partner distributions), a listed exception like the front page's
    frames: the help center's components, light (the pagelayout loads them on these pages) *}
 {if is_set( $doc_page_displays[$node.object.remote_id] )}{set $doc_page_display = $doc_page_displays[$node.object.remote_id]}{/if}
 {* "Start where you are" below the front page's current lists, while the help is on (as the bottom blocks) *}
@@ -117,8 +118,8 @@
 {else}
 {$doc_body}
 {/if}
-{if eq( $doc_page_display, 'products' )}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-products">{include uri='design:exp_doc/landing_products.tpl' heading=false() list_class='a4-grid is-wide' badge_class='a4-badge is-ok'}{include uri='design:exp_doc/landing_partners.tpl'}</div>
-{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page' heading=false()}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-partners">{include uri='design:exp_doc/landing_partners.tpl' needs=true()}</div>{/if}
+{if eq( $doc_page_display, 'products' )}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-products">{include uri='design:exp_doc/landing_products.tpl' heading=false() list_class='a4-grid is-wide' badge_class='a4-badge is-ok' starters=true()}{include uri='design:exp_doc/landing_starters.tpl'}{include uri='design:exp_doc/landing_partners.tpl'}</div>
+{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page' heading=false()}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-starters">{include uri='design:exp_doc/landing_starters.tpl' needs=true()}</div><div class="a4-page a4-help-frame exp-doc-product exp-doc-page-partners">{include uri='design:exp_doc/landing_partners.tpl' needs=true()}</div>{/if}
 {* the Contributors folder lists every contributor below its own text (a listed exception) *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
 
