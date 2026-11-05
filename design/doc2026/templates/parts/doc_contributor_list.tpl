@@ -1,8 +1,8 @@
 {* The Contributors folder's list in the Modern design: everyone with an authoring role (fetch exp_doc/contributor_list), most
-   pages first, each in its line (parts/doc_contributor_line.tpl) with its counts. Both lists are one cache-block: it is
-   the same for every reader, and it is drawn again after a publish anywhere (the counts change with the pages) or
-   after two hours (the age of the last comment). *}
-{cache-block expiry=7200}{def $doc_people = fetch( 'exp_doc', 'contributor_list' )}
+   pages first, each in its line (parts/doc_contributor_line.tpl) with its counts. Both lists are one cache-block per
+   set of roles (the list holds only what the reader may read), drawn again after a publish anywhere (the counts change
+   with the pages) or after two hours (the age of the last comment). *}
+{cache-block keys=array( fetch( 'user', 'current_user' ).role_id_list|implode( ',' ), fetch( 'user', 'current_user' ).limited_assignment_value_list|implode( ',' ) ) expiry=7200}{def $doc_people = fetch( 'exp_doc', 'contributor_list' )}
 <section class="exp-doc-contributor-index" aria-labelledby="exp-doc-contributor-index-title">
     <h2 id="exp-doc-contributor-index-title" class="a4-h2">{'%count contributors'|i18n( 'design/exp_doc', '', hash( '%count', $doc_people|count ) )}</h2>
     <ol class="a4-plain exp-doc-contributor-index-list">
