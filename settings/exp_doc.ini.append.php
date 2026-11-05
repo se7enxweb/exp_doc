@@ -112,6 +112,10 @@ SocialLinks[Instagram]=https://www.Instagram.com/se7enxweb
 SocialLinks[Facebook]=http://facebook.exponential.earth
 SocialLinks[BlueSky]=https://bsky.app/profile/exponentialcms.bsky.social
 SocialLinks[X]=https://twitter.com/se7enxweb
+# The class of a social link where the static footer's was not the label (class="youtube" on the YouTube link):
+# SocialClasses[<label>]=<class>
+SocialClasses[]
+SocialClasses[YouTube]=youtube
 
 # The quick links of the Classic front and top-level pages (parts/doc_menu_quicklinks.tpl), as on the static site.
 # Links[]=<static file the page was imported from>;<label>
@@ -141,7 +145,7 @@ Links[]=FAQ.html;FAQ
 [Quicklinks_exponential]
 Heading=Exponential
 Links[]
-Links[]=Exponential/Technical-manual/4.x/Reference.html;TM : Reference (v6.x)
+Links[]=Exponential/Technical-manual/6.x/Reference.html;TM : Reference (v6.x)
 Links[]=Exponential/Technical-manual/6.html;Technical manual (v6.x)
 Links[]=Exponential/User-manual/6.html;User manual (v6.x)
 Links[]=Extensions.html;Extensions
@@ -288,6 +292,35 @@ ContributorLimit=500
 RemoteID=staticimport-doc-html-8565d9ad2d987fe3c2406f986f5f4fbc
 # How many recently changed pages of the spaces the landing lists
 RecentLimit=8
+
+# The Confluence pages in the Classic design (fetch exp_doc/confluence_context, parts/confluence_*.tpl): the pages below
+# the Confluence container and the pages imported from a [ClassicSettings] ConfluencePrefixes[] path show in the static
+# site's Atlassian frame (its header, the space's sidebar with the page tree, the breadcrumbs, the byline, the labels,
+# the comments and the Confluence footer), filled from the content tree.
+[ConfluenceFrame]
+# The classes of a page's attachments (its related objects of these classes, listed in the page's "..." menu)
+AttachmentClasses[]
+AttachmentClasses[]=exp_doc_image
+AttachmentClasses[]=exp_doc_file
+# The heading of the sidebar's first block of links, on spaces with links ([ConfluenceSpace_<key>] Links[])
+LinksHeading=General
+
+# A space's sidebar as the static space had it ([ConfluenceSpace_<space key>], the key is the space's short title):
+# Heading: the heading above "Back to the top" (default: the space's name); SearchName: the name in the search box's
+# placeholder "search <name> docs" (default: the space's name); Links[]=<address or static file>;<label>: the links of
+# the first block (a static file names the page imported from it)
+[ConfluenceSpace_DEVELOPER]
+Heading=Developer documentation
+Links[]
+Links[]=http://ez.no/;eZ Systems Website
+Links[]=display/USER.html;Editor documentation
+
+[ConfluenceSpace_USER]
+Heading=Editor documentation
+SearchName=Editor
+Links[]
+Links[]=http://ez.no/;eZ Systems Website
+Links[]=display/DEVELOPER/Documentation.html;Developer documentation
 
 # The products' landing pages: the container at each path of [ModernSettings] ProductList[] (fetch exp_doc/
 # product_landing). Modern draws the whole page (parts/doc_product_landing.tpl: the hero with the product's text, its

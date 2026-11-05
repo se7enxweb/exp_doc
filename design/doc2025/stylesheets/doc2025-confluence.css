@@ -1,0 +1,797 @@
+/* The Classic design's Confluence frame (parts/confluence_frame.tpl, parts/confluence_page.tpl): the look of the static
+   site's Atlassian page frame (the Confluence 5.8 documentation theme of the former documentation center), written
+   for this site from the measured boxes and styles of the static pages (no Atlassian stylesheet or font is copied:
+   the icons are this design's own images in images/confluence/). Loaded on the Confluence pages only, instead of the
+   ezdoc stylesheets.
+   The frame fills the window as the static one did: the header bar on top, the Confluence footer at the bottom, and
+   between them the space's sidebar and the page panel, each scrolling on its own. Below 640px the frame is one
+   column that scrolls as a whole. */
+
+body.exp-doc-confluence {
+    /* the frame's colors (the static theme's) */
+    --exp-doc-cf-text: #333;
+    --exp-doc-cf-text-strong: #292929;
+    --exp-doc-cf-muted: #707070;
+    --exp-doc-cf-bullet: #999;
+    --exp-doc-cf-link: #ff6400;
+    --exp-doc-cf-heading: #006293;
+    --exp-doc-cf-header-line: #2e3d54;
+    --exp-doc-cf-line: #ccc;
+    --exp-doc-cf-line-soft: #f0f0f0;
+    --exp-doc-cf-sidebar: #f0f0f0;
+    --exp-doc-cf-paper: #fff;
+    --exp-doc-cf-button: #f5f5f5;
+    --exp-doc-cf-label: #f2f2f2;
+    --exp-doc-cf-code-line: #bbb;
+    --exp-doc-cf-code-head: #f7f7f7;
+    --exp-doc-cf-current: #e6e6e6;
+    --exp-doc-cf-search: rgba(0, 0, 0, 0.2);
+    --exp-doc-cf-shadow: rgba(0, 0, 0, 0.2);
+    --exp-doc-cf-comment-author: #666;
+    --exp-doc-cf-radius: 3px;
+    --exp-doc-cf-font: Arial, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background: var(--exp-doc-cf-paper);
+    color: var(--exp-doc-cf-text);
+    font-family: var(--exp-doc-cf-font);
+    font-size: 14px;
+    line-height: 20px;
+    color-scheme: light;
+}
+.exp-doc-confluence a {
+    color: var(--exp-doc-cf-link);
+    text-decoration: none;
+}
+.exp-doc-confluence a:hover,
+.exp-doc-confluence a:focus {
+    text-decoration: underline;
+}
+.exp-doc-confluence .assistive {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+.exp-doc-confluence .aui-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    overflow: hidden;
+    background: no-repeat center / 16px 16px;
+    text-indent: -999em;
+    vertical-align: text-top;
+}
+.exp-doc-confluence .aui-iconfont-appswitcher { background-image: url(../images/confluence/appswitcher.svg); }
+.exp-doc-confluence .aui-iconfont-help { background-image: url(../images/confluence/help.svg); }
+.exp-doc-confluence .aui-iconfont-search { background-image: url(../images/confluence/search.svg); }
+.exp-doc-confluence .aui-iconfont-more { background-image: url(../images/confluence/more.svg); }
+.exp-doc-confluence .aui-iconfont-chevron-right { background-image: url(../images/confluence/chevron-right.svg); }
+.exp-doc-confluence .aui-iconfont-chevron-down { background-image: url(../images/confluence/chevron-down.svg); }
+
+/* The frame */
+#full-height-container {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    min-height: 0;
+}
+#splitter {
+    position: relative;
+    flex: 1 1 auto;
+    min-height: 0;
+}
+#splitter-sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    overflow: auto;
+    background: var(--exp-doc-cf-sidebar);
+}
+#splitter .vsplitbar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 300px;
+    width: 5px;
+    background: var(--exp-doc-cf-line);
+}
+#splitter-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 305px;
+    overflow: auto;
+    background: var(--exp-doc-cf-paper);
+}
+
+/* The header bar */
+#header {
+    flex: 0 0 auto;
+    background: var(--exp-doc-cf-paper);
+}
+#header .aui-header {
+    position: relative;
+    height: 41px;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--exp-doc-cf-header-line);
+    box-sizing: border-box;
+    color: var(--exp-doc-cf-text-strong);
+}
+#header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#header a {
+    color: var(--exp-doc-cf-text-strong);
+}
+#header .app-switcher-trigger {
+    display: block;
+    float: left;
+    width: 36px;
+    height: 40px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+}
+#header .app-switcher-trigger .aui-icon {
+    vertical-align: top;
+    opacity: 0.8;
+}
+#logo.aui-header-logo {
+    float: left;
+    margin: 0;
+    font-size: 28px;
+    line-height: 35px;
+}
+#logo.aui-header-logo a {
+    display: block;
+    padding: 8px 10px;
+}
+#logo.aui-header-logo img {
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+#header .aui-header-primary .aui-nav {
+    float: left;
+    white-space: nowrap;
+}
+#header .aui-header-primary .aui-nav > li {
+    display: inline-block;
+}
+#header .aui-nav-link,
+#header .aui-nav-imagelink,
+#header .login-link {
+    display: block;
+    height: 40px;
+    padding: 13px 23px 13px 10px;
+    box-sizing: border-box;
+    line-height: 14px;
+}
+#header .aui-header-secondary .aui-nav {
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+#header .aui-header-secondary .aui-nav > li {
+    float: left;
+}
+#header #doctheme-anchor {
+    width: 40px;
+    padding: 0;
+}
+#splitter-button {
+    display: block;
+    width: 20px;
+    height: 40px;
+    margin-left: 8px;
+    background: url(../images/confluence/tree.svg) no-repeat center;
+}
+#quick-search {
+    position: relative;
+    margin: 0;
+    padding: 0 10px;
+}
+#quick-search fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#quick-search-query {
+    width: 220px;
+    height: 30px;
+    margin: 5px 0;
+    padding: 2px 26px 2px 10px;
+    border: 0;
+    border-radius: var(--exp-doc-cf-radius);
+    box-sizing: border-box;
+    background: var(--exp-doc-cf-search);
+    color: var(--exp-doc-cf-text);
+    font: inherit;
+}
+#quick-search-submit {
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background: url(../images/confluence/search-header.svg) no-repeat center;
+    color: transparent;
+    cursor: pointer;
+}
+#header #help-menu-link {
+    padding-top: 12px;
+}
+#header .login-link {
+    padding-right: 10px;
+}
+
+/* The space's sidebar (the static space's own sidebar text, then the page tree) */
+#splitter-sidebar > p {
+    margin: 10px 0 0;
+    padding: 0 0 0 10px;
+}
+#splitter-sidebar > p:first-child {
+    margin-top: 0;
+}
+#splitter-sidebar h4 {
+    margin: 20px 0 0;
+    color: var(--exp-doc-cf-heading);
+    font-size: 16px;
+    line-height: 20px;
+}
+#splitter-sidebar p a {
+    color: var(--exp-doc-cf-text);
+    font-size: 12.6px;
+    line-height: 18px;
+}
+#splitter-sidebar sup a {
+    font-size: 10.5px;
+    line-height: 15px;
+}
+.exp-doc-cf-bullet {
+    color: var(--exp-doc-cf-bullet);
+}
+#splitter-sidebar hr {
+    height: 0;
+    margin: 7px 0;
+    border: 0;
+    border-top: 2px solid var(--exp-doc-cf-line);
+}
+#splitter-sidebar .search-macro form {
+    margin: 20px 0 0;
+}
+#splitter-sidebar .search-macro-fields {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+#splitter-sidebar .search-macro-query {
+    width: 235px;
+    margin: 0 0 0 5px;
+}
+#splitter-sidebar .search-macro-query input {
+    width: 100%;
+    height: 30px;
+    padding: 4px 5px;
+    border: 1px solid var(--exp-doc-cf-line);
+    border-radius: var(--exp-doc-cf-radius);
+    box-sizing: border-box;
+    background: var(--exp-doc-cf-paper);
+    color: var(--exp-doc-cf-text);
+    font: 14px var(--exp-doc-cf-font);
+}
+#splitter-sidebar .search-macro-button {
+    display: inline-block;
+    height: 30px;
+    padding: 4px 10px;
+    border: 1px solid var(--exp-doc-cf-line);
+    border-radius: var(--exp-doc-cf-radius);
+    box-sizing: border-box;
+    background: var(--exp-doc-cf-button);
+    cursor: pointer;
+}
+.plugin_pagetree {
+    display: block;
+    margin: 0 0 0 -10px;
+}
+.plugin_pagetree ul {
+    margin: 0;
+    padding: 0 0 0 10px;
+    list-style: none;
+    color: var(--exp-doc-cf-text);
+}
+.plugin_pagetree .plugin_pagetree_children_list_noleftspace {
+    padding: 0 10px 10px 20px;
+}
+.plugin_pagetree li {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 16px;
+    font-size: 12.6px;
+    line-height: 18px;
+}
+.plugin_pagetree_childtoggle_container {
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 16px;
+}
+.plugin_pagetree_childtoggle {
+    display: block;
+}
+.plugin_pagetree_children_content {
+    padding: 1px 0;
+}
+.plugin_pagetree_children_span a {
+    color: var(--exp-doc-cf-text);
+}
+.plugin_pagetree_current {
+    display: block;
+    margin-left: -3px;
+    padding: 0 3px;
+    border-radius: var(--exp-doc-cf-radius);
+    background: var(--exp-doc-cf-current);
+    font-weight: bold;
+}
+
+/* The page panel */
+#main.aui-page-panel {
+    position: relative;
+    padding: 20px;
+    background: var(--exp-doc-cf-paper);
+}
+#main-header {
+    margin: 0 0 20px;
+}
+#navigation {
+    position: relative;
+    float: right;
+    margin: 1px 0 0;
+}
+#navigation .ajs-menu-bar {
+    margin: 0 -10px 0 0;
+    padding: 0 0 0 20px;
+    list-style: none;
+}
+#navigation .ajs-menu-item {
+    position: relative;
+    float: left;
+    padding: 0 0 0 5px;
+}
+.exp-doc-cf-actions > summary {
+    display: inline-block;
+    height: 30px;
+    padding: 4px 10px;
+    border: 1px solid transparent;
+    border-radius: var(--exp-doc-cf-radius);
+    box-sizing: border-box;
+    color: var(--exp-doc-cf-muted);
+    list-style: none;
+    cursor: pointer;
+}
+.exp-doc-cf-actions > summary::-webkit-details-marker {
+    display: none;
+}
+.exp-doc-cf-actions > summary:hover,
+.exp-doc-cf-actions[open] > summary {
+    border-color: var(--exp-doc-cf-line);
+    background: var(--exp-doc-cf-button);
+}
+.exp-doc-cf-actions .aui-dropdown2 {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    z-index: 10;
+    min-width: 200px;
+    padding: 5px 0;
+    border: 1px solid var(--exp-doc-cf-line);
+    border-radius: var(--exp-doc-cf-radius);
+    background: var(--exp-doc-cf-paper);
+    box-shadow: 0 3px 6px var(--exp-doc-cf-shadow);
+}
+.exp-doc-cf-actions .aui-dropdown2 ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.exp-doc-cf-actions .aui-dropdown2-section + .aui-dropdown2-section {
+    border-top: 1px solid var(--exp-doc-cf-line);
+}
+.exp-doc-cf-actions .aui-dropdown2 li > a,
+.exp-doc-cf-actions .aui-dropdown2 li > span {
+    display: block;
+    padding: 3px 10px;
+    color: var(--exp-doc-cf-text);
+}
+.exp-doc-cf-actions .exp-doc-cf-attachments a {
+    display: block;
+    padding: 2px 10px 2px 20px;
+    font-size: 12px;
+}
+#title-heading {
+    color: var(--exp-doc-cf-heading);
+}
+#title-heading .space-logo img {
+    display: block;
+    float: left;
+    width: 48px;
+    height: 48px;
+    margin: 0 10px 0 0;
+    border-radius: 50%;
+}
+#breadcrumbs {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+    line-height: 0;
+}
+#breadcrumbs li {
+    display: inline-block;
+    color: var(--exp-doc-cf-text);
+    font-size: 14px;
+    line-height: 20px;
+}
+#breadcrumbs li + li::before {
+    content: "/";
+    padding: 0 6px 0 5px;
+}
+#breadcrumbs li.hidden-crumb {
+    display: none;
+}
+#title-text {
+    margin: 0;
+    font-size: 28px;
+    font-weight: normal;
+    line-height: 35px;
+}
+#title-text a {
+    color: var(--exp-doc-cf-text);
+}
+#content.page {
+    clear: both;
+}
+#content .page-metadata {
+    margin: -15px 0 20px;
+    color: var(--exp-doc-cf-muted);
+    font-size: 12px;
+    line-height: 15px;
+}
+#content .page-metadata ul {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    list-style: none;
+    line-height: 16px;
+}
+#content .page-metadata li {
+    float: left;
+    padding: 0 5px 0 0;
+    line-height: 18px;
+}
+#content .page-metadata a {
+    color: var(--exp-doc-cf-muted);
+}
+.exp-doc-cf-attach {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-top: 1px;
+    background: url(../images/confluence/attach.svg) no-repeat center;
+    vertical-align: top;
+}
+#likes-and-labels-container {
+    margin: 10px 0;
+    padding: 10px 0;
+    overflow: hidden;
+}
+#likes-section {
+    float: left;
+    width: 48%;
+    min-height: 1px;
+}
+#labels-section {
+    float: right;
+    width: 48%;
+}
+.label-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+}
+.label-list .aui-label {
+    display: inline-block;
+    margin: 0 5px 5px 0;
+    padding: 1px 5px;
+    border: 1px solid var(--exp-doc-cf-line);
+    border-radius: var(--exp-doc-cf-radius);
+    background: var(--exp-doc-cf-label);
+    font-size: 12px;
+    line-height: 14px;
+    text-align: left;
+}
+.label-list .no-labels-message {
+    display: inline-block;
+    color: var(--exp-doc-cf-muted);
+}
+#theme-footer {
+    text-align: center;
+}
+#theme-footer p {
+    margin: 0;
+}
+
+/* The page's text (#main-content.wiki-content): the Confluence page's text styles for the body as this site stores it */
+.wiki-content {
+    margin: 14px 0 0;
+    overflow-wrap: break-word;
+}
+.wiki-content > :first-child,
+.wiki-content .innerCell > :first-child {
+    margin-top: 0;
+}
+.wiki-content p,
+.wiki-content ul,
+.wiki-content ol,
+.wiki-content table,
+.wiki-content pre,
+.wiki-content blockquote {
+    margin: 10px 0 0;
+}
+.wiki-content ul,
+.wiki-content ol {
+    padding-left: 40px;
+}
+.wiki-content li > ul,
+.wiki-content li > ol {
+    margin-top: 0;
+}
+.wiki-content h1,
+.wiki-content h2,
+.wiki-content h3,
+.wiki-content h4,
+.wiki-content h5,
+.wiki-content h6 {
+    margin: 30px 0 0;
+    color: var(--exp-doc-cf-heading);
+}
+.wiki-content h1 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 30px;
+}
+.wiki-content h2 {
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 30px;
+}
+.wiki-content h3 {
+    font-size: 16px;
+    line-height: 20px;
+}
+.wiki-content h4 {
+    margin-top: 20px;
+    color: var(--exp-doc-cf-text);
+    font-size: 14px;
+    line-height: 20px;
+}
+.wiki-content h5,
+.wiki-content h6 {
+    margin-top: 20px;
+    color: var(--exp-doc-cf-text);
+    font-size: 12px;
+    line-height: 20px;
+}
+.wiki-content img {
+    max-width: 100%;
+    height: auto;
+}
+.wiki-content table {
+    border-collapse: collapse;
+}
+.wiki-content th,
+.wiki-content td {
+    padding: 7px 10px;
+    border: 1px solid var(--exp-doc-cf-line);
+    text-align: left;
+    vertical-align: top;
+}
+.wiki-content th {
+    background: var(--exp-doc-cf-line-soft);
+}
+.wiki-content pre,
+.wiki-content .exp-doc-pre {
+    padding: 10px;
+    overflow: auto;
+    border: 1px dashed var(--exp-doc-cf-code-line);
+    border-radius: 5px;
+    background: var(--exp-doc-cf-paper);
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: pre;
+}
+.wiki-content .exp-doc-panel {
+    margin: 10px 0 0;
+}
+.wiki-content .exp-doc-expand > summary {
+    color: var(--exp-doc-cf-link);
+    cursor: pointer;
+}
+
+/* The comments (parts/doc_comments.tpl, in Confluence's markup) */
+#comments-section {
+    margin: 11px 0 0;
+}
+#comments-section .section-title {
+    margin: 0;
+    color: var(--exp-doc-cf-heading);
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 30px;
+}
+#page-comments,
+#page-comments ol {
+    margin: 5px 0 0;
+    padding: 0;
+    list-style: none;
+}
+#page-comments {
+    border-bottom: 1px solid var(--exp-doc-cf-line);
+}
+#page-comments ol {
+    margin-left: 42px;
+}
+#page-comments .comment {
+    position: relative;
+    margin: 0 0 -1px;
+    padding: 10px 0;
+    border-top: 1px solid var(--exp-doc-cf-line);
+}
+#page-comments .comment-user-logo {
+    float: left;
+    margin: 0 10px 0 0;
+}
+#page-comments .comment-user-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+}
+#page-comments .comment-header {
+    margin: 0 0 10px;
+    padding: 0 0 0 42px;
+}
+#page-comments .comment-header .author {
+    margin: 0;
+    color: var(--exp-doc-cf-comment-author);
+    font-size: 16px;
+    line-height: 19.2px;
+}
+#page-comments .comment-body {
+    padding: 0 0 0 42px;
+}
+#page-comments .comment-content {
+    margin: -5px 0 0;
+    padding: 0 20px 0 0;
+}
+#page-comments .comment-actions {
+    margin: 10px 0 0;
+    color: var(--exp-doc-cf-muted);
+    font-size: 12px;
+}
+#page-comments .comment-actions ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+#page-comments .comment-actions li {
+    float: left;
+    margin-right: 10px;
+}
+#page-comments .comment-actions::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+/* The Classic additions inside the frame: the collapsed comments' summary, the contributors and the rating */
+.exp-doc-confluence .exp-doc-comments-toggle > summary {
+    color: var(--exp-doc-cf-heading);
+    font-weight: normal;
+}
+.exp-doc-confluence .exp-doc-contributors {
+    margin: 10px 0 0;
+    color: var(--exp-doc-cf-muted);
+    font-size: 12px;
+}
+.exp-doc-confluence .exp-doc-contributors p {
+    margin: 0;
+}
+.exp-doc-confluence .exp-doc-contributors label {
+    margin-right: 0.4em;
+}
+
+/* The Confluence footer */
+#footer {
+    flex: 0 0 auto;
+    border-top: 1px solid var(--exp-doc-cf-line);
+    background: var(--exp-doc-cf-paper);
+}
+#footer .footer-body {
+    padding: 5px 10px;
+    color: var(--exp-doc-cf-muted);
+    font-size: 12px;
+    text-align: center;
+}
+#footer .license {
+    margin: 0;
+    color: var(--exp-doc-cf-text);
+}
+#footer a {
+    color: var(--exp-doc-cf-muted);
+}
+#poweredby {
+    margin: 10px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0;
+    line-height: 0;
+}
+#poweredby li {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 20px;
+    white-space: nowrap;
+}
+#poweredby li + li {
+    margin-left: 10px;
+}
+#poweredby li + li::before {
+    content: "\00b7";
+    margin-right: 10px;
+}
+
+/* A phone: one column that scrolls as a whole, the sidebar below the header */
+@media (max-width: 640px) {
+    body.exp-doc-confluence {
+        display: block;
+        height: auto;
+        overflow: visible;
+    }
+    #splitter-sidebar,
+    #splitter-content {
+        position: static;
+        width: auto;
+        overflow: visible;
+    }
+    #splitter .vsplitbar,
+    #header .aui-header-secondary li:first-child,
+    #header .aui-header-secondary li:nth-child(2) {
+        display: none;
+    }
+    #splitter-sidebar .search-macro-query {
+        width: auto;
+        margin-right: 10px;
+    }
+    #main.aui-page-panel {
+        padding: 16px;
+    }
+    .wiki-content pre {
+        white-space: pre-wrap;
+    }
+}

@@ -32,6 +32,13 @@
    (full/exp_doc_help_topic.tpl), which the help center's styles draw (heading anchors, code, figures) *}
 {def $doc_is_help = and( is_set( $module_result.content_info.class_identifier ),
                          $module_result.content_info.class_identifier|begins_with( 'help_' ) )}
+{* a page of the former documentation center's Confluence spaces (fetch exp_doc/confluence_context): the static site's
+   Atlassian frame (parts/confluence_frame.tpl) and its stylesheet instead of the ezdoc frame *}
+{def $doc_confluence = false()}
+{if and( $doc_is_front|not, is_set( $module_result.node_id ), $module_result.node_id,
+         or( is_set( $module_result.content_info.viewmode )|not, eq( $module_result.content_info.viewmode, 'full' ) ) )}
+    {set $doc_confluence = fetch( 'exp_doc', 'confluence_context', hash( 'node_id', $module_result.node_id ) )}
+{/if}
 <!DOCTYPE html>
 {* data-a4-modes="light": Classic has no dark mode, so the help center components it shows (the front page's frames,
    the rating form, the exphelp views) keep their light tokens even where html[data-a4-theme="dark"] is set
@@ -40,7 +47,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{if or( $doc_is_front, $doc_is_product, $doc_is_help, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
+{if $doc_confluence}
+{* the Confluence frame: its own stylesheet (the static Atlassian frame's look), the rating's and the Classic additions'
+   (the header switches, the collapsed comments) *}
+{ezcss_load( array( 'exp-doc-rating.css', 'doc2025.css', 'doc2025-confluence.css' ) )}
+{elseif or( $doc_is_front, $doc_is_product, $doc_is_help, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
 {* the help center's views (exphelp/*) and the front page (its help center blocks at the end, exp_doc/landing_org.tpl):
    the help center's components and styles, light, inside the Classic frame *}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'exp-doc-rating.css', 'doc2025.css' ) )}
@@ -48,8 +59,17 @@
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'exp-doc-rating.css', 'doc2025.css' ) )}
 {/if}
 <link type="text/css" rel="stylesheet" href={'stylesheets/print.css'|ezdesign} media="print" />
+{if $doc_confluence}
+{include uri='design:parts/doc_head.tpl' path=$doc_path is_front=$doc_is_front title=$doc_path|reverse|extract_left( 1 )[0].text}
+{else}
 {include uri='design:parts/doc_head.tpl' path=$doc_path is_front=$doc_is_front}
+{/if}
 </head>
+{if $doc_confluence}
+<body id="com-atlassian-confluence" class="theme-documentation aui-layout exp-doc-confluence">
+{def $doc_help = false()}
+{include uri='design:parts/confluence_frame.tpl' context=$doc_confluence node_id=$doc_node_id}
+{else}
 <body>
 
 <!-- Complete page area: START -->
@@ -90,6 +110,7 @@
 
 </div>
 <!-- Complete page area: END -->
+{/if}
 
 {include uri='design:exp_doc/cookie_consent.tpl'}
 {include uri='design:parts/expwt_page_toolbar.tpl'}
@@ -97,4 +118,4 @@
 <script type="module" src={'javascript/exp-doc-rating.js'|ezdesign}></script>
 </body>
 </html>
-{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_is_product $doc_help}
+{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_is_product $doc_help $doc_confluence}

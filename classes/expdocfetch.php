@@ -912,4 +912,187 @@ class expDocFetch
         }
         return 0;
     }
+
+    /** @var array node id => the Confluence context of that node (confluenceContext()), for the request */
+    protected static $confluence = array();
+
+    /**
+     * The Confluence frame of a page in the Classic design: whether the node comes from the former documentation
+     * center's Confluence spaces (below the Confluence container, exp_doc.ini [PlatformSettings] RemoteID, or imported
+     * from a static path whose first folder is one of [ClassicSettings] ConfluencePrefixes[]), and if so what the
+     * static site's Atlassian frame showed around it:
+     * - space: the space's node (the Confluence container's child on the node's path), key (its short title, USER),
+     *   name (its name), home (the space's home page: its child imported from display/<key>.html, else its first child);
+     * - title: the page's title without the " - <space> - eZ Documentation" the import kept from the static <title>;
+     * - crumbs: the pages from the space's home page down to the page's parent (the static breadcrumbs after the
+     *   space), each array( 'node', 'title' );
+     * - tree: the space's page tree (the home page's children as the menus list them, the branch down to the page
+     *   opened), each item array( 'node', 'title', 'current', 'open', 'has_children', 'children' );
+     * - attachments: the images and files the page relates to (exp_doc.ini [ConfluenceFrame] AttachmentClasses[]).
+     * False for every other node. Computed once per request and node.
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => array|false )
+     */
+    public static function confluenceContext( $nodeID )
+    {
+        $nodeID = (int)$nodeID;
+        if ( !array_key_exists( $nodeID, self::$confluence ) )
+        {
+            self::$confluence[$nodeID] = self::buildConfluenceContext( $nodeID );
+        }
+        return array( 'result' => self::$confluence[$nodeID] );
+    }
+
+    /**
+     * @param int $nodeID
+     * @return array|false
+     */
+    protected static function buildConfluenceContext( $nodeID )
+    {
+        $node = $nodeID ? eZContentObjectTreeNode::fetch( $nodeID ) : null;
+        if ( !$node instanceof eZContentObjectTreeNode )
+        {
+            return false;
+        }
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $container = $ini->hasVariable( 'PlatformSettings', 'RemoteID' ) ? eZContentObject::fetchByRemoteID( $ini->variable( 'PlatformSettings', 'RemoteID' ) ) : null;
+        $containerNodeID = $container instanceof eZContentObject ? (int)$container->attribute( 'main_node_id' ) : 0;
+        $path = array_map( 'intval', $node->attribute( 'path_array' ) );
+        $below = $containerNodeID && in_array( $containerNodeID, $path, true ) && (int)$node->attribute( 'node_id' ) !== $containerNodeID;
+        $dataMap = $node->attribute( 'data_map' );
+        $source = isset( $dataMap['source_path'] ) ? trim( (string)$dataMap['source_path']->attribute( 'data_text' ) ) : '';
+        $prefixes = $ini->hasVariable( 'ClassicSettings', 'ConfluencePrefixes' ) ? (array)$ini->variable( 'ClassicSettings', 'ConfluencePrefixes' ) : array();
+        $bySource = $source !== '' && in_array( strtok( ltrim( $source, '/' ), '/' ), $prefixes, true );
+        if ( !$below && !$bySource )
+        {
+            return false;
+        }
+
+        // the space: the container's child on the node's path (the node itself when it is a space)
+        $space = null;
+        if ( $below )
+        {
+            $at = array_search( $containerNodeID, $path, true );
+            if ( isset( $path[$at + 1] ) )
+            {
+                $space = $path[$at + 1] === (int)$node->attribute( 'node_id' ) ? $node : eZContentObjectTreeNode::fetch( $path[$at + 1] );
+            }
+        }
+        $key = '';
+        $name = '';
+        $home = null;
+        if ( $space instanceof eZContentObjectTreeNode )
+        {
+            $spaceMap = $space->attribute( 'data_map' );
+            $key = isset( $spaceMap['short_title'] ) ? trim( (string)$spaceMap['short_title']->attribute( 'data_text' ) ) : '';
+            if ( $key === '' && isset( $spaceMap['source_path'] ) )
+            {
+                $key = basename( rtrim( (string)$spaceMap['source_path']->attribute( 'data_text' ), '/' ) );
+            }
+            $name = (string)$space->attribute( 'name' );
+            $children = self::menuChildren( $space->attribute( 'node_id' ) );
+            foreach ( $children['result'] as $child )
+            {
+                $childMap = $child->attribute( 'data_map' );
+                if ( isset( $childMap['source_path'] ) && trim( (string)$childMap['source_path']->attribute( 'data_text' ) ) === 'display/' . $key . '.html' )
+                {
+                    $home = $child;
+                    break;
+                }
+            }
+            if ( !$home && $children['result'] )
+            {
+                $home = $children['result'][0];
+            }
+        }
+        else
+        {
+            $space = null;
+        }
+
+        // the breadcrumbs: from the home page down to the parent
+        $crumbs = array();
+        if ( $home instanceof eZContentObjectTreeNode && in_array( (int)$home->attribute( 'node_id' ), $path, true )
+             && (int)$home->attribute( 'node_id' ) !== (int)$node->attribute( 'node_id' ) )
+        {
+            $from = array_search( (int)$home->attribute( 'node_id' ), $path, true );
+            foreach ( array_slice( $path, $from, -1 ) as $crumbID )
+            {
+                $crumb = eZContentObjectTreeNode::fetch( $crumbID );
+                if ( $crumb instanceof eZContentObjectTreeNode && $crumb->canRead() )
+                {
+                    $crumbs[] = array( 'node' => $crumb, 'title' => self::confluenceTitle( $crumb->attribute( 'name' ) ) );
+                }
+            }
+        }
+
+        // the page tree: the home page's children, the branch down to the page opened
+        $tree = $home instanceof eZContentObjectTreeNode ? self::confluenceTree( (int)$home->attribute( 'node_id' ), $path, (int)$node->attribute( 'node_id' ), 0 ) : array();
+
+        // the attachments: the images and files the page relates to
+        $attachments = array();
+        $classes = $ini->hasVariable( 'ConfluenceFrame', 'AttachmentClasses' ) ? (array)$ini->variable( 'ConfluenceFrame', 'AttachmentClasses' ) : array();
+        if ( $classes )
+        {
+            $related = $node->object()->relatedObjects( false, false, 0, false, array( 'AllRelations' => true ) );
+            foreach ( is_array( $related ) ? $related : array() as $object )
+            {
+                if ( in_array( $object->attribute( 'class_identifier' ), $classes, true ) && $object->attribute( 'main_node_id' ) && $object->canRead() )
+                {
+                    $attachments[$object->attribute( 'id' )] = $object;
+                }
+            }
+        }
+
+        return array( 'space' => $space, 'key' => $key, 'name' => $name, 'home' => $home,
+                      'title' => self::confluenceTitle( $node->attribute( 'name' ) ),
+                      'crumbs' => $crumbs, 'tree' => $tree, 'attachments' => array_values( $attachments ) );
+    }
+
+    /**
+     * A Confluence page's title as the static page showed it: the name without the " - <space> - eZ Documentation"
+     * the import kept from the static <title> ("API - Developer - eZ Documentation" is "API").
+     *
+     * @param string $name
+     * @return string
+     */
+    public static function confluenceTitle( $name )
+    {
+        $parts = explode( ' - ', (string)$name );
+        if ( count( $parts ) >= 3 && trim( end( $parts ) ) === 'eZ Documentation' )
+        {
+            return implode( ' - ', array_slice( $parts, 0, -2 ) );
+        }
+        return (string)$name;
+    }
+
+    /**
+     * One level of a space's page tree (confluenceContext()), and below it the level of the child on the page's path.
+     *
+     * @param int $parentNodeID
+     * @param int[] $path the page's node path
+     * @param int $currentID the page
+     * @param int $depth the level, at most 12 deep
+     * @return array
+     */
+    protected static function confluenceTree( $parentNodeID, array $path, $currentID, $depth )
+    {
+        $items = array();
+        if ( $depth > 12 )
+        {
+            return $items;
+        }
+        $children = self::menuChildren( $parentNodeID );
+        foreach ( $children['result'] as $child )
+        {
+            $childID = (int)$child->attribute( 'node_id' );
+            $open = in_array( $childID, $path, true ) && $childID !== $currentID;
+            $items[] = array( 'node' => $child, 'title' => self::confluenceTitle( $child->attribute( 'name' ) ),
+                              'current' => $childID === $currentID, 'open' => $open,
+                              'has_children' => (int)$child->attribute( 'children_count' ) > 0,
+                              'children' => ( $open || $childID === $currentID ) ? self::confluenceTree( $childID, $path, $currentID, $depth + 1 ) : array() );
+        }
+        return $items;
+    }
 }

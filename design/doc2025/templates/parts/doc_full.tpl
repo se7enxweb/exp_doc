@@ -16,6 +16,26 @@
     {set $doc_root_source = fetch( 'exp_doc', 'node_by_source', hash( 'path', ezini( 'ClassicSettings', 'RootSource', 'exp_doc.ini' ) ) )}
     {if $doc_root_source}{set $doc_map = $doc_root_source.data_map}{/if}
 {/if}
+{* a page of the former documentation center's Confluence spaces (fetch exp_doc/confluence_context): its page panel in
+   the static site's Atlassian markup (parts/confluence_page.tpl; the pagelayout draws the frame around it), with the
+   same body *}
+{def $doc_cf = cond( $doc_is_root, false(), fetch( 'exp_doc', 'confluence_context', hash( 'node_id', $node.node_id ) ) )}
+{if $doc_cf}
+{set-block variable=$doc_body}
+{if is_set( $body_html )}
+{$body_html}
+{elseif and( is_set( $doc_map.body ), $doc_map.body.has_content )}
+{attribute_view_gui attribute=$doc_map.body}
+{elseif and( is_set( $doc_map.answer ), $doc_map.answer.has_content )}
+{attribute_view_gui attribute=$doc_map.answer}
+{elseif and( is_set( $doc_map.description ), $doc_map.description.has_content )}
+{attribute_view_gui attribute=$doc_map.description}
+{elseif is_set( $doc_map.original_html )}
+{$doc_map.original_html.content}
+{/if}
+{/set-block}
+{include uri='design:parts/confluence_page.tpl' node=$node context=$doc_cf body_html=$doc_body}
+{else}
 <div class="template-design">
 <div class="template-module content-view-full">
 <div class="template-object">
@@ -105,4 +125,5 @@
 {* the front page ends with the help center's bottom blocks (exp_doc/landing_org.tpl), below everything above, without
    the start card and "Who makes Exponential" drawn higher up *}
 {if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}{include uri='design:exp_doc/landing_org.tpl' frame_class='a4-page' start=$doc_start|not about=$doc_start|not}{/if}
-{undef $doc_map $doc_root_source $doc_is_root $doc_start $doc_body}
+{/if}
+{undef $doc_map $doc_root_source $doc_is_root $doc_start $doc_body $doc_cf}

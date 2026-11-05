@@ -12,7 +12,8 @@ For each page:
 - markup: the page area (div#page) of both documents is normalized and compared:
   * scripts, comments and the allowed modern exceptions are left out (the header switches #exp-doc-switches,
     the cookie banner #exp-cc, the front-end editing toolbar, the version badge .exp-doc-runs-on);
-  * inline styles and the exp-doc-* classes that replace them are ignored;
+  * inline styles and the exp-doc-* classes that replace them are ignored, and so is rel="noopener" (kept on the
+    links that open a new window for security, a decided modern difference);
   * links are compared by target: a static link is resolved to the static file it names, a dynamic link to the
     static file its page came from (through the map); images by file name;
   * text is compared with its whitespace collapsed; attributes in any order;
@@ -167,6 +168,12 @@ class Normalizer:
                 continue
             if name == 'class':
                 value = ' '.join(sorted(c for c in value.split() if not c.startswith('exp-doc-')))
+                if not value:
+                    continue
+            if name == 'rel':
+                # a decided modern difference (security): links that open a new window (the footer's social links,
+                # target="_blank") carry rel="noopener", which the static pages did not have; other rel values count
+                value = ' '.join(sorted(r for r in value.split() if r != 'noopener'))
                 if not value:
                     continue
             if name in ('href', 'action'):

@@ -7,6 +7,10 @@
     <title>{ezini( 'ClassicSettings', 'FrontTitle', 'exp_doc.ini' )|wash}</title>
     <meta name="description" content="{ezini( 'ClassicSettings', 'FrontDescription', 'exp_doc.ini' )|wash}" />
     <meta property="og:type" content="website" />
+{elseif is_set( $title )}
+    {* a Confluence page (parts/confluence_frame.tpl): the static page's own title, the page's name ("API - Developer - eZ
+       Documentation") *}
+    <title>{$title|wash}</title>
 {else}
     {def $doc_title_parts = array()}
     {foreach $path|reverse as $item}

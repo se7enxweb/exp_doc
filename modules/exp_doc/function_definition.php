@@ -310,3 +310,18 @@ $FunctionList['forum_activity'] = array( 'name' => 'forum_activity',
                                                                  'method' => 'forumActivity' ),
                                          'parameter_type' => 'standard',
                                          'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => false ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'confluence_context', hash( 'node_id', <node id> ) )
+ *       the Atlassian frame of a page from the former documentation center's Confluence spaces in the Classic design:
+ *       its space (node, key, name, home page), its title without the static suffix, its breadcrumbs, the space's
+ *       page tree and its attachments (expDocFetch::confluenceContext()); false for every other node
+ */
+$FunctionList['confluence_context'] = array( 'name' => 'confluence_context',
+                                             'operation_types' => array( 'read' ),
+                                             'call_method' => array( 'class' => 'expDocFetch',
+                                                                     'method' => 'confluenceContext' ),
+                                             'parameter_type' => 'standard',
+                                             'parameters' => array( array( 'name' => 'node_id',
+                                                                           'type' => 'integer',
+                                                                           'required' => true ) ) );

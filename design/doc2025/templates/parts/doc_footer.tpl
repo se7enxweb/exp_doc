@@ -1,5 +1,6 @@
 {* The footer of a Classic page, as on the static site: the logo with the 7x call to action, then the copyright,
-   license and social links. The license link points to the imported License page (found by its static file).
+   license and social links (a link's class is its label, or [ClassicSettings] SocialClasses[<label>] where the static
+   footer's was another; every link keeps rel="noopener", a listed difference of the check). The license link points to the imported License page (found by its static file).
    Two additions close the copyright block, both listed exceptions of the check: the version badge (doc.md: "Runs on
    Exponential 6.0.15") and the link to the Contributors page. *}
 {def $doc_license = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'License.html' ) )
@@ -45,11 +46,12 @@
         </div>
 
         <div id="footer-connect-social" class="grid_4 right"> <b>{'Find Exponential on Your Favorite Social Network:'|i18n( 'design/doc2025' )}</b>&nbsp;
+{def $doc_social_classes = cond( ezini_hasvariable( 'ClassicSettings', 'SocialClasses', 'exp_doc.ini' ), ezini( 'ClassicSettings', 'SocialClasses', 'exp_doc.ini' ), hash() )}
 {foreach ezini( 'ClassicSettings', 'SocialLinks', 'exp_doc.ini' ) as $social_name => $social_url}
-            <a href="{$social_url|wash}" class="{$social_name|wash}" target="_blank" rel="noopener">{$social_name|wash}</a>{delimiter},{/delimiter}
+            <a href="{$social_url|wash}" class="{if is_set( $doc_social_classes[$social_name] )}{$doc_social_classes[$social_name]|wash}{else}{$social_name|wash}{/if}" target="_blank" rel="noopener">{$social_name|wash}</a>{delimiter},{/delimiter}
 {/foreach}
         </div>
 
     </div>
 </div>
-{undef $doc_license $doc_people}
+{undef $doc_license $doc_people $doc_social_classes}
