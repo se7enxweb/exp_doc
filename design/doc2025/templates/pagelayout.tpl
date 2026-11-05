@@ -23,7 +23,10 @@
     {set $doc_is_front = true()}
 {/if}
 <!DOCTYPE html>
-<html lang="{$site.http_equiv.Content-language|wash}">
+{* data-a4-modes="light": Classic has no dark mode, so the help center components it shows (the front page's frames,
+   the rating form, the exphelp views) keep their light tokens even where html[data-a4-theme="dark"] is set
+   (components.css) *}
+<html lang="{$site.http_equiv.Content-language|wash}" data-a4-modes="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

@@ -10,7 +10,8 @@
    Variables: frame_class (optional, more classes of the frame: a4-page in Classic, whose body is not one), start
    (optional, false: without the "Start where you are" card, exp_doc/landing_start.tpl, which both designs draw higher up:
    Modern below the products, Classic below the static page's current lists), about (optional, false: without "Who
-   makes Exponential", which Modern draws above the manuals). *}
+   makes Exponential", which both designs draw at the top: Modern above the manuals, Classic before the static
+   page's content). *}
 {def $doc_org_report = fetch( 'exp_doc', 'help_report' )}
 {if $doc_org_report}
 {def $doc_org_support = fetch( 'exp_doc', 'help_support' )}

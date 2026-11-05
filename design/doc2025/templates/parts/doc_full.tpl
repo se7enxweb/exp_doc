@@ -23,6 +23,15 @@
 <h1>{cond( eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), ezini( 'ClassicSettings', 'FrontHeading', 'exp_doc.ini' ), $node.name )|wash}</h1>
 </div>
 
+{* on the front page "Who makes Exponential" (the help dashboard's exphelp/parts/dashboard_about.tpl, a listed
+   exception) comes first, before the static page's content, as Modern draws it above the manuals; the bottom blocks
+   then leave it out *}
+{if $doc_start}
+<div class="a4-page a4-help-frame exp-doc-landing-about">
+    {include uri='design:exphelp/parts/dashboard_about.tpl' landing_on=ezini( 'LandingSettings', 'Enabled', 'exphelp.ini' )|eq( 'enabled' )}
+</div>
+{/if}
+
 {* the body; on the front page "Start where you are" (exp_doc/landing_start.tpl, a listed exception) follows the
    static page's current lists, before the body's first second-level heading (the earlier front page): Classic has
    no products list to draw it below, as Modern does; a body without such a heading gets the card after it *}
@@ -56,6 +65,7 @@
 </div>
 </div>
 {include uri='design:parts/doc_comments.tpl' node=$node}
-{* the front page ends with the help center's bottom blocks (exp_doc/landing_org.tpl), below everything above *}
-{if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}{include uri='design:exp_doc/landing_org.tpl' frame_class='a4-page' start=$doc_start|not}{/if}
+{* the front page ends with the help center's bottom blocks (exp_doc/landing_org.tpl), below everything above, without
+   the start card and "Who makes Exponential" drawn higher up *}
+{if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}{include uri='design:exp_doc/landing_org.tpl' frame_class='a4-page' start=$doc_start|not about=$doc_start|not}{/if}
 {undef $doc_map $doc_root_source $doc_is_root $doc_start $doc_body}
