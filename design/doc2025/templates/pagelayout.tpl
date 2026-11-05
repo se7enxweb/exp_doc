@@ -28,6 +28,10 @@
          or( is_set( $module_result.content_info.viewmode )|not, eq( $module_result.content_info.viewmode, 'full' ) ) )}
     {set $doc_is_product = fetch( 'exp_doc', 'is_product', hash( 'node_id', $module_result.node_id ) )}
 {/if}
+{* a help topic, manual or chapter (help_*: help maintained as content): its text as the help renders it
+   (full/exp_doc_help_topic.tpl), which the help center's styles draw (heading anchors, code, figures) *}
+{def $doc_is_help = and( is_set( $module_result.content_info.class_identifier ),
+                         $module_result.content_info.class_identifier|begins_with( 'help_' ) )}
 <!DOCTYPE html>
 {* data-a4-modes="light": Classic has no dark mode, so the help center components it shows (the front page's frames,
    the rating form, the exphelp views) keep their light tokens even where html[data-a4-theme="dark"] is set
@@ -36,7 +40,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{if or( $doc_is_front, $doc_is_product, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
+{if or( $doc_is_front, $doc_is_product, $doc_is_help, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
 {* the help center's views (exphelp/*) and the front page (its help center blocks at the end, exp_doc/landing_org.tpl):
    the help center's components and styles, light, inside the Classic frame *}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'exp-doc-rating.css', 'doc2025.css' ) )}

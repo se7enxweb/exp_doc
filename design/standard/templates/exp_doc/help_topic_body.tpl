@@ -3,7 +3,7 @@
    kernel's Markdown renderer, safe HTML, not washed), as the help center shows the same topic at exphelp/topic/<id>;
    the short description as the lead, the preview note for who may edit a topic that is not Released, its figures and
    its related topics. Nothing when the reader may not see the topic: the fields are Markdown and never shown raw.
-   Styles: exphelp.css (.a4-help-*), loaded on every page of both designs.
+   Styles: exphelp.css (.a4-help-*): Modern loads it on every page, Classic on these (pagelayout.tpl).
 
    Variables: node, help (the fetch's result, or false). *}
 {if $help}
@@ -11,8 +11,8 @@
 {if $help.preview}<p class="exp-doc-help-preview" role="note"><span class="a4-tag is-warn">{'Preview'|i18n( 'kernel/exphelp' )}</span> {'This topic is not Released; readers do not see it.'|i18n( 'kernel/exphelp' )}</p>{/if}
 {$help.html}
 {foreach $help.figures as $doc_help_f}
-<figure class="exp-doc-help-figure">
-    <img src={$doc_help_f.image_url|ezroot} alt="{$doc_help_f.alt_text|wash}" loading="lazy" decoding="async" />
+<figure class="a4-help-figure exp-doc-help-figure">
+    <img class="a4-help-img" src={$doc_help_f.image_url|ezroot} alt="{$doc_help_f.alt_text|wash}" loading="lazy" decoding="async" />
     {if $doc_help_f.caption|ne( '' )}<figcaption>{$doc_help_f.caption|wash}</figcaption>{/if}
 </figure>
 {/foreach}
