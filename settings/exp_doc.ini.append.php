@@ -46,13 +46,30 @@ MetaTags[description]=Exponential Documentation
 MetaTags[keywords]=Exponential, documentation, manual, reference, 7x
 # The caution box above every page (parts/doc_disclaimer.tpl): enabled|disabled
 Disclaimer=enabled
-# The left menu (parts/doc_menu.tpl): the classes whose node opens a "Table of contents", and those whose node
-# opens a flat list; a page under neither shows the quick links
+# The left menu (parts/doc_menu.tpl): the classes whose node opens a "Table of contents" (a manual version, an
+# extension with its versions), the sections that open one too (by their static source path: the static Upgrading
+# and Tutorials pages had a table of contents, the other sections the quick links), the classes whose node opens
+# the flat "Table of contents" of its steps (a tutorial), and those whose node opens a flat list (the FAQ); a page
+# under none of them shows the quick links
 TocRootClasses[]
 TocRootClasses[]=exp_doc_version
+TocRootClasses[]=exp_doc_extension
+TocRootSources[]
+TocRootSources[]=Exponential/Upgrading.html
+TocRootSources[]=Tutorials.html
+StepsRootClasses[]
+StepsRootClasses[]=exp_doc_tutorial
 ListRootClasses[]
-ListRootClasses[]=exp_doc_section
 ListRootClasses[]=exp_doc_faq
+# The classes left out of the flat list and the steps menu: as MenuHideClasses, but the FAQ's questions and the
+# tutorial's steps are what those two menus list
+ListMenuHideClasses[]
+ListMenuHideClasses[]=exp_doc_image
+ListMenuHideClasses[]=exp_doc_file
+ListMenuHideClasses[]=exp_doc_contributor
+ListMenuHideClasses[]=exp_doc_historical
+ListMenuHideClasses[]=comment_historical
+ListMenuHideClasses[]=comment
 # How deep the open chapter of a table of contents unfolds
 TocDepth=2
 # The class of the historical comments of the old site under a page (parts/doc_comments.tpl in Classic,
