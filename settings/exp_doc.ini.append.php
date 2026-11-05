@@ -104,10 +104,27 @@ SocialLinks[X]=https://twitter.com/se7enxweb
 # The quick links of the Classic front and top-level pages (parts/doc_menu_quicklinks.tpl), as on the static site.
 # Links[]=<static file the page was imported from>;<label>
 [ClassicQuicklinks]
+# The groups of the front page
 Groups[]
 Groups[]=exponential
 Groups[]=platform
 Groups[]=extensions
+# The groups of every other page with the quick links: the static site's shorter "Exponential" group, no
+# "Exponential Platform"
+PageGroups[]
+PageGroups[]=exponential_page
+PageGroups[]=extensions
+
+[Quicklinks_exponential_page]
+Heading=Exponential
+Links[]
+Links[]=Exponential/Technical-manual/6.html;Technical manual (v6.x)
+Links[]=Exponential/User-manual/6.html;User manual (v6.x)
+Links[]=Exponential/Upgrading.html;Upgrading manual
+Links[]=documentation.html;Manual Downloads
+Links[]=display/MAIN/ExponentialPlatformDocumentationCenter.html;Symfony Stack (5.x) Manuals
+Links[]=Tutorials.html;Tutorials
+Links[]=FAQ.html;FAQ
 
 [Quicklinks_exponential]
 Heading=Exponential

@@ -1,5 +1,6 @@
 {* The quick links of the Classic front and top-level pages, as on the static site. The groups and links are
-   settings (exp_doc.ini [ClassicQuicklinks] Groups[], then [Quicklinks_<group>] Heading, HeadingSource and
+   settings (exp_doc.ini [ClassicQuicklinks] Groups[] on the front page, PageGroups[] on every other page, as the
+   static front page had the longer list; then [Quicklinks_<group>] Heading, HeadingSource and
    Links[]=<static file>;<label>). Each link points to the page imported from that static file (the fetch
    exp_doc/node_by_source), so links follow the pages wherever they move; a label may hold simple markup (<br />,
    &reg;), as on the static site. *}
@@ -10,7 +11,8 @@
 <div class="boxcontent">
 
 <div id="quicklinks">
-{foreach ezini( 'ClassicQuicklinks', 'Groups', 'exp_doc.ini' ) as $doc_group}
+{def $doc_front = and( is_set( $module_result.node_id ), eq( $module_result.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}
+{foreach ezini( 'ClassicQuicklinks', cond( $doc_front, 'Groups', 'PageGroups' ), 'exp_doc.ini' ) as $doc_group}
     {def $doc_section = concat( 'Quicklinks_', $doc_group )
          $doc_heading_node = cond( ezini_hasvariable( $doc_section, 'HeadingSource', 'exp_doc.ini' ),
                                    fetch( 'exp_doc', 'node_by_source', hash( 'path', ezini( $doc_section, 'HeadingSource', 'exp_doc.ini' ) ) ),
@@ -29,3 +31,4 @@
 
 </div>
 </div>
+{undef $doc_front}
