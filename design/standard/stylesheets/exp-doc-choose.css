@@ -182,3 +182,7 @@
   gap: var(--a4-space-2);
   margin: var(--a4-space-2) 0 0;
 }
+/* a distribution's name is longer than a product's: on a phone it wraps instead of widening the box */
+.exp-doc-partners .exp-doc-choose-needs li a {
+  white-space: normal;
+}
