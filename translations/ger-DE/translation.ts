@@ -72,6 +72,18 @@
         <translation>Seitenart</translation>
     </message>
     <message>
+        <source>Markdown documentation (help center)</source>
+        <translation>Markdown-Dokumentation (Hilfe-Center)</translation>
+    </message>
+    <message>
+        <source>Markdown page</source>
+        <translation>Markdown-Seite</translation>
+    </message>
+    <message>
+        <source>The Markdown pages of the help center have no version, kind of page or contributor. Choose a manual to use those filters.</source>
+        <translation>Die Markdown-Seiten des Hilfe-Centers haben keine Version, keine Seitenart und keine Mitwirkenden. Wählen Sie ein Handbuch, um diese Filter zu nutzen.</translation>
+    </message>
+    <message>
         <source>All kinds</source>
         <translation>Alle Arten</translation>
     </message>

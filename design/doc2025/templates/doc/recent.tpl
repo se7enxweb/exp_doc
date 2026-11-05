@@ -5,6 +5,7 @@
 {def $doc_types = hash( 'new', 'New'|i18n( 'design/exp_doc' ),
                         'updated', 'Updated'|i18n( 'design/exp_doc' ),
                         'history', 'Moved to history'|i18n( 'design/exp_doc' ) )
+     $doc_help_only = and( is_set( $filters.manual ), eq( $filters.manual, 'help' ) )
      $doc_ranges = hash( 'all', 'Any time'|i18n( 'design/exp_doc' ),
                          '24h', 'Last 24 hours'|i18n( 'design/exp_doc' ),
                          '7d', 'Last 7 days'|i18n( 'design/exp_doc' ),
@@ -25,25 +26,28 @@
     {foreach $options.manuals as $doc_manual}
         <option value="{$doc_manual.node_id}"{if and( is_set( $filters.manual ), eq( $filters.manual, $doc_manual.node_id ) )} selected="selected"{/if}>{$doc_manual.name|wash}</option>
     {/foreach}
+    {if $options.help}
+        <option value="help"{if $doc_help_only} selected="selected"{/if}>{'Markdown documentation (help center)'|i18n( 'design/exp_doc' )}</option>
+    {/if}
     </select>
     <label for="exp-doc-recent-version">{'Version'|i18n( 'design/exp_doc' )}</label>
-    <select id="exp-doc-recent-version" name="Version">
+    <select id="exp-doc-recent-version" name="Version"{if $doc_help_only} disabled="disabled" aria-describedby="exp-doc-recent-help-note"{/if}>
         <option value="">{'All versions'|i18n( 'design/exp_doc' )}</option>
     {foreach $options.versions as $doc_v}
         <option value="{$doc_v.node.node_id}"{if and( is_set( $filters.version ), eq( $filters.version, $doc_v.node.node_id ) )} selected="selected"{/if}>{$doc_v.manual.name|wash} {$doc_v.node.name|wash}</option>
     {/foreach}
     </select>
     <label for="exp-doc-recent-class">{'Kind of page'|i18n( 'design/exp_doc' )}</label>
-    <select id="exp-doc-recent-class" name="Class">
+    <select id="exp-doc-recent-class" name="Class"{if $doc_help_only} disabled="disabled" aria-describedby="exp-doc-recent-help-note"{/if}>
         <option value="">{'All kinds'|i18n( 'design/exp_doc' )}</option>
     {foreach $options.classes as $doc_identifier => $doc_name}
-        <option value="{$doc_identifier|wash}"{if and( is_set( $filters.class ), eq( $filters.class, $doc_identifier ) )} selected="selected"{/if}>{$doc_name|wash}</option>
+        <option value="{$doc_identifier|wash}"{if or( and( is_set( $filters.class ), eq( $filters.class, $doc_identifier ) ), and( $doc_help_only, eq( $doc_identifier, 'markdown' ) ) )} selected="selected"{/if}>{$doc_name|wash}</option>
     {/foreach}
     </select>
 </p>
 <p>
     <label for="exp-doc-recent-contributor">{'Last updated by'|i18n( 'design/exp_doc' )}</label>
-    <select id="exp-doc-recent-contributor" name="Contributor">
+    <select id="exp-doc-recent-contributor" name="Contributor"{if $doc_help_only} disabled="disabled" aria-describedby="exp-doc-recent-help-note"{/if}>
         <option value="">{'Anyone'|i18n( 'design/exp_doc' )}</option>
     {foreach $options.contributors as $doc_person}
         <option value="{$doc_person.id}"{if and( is_set( $filters.contributor ), eq( $filters.contributor, $doc_person.id ) )} selected="selected"{/if}>{$doc_person.name|wash}</option>
@@ -64,6 +68,7 @@
     <input class="button" type="submit" name="FilterButton" value="{'Show'|i18n( 'design/exp_doc' )}" />
     {if $filters|count}<a href={$base_uri|ezurl}>{'Clear the filters'|i18n( 'design/exp_doc' )}</a>{/if}
 </p>
+{if $doc_help_only}<p id="exp-doc-recent-help-note">{'The Markdown pages of the help center have no version, kind of page or contributor. Choose a manual to use those filters.'|i18n( 'design/exp_doc' )}</p>{/if}
 </form>
 
 <p>{cond( eq( $mode, 'new' ), '%count added pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ), '%count changed pages'|i18n( 'design/exp_doc', '', hash( '%count', $count ) ) )} &middot; <a href={$feed_uri|ezurl}>{'Atom feed'|i18n( 'design/exp_doc' )}</a> &middot; <a href={ezini( 'RecentSettings', 'CommentsPath', 'exp_doc.ini' )|ezurl}>{'Recent comments'|i18n( 'design/exp_doc' )}</a> &middot; <a href={cond( eq( $mode, 'new' ), $changes_uri, $new_uri )|ezurl}>{cond( eq( $mode, 'new' ), 'Recent changes'|i18n( 'design/exp_doc' ), 'Recently added'|i18n( 'design/exp_doc' ) )}</a> &middot; <a href={ezini( 'RecentSettings', 'RatingsPath', 'exp_doc.ini' )|ezurl}>{'Recent ratings'|i18n( 'design/exp_doc' )}</a></p>
@@ -73,8 +78,8 @@
 <h2>{$doc_group.day|l10n( 'date' )}</h2>
 <ul>
 {foreach $doc_group.items as $doc_item}
-<li><div><a href={$doc_item.url|ezurl}>{$doc_item.title|wash}</a> ({$doc_types[$doc_item.type]|wash})
-    <br />{if $doc_item.manual}{$doc_item.manual.name|wash}{/if}{if $doc_item.version} {$doc_item.version.name|wash}{/if}{if or( $doc_item.manual, $doc_item.version )} &middot; {/if}{if eq( $mode, 'new' )}{'Added %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.published|l10n( 'shorttime' ) ) )}{if $doc_item.author} &middot; {'Written by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.author.main_node.url_alias|ezurl, '>', $doc_item.author.name|wash, '</a>' ) ) )}{/if}{else}{'Changed %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.modified|l10n( 'shorttime' ) ) )}{/if}{if and( ne( $mode, 'new' ), $doc_item.by )} &middot; {if $doc_item.updated_at}{'Last updated by %name on %date'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ), '%date', $doc_item.updated_at|l10n( 'shortdate' ) ) )}{else}{'Last updated by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ) ) )}{/if}{/if}
+<li><div><a href={$doc_item.url|ezurl}>{$doc_item.title|wash}</a> ({$doc_types[$doc_item.type]|wash}{if $doc_item.help}, {'Markdown page'|i18n( 'design/exp_doc' )}{/if})
+    <br />{if $doc_item.help}<a href={'/exphelp/contents'|ezurl}>{'Markdown documentation (help center)'|i18n( 'design/exp_doc' )}</a>{if $doc_item.section} &middot; {if $doc_item.section_url}<a href={$doc_item.section_url|ezurl}>{$doc_item.section|wash}</a>{else}{$doc_item.section|wash}{/if}{/if} &middot; {/if}{if $doc_item.manual}{$doc_item.manual.name|wash}{/if}{if $doc_item.version} {$doc_item.version.name|wash}{/if}{if or( $doc_item.manual, $doc_item.version )} &middot; {/if}{if eq( $mode, 'new' )}{'Added %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.published|l10n( 'shorttime' ) ) )}{if $doc_item.author} &middot; {'Written by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.author.main_node.url_alias|ezurl, '>', $doc_item.author.name|wash, '</a>' ) ) )}{/if}{else}{'Changed %time'|i18n( 'design/exp_doc', '', hash( '%time', $doc_item.modified|l10n( 'shorttime' ) ) )}{/if}{if and( ne( $mode, 'new' ), $doc_item.by )} &middot; {if $doc_item.updated_at}{'Last updated by %name on %date'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ), '%date', $doc_item.updated_at|l10n( 'shortdate' ) ) )}{else}{'Last updated by %name'|i18n( 'design/exp_doc', '', hash( '%name', concat( '<a href=', $doc_item.by.main_node.url_alias|ezurl, '>', $doc_item.by.name|wash, '</a>' ) ) )}{/if}{/if}
     {if $doc_item.excerpt}<br /><em>{$doc_item.excerpt|wash}</em>{/if}</div></li>
 {/foreach}
 </ul>
@@ -90,4 +95,4 @@
 </div>
 </div>
 </div>
-{undef $doc_types $doc_ranges}
+{undef $doc_types $doc_ranges $doc_help_only}

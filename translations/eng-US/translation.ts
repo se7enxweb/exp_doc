@@ -72,6 +72,18 @@
         <translation>Kind of page</translation>
     </message>
     <message>
+        <source>Markdown documentation (help center)</source>
+        <translation>Markdown documentation (help center)</translation>
+    </message>
+    <message>
+        <source>Markdown page</source>
+        <translation>Markdown page</translation>
+    </message>
+    <message>
+        <source>The Markdown pages of the help center have no version, kind of page or contributor. Choose a manual to use those filters.</source>
+        <translation>The Markdown pages of the help center have no version, kind of page or contributor. Choose a manual to use those filters.</translation>
+    </message>
+    <message>
         <source>All kinds</source>
         <translation>All kinds</translation>
     </message>

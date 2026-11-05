@@ -404,18 +404,29 @@ class expDocFetch
         {
             return array( 'result' => array() );
         }
-        $carry = method_exists( 'expHelp', 'carryReading' );
         $result = array();
         foreach ( expHelpDocumentIndex::instance()->recentChanges( min( 50, max( 1, (int)$limit ) ) ) as $change )
         {
-            $url = expHelp::url( 'viewer', $change['id'] );
             $result[] = array( 'id' => $change['id'],
                                'title' => $change['title'],
                                'subject' => isset( $change['subject'] ) ? (string)$change['subject'] : '',
                                'time' => isset( $change['time'] ) ? (int)$change['time'] : 0,
-                               'url' => $carry ? expHelp::carryReading( $url ) : $url );
+                               'url' => self::helpViewerUrl( $change['id'] ) );
         }
         return array( 'result' => $result );
+    }
+
+    /**
+     * The help viewer's address of a help page, keeping the reader's help language (/(lang)/<key>,
+     * expHelp::carryReading()) when one is chosen; module-relative, for |ezurl or eZURI::transformURI().
+     *
+     * @param string $id the page's id in the help index
+     * @return string
+     */
+    public static function helpViewerUrl( $id )
+    {
+        $url = expHelp::url( 'viewer', $id );
+        return method_exists( 'expHelp', 'carryReading' ) ? expHelp::carryReading( $url ) : $url;
     }
 
     /**

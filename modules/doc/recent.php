@@ -14,6 +14,9 @@ $Module = $Params['Module'];
 // doc/new is this view in the mode new: the pages newest first by their first publication ([RecentSettings] NewPath)
 $mode = $Module->currentView() === 'new' ? 'new' : 'changed';
 $pathSetting = $mode === 'new' ? 'NewPath' : 'Path';
+// the help center's Markdown pages are a choice of the recent changes only: the help index knows when a file last
+// changed, not when it was added
+$withHelp = $mode !== 'new';
 $ini = eZINI::instance( 'exp_doc.ini' );
 $limits = array_map( 'intval', (array)$ini->variable( 'RecentSettings', 'Limits' ) );
 $defaultLimit = (int)$ini->variable( 'RecentSettings', 'DefaultLimit' );
@@ -34,7 +37,7 @@ if ( $Module->isCurrentAction( 'Filter' ) )
     {
         $extra['limit'] = (int)$Module->actionParameter( 'Limit' );
     }
-    return $Module->redirectTo( '/' . expDocRecent::uri( expDocRecent::filters( $posted ), $extra, $pathSetting ) );
+    return $Module->redirectTo( '/' . expDocRecent::uri( expDocRecent::filters( $posted, $withHelp ), $extra, $pathSetting ) );
 }
 
 $view = array();
@@ -45,7 +48,7 @@ foreach ( array( 'Manual' => 'manual', 'Version' => 'version', 'Class' => 'class
         $view[$key] = (string)$Params[$name];
     }
 }
-$filters = expDocRecent::filters( $view );
+$filters = expDocRecent::filters( $view, $withHelp );
 $limit = isset( $Params['Limit'] ) && in_array( (int)$Params['Limit'], $limits, true ) ? (int)$Params['Limit'] : $defaultLimit;
 $offset = isset( $Params['Offset'] ) && ctype_digit( (string)$Params['Offset'] ) ? (int)$Params['Offset'] : 0;
 $title = $mode === 'new' ? ezpI18n::tr( 'design/exp_doc', 'Recently added' ) : ezpI18n::tr( 'design/exp_doc', 'Recent changes' );
@@ -73,7 +76,7 @@ $tpl->setVariable( 'limit', $limit );
 $tpl->setVariable( 'limits', $limits );
 $tpl->setVariable( 'default_limit', $defaultLimit );
 $tpl->setVariable( 'filters', $filters );
-$tpl->setVariable( 'options', expDocRecent::options() );
+$tpl->setVariable( 'options', expDocRecent::options( $withHelp ) );
 $tpl->setVariable( 'page_uri', expDocRecent::uri( $filters, $limit !== $defaultLimit ? array( 'limit' => $limit ) : array(), $pathSetting ) );
 $tpl->setVariable( 'base_uri', expDocRecent::uri( array(), array(), $pathSetting ) );
 $tpl->setVariable( 'mode', $mode );

@@ -72,6 +72,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Markdown documentation (help center)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Markdown page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Markdown pages of the help center have no version, kind of page or contributor. Choose a manual to use those filters.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>All kinds</source>
         <translation type="unfinished"></translation>
     </message>
