@@ -29,7 +29,7 @@
 {/foreach}
 {if is_set( $more )}{if and( $more, $doc_shown|count|lt( $doc_products|count ) )}{set $doc_more = ezini( 'ModernSettings', 'ProductsPath', 'exp_doc.ini' )}{/if}{/if}
 {if $doc_shown|count}
-<section class="exp-doc-landing-section exp-doc-landing-products"{if $doc_heading} aria-labelledby="exp-doc-products-title"{else} aria-label="{'Products'|i18n( 'design/exp_doc' )}"{/if}>
+<section class="exp-doc-landing-section exp-doc-landing-products{if ne( $doc_more, '' )} is-front{/if}"{if $doc_heading} aria-labelledby="exp-doc-products-title"{else} aria-label="{'Products'|i18n( 'design/exp_doc' )}"{/if}>
     {if $doc_heading}<h2 id="exp-doc-products-title" class="a4-h2">{'Products'|i18n( 'design/exp_doc' )}</h2>{/if}
     {if ne( $doc_more, '' )}<p class="exp-doc-products-lead">{'%shown of the %all products of Exponential, the ones most projects start with.'|i18n( 'design/exp_doc', '', hash( '%shown', $doc_shown|count, '%all', $doc_products|count ) )}</p>{/if}
     <ul class="a4-plain {$doc_list_class|wash}">

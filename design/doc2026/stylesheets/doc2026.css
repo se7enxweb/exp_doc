@@ -550,6 +550,17 @@ body.exp-doc {
     grid-template-columns: repeat(auto-fit, minmax(16rem, 22rem));
     justify-content: center;
 }
+/* the front page's short product list (exp_doc/landing_products.tpl with a "View all products" link: .is-front) is
+   centered like the manuals: heading, lead, the cards and the link below them */
+.exp-doc-landing-products.is-front > .a4-h2,
+.exp-doc-landing-products.is-front > .exp-doc-products-lead,
+.exp-doc-landing-products.is-front > .exp-doc-products-more {
+    text-align: center;
+}
+.exp-doc-landing-products.is-front > .exp-doc-manuals {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 26rem));
+    justify-content: center;
+}
 /* the help center's bottom blocks at the end of the front page (exp_doc/landing_org.tpl): its frame (.a4-help-frame,
    the dashboard's gap between the blocks) at the full width of the page, below the lists above */
 /* (and "Start where you are" on its own, right below the products: exp_doc/landing_start.tpl; "Who makes Exponential"
