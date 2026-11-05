@@ -2,7 +2,7 @@
    - a large search in the hero (.a4-help-hero), its heading the official logo (named "Exponential" for screen
      readers) and exp_doc.ini [ModernSettings] LandingHeading;
    - a card for every manual (its cover or icon, summary and audience, and its versions), .a4-help-about and
-     .a4-help-grow in turn;
+     .a4-help-grow in turn, then one for the upgrade guides ([ModernSettings] UpgradeGuidesPath); the section centered;
    - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
      the same cards with the Supported badge where it applies;
    - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
@@ -30,7 +30,7 @@
 </section>
 
 {if $doc_manuals|count}
-<section class="exp-doc-landing-section" aria-labelledby="exp-doc-manuals-title">
+<section class="exp-doc-landing-section exp-doc-landing-manuals" aria-labelledby="exp-doc-manuals-title">
     <h2 id="exp-doc-manuals-title" class="a4-h2">{'Manuals'|i18n( 'design/exp_doc' )}</h2>
     <ul class="a4-plain exp-doc-manuals">
     {foreach $doc_manuals as $doc_manual}
@@ -53,6 +53,16 @@
         </li>
         {undef $doc_versions}
     {/foreach}
+    {* the upgrade guides (exp_doc.ini [ModernSettings] UpgradeGuidesPath) as a third box of the same kind *}
+    {if ezini( 'ModernSettings', 'UpgradeGuidesPath', 'exp_doc.ini' )|ne( '' )}
+        <li class="a4-help-grow exp-doc-manual">
+            <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon a4-bi-arrow-up-circle"></span></span>
+            <div class="exp-doc-manual-body">
+            <h3 class="exp-doc-manual-name"><a href={ezini( 'ModernSettings', 'UpgradeGuidesPath', 'exp_doc.ini' )|ezurl}>{'Upgrade guides'|i18n( 'design/exp_doc' )}</a></h3>
+            <p class="exp-doc-manual-summary">{'Step by step from any earlier version to the current one, with the changes to the database and the settings.'|i18n( 'design/exp_doc' )}</p>
+            </div>
+        </li>
+    {/if}
     </ul>
 </section>
 {/if}

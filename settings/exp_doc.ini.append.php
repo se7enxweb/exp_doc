@@ -134,6 +134,8 @@ LandingTitle=Exponential Documentation
 # The landing heading after the official logo, which stands for the word "Exponential" (named so for screen readers)
 LandingHeading=Documentation
 LandingText=Install, configure, extend and run Exponential: manuals for every version, tutorials, FAQ and the extensions.
+# The last box of the front page's Manuals (Modern): the upgrade guides, at this path below the site's root; empty: none
+UpgradeGuidesPath=exponential/upgrading
 # The products of the front page, in this order: "<path below the site's root>;<name>;<one line>[;<status>]".
 # The name is always this one (the owner's product names); the short text and status come from the container node at
 # that path once it exists, until then

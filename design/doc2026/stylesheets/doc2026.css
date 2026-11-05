@@ -531,6 +531,15 @@ body.exp-doc {
     padding: var(--a4-space-2) 0;
     border-bottom: 1px solid var(--a4-line);
 }
+/* the front page's Manuals (the manuals and the upgrade guides): the heading and the row of boxes centered, the
+   boxes no wider than a column so a short row sits in the middle; only this section */
+.exp-doc-landing-manuals > .a4-h2 {
+    text-align: center;
+}
+.exp-doc-landing-manuals > .exp-doc-manuals {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 22rem));
+    justify-content: center;
+}
 /* the help center's bottom blocks at the end of the front page (exp_doc/landing_org.tpl): its frame (.a4-help-frame,
    the dashboard's gap between the blocks) at the full width of the page, below the lists above */
 .exp-doc-landing-org.a4-help-frame {
