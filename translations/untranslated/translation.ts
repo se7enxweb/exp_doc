@@ -857,6 +857,254 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Choosing a product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Six products share the name Exponential. Here is how they differ, and which one fits what you need.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>What it is</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Best for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kernel and stack</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editing and administration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key features</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PHP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Learning curve</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recommended</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>How to choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The best user experience and the most features are in Exponential 6, not in Platform, Basic or even DXP.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not sure? Choose Exponential 6.x today and get started fast.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Install Exponential 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>More about Exponential 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want the most complete CMS with the best editor experience: many sites and languages, a shop, workflows, Exponential Layouts and a built-in help center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You build on Symfony and need the Exponential 6 kernel and its administration inside</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want a finished Symfony website with Exponential Layouts and demo content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want a Symfony-only stack, without the Exponential 6 kernel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want a very small site for learning or personal use</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The complete content management system and application framework, maintained by 7x, and the line this help center documents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Structured content, several sites or several languages from one installation; agencies, hosting providers and developers who build without Symfony</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel in plain PHP, no Symfony; SQLite, MySQL, MariaDB, PostgreSQL, MongoDB or Oracle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The admin4 administration and the editor siteaccess, in more than 150 languages, with the help center built in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Customizable content model, versions and translations, roles and policies, multisite, a shop, workflows, REST and GraphQL, Exponential Layouts, Exponential Velocity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.0 to 8.5 (7.4 usable without support)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One stack: PHP and Exponential's templates; installs with two commands on SQLite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Symfony based family of Exponential: Legacy, Nexus and DXP, the free continuation of eZ Platform and Ibexa Open Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Teams that build on Symfony</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 3.4, 5.4 or 7.4 by distribution and line; the Exponential 6 kernel in Legacy and the older Nexus lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The platform's Symfony administration; Legacy and the older Nexus lines add the Exponential administration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By distribution: Exponential Layouts in Nexus and in Legacy 4.6 and 5.0, none in DXP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By distribution and line (see each one)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony, plus Exponential 6 where it is included</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A Symfony platform with a full Exponential 6 inside: two kernels share one database</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Existing Exponential sites that want Symfony next to them, and teams that need both stacks at once</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 3.4, 5.4 or 7.4 by line, with the Exponential 6 kernel through the legacy bridge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential administration next to the platform's Symfony administration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel next to the Symfony platform; Exponential Layouts on the 4.6 and 5.0 lines</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By line, 7.4 to 8.5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two stacks: Symfony and Exponential 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A finished website project: the Symfony platform with the media site, its designs and demo content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Agencies and teams that want a complete website with demo content and a page builder in minutes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 3.4, 5.4 or 7.4 by line; the Exponential 6 kernel up to the 1.2.0.x line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The platform's Symfony administration and the Exponential Layouts page builder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Layouts, Tags, the site API and the media site's demo content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>By line, 8.0 to 8.5 (8.4 or later on 1.3.0.x)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony, plus Exponential 6 on the older lines; always install with a version</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A Symfony-only digital experience platform, the free continuation of eZ Platform and Ibexa Open Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New Symfony projects, and teams leaving eZ Platform or Ibexa Open Source for current PHP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS (Platform v5), without the Exponential 6 kernel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The platform's admin UI; no layouts editor, approval workflow or scheduler</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>REST, GraphQL, the HTTP cache, Solr and core search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.3 or later (the 4.6 branch: 7.4 to 8.5)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The small CMS of the 2.x line, a code base of its own and not a version of Exponential 6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Education, personal use and very small sites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Basic in PHP, no Symfony; MySQL, PostgreSQL, SQLite or Informix</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A user website and an admin website of its own</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A simple personal home page CMS, extendable through settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.2 or later</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Small and easy to understand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Sections</source>
         <translation type="unfinished"></translation>
     </message>

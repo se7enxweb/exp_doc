@@ -424,6 +424,85 @@ Links[]=website;https://basic.exponential.earth
 Related[]
 ShowBody=enabled
 
+# "Choosing a product" on the front page (exp_doc/landing_choose.tpl): right before the products in Modern, and in
+# Classic, which has no products list, at the same place (before "Start where you are"). The products come in the
+# order of [ModernSettings] ProductList[], with its names and paths; a product shows when it has a [ChooseProduct_<its
+# path, "_" for "/">] group. The texts are English settings that editors can correct without a code change; the
+# template runs every one of them through the translation (context design/exp_doc), so a changed text shows in English
+# until its catalogue entry is changed too. Every fact was read from the product's own repository (composer.json,
+# README) and the help center's "Distributions of Exponential" (DISTRIBUTIONS.md) on 2026-11-05; never add a feature
+# that those do not state.
+[ChooseSettings]
+# enabled or disabled
+Enabled=enabled
+# The recommended product (its ProductList path): its card is marked, and the recommendation's buttons go to the
+# install link of its [ProductLanding_<path>] Links[] and to its landing page
+Recommended=exponential
+# "How to choose": <ProductList path of the product>;<the need it answers>, in this order
+Needs[]
+Needs[]=exponential;You want the most complete CMS with the best editor experience: many sites and languages, a shop, workflows, Exponential Layouts and a built-in help center
+Needs[]=platform/legacy;You build on Symfony and need the Exponential 6 kernel and its administration inside
+Needs[]=platform/nexus;You want a finished Symfony website with Exponential Layouts and demo content
+Needs[]=platform/dxp;You want a Symfony-only stack, without the Exponential 6 kernel
+Needs[]=basic;You want a very small site for learning or personal use
+
+# One group per product, every key one short text: What (what it is), BestFor, Stack (kernel and framework), Admin
+# (editing and administration), Features (the key features), PHP (the PHP versions it supports), Learning (what there
+# is to learn)
+[ChooseProduct_exponential]
+What=The complete content management system and application framework, maintained by 7x, and the line this help center documents
+BestFor=Structured content, several sites or several languages from one installation; agencies, hosting providers and developers who build without Symfony
+Stack=The Exponential 6 kernel in plain PHP, no Symfony; SQLite, MySQL, MariaDB, PostgreSQL, MongoDB or Oracle
+Admin=The admin4 administration and the editor siteaccess, in more than 150 languages, with the help center built in
+Features=Customizable content model, versions and translations, roles and policies, multisite, a shop, workflows, REST and GraphQL, Exponential Layouts, Exponential Velocity
+PHP=8.0 to 8.5 (7.4 usable without support)
+Learning=One stack: PHP and Exponential's templates; installs with two commands on SQLite
+
+[ChooseProduct_platform]
+What=The Symfony based family of Exponential: Legacy, Nexus and DXP, the free continuation of eZ Platform and Ibexa Open Source
+BestFor=Teams that build on Symfony
+Stack=Symfony 3.4, 5.4 or 7.4 by distribution and line; the Exponential 6 kernel in Legacy and the older Nexus lines
+Admin=The platform's Symfony administration; Legacy and the older Nexus lines add the Exponential administration
+Features=By distribution: Exponential Layouts in Nexus and in Legacy 4.6 and 5.0, none in DXP
+PHP=By distribution and line (see each one)
+Learning=Symfony, plus Exponential 6 where it is included
+
+[ChooseProduct_platform_legacy]
+What=A Symfony platform with a full Exponential 6 inside: two kernels share one database
+BestFor=Existing Exponential sites that want Symfony next to them, and teams that need both stacks at once
+Stack=Symfony 3.4, 5.4 or 7.4 by line, with the Exponential 6 kernel through the legacy bridge
+Admin=The Exponential administration next to the platform's Symfony administration
+Features=The Exponential 6 kernel next to the Symfony platform; Exponential Layouts on the 4.6 and 5.0 lines
+PHP=By line, 7.4 to 8.5
+Learning=Two stacks: Symfony and Exponential 6
+
+[ChooseProduct_platform_nexus]
+What=A finished website project: the Symfony platform with the media site, its designs and demo content
+BestFor=Agencies and teams that want a complete website with demo content and a page builder in minutes
+Stack=Symfony 3.4, 5.4 or 7.4 by line; the Exponential 6 kernel up to the 1.2.0.x line
+Admin=The platform's Symfony administration and the Exponential Layouts page builder
+Features=Exponential Layouts, Tags, the site API and the media site's demo content
+PHP=By line, 8.0 to 8.5 (8.4 or later on 1.3.0.x)
+Learning=Symfony, plus Exponential 6 on the older lines; always install with a version
+
+[ChooseProduct_platform_dxp]
+What=A Symfony-only digital experience platform, the free continuation of eZ Platform and Ibexa Open Source
+BestFor=New Symfony projects, and teams leaving eZ Platform or Ibexa Open Source for current PHP
+Stack=Symfony 7.4 LTS (Platform v5), without the Exponential 6 kernel
+Admin=The platform's admin UI; no layouts editor, approval workflow or scheduler
+Features=REST, GraphQL, the HTTP cache, Solr and core search
+PHP=8.3 or later (the 4.6 branch: 7.4 to 8.5)
+Learning=Symfony only
+
+[ChooseProduct_basic]
+What=The small CMS of the 2.x line, a code base of its own and not a version of Exponential 6
+BestFor=Education, personal use and very small sites
+Stack=Exponential Basic in PHP, no Symfony; MySQL, PostgreSQL, SQLite or Informix
+Admin=A user website and an admin website of its own
+Features=A simple personal home page CMS, extendable through settings
+PHP=8.2 or later
+Learning=Small and easy to understand
+
 # Readers' comments on the pages (Modern: parts/doc_page_comments.tpl; the view doc/comment, classes/expdoccomment.php).
 # A new comment is held and hidden by the kernel's review hold (settings/siteaccess/site/content.ini.append.php) until
 # a moderator releases it in Dashboard > Recent content.

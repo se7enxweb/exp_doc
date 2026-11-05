@@ -89,7 +89,8 @@
 
 {* the body; on the front page "Start where you are" (exp_doc/landing_start.tpl, a listed exception) follows the
    static page's current lists, before the body's first second-level heading (the earlier front page): Classic has
-   no products list to draw it below, as Modern does; a body without such a heading gets the card after it *}
+   no products list to draw it below, as Modern does; a body without such a heading gets the card after it. Right
+   before it "Choosing a product" (exp_doc/landing_choose.tpl), where Modern draws it right before the products *}
 {set-block variable=$doc_body}
 {if is_set( $body_html )}
 {$body_html}
@@ -105,7 +106,7 @@
 {/set-block}
 {if $doc_start}
 {def $doc_body_parts = $doc_body|explode( '<h2' )}
-{$doc_body_parts.0}{include uri='design:exp_doc/landing_start.tpl' framed=true() frame_class='a4-page'}{if $doc_body_parts|count|gt( 1 )}<h2{$doc_body_parts|extract( 1 )|implode( '<h2' )}{/if}
+{$doc_body_parts.0}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page'}{include uri='design:exp_doc/landing_start.tpl' framed=true() frame_class='a4-page'}{if $doc_body_parts|count|gt( 1 )}<h2{$doc_body_parts|extract( 1 )|implode( '<h2' )}{/if}
 {undef $doc_body_parts}
 {else}
 {$doc_body}

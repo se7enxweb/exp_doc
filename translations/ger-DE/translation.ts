@@ -857,6 +857,254 @@
         <translation>Welche passt zu mir?</translation>
     </message>
     <message>
+        <source>Choosing a product</source>
+        <translation>Ein Produkt wählen</translation>
+    </message>
+    <message>
+        <source>Six products share the name Exponential. Here is how they differ, and which one fits what you need.</source>
+        <translation>Sechs Produkte tragen den Namen Exponential. Hier sehen Sie, worin sie sich unterscheiden und welches zu Ihren Anforderungen passt.</translation>
+    </message>
+    <message>
+        <source>What it is</source>
+        <translation>Was es ist</translation>
+    </message>
+    <message>
+        <source>Best for</source>
+        <translation>Am besten für</translation>
+    </message>
+    <message>
+        <source>Kernel and stack</source>
+        <translation>Kernel und Stack</translation>
+    </message>
+    <message>
+        <source>Editing and administration</source>
+        <translation>Bearbeitung und Administration</translation>
+    </message>
+    <message>
+        <source>Key features</source>
+        <translation>Wichtigste Funktionen</translation>
+    </message>
+    <message>
+        <source>PHP</source>
+        <translation>PHP</translation>
+    </message>
+    <message>
+        <source>Learning curve</source>
+        <translation>Lernkurve</translation>
+    </message>
+    <message>
+        <source>Recommended</source>
+        <translation>Empfohlen</translation>
+    </message>
+    <message>
+        <source>How to choose</source>
+        <translation>So wählen Sie</translation>
+    </message>
+    <message>
+        <source>The best user experience and the most features are in Exponential 6, not in Platform, Basic or even DXP.</source>
+        <translation>Die beste Benutzererfahrung und die meisten Funktionen bietet Exponential 6, nicht Platform, Basic und auch nicht DXP.</translation>
+    </message>
+    <message>
+        <source>Not sure? Choose Exponential 6.x today and get started fast.</source>
+        <translation>Unsicher? Wählen Sie noch heute Exponential 6.x und legen Sie schnell los.</translation>
+    </message>
+    <message>
+        <source>Install Exponential 6</source>
+        <translation>Exponential 6 installieren</translation>
+    </message>
+    <message>
+        <source>More about Exponential 6</source>
+        <translation>Mehr über Exponential 6</translation>
+    </message>
+    <message>
+        <source>You want the most complete CMS with the best editor experience: many sites and languages, a shop, workflows, Exponential Layouts and a built-in help center</source>
+        <translation>Sie möchten das vollständigste CMS mit der besten Redaktionserfahrung: viele Sites und Sprachen, einen Shop, Workflows, Exponential Layouts und ein eingebautes Hilfe-Center</translation>
+    </message>
+    <message>
+        <source>You build on Symfony and need the Exponential 6 kernel and its administration inside</source>
+        <translation>Sie bauen auf Symfony und brauchen den Exponential-6-Kernel und seine Administration darin</translation>
+    </message>
+    <message>
+        <source>You want a finished Symfony website with Exponential Layouts and demo content</source>
+        <translation>Sie möchten eine fertige Symfony-Website mit Exponential Layouts und Demo-Inhalten</translation>
+    </message>
+    <message>
+        <source>You want a Symfony-only stack, without the Exponential 6 kernel</source>
+        <translation>Sie möchten einen reinen Symfony-Stack, ohne den Exponential-6-Kernel</translation>
+    </message>
+    <message>
+        <source>You want a very small site for learning or personal use</source>
+        <translation>Sie möchten eine sehr kleine Site zum Lernen oder für den persönlichen Gebrauch</translation>
+    </message>
+    <message>
+        <source>The complete content management system and application framework, maintained by 7x, and the line this help center documents</source>
+        <translation>Das vollständige Content-Management-System und Anwendungs-Framework, gepflegt von 7x, und die Linie, die dieses Hilfe-Center dokumentiert</translation>
+    </message>
+    <message>
+        <source>Structured content, several sites or several languages from one installation; agencies, hosting providers and developers who build without Symfony</source>
+        <translation>Strukturierte Inhalte, mehrere Sites oder mehrere Sprachen aus einer Installation; Agenturen, Hosting-Anbieter und Entwickler, die ohne Symfony bauen</translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel in plain PHP, no Symfony; SQLite, MySQL, MariaDB, PostgreSQL, MongoDB or Oracle</source>
+        <translation>Der Exponential-6-Kernel in reinem PHP, ohne Symfony; SQLite, MySQL, MariaDB, PostgreSQL, MongoDB oder Oracle</translation>
+    </message>
+    <message>
+        <source>The admin4 administration and the editor siteaccess, in more than 150 languages, with the help center built in</source>
+        <translation>Die Administration admin4 und der Redaktions-Siteaccess, in mehr als 150 Sprachen, mit eingebautem Hilfe-Center</translation>
+    </message>
+    <message>
+        <source>Customizable content model, versions and translations, roles and policies, multisite, a shop, workflows, REST and GraphQL, Exponential Layouts, Exponential Velocity</source>
+        <translation>Anpassbares Inhaltsmodell, Versionen und Übersetzungen, Rollen und Richtlinien, Multisite, ein Shop, Workflows, REST und GraphQL, Exponential Layouts, Exponential Velocity</translation>
+    </message>
+    <message>
+        <source>8.0 to 8.5 (7.4 usable without support)</source>
+        <translation>8.0 bis 8.5 (7.4 nutzbar ohne Support)</translation>
+    </message>
+    <message>
+        <source>One stack: PHP and Exponential's templates; installs with two commands on SQLite</source>
+        <translation>Ein Stack: PHP und die Templates von Exponential; mit zwei Befehlen auf SQLite installiert</translation>
+    </message>
+    <message>
+        <source>The Symfony based family of Exponential: Legacy, Nexus and DXP, the free continuation of eZ Platform and Ibexa Open Source</source>
+        <translation>Die Symfony-basierte Familie von Exponential: Legacy, Nexus und DXP, die freie Fortführung von eZ Platform und Ibexa Open Source</translation>
+    </message>
+    <message>
+        <source>Teams that build on Symfony</source>
+        <translation>Teams, die auf Symfony bauen</translation>
+    </message>
+    <message>
+        <source>Symfony 3.4, 5.4 or 7.4 by distribution and line; the Exponential 6 kernel in Legacy and the older Nexus lines</source>
+        <translation>Symfony 3.4, 5.4 oder 7.4 je nach Distribution und Linie; der Exponential-6-Kernel in Legacy und den älteren Nexus-Linien</translation>
+    </message>
+    <message>
+        <source>The platform's Symfony administration; Legacy and the older Nexus lines add the Exponential administration</source>
+        <translation>Die Symfony-Administration der Plattform; Legacy und die älteren Nexus-Linien bringen die Exponential-Administration dazu</translation>
+    </message>
+    <message>
+        <source>By distribution: Exponential Layouts in Nexus and in Legacy 4.6 and 5.0, none in DXP</source>
+        <translation>Je nach Distribution: Exponential Layouts in Nexus und in Legacy 4.6 und 5.0, keine in DXP</translation>
+    </message>
+    <message>
+        <source>By distribution and line (see each one)</source>
+        <translation>Je nach Distribution und Linie (siehe jeweils dort)</translation>
+    </message>
+    <message>
+        <source>Symfony, plus Exponential 6 where it is included</source>
+        <translation>Symfony, dazu Exponential 6, wo es enthalten ist</translation>
+    </message>
+    <message>
+        <source>A Symfony platform with a full Exponential 6 inside: two kernels share one database</source>
+        <translation>Eine Symfony-Plattform mit einem vollständigen Exponential 6 darin: zwei Kernel teilen sich eine Datenbank</translation>
+    </message>
+    <message>
+        <source>Existing Exponential sites that want Symfony next to them, and teams that need both stacks at once</source>
+        <translation>Bestehende Exponential-Sites, die Symfony daneben möchten, und Teams, die beide Stacks zugleich brauchen</translation>
+    </message>
+    <message>
+        <source>Symfony 3.4, 5.4 or 7.4 by line, with the Exponential 6 kernel through the legacy bridge</source>
+        <translation>Symfony 3.4, 5.4 oder 7.4 je nach Linie, mit dem Exponential-6-Kernel über die Legacy-Bridge</translation>
+    </message>
+    <message>
+        <source>The Exponential administration next to the platform's Symfony administration</source>
+        <translation>Die Exponential-Administration neben der Symfony-Administration der Plattform</translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel next to the Symfony platform; Exponential Layouts on the 4.6 and 5.0 lines</source>
+        <translation>Der Exponential-6-Kernel neben der Symfony-Plattform; Exponential Layouts auf den Linien 4.6 und 5.0</translation>
+    </message>
+    <message>
+        <source>By line, 7.4 to 8.5</source>
+        <translation>Je nach Linie, 7.4 bis 8.5</translation>
+    </message>
+    <message>
+        <source>Two stacks: Symfony and Exponential 6</source>
+        <translation>Zwei Stacks: Symfony und Exponential 6</translation>
+    </message>
+    <message>
+        <source>A finished website project: the Symfony platform with the media site, its designs and demo content</source>
+        <translation>Ein fertiges Website-Projekt: die Symfony-Plattform mit der Media-Site, ihren Designs und Demo-Inhalten</translation>
+    </message>
+    <message>
+        <source>Agencies and teams that want a complete website with demo content and a page builder in minutes</source>
+        <translation>Agenturen und Teams, die in Minuten eine vollständige Website mit Demo-Inhalten und einem Page Builder möchten</translation>
+    </message>
+    <message>
+        <source>Symfony 3.4, 5.4 or 7.4 by line; the Exponential 6 kernel up to the 1.2.0.x line</source>
+        <translation>Symfony 3.4, 5.4 oder 7.4 je nach Linie; der Exponential-6-Kernel bis zur Linie 1.2.0.x</translation>
+    </message>
+    <message>
+        <source>The platform's Symfony administration and the Exponential Layouts page builder</source>
+        <translation>Die Symfony-Administration der Plattform und der Page Builder Exponential Layouts</translation>
+    </message>
+    <message>
+        <source>Exponential Layouts, Tags, the site API and the media site's demo content</source>
+        <translation>Exponential Layouts, Tags, die Site-API und die Demo-Inhalte der Media-Site</translation>
+    </message>
+    <message>
+        <source>By line, 8.0 to 8.5 (8.4 or later on 1.3.0.x)</source>
+        <translation>Je nach Linie, 8.0 bis 8.5 (8.4 oder neuer auf 1.3.0.x)</translation>
+    </message>
+    <message>
+        <source>Symfony, plus Exponential 6 on the older lines; always install with a version</source>
+        <translation>Symfony, dazu Exponential 6 auf den älteren Linien; immer mit einer Version installieren</translation>
+    </message>
+    <message>
+        <source>A Symfony-only digital experience platform, the free continuation of eZ Platform and Ibexa Open Source</source>
+        <translation>Eine reine Symfony-Digital-Experience-Plattform, die freie Fortführung von eZ Platform und Ibexa Open Source</translation>
+    </message>
+    <message>
+        <source>New Symfony projects, and teams leaving eZ Platform or Ibexa Open Source for current PHP</source>
+        <translation>Neue Symfony-Projekte und Teams, die eZ Platform oder Ibexa Open Source für aktuelles PHP verlassen</translation>
+    </message>
+    <message>
+        <source>Symfony 7.4 LTS (Platform v5), without the Exponential 6 kernel</source>
+        <translation>Symfony 7.4 LTS (Platform v5), ohne den Exponential-6-Kernel</translation>
+    </message>
+    <message>
+        <source>The platform's admin UI; no layouts editor, approval workflow or scheduler</source>
+        <translation>Die Admin-Oberfläche der Plattform; kein Layout-Editor, kein Freigabe-Workflow und kein Scheduler</translation>
+    </message>
+    <message>
+        <source>REST, GraphQL, the HTTP cache, Solr and core search</source>
+        <translation>REST, GraphQL, der HTTP-Cache, Solr und die Core-Suche</translation>
+    </message>
+    <message>
+        <source>8.3 or later (the 4.6 branch: 7.4 to 8.5)</source>
+        <translation>8.3 oder neuer (der Zweig 4.6: 7.4 bis 8.5)</translation>
+    </message>
+    <message>
+        <source>Symfony only</source>
+        <translation>Nur Symfony</translation>
+    </message>
+    <message>
+        <source>The small CMS of the 2.x line, a code base of its own and not a version of Exponential 6</source>
+        <translation>Das kleine CMS der Linie 2.x, eine eigene Codebasis und keine Version von Exponential 6</translation>
+    </message>
+    <message>
+        <source>Education, personal use and very small sites</source>
+        <translation>Lernen, persönlicher Gebrauch und sehr kleine Sites</translation>
+    </message>
+    <message>
+        <source>Exponential Basic in PHP, no Symfony; MySQL, PostgreSQL, SQLite or Informix</source>
+        <translation>Exponential Basic in PHP, ohne Symfony; MySQL, PostgreSQL, SQLite oder Informix</translation>
+    </message>
+    <message>
+        <source>A user website and an admin website of its own</source>
+        <translation>Eine eigene Besucher-Website und eine eigene Admin-Website</translation>
+    </message>
+    <message>
+        <source>A simple personal home page CMS, extendable through settings</source>
+        <translation>Ein einfaches CMS für die persönliche Homepage, über Einstellungen erweiterbar</translation>
+    </message>
+    <message>
+        <source>8.2 or later</source>
+        <translation>8.2 oder neuer</translation>
+    </message>
+    <message>
+        <source>Small and easy to understand</source>
+        <translation>Klein und leicht zu verstehen</translation>
+    </message>
+    <message>
         <source>Sections</source>
         <translation>Abschnitte</translation>
     </message>

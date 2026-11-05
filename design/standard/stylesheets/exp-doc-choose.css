@@ -1,0 +1,120 @@
+/*
+ * "Choosing a product" on the front page (exp_doc/landing_choose.tpl), in both designs: the help center's
+ * .a4-help-support box (exphelp.css) with the info fade, a card for every product (components.css .a4-card) with its
+ * facts as label and text, the recommended product's card in the accent outline, "How to choose" as a list of needs,
+ * and the recommendation as an accent box with its buttons. Tokens only; every token has its dark value in
+ * components.css (Modern), and Classic keeps the light ones (html[data-a4-modes="light"]).
+ *
+ * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
+ * @license GNU General Public License v2.0 (or any later version)
+ */
+
+.exp-doc-choose.a4-help-support {
+  background:
+    linear-gradient(120deg, var(--a4-info-bg), transparent 60%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+}
+.exp-doc-choose .a4-help-tile {
+  color: var(--a4-info);
+  box-shadow: inset 0 0 0 1px var(--a4-line);
+}
+.exp-doc-choose h3 {
+  margin: 0;
+  font-size: var(--a4-text-m);
+  font-weight: var(--a4-weight-heading);
+}
+
+/* the products: three cards in a row on a wide screen, two on a narrow one, one on a phone */
+.exp-doc-choose-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: var(--a4-space-3);
+  margin: 0;
+  padding: 0;
+}
+.exp-doc-choose-cards > .exp-doc-choose-card {
+  display: grid;
+  align-content: start;
+  gap: var(--a4-space-2);
+  min-width: 0;
+  margin: 0;
+}
+.exp-doc-choose-card.is-recommended {
+  box-shadow: inset 0 0 0 2px var(--a4-accent);
+}
+.exp-doc-choose-name {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--a4-space-2);
+}
+.exp-doc-choose-facts {
+  display: grid;
+  gap: var(--a4-space-2);
+  margin: 0;
+  font-size: var(--a4-text-s);
+}
+.exp-doc-choose-facts dt {
+  margin: 0;
+  color: var(--a4-muted);
+  font-weight: var(--a4-weight-strong);
+}
+.exp-doc-choose-facts dd {
+  margin: 0;
+  color: var(--a4-ink);
+  overflow-wrap: anywhere;
+}
+
+/* "How to choose": one need per row, the product it points to after the arrow */
+.exp-doc-choose-needs {
+  display: grid;
+  gap: var(--a4-space-2);
+}
+.exp-doc-choose-needs ul {
+  display: grid;
+  gap: var(--a4-space-2);
+  margin: 0;
+  padding: 0;
+}
+.exp-doc-choose-needs li {
+  margin: 0;
+  padding: var(--a4-space-2) 0;
+  border-bottom: 1px solid var(--a4-line);
+  color: var(--a4-ink);
+}
+.exp-doc-choose-needs li a {
+  font-weight: var(--a4-weight-strong);
+  white-space: nowrap;
+}
+.exp-doc-choose-arrow {
+  color: var(--a4-accent-text);
+}
+.exp-doc-choose-needs .exp-doc-landing-more {
+  margin: 0;
+}
+
+/* the recommendation: the accent fade, the strongest box of the section */
+.exp-doc-choose-pick {
+  display: grid;
+  gap: var(--a4-space-2);
+  padding: var(--a4-space-4);
+  border-radius: var(--a4-radius-s);
+  background:
+    linear-gradient(120deg, var(--a4-accent-soft), transparent 70%),
+    var(--a4-card);
+  box-shadow: inset 0 0 0 2px var(--a4-accent);
+}
+.exp-doc-choose-pick p {
+  margin: 0;
+  color: var(--a4-ink);
+}
+.exp-doc-choose-pick-lead {
+  font-size: var(--a4-text-l);
+}
+.exp-doc-choose-pick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a4-space-2);
+  margin-top: var(--a4-space-2);
+}

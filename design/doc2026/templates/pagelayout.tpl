@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="color-scheme" content="light dark">
 {ezscript_load( array( 'a4_head.js' ) )}
-{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'a4-theme-toggle.css', 'exp-doc-rating.css', 'doc2026.css' ) )}
+{ezcss_load( array( 'components.css', 'exphelp.css', 'exp-doc-choose.css', 'exp-doc-resizer.css', 'a4-theme-toggle.css', 'exp-doc-rating.css', 'doc2026.css' ) )}
 <link rel="stylesheet" href={'stylesheets/doc2026-print.css'|ezdesign} media="print">
 {include uri='design:parts/doc_head.tpl' path=$doc_path node=$doc_node is_front=$doc_is_front}
 </head>

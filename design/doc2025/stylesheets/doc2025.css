@@ -78,10 +78,12 @@
    rating form): the help center's components and tokens (components.css and exphelp.css load on the front page, the
    frame is an .a4-page), in the width of the main column, below the comments; and their "Start where you are" card
    on its own below the static page's current lists (exp_doc/landing_start.tpl, also a listed exception), and "Who
-   makes Exponential" at the top, before the static page's content (.exp-doc-landing-about, as in Modern).
+   makes Exponential" at the top, before the static page's content (.exp-doc-landing-about, as in Modern), and
+   "Choosing a product" right before "Start where you are" (exp_doc/landing_choose.tpl, exp-doc-choose.css).
    Classic has no dark mode: the pagelayout's html[data-a4-modes="light"] keeps the light tokens even where
    html[data-a4-theme="dark"] is set (components.css), and the frames ask the browser for light controls too */
 .exp-doc-landing-org.a4-help-frame,
+.exp-doc-landing-choose.a4-help-frame,
 .exp-doc-landing-start.a4-help-frame,
 .exp-doc-landing-about.a4-help-frame {
     max-width: none;

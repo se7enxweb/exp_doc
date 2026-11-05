@@ -47,9 +47,10 @@ EXCEPTION_IDS = {'exp-doc-switches', 'exp-cc', 'expwt', 'exp-wt', 'ezwt', 'exp-c
 # (exp_doc/landing_org.tpl, owner 2026-11-04), with its "Start where you are" card, which the front page draws
 # below the static page's current lists (exp_doc/landing_start.tpl, owner 2026-11-04), and "Who makes Exponential"
 # at the top of the front page, before the static page's content (.exp-doc-landing-about, as in Modern, owner 2026-11-04);
-# and a product's box after the heading of its container (.exp-doc-product, the products' landing pages, owner 2026-11-04)
+# and a product's box after the heading of its container (.exp-doc-product, the products' landing pages, owner 2026-11-04);
+# and "Choosing a product" right before the "Start where you are" card (exp_doc/landing_choose.tpl, owner 2026-11-05)
 EXCEPTION_CLASSES = {'exp-doc-runs-on', 'exp-doc-contributors', 'exp-doc-rating', 'exp-doc-landing-org', 'exp-doc-landing-about',
-                     'exp-doc-landing-start', 'exp-doc-product'}
+                     'exp-doc-landing-start', 'exp-doc-landing-choose', 'exp-doc-product'}
 # wrappers that are an exception while what they hold is static markup: compared as if they were not there
 UNWRAP_TAGS = {'details'}
 UNWRAP_CLASSES = {'exp-doc-comments-toggle'}

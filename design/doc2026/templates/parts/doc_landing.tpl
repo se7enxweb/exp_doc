@@ -4,6 +4,8 @@
    - "Who makes Exponential" (the help dashboard's exphelp/parts/dashboard_about.tpl), above the manuals;
    - a card for every manual (its cover or icon, summary and audience, and its versions), .a4-help-about and
      .a4-help-grow in turn, then one for the upgrade guides ([ModernSettings] UpgradeGuidesPath); the section centered;
+   - "Choosing a product" (exp_doc/landing_choose.tpl): how the products differ and which one to take, the
+     recommendation of Exponential 6 with its install button;
    - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
      the same cards with the Supported badge where it applies;
    - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
@@ -75,6 +77,9 @@
     </ul>
 </section>
 {/if}
+
+{* "Choosing a product" (exp_doc/landing_choose.tpl, exp_doc.ini [ChooseSettings]), right before the products *}
+{include uri='design:exp_doc/landing_choose.tpl'}
 
 {* the products (fetch exp_doc/products, [ModernSettings] ProductList[]): the same faded cards as the manuals *}
 {def $doc_products = fetch( 'exp_doc', 'products' )
