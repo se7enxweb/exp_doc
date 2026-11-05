@@ -20,7 +20,7 @@ see exactly what the site shows, and nothing that is hidden or restricted.
 | REST, version 2 | `<site>/api/ezp/v2/content/node/<node id>` and `.../list/offset/<n>/limit/<n>` | a node and its children |
 | REST, version 1 | `<site>/api/ezp/v1/...` | the same, in the older format |
 
-`<site>` is the documentation's address, for example `https://doc.exponential.earth/doc`. Both interfaces have to be
+`<site>` is the documentation's address, for example `https://doc.exponential.earth`. Both interfaces have to be
 switched on in the installation (see [section 5](#5-troubleshooting)); they only read here. Pages are never
 changed through them on this site.
 
@@ -46,7 +46,7 @@ query {
 Send it with any HTTP client:
 
 ```bash
-curl -s https://doc.exponential.earth/doc/api/graphql \
+curl -s https://doc.exponential.earth/api/graphql \
   -H 'Content-Type: application/json' \
   -d '{"query":"{ node(id: 2535) { name url children(limit: 20) { name url } } }"}'
 ```
@@ -58,8 +58,8 @@ walkthrough and recipes.
 ## 3. REST
 
 ```bash
-curl -s https://doc.exponential.earth/doc/api/ezp/v2/content/node/2535
-curl -s https://doc.exponential.earth/doc/api/ezp/v2/content/node/2535/list/offset/0/limit/20
+curl -s https://doc.exponential.earth/api/ezp/v2/content/node/2535
+curl -s https://doc.exponential.earth/api/ezp/v2/content/node/2535/list/offset/0/limit/20
 ```
 
 Reads answer at version 1 and version 2 and check the reader's policies, as the site does. The guide is the

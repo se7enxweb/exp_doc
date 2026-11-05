@@ -20,7 +20,7 @@ anonymer Besucher; sie sehen also genau das, was die Site zeigt, und nichts, was
 | REST, Version 2 | `<site>/api/ezp/v2/content/node/<Knoten-ID>` und `.../list/offset/<n>/limit/<n>` | einen Knoten und seine Kinder |
 | REST, Version 1 | `<site>/api/ezp/v1/...` | dasselbe, im älteren Format |
 
-`<site>` ist die Adresse der Dokumentation, zum Beispiel `https://doc.exponential.earth/doc`. Beide Schnittstellen
+`<site>` ist die Adresse der Dokumentation, zum Beispiel `https://doc.exponential.earth`. Beide Schnittstellen
 müssen in der Installation eingeschaltet sein (siehe [Abschnitt 5](#5-fehlerbehebung)); hier lesen sie nur. Seiten
 werden auf dieser Site nie über sie geändert.
 
@@ -46,7 +46,7 @@ query {
 Mit einem beliebigen HTTP-Client senden:
 
 ```bash
-curl -s https://doc.exponential.earth/doc/api/graphql \
+curl -s https://doc.exponential.earth/api/graphql \
   -H 'Content-Type: application/json' \
   -d '{"query":"{ node(id: 2535) { name url children(limit: 20) { name url } } }"}'
 ```
@@ -58,8 +58,8 @@ zeigt die Grenzen. Die vollständige Referenz ist die Hilfeseite des Kernels *Di
 ## 3. REST
 
 ```bash
-curl -s https://doc.exponential.earth/doc/api/ezp/v2/content/node/2535
-curl -s https://doc.exponential.earth/doc/api/ezp/v2/content/node/2535/list/offset/0/limit/20
+curl -s https://doc.exponential.earth/api/ezp/v2/content/node/2535
+curl -s https://doc.exponential.earth/api/ezp/v2/content/node/2535/list/offset/0/limit/20
 ```
 
 Lesezugriffe antworten in Version 1 und Version 2 und prüfen die Richtlinien des Lesers, wie die Site es tut. Die

@@ -6,7 +6,7 @@
  * The static path is the page's source_path attribute (the file it was imported from, relative to the static
  * repository); the URL is its main node's address on this site, built with --site-url.
  *
- *   php extension/exp_doc/bin/php/doc-source-map.php --site-url=https://doc.exponential.earth/doc [--output=<file>]
+ *   php extension/exp_doc/bin/php/doc-source-map.php --site-url=https://doc.exponential.earth [--output=<file>]
  *
  * @copyright Copyright (C) 7x. All rights reserved.
  * @license GNU General Public License v2.0 (or any later version)
@@ -19,7 +19,7 @@ $script = eZScript::instance( array( 'description' => 'Writes the static path to
                                      'use-session' => false, 'use-modules' => false, 'use-extensions' => true ) );
 $script->startup();
 $options = $script->getOptions( '[site-url:][output:][class:]', '',
-                                array( 'site-url' => 'The site address the URLs start with, e.g. https://doc.exponential.earth/doc',
+                                array( 'site-url' => 'The site address the URLs start with, e.g. https://doc.exponential.earth',
                                        'output' => 'The file to write (default: standard output)',
                                        'class' => 'Comma-separated class identifiers to include (default: every class with a source_path attribute)' ) );
 $script->initialize();
