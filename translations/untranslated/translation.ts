@@ -344,6 +344,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Exponential Developer Manuals</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>For: %audience</source>
         <translation type="unfinished"></translation>
     </message>

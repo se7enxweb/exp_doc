@@ -344,6 +344,10 @@
         <translation>Manuals</translation>
     </message>
     <message>
+        <source>Exponential Developer Manuals</source>
+        <translation>Exponential Developer Manuals</translation>
+    </message>
+    <message>
         <source>For: %audience</source>
         <translation>For: %audience</translation>
     </message>

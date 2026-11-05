@@ -344,6 +344,10 @@
         <translation>Handbücher</translation>
     </message>
     <message>
+        <source>Exponential Developer Manuals</source>
+        <translation>Exponential-Entwicklerhandbücher</translation>
+    </message>
+    <message>
         <source>For: %audience</source>
         <translation>Für: %audience</translation>
     </message>

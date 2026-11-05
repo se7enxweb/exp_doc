@@ -44,7 +44,7 @@
 
 {if $doc_manuals|count}
 <section class="exp-doc-landing-section exp-doc-landing-manuals" aria-labelledby="exp-doc-manuals-title">
-    <h2 id="exp-doc-manuals-title" class="a4-h2">{'Manuals'|i18n( 'design/exp_doc' )}</h2>
+    <h2 id="exp-doc-manuals-title" class="a4-h2">{'Exponential Developer Manuals'|i18n( 'design/exp_doc' )}</h2>
     <ul class="a4-plain exp-doc-manuals">
     {foreach $doc_manuals as $doc_manual}
         {def $doc_versions = fetch( 'exp_doc', 'versions', hash( 'parent_node_id', $doc_manual.node_id ) )}
