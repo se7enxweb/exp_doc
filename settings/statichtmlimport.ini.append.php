@@ -471,6 +471,21 @@ VersionStatus[5*]=EOL
 VersionStatus[4*]=EOL
 VersionStatus[3*]=EOL
 
+# The order of the children (exp:static-import:order, and each run for the containers it adds pages to): as the old
+# site listed them on the container's own page, in its table of contents (#contentstructure, the old manuals' left
+# menu) or Confluence's child list (#page-children); the others follow by
+# name. Comments keep their own order. The site root (2535) and /exponential (5377) have the order the owner set
+# (2026-11-05) and are never touched.
+OrderSelectors[]
+OrderSelectors[]=#contentstructure
+OrderSelectors[]=#page-children
+OrderIgnoreClasses[]
+OrderIgnoreClasses[]=comment
+OrderIgnoreClasses[]=comment_historical
+OrderSkipNodes[]
+OrderSkipNodes[]=2535
+OrderSkipNodes[]=5377
+
 # Which class a page becomes; the first match wins
 ClassRules[]
 # the historical copies and views (RouteRules[] above): pages of their own, in the Historical containers
