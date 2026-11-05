@@ -89,6 +89,14 @@
 .exp-doc-landing-about.a4-help-frame {
     margin-top: 0;
 }
+/* a frame inside the page body (.template-design): without the static lists' bullet image and indent, which the help
+   center's lists (cards of links) do not have */
+div.template-design .a4-help-frame li {
+    margin: 0;
+    padding: 0;
+    background-image: none;
+    line-height: inherit;
+}
 form.exp-doc-rating {
     color-scheme: light;
 }
