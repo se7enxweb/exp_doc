@@ -5,11 +5,13 @@
    (exphelp/parts/*), so the texts and their translations stay in one place; the data comes from the kernel as on the
    dashboard (fetch exp_doc/help_report, exp_doc/help_support; exphelp/license inside license_dashboard.tpl).
    Left out entirely when the help is off. Styles: exphelp.css (.a4-help-*) and the design's .exp-doc-landing-org;
-   no inline CSS or script. *}
+   no inline CSS or script.
+
+   Variables: frame_class (optional, more classes of the frame: a4-page in Classic, whose body is not one). *}
 {def $doc_org_report = fetch( 'exp_doc', 'help_report' )}
 {if $doc_org_report}
 {def $doc_org_support = fetch( 'exp_doc', 'help_support' )}
-<div class="a4-help-frame exp-doc-landing-org">
+<div class="{if and( is_set( $frame_class ), $frame_class )}{$frame_class|wash} {/if}a4-help-frame exp-doc-landing-org">
     {include uri='design:exphelp/parts/dashboard_about.tpl' landing_on=ezini( 'LandingSettings', 'Enabled', 'exphelp.ini' )|eq( 'enabled' )}
     {include uri='design:exphelp/parts/dashboard_report.tpl' report=$doc_org_report.url security=$doc_org_report.security trackers=$doc_org_report.trackers}
     {include uri='design:exphelp/parts/license_dashboard.tpl'}

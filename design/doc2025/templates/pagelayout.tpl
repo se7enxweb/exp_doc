@@ -27,8 +27,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-{if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}
-{* the help center's views (exphelp/*): its own components and styles, light, inside the Classic frame *}
+{if or( $doc_is_front, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
+{* the help center's views (exphelp/*) and the front page (its help center blocks at the end, exp_doc/landing_org.tpl):
+   the help center's components and styles, light, inside the Classic frame *}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-resizer.css', 'exp-doc-rating.css', 'doc2025.css' ) )}
 {else}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'exp-doc-rating.css', 'doc2025.css' ) )}
@@ -61,7 +62,7 @@
 
 {include uri='design:parts/doc_menu.tpl' path=$doc_path node_id=$doc_node_id resizable=$doc_help}
 <div class="area-docmain-normal">
-{if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}<div class="a4-page exp-doc-help-classic">{$module_result.content}</div>{else}{$module_result.content}{/if}
+{if or( $doc_is_front, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}<div class="a4-page exp-doc-help-classic">{$module_result.content}</div>{else}{$module_result.content}{/if}
 </div>
 <!-- Main area content: END -->
 
