@@ -20,6 +20,11 @@
  *                for moderation by the review hold, then back to the page with (comment)/held. The policy doc/read, and
  *                content/create of the comment class where it is stored.
  *
+ * Adding a view: doc.exponential.earth is served at the root of its host, and its vhost answers every /doc and
+ * /doc/<path> with a 301 to the root address, except the views of this module (/doc/<view>), which it exempts by
+ * name. The vhost configuration reads the view names from this file when it is generated, so a new view answers
+ * that redirect instead of itself until the vhost configuration is regenerated: regenerate it after adding a view.
+ *
  * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
  * @license GNU General Public License v2.0 (or any later version)
  * @package exp_doc
