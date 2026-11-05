@@ -10,6 +10,8 @@
 Map[graham b]=Graham Brookins
 # the old sites' default administrator account was his (owner, 2026-11-04); a git name is looked up here too
 Map[Administrator User]=Graham Brookins
+# the old sites' "Anonymous User" bylines are his pages too (owner, 2026-11-04); no comment carries that name
+Map[Anonymous User]=Graham Brookins
 Map[André R]=André Rømcke
 Map[Lukasz Serwatka]=Łukasz Serwatka
 Map[Piotr Switkowski]=Piotr Świtkowski
