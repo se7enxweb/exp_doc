@@ -780,6 +780,26 @@
         <translation>See all ratings</translation>
     </message>
     <message>
+        <source>Recent Markdown changes</source>
+        <translation>Recent Markdown changes</translation>
+    </message>
+    <message>
+        <source>No changed help pages to show yet.</source>
+        <translation>No changed help pages to show yet.</translation>
+    </message>
+    <message>
+        <source>See all help pages</source>
+        <translation>See all help pages</translation>
+    </message>
+    <message>
+        <source>Recent commits</source>
+        <translation>Recent commits</translation>
+    </message>
+    <message>
+        <source>See all commits</source>
+        <translation>See all commits</translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation>The page now: %average of 5, %count ratings</translation>
     </message>

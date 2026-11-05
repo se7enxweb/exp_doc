@@ -780,6 +780,26 @@
         <translation>Alle Bewertungen</translation>
     </message>
     <message>
+        <source>Recent Markdown changes</source>
+        <translation>Neue Markdown-Änderungen</translation>
+    </message>
+    <message>
+        <source>No changed help pages to show yet.</source>
+        <translation>Noch keine geänderten Hilfeseiten.</translation>
+    </message>
+    <message>
+        <source>See all help pages</source>
+        <translation>Alle Hilfeseiten</translation>
+    </message>
+    <message>
+        <source>Recent commits</source>
+        <translation>Neue Commits</translation>
+    </message>
+    <message>
+        <source>See all commits</source>
+        <translation>Alle Commits</translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation>Die Seite jetzt: %average von 5, %count Bewertungen</translation>
     </message>

@@ -7,8 +7,9 @@
    - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
      the same cards with the Supported badge where it applies;
    - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
-   - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
-     an .a4-help-support box;
+   - the recently changed and added pages, comments, ratings, the help's recent Markdown changes and the latest
+     commits of Exponential (exp_doc/help_recent_changes, help_commits), and the most read pages (the kernel's view
+     counts, no third-party tracker), each in an .a4-help-support box;
    - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: found an error, free
      documentation, Support Exponential). *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
@@ -159,6 +160,45 @@
     <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'RatingsPath', 'exp_doc.ini' )|ezurl}>{'See all ratings'|i18n( 'design/exp_doc' )}</a></p>
 </section>
 {undef $doc_ratings}
+{* the help's Markdown pages changed last (fetch exp_doc/help_recent_changes: the developers' help page's "Recently
+   updated", in the reader's help language; the links keep /(lang)/<key>) *}
+{def $doc_md = fetch( 'exp_doc', 'help_recent_changes', hash( 'limit', 8 ) )}
+<section class="a4-help-support exp-doc-landing-section is-accent" aria-labelledby="exp-doc-markdown-title">
+    <h2 id="exp-doc-markdown-title" class="a4-h2">{'Recent Markdown changes'|i18n( 'design/exp_doc' )}</h2>
+    {if $doc_md|count}
+    <ol class="a4-plain exp-doc-landing-list">
+    {foreach $doc_md as $doc_item}
+        <li><a href={$doc_item.url|ezurl}>{$doc_item.title|wash}</a>{if $doc_item.time|gt( 0 )} <span class="a4-meta"><time datetime="{$doc_item.time|datetime( 'custom', '%Y-%m-%dT%H:%i:%s' )}">{$doc_item.time|l10n( 'shortdate' )}</time></span>{/if}</li>
+    {/foreach}
+    </ol>
+    {else}
+    <p class="a4-meta">{'No changed help pages to show yet.'|i18n( 'design/exp_doc' )}</p>
+    {/if}
+    <p class="exp-doc-landing-more"><a href={'/exphelp/contents'|ezurl}>{'See all help pages'|i18n( 'design/exp_doc' )}</a></p>
+</section>
+{undef $doc_md}
+{* the latest commits of se7enxweb/exponential without merges (fetch exp_doc/help_commits: the kernel's
+   expHelpCommitFeed, read by the server with its timeout and cache; the browser loads nothing from outside) *}
+{def $doc_commits = fetch( 'exp_doc', 'help_commits', hash( 'limit', 8 ) )}
+{if $doc_commits}
+<section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-commits-title">
+    <h2 id="exp-doc-commits-title" class="a4-h2">{'Recent commits'|i18n( 'design/exp_doc' )}</h2>
+    {if $doc_commits.stale}
+    <p class="a4-meta" role="status">{if $doc_commits.fetched|gt( 0 )}{'GitHub could not be reached just now. These are the commits read on %date.'|i18n( 'kernel/exphelp',, hash( '%date', $doc_commits.fetched|l10n( 'shortdatetime' ) ) )|wash}{else}{'The commits could not be read from GitHub. Open the history on GitHub instead.'|i18n( 'kernel/exphelp' )}{/if}</p>
+    {/if}
+    {if $doc_commits.commits|count}
+    <ol class="a4-plain exp-doc-landing-list">
+    {foreach $doc_commits.commits as $doc_c}
+        <li>{$doc_c.title|shorten( 100 )|wash} <span class="a4-meta"><a href="{$doc_c.url|wash}" rel="noopener noreferrer"><code class="a4-code">{$doc_c.short|wash}</code></a>{if $doc_c.time|gt( 0 )} · <time datetime="{$doc_c.time|datetime( 'custom', '%Y-%m-%dT%H:%i:%s' )}">{$doc_c.time|l10n( 'shortdate' )}</time>{/if}</span></li>
+    {/foreach}
+    </ol>
+    {elseif $doc_commits.stale|not}
+    <p class="a4-meta">{'No commits to show yet.'|i18n( 'kernel/exphelp' )}</p>
+    {/if}
+    <p class="exp-doc-landing-more"><a href={$doc_commits.more|ezurl}>{'See all commits'|i18n( 'design/exp_doc' )}</a> · <a href="{$doc_commits.history|wash}" rel="noopener noreferrer">{'Full history on GitHub'|i18n( 'kernel/exphelp' )}</a></p>
+</section>
+{/if}
+{undef $doc_commits}
 {if $doc_popular|count}
 <section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-popular-title">
     <h2 id="exp-doc-popular-title" class="a4-h2">{'Most read'|i18n( 'design/exp_doc' )}</h2>

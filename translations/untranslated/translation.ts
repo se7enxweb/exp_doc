@@ -780,6 +780,26 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Recent Markdown changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No changed help pages to show yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See all help pages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Recent commits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See all commits</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation type="unfinished"></translation>
     </message>
