@@ -262,25 +262,8 @@
     {* ---- Grow from user to developer (parts/dashboard_grow.tpl) ---- *}
     {include uri='design:exphelp/parts/dashboard_grow.tpl'}
 
-    {* ---- Report an error ---- *}
-    <section class="a4-help-report" aria-labelledby="help-dash-report">
-        <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon a4-bi-exclamation-diamond"></span></span>
-        <div>
-            <h2 id="help-dash-report">{'Found an error?'|i18n( $help_ctx )}</h2>
-            <p>{'Tell us on GitHub: the guide shows which tracker fits, what to include and the system details to copy, without any secrets.'|i18n( $help_ctx )}</p>
-            <a class="a4-help-report-security" href={concat( $help_report, '#security' )|ezurl}><span class="a4-icon a4-bi-shield-lock" aria-hidden="true"></span>{'A security issue? Report it privately, not in a public issue.'|i18n( $help_ctx )}</a>
-        </div>
-        <div class="a4-help-report-actions">
-            <a class="a4-btn a4-btn-primary" href={$help_report|ezurl}><span class="a4-icon a4-bi-list-task" aria-hidden="true"></span>{'How to report an error'|i18n( $help_ctx )}</a>
-            {if is_set( $help_trackers )}
-            {foreach $help_trackers as $tracker}
-                {if and( is_set( $tracker.new_issue_url ), $tracker.new_issue_url|begins_with( 'https://' ) )}
-                <a class="a4-btn" href="{$tracker.new_issue_url|wash}" rel="noopener noreferrer" target="_blank"{if and( is_set( $tracker.description ), $tracker.description|ne( '' ) )} title="{$tracker.description|wash}"{/if}><span class="a4-icon a4-bi-git" aria-hidden="true"></span>{$tracker.label|wash}<span class="a4-sr-only"> {'(new issue on GitHub, opens in a new window)'|i18n( $help_ctx )}</span></a>
-                {/if}
-            {/foreach}
-            {/if}
-        </div>
-    </section>
+    {* ---- Report an error (parts/dashboard_report.tpl; the documentation's front page has it too) ---- *}
+    {include uri='design:exphelp/parts/dashboard_report.tpl' report=$help_report trackers=cond( is_set( $help_trackers ), $help_trackers, array() )}
 
     {* ---- Free documentation: the license and what readers may do with it ---- *}
     {include uri='design:exphelp/parts/license_dashboard.tpl'}
