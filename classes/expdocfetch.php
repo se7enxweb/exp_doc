@@ -1096,14 +1096,24 @@ class expDocFetch
             return $items;
         }
         $children = self::menuChildren( $parentNodeID );
+        $seenPages = array();
         foreach ( $children['result'] as $child )
         {
             $childID = (int)$child->attribute( 'node_id' );
-            // an old version of a page (its history_of names the page; "API (31430767) (4)") is not a page of the
-            // tree, as Confluence's tree had only the current pages; the version on show still is
+            // another copy of a page is not a page of the tree, as Confluence's tree had each page once: an old
+            // version (its history_of names the page), or a copy the static export saved under another file name
+            // ("Field Type API & best practices (31430767) (4)": the same Confluence page id as a sibling before
+            // it); the copy on show still is
             $childMap = $child->attribute( 'data_map' );
-            if ( $childID !== $currentID && !in_array( $childID, $path, true ) && isset( $childMap['history_of'] )
-                 && (int)$childMap['history_of']->attribute( 'data_int' ) > 0 )
+            $pageID = isset( $childMap['source_page_id'] ) ? trim( (string)$childMap['source_page_id']->attribute( 'data_text' ) ) : '';
+            $shown = $childID === $currentID || in_array( $childID, $path, true );
+            $copy = ( isset( $childMap['history_of'] ) && (int)$childMap['history_of']->attribute( 'data_int' ) > 0 )
+                    || ( $pageID !== '' && isset( $seenPages[$pageID] ) );
+            if ( $pageID !== '' )
+            {
+                $seenPages[$pageID] = true;
+            }
+            if ( $copy && !$shown )
             {
                 continue;
             }
