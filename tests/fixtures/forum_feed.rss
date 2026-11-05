@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Share &gt; All forums (topics and replies)</title>
+    <link>https://share.example.org/</link>
+    <description/>
+    <item>
+      <title>Buy cheap things</title>
+      <link>https://share.example.org/forums/suggestions/buy-cheap-things</link>
+      <description>&lt;p&gt;&lt;a href="https://spam.example.net/"&gt;spam&lt;/a&gt;&lt;/p&gt;</description>
+      <author>Spam Sender ( http://share.example.org/p/9 )</author>
+      <pubDate>Wed, 04 Nov 2026 08:24:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Re: How do I &lt;b&gt;cache&lt;/b&gt; a block?</title>
+      <link>http://share.example.org/forums/developer/how-do-i-cache-a-block/comment7?x=1#c7</link>
+      <description>&lt;script&gt;alert(1)&lt;/script&gt;Use the cache-block function.</description>
+      <author>Ada  Example ( http://share.example.org/p/14 )</author>
+      <pubDate>Sat, 28 Feb 2026 04:57:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>How do I cache a block?</title>
+      <link>https://share.mirror.example.org/forums/developer/how-do-i-cache-a-block</link>
+      <dc:creator>Grace Example</dc:creator>
+      <pubDate>Thu, 26 Feb 2026 21:25:40 +0000</pubDate>
+    </item>
+    <item>
+      <title>Elsewhere</title>
+      <link>https://elsewhere.example.com/forums/general/elsewhere</link>
+      <author>Someone ( http://share.example.org/p/1 )</author>
+      <pubDate>Wed, 25 Feb 2026 10:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Not a web link</title>
+      <link>javascript:alert(1)</link>
+      <pubDate>Wed, 25 Feb 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Mail author</title>
+      <link>https://share.example.org/forums/general/mail-author</link>
+      <author>someone@example.org</author>
+      <pubDate>Tue, 24 Feb 2026 09:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

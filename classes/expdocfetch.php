@@ -443,6 +443,31 @@ class expDocFetch
     }
 
     /**
+     * The newest topics and replies of the Exponential Share forums for the front page's "Recent forum activity":
+     * expDocForumFeed, which reads the forums' RSS feed on the server with the kernel commit feed's timeout, lock and
+     * cache (the browser loads nothing from outside). False when ForumFeedURL is empty or the kernel has no
+     * expHelpCommitFeed to build on.
+     *
+     * @param int|false $limit false: [ModernSettings] ForumFeedLimit
+     * @return array array( 'result' => array( 'items', 'fetched', 'stale', 'error', 'more' )|false )
+     */
+    public static function forumActivity( $limit = false )
+    {
+        if ( !class_exists( 'expHelpCommitFeed' ) || !method_exists( 'expHelpCommitFeed', 'commits' )
+             || !class_exists( 'expDocForumFeed' ) )
+        {
+            return array( 'result' => false );
+        }
+        $feed = new expDocForumFeed();
+        $options = $feed->options();
+        if ( !$options['enabled'] )
+        {
+            return array( 'result' => false );
+        }
+        return array( 'result' => $feed->items( $limit === false || $limit === null ? null : (int)$limit ) );
+    }
+
+    /**
      * The object ids of a relation list attribute, in its order.
      *
      * @param eZContentObjectAttribute $attribute

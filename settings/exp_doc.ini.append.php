@@ -178,6 +178,17 @@ SearchQuickClasses[]=exp_doc_extension
 AdminPrefix=admin
 # The image size embedded images are shown at
 EmbedImageAlias=large
+# The front page's "Recent forum activity" (Modern): the newest topics and replies of the Exponential Share forums,
+# read by the server from this RSS 2.0 feed (https only) with the kernel commit feed's timeout and cache time
+# (exphelp.ini [CommitFeedSettings]); empty: no box. Links are always made on this address's host.
+ForumFeedURL=https://share.exponential.earth/rss/feed/all_forums
+# How many posts the box lists
+ForumFeedLimit=8
+# The "See all forum activity" link
+ForumURL=https://share.exponential.earth/forums
+# Titles left out of the box: shell patterns (* and ?), case-insensitive, matched against the whole title without
+# "Re: " (escorts leaves out exactly "escorts", *escort* every title containing it). Empty: everything shows.
+ForumFeedExcludeTitles[]
 
 # The brand images of both designs (bin/python/doc_brand_images.py, from the official logo): the theme color for
 # light and dark (the accent and the dark surface tokens), and the manuals that have their own social image

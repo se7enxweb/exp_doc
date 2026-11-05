@@ -270,3 +270,18 @@ $FunctionList['help_commits'] = array( 'name' => 'help_commits',
                                                                'method' => 'helpCommits' ),
                                        'parameter_type' => 'standard',
                                        'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 8 ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'forum_activity' )
+ *       the newest topics and replies of the Exponential Share forums (expDocForumFeed: the forums' RSS feed, read by
+ *       the server with the kernel commit feed's timeout and cache; exp_doc.ini [ModernSettings] ForumFeedURL,
+ *       ForumFeedLimit, ForumFeedExcludeTitles[], ForumURL): hash( 'items' (each: id, title, reply, author, time,
+ *       url), 'fetched', 'stale', 'error', 'more' (the forums' address) ), or false when switched off or the kernel
+ *       has no feed reader. A limit overrides ForumFeedLimit.
+ */
+$FunctionList['forum_activity'] = array( 'name' => 'forum_activity',
+                                         'operation_types' => array( 'read' ),
+                                         'call_method' => array( 'class' => 'expDocFetch',
+                                                                 'method' => 'forumActivity' ),
+                                         'parameter_type' => 'standard',
+                                         'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => false ) ) );
