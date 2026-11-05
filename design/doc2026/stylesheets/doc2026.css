@@ -531,6 +531,11 @@ body.exp-doc {
    starts at the top under the heading instead of the box's grid (.a4-help-support) spreading its rows over it */
 .exp-doc-landing-columns > .a4-help-support {
     align-content: start;
+    min-width: 0;
+}
+/* a long word or address in a teaser or title breaks inside the box instead of running past its edge */
+.exp-doc-landing-columns > .a4-help-support li {
+    overflow-wrap: anywhere;
 }
 .exp-doc-landing-list li {
     padding: var(--a4-space-2) 0;
