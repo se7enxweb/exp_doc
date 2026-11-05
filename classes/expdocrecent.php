@@ -529,8 +529,15 @@ class expDocRecent
      */
     public static function latest( $mode, $limit )
     {
-        $list = self::fetch( array(), 0, (int)$limit, $mode === 'new' ? 'new' : 'changed', false );
-        return array( 'result' => $list['items'] );
+        // fetch() without its count: the list never says how many there are, and the count is a query over every
+        // page of its own
+        $query = self::contentQuery( array(), $mode === 'new' ? 'new' : 'changed' );
+        if ( $query === null )
+        {
+            return array( 'result' => array() );
+        }
+        list( $params, $conditions, $parentID ) = $query;
+        return array( 'result' => self::contentEntries( $params, $conditions, $parentID, 0, max( 1, (int)$limit ) ) );
     }
 
     /**
