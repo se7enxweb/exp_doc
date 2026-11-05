@@ -1209,6 +1209,12 @@ html[data-a4-theme="dark"] {
     background: var(--a4-card);
     box-shadow: inset 0 0 0 1px var(--a4-line);
 }
+.exp-doc-product-about p {
+    margin: 0 0 var(--a4-space-3);
+}
+.exp-doc-product-about p:last-child {
+    margin-bottom: 0;
+}
 .exp-doc-product-family {
     display: flex;
     flex-wrap: wrap;

@@ -139,3 +139,8 @@ form.exp-doc-rating {
 .exp-doc-product .exp-doc-landing-more {
     margin: var(--a4-space-3) 0 0;
 }
+/* the box's own links in the help center's link color (the static headings' rules would gray them) */
+.exp-doc-product a:not(.a4-btn):not(.a4-tag) {
+    color: var(--a4-accent-text);
+    text-decoration: underline;
+}

@@ -6,7 +6,7 @@
    Variables: links. *}
 {def $doc_kinds = hash( 'install', hash( 'label', 'Install'|i18n( 'design/exp_doc' ), 'icon', 'download' ),
                         'upgrade', hash( 'label', 'Upgrade'|i18n( 'design/exp_doc' ), 'icon', 'arrow-up-circle' ),
-                        'compare', hash( 'label', 'Compare the distributions'|i18n( 'design/exp_doc' ), 'icon', 'signpost' ),
+                        'compare', hash( 'label', 'Compare the distributions'|i18n( 'design/exp_doc' ), 'icon', 'signpost-split' ),
                         'source', hash( 'label', 'GitHub', 'icon', 'git' ),
                         'package', hash( 'label', 'Packagist', 'icon', 'box-seam' ),
                         'website', hash( 'label', 'Website'|i18n( 'design/exp_doc' ), 'icon', 'globe2' ) )}
