@@ -564,8 +564,8 @@
         <translation>You have sent several comments in a short time. Please wait a few minutes and send it again.</translation>
     </message>
     <message>
-        <source>Exponential Foundation and %company</source>
-        <translation>Exponential Foundation and %company</translation>
+        <source>%foundation and %company</source>
+        <translation>%foundation and %company</translation>
     </message>
     <message>
         <source>%count comments</source>

@@ -6,7 +6,7 @@
     <div class="exp-doc-footer-inner">
         <div class="exp-doc-footer-col">
             <p class="exp-doc-footer-brand"><a class="exp-doc-footer-logo" href={'/'|ezurl}>{include uri='design:exp_doc/logo.tpl'}</a> <span>{'Documentation'|i18n( 'design/exp_doc' )}</span></p>
-            <p>{'Copyright © 1998 - %year %maker (except where otherwise noted).'|i18n( 'design/exp_doc', '', hash( '%year', currentdate()|datetime( 'custom', '%Y' ), '%maker', 'Exponential Foundation and %company'|i18n( 'design/exp_doc', '', hash( '%company', '<a href="https://se7enx.com">7x</a>' ) ) ) )}</p>
+            <p>{'Copyright © 1998 - %year %maker (except where otherwise noted).'|i18n( 'design/exp_doc', '', hash( '%year', currentdate()|datetime( 'custom', '%Y' ), '%maker', '%foundation and %company'|i18n( 'design/exp_doc', '', hash( '%foundation', '<a href="https://foundation.exponential.earth">Exponential Foundation</a>', '%company', '<a href="https://se7enx.com">7x</a>' ) ) ) )}</p>
             <p>{'Content license: %license'|i18n( 'design/exp_doc', '', hash( '%license', concat( '<a href=', cond( $doc_license, $doc_license.url_alias, '/' )|ezurl, '>', 'GNU Free Documentation License v1.2+'|i18n( 'design/doc2025' ), '</a>' ) ) )}</p>
         </div>
         <div class="exp-doc-footer-col">

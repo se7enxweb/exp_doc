@@ -564,7 +564,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Exponential Foundation and %company</source>
+        <source>%foundation and %company</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
