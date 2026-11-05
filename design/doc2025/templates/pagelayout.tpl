@@ -66,7 +66,7 @@
 {/if}
 </head>
 {if $doc_confluence}
-<body id="com-atlassian-confluence" class="theme-documentation aui-layout exp-doc-confluence">
+<body id="com-atlassian-confluence" class="theme-documentation aui-layout aui-theme-default exp-doc-confluence">
 {def $doc_help = false()}
 {include uri='design:parts/confluence_frame.tpl' context=$doc_confluence node_id=$doc_node_id}
 {else}

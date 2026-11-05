@@ -13,7 +13,8 @@ For each page:
   * scripts, comments and the allowed modern exceptions are left out (the header switches #exp-doc-switches,
     the cookie banner #exp-cc, the front-end editing toolbar, the version badge .exp-doc-runs-on);
   * inline styles and the exp-doc-* classes that replace them are ignored, and so is rel="noopener" (kept on the
-    links that open a new window for security, a decided modern difference);
+    links that open a new window for security, a decided modern difference), and so are inline event handlers
+    (onload=..., no inline scripts);
   * links are compared by target: a static link is resolved to the static file it names, a dynamic link to the
     static file its page came from (through the map); images by file name;
   * text is compared with its whitespace collapsed; attributes in any order;
@@ -165,6 +166,10 @@ class Normalizer:
         attrs = []
         for name, value in el.attrib.items():
             if name == 'style':
+                continue
+            if name.startswith('on'):
+                # inline event handlers (the static pages' onload="placeFocus()" on body): no inline scripts, a decided
+                # modern exception
                 continue
             if name == 'class':
                 value = ' '.join(sorted(c for c in value.split() if not c.startswith('exp-doc-')))
