@@ -262,8 +262,14 @@
     {* ---- Grow from user to developer (parts/dashboard_grow.tpl) ---- *}
     {include uri='design:exphelp/parts/dashboard_grow.tpl'}
 
-    {* ---- Report an error (parts/dashboard_report.tpl; the documentation's front page has it too) ---- *}
-    {include uri='design:exphelp/parts/dashboard_report.tpl' report=$help_report trackers=cond( is_set( $help_trackers ), $help_trackers, array() )}
+    {* ---- Report an error (parts/dashboard_report.tpl; the documentation's front page has it too): the addresses from
+         fetch( 'exp_doc', 'help_report' ), which are the help page of exphelp.ini [ContextHelp] Map[exphelp/report] and
+         its security section where this site switches exphelp/report off ---- *}
+    {def $help_doc_report = fetch( 'exp_doc', 'help_report' )
+         $help_report_security = false()}
+    {if $help_doc_report}{set $help_report = $help_doc_report.url}{set $help_report_security = $help_doc_report.security}{/if}
+    {include uri='design:exphelp/parts/dashboard_report.tpl' report=$help_report security=$help_report_security trackers=cond( is_set( $help_trackers ), $help_trackers, array() )}
+    {undef $help_doc_report $help_report_security}
 
     {* ---- Free documentation: the license and what readers may do with it ---- *}
     {include uri='design:exphelp/parts/license_dashboard.tpl'}

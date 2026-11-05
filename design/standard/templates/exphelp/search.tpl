@@ -194,7 +194,10 @@
                 </p>
                 {/if}
                 <p><a class="a4-btn" href={'/exphelp/search'|ezurl}>{'Browse all help pages'|i18n( $help_ctx )}</a>
-                   <a class="a4-btn" href={'/exphelp/report'|ezurl}><span class="a4-icon a4-bi-exclamation-diamond" aria-hidden="true"></span>{'Missing a page? Tell us'|i18n( $help_ctx )}</a></p>
+                   {* the reporting guide, or where this site switches exphelp/report off the help page standing in
+                      for it (fetch( 'exp_doc', 'help_report' ), as on the help dashboard) *}
+                   {def $help_doc_report = fetch( 'exp_doc', 'help_report' )}
+                   <a class="a4-btn" href={if $help_doc_report}{$help_doc_report.url|ezurl}{else}{'/exphelp/report'|ezurl}{/if}><span class="a4-icon a4-bi-exclamation-diamond" aria-hidden="true"></span>{'Missing a page? Tell us'|i18n( $help_ctx )}</a></p>
             </div>
         {/if}
         </div>

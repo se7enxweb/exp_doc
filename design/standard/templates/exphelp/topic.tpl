@@ -109,7 +109,10 @@
                      findings=$help_findings findings_counts=$help_findings_counts feedback=$help_feedback_summary prefix='exphelp-topic'}
             {/if}
 
-            <p class="a4-help-foot a4-meta"><a href={'exphelp/report'|ezurl}><span class="a4-icon a4-bi-exclamation-diamond" aria-hidden="true"></span> {'Something wrong on this page? Report an error'|i18n( 'kernel/exphelp' )}</a></p>
+            {* the reporting guide, or where this site switches exphelp/report off the help page standing in for it
+               (fetch( 'exp_doc', 'help_report' ), as on the help dashboard) *}
+            {def $help_doc_report = fetch( 'exp_doc', 'help_report' )}
+            <p class="a4-help-foot a4-meta"><a href={if $help_doc_report}{$help_doc_report.url|ezurl}{else}{'exphelp/report'|ezurl}{/if}><span class="a4-icon a4-bi-exclamation-diamond" aria-hidden="true"></span> {'Something wrong on this page? Report an error'|i18n( 'kernel/exphelp' )}</a></p>
         </div>
 
         <nav class="a4-help-nav" id="exphelp-nav" aria-labelledby="exphelp-nav-title" tabindex="-1">
@@ -138,5 +141,5 @@
 
     </div>
 </div>
-{undef $help_toc_items}
+{undef $help_toc_items $help_doc_report}
 {ezscript_require( array( 'exphelp.js' ) )}
