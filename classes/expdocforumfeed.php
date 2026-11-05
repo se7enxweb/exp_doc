@@ -113,6 +113,32 @@ class expDocForumFeed extends expHelpCommitFeed
         return false;
     }
 
+    /**
+     * Reads a feed now, whatever the age of its cache, under the feed's lock (skipped while another process reads it):
+     * the cronjob part exp_doc_feeds.php keeps the front page's boxes current this way, so a page view never waits for
+     * a read (only a cache older than the cache time, when the cronjob has not run, is read during a page view). A
+     * failed read keeps the last good list and is marked as before.
+     *
+     * @param expHelpCommitFeed|null $feed the feed to read (the kernel's commit feed), null: this one
+     * @param int|null $now
+     * @return array|false the cache after the read (commits, fetched, attempted, error), false when not read (off,
+     *                     or the lock is held)
+     */
+    public function warm( ?expHelpCommitFeed $feed = null, $now = null )
+    {
+        $feed = $feed !== null ? $feed : $this;
+        if ( !$feed->options['enabled'] || !$feed->lock() )
+            return false;
+        try
+        {
+            return $feed->refresh( $feed->readCache(), $now === null ? time() : (int)$now );
+        }
+        finally
+        {
+            $feed->unlock();
+        }
+    }
+
     /** Each read replaces the list; a failed read keeps the last good one */
     protected function refresh( array $cache, $now )
     {
