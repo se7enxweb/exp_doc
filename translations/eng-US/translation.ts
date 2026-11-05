@@ -857,6 +857,34 @@
         <translation>Which one should I choose?</translation>
     </message>
     <message>
+        <source>%shown of the %all products of Exponential, the ones most projects start with.</source>
+        <translation>%shown of the %all products of Exponential, the ones most projects start with.</translation>
+    </message>
+    <message>
+        <source>View all products</source>
+        <translation>View all products</translation>
+    </message>
+    <message>
+        <source>All %all products, with their documentation</source>
+        <translation>All %all products, with their documentation</translation>
+    </message>
+    <message>
+        <source>%all products share the name Exponential. Here are the %shown most projects choose between; all %all are compared on the choices page.</source>
+        <translation>%all products share the name Exponential. Here are the %shown most projects choose between; all %all are compared on the choices page.</translation>
+    </message>
+    <message>
+        <source>More choices</source>
+        <translation>More choices</translation>
+    </message>
+    <message>
+        <source>More choices: compare all %all products and find the right one.</source>
+        <translation>More choices: compare all %all products and find the right one.</translation>
+    </message>
+    <message>
+        <source>Compare all %all products</source>
+        <translation>Compare all %all products</translation>
+    </message>
+    <message>
         <source>Choosing a product</source>
         <translation>Choosing a product</translation>
     </message>

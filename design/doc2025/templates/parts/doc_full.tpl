@@ -6,7 +6,13 @@
 {def $doc_map = $node.data_map
      $doc_root_source = false()
      $doc_is_root = eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )
-     $doc_start = false()}
+     $doc_start = false()
+     $doc_page_displays = ezini( 'PageDisplaySettings', 'Display', 'exp_doc.ini' )
+     $doc_page_display = ''}
+{* a page of exp_doc.ini [PageDisplaySettings]: its list after its own text (every product, exp_doc/landing_products.tpl,
+   in the product box's cards; every choice, exp_doc/landing_choose.tpl), a listed exception like the front page's
+   frames: the help center's components, light (the pagelayout loads them on these pages) *}
+{if is_set( $doc_page_displays[$node.object.remote_id] )}{set $doc_page_display = $doc_page_displays[$node.object.remote_id]}{/if}
 {* "Start where you are" below the front page's current lists, while the help is on (as the bottom blocks) *}
 {if $doc_is_root}{if fetch( 'exp_doc', 'help_report' )}{set $doc_start = true()}{/if}{/if}
 {* the root (a folder) shows the static start page from its description; while that is empty, the body of the page
@@ -111,6 +117,8 @@
 {else}
 {$doc_body}
 {/if}
+{if eq( $doc_page_display, 'products' )}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-products">{include uri='design:exp_doc/landing_products.tpl' heading=false() list_class='a4-grid is-wide' badge_class='a4-badge is-ok'}</div>
+{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page' heading=false()}{/if}
 {* the Contributors folder lists every contributor below its own text (a listed exception) *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
 
@@ -127,4 +135,4 @@
    the start card and "Who makes Exponential" drawn higher up *}
 {if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}{include uri='design:exp_doc/landing_org.tpl' frame_class='a4-page' start=$doc_start|not about=$doc_start|not}{/if}
 {/if}
-{undef $doc_map $doc_root_source $doc_is_root $doc_start $doc_body $doc_cf}
+{undef $doc_map $doc_root_source $doc_is_root $doc_start $doc_body $doc_cf $doc_page_displays $doc_page_display}

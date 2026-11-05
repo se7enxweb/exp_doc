@@ -204,6 +204,9 @@ ProductList[]=platform/legacy;Exponential Platform Legacy;The documentation of E
 ProductList[]=platform/nexus;Exponential Platform Nexus;The documentation of Exponential Platform Nexus.;current
 ProductList[]=platform/dxp;Exponential Platform DXP;The documentation of Exponential Platform DXP.;current
 ProductList[]=basic;Exponential Basic;The documentation of Exponential Basic.;current
+# The page of every product (below the site's root; [PageDisplaySettings] draws the list on it): the front page links
+# to it when it shows fewer products than ProductList[]
+ProductsPath=products
 # How many levels the page tree (parts/doc_tree.tpl) draws below the manual version
 TreeDepth=3
 # How many of the site's top pages the tree of a page outside the manuals lists (then a link to all of them)
@@ -445,6 +448,18 @@ Needs[]=platform/legacy;You build on Symfony and need the Exponential 6 kernel a
 Needs[]=platform/nexus;You want a finished Symfony website with Exponential Layouts and demo content
 Needs[]=platform/dxp;You want a Symfony-only stack, without the Exponential 6 kernel
 Needs[]=basic;You want a very small site for learning or personal use
+# The page of every choice (below the site's root; [PageDisplaySettings] draws the whole box on it): the front page
+# links to it when it shows fewer products than there are
+ChoosePath=choose
+
+# The pages that draw one of the front page's lists in full, by the remote id of their object:
+# Display[<remote id>]=<list>. products: every product of [ModernSettings] ProductList[] (exp_doc/landing_products.tpl);
+# choose: "Choosing a product" with every product (exp_doc/landing_choose.tpl). Both designs draw the page's own title
+# and text first, then the list. The pages are content of their own (not imported), so editors change their texts.
+[PageDisplaySettings]
+Display[]
+Display[exp-doc-page-products]=products
+Display[exp-doc-page-choose]=choose
 
 # One group per product, every key one short text: What (what it is), BestFor, Stack (kernel and framework), Admin
 # (editing and administration), Features (the key features), PHP (the PHP versions it supports), Learning (what there

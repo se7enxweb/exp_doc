@@ -28,6 +28,13 @@
          or( is_set( $module_result.content_info.viewmode )|not, eq( $module_result.content_info.viewmode, 'full' ) ) )}
     {set $doc_is_product = fetch( 'exp_doc', 'is_product', hash( 'node_id', $module_result.node_id ) )}
 {/if}
+{* a page of exp_doc.ini [PageDisplaySettings] (every product, every choice): its list uses the help center's
+   components *}
+{def $doc_is_display = false()
+     $doc_displays = ezini( 'PageDisplaySettings', 'Display', 'exp_doc.ini' )}
+{if and( $doc_is_front|not, is_set( $module_result.content_info.remote_id ) )}
+    {if is_set( $doc_displays[$module_result.content_info.remote_id] )}{set $doc_is_display = true()}{/if}
+{/if}
 {* a help topic, manual or chapter (help_*: help maintained as content): its text as the help renders it
    (full/exp_doc_help_topic.tpl), which the help center's styles draw (heading anchors, code, figures) *}
 {def $doc_is_help = and( is_set( $module_result.content_info.class_identifier ),
@@ -51,7 +58,7 @@
 {* the Confluence frame: its own stylesheet (the static Atlassian frame's look), the rating's and the Classic additions'
    (the header switches, the collapsed comments) *}
 {ezcss_load( array( 'exp-doc-rating.css', 'doc2025.css', 'doc2025-confluence.css' ) )}
-{elseif or( $doc_is_front, $doc_is_product, $doc_is_help, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
+{elseif or( $doc_is_front, $doc_is_product, $doc_is_display, $doc_is_help, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}
 {* the help center's views (exphelp/*) and the front page (its help center blocks at the end, exp_doc/landing_org.tpl):
    the help center's components and styles, light, inside the Classic frame *}
 {ezcss_load( array( 'core.css', 'classes.css', 'doc.css', 'ezdoc2024.css', 'components.css', 'exphelp.css', 'exp-doc-choose.css', 'exp-doc-resizer.css', 'exp-doc-rating.css', 'doc2025.css' ) )}

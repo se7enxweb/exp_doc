@@ -990,6 +990,19 @@ body.exp-doc {
 .exp-doc-landing-more {
     margin: var(--a4-space-3) 0 0;
 }
+/* the front page's products (exp_doc/landing_products.tpl with only and more): the line above its cards and the link
+   to the page of every product below them */
+.exp-doc-products-lead {
+    margin: 0 0 var(--a4-space-4);
+    color: var(--a4-muted);
+}
+.exp-doc-products-more {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--a4-space-3);
+    margin: var(--a4-space-4) 0 0;
+}
 
 /* ---- the Contributors folder's page (parts/doc_contributor_list.tpl, line/exp_doc_contributor.tpl) ------------- */
 .exp-doc-contributor-index-list {

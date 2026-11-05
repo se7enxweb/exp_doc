@@ -5,8 +5,12 @@
    facts box), $body_html for a body they render themselves (the help topics, full/exp_doc_help_topic.tpl) and
    children=false() to leave out the child cards. The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl),
    a product's container its landing page (parts/doc_product_landing.tpl, fetch exp_doc/product_landing), and the
-   Confluence container its spaces (parts/doc_platform_landing.tpl). *}
-{def $doc_product_landing = fetch( 'exp_doc', 'product_landing', hash( 'node_id', $node.node_id ) )}
+   Confluence container its spaces (parts/doc_platform_landing.tpl). A page of exp_doc.ini [PageDisplaySettings] draws
+   its list after its own text: every product (exp_doc/landing_products.tpl) or every choice (exp_doc/landing_choose.tpl). *}
+{def $doc_product_landing = fetch( 'exp_doc', 'product_landing', hash( 'node_id', $node.node_id ) )
+     $doc_page_displays = ezini( 'PageDisplaySettings', 'Display', 'exp_doc.ini' )
+     $doc_page_display = ''}
+{if is_set( $doc_page_displays[$node.object.remote_id] )}{set $doc_page_display = $doc_page_displays[$node.object.remote_id]}{/if}
 {if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}
 {include uri='design:parts/doc_landing.tpl' node=$node}
 {elseif $doc_product_landing}
@@ -35,6 +39,8 @@
 {$doc_map.original_html.content}
 {/if}
     </div>
+{if eq( $doc_page_display, 'products' )}{include uri='design:exp_doc/landing_products.tpl' heading=false()}
+{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' heading=false()}{/if}
 {if is_set( $after_body )}{$after_body}{/if}
 {* the Contributors folder lists every contributor below its own text *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
@@ -47,4 +53,4 @@
 </article>
 {undef $doc_map}
 {/if}
-{undef $doc_product_landing}
+{undef $doc_product_landing $doc_page_displays $doc_page_display}

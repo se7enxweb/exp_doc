@@ -857,6 +857,34 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>%shown of the %all products of Exponential, the ones most projects start with.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>View all products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All %all products, with their documentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%all products share the name Exponential. Here are the %shown most projects choose between; all %all are compared on the choices page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>More choices</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>More choices: compare all %all products and find the right one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compare all %all products</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Choosing a product</source>
         <translation type="unfinished"></translation>
     </message>

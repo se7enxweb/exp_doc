@@ -857,6 +857,34 @@
         <translation>Welche passt zu mir?</translation>
     </message>
     <message>
+        <source>%shown of the %all products of Exponential, the ones most projects start with.</source>
+        <translation>%shown der %all Produkte von Exponential, mit denen die meisten Projekte beginnen.</translation>
+    </message>
+    <message>
+        <source>View all products</source>
+        <translation>Alle Produkte ansehen</translation>
+    </message>
+    <message>
+        <source>All %all products, with their documentation</source>
+        <translation>Alle %all Produkte mit ihrer Dokumentation</translation>
+    </message>
+    <message>
+        <source>%all products share the name Exponential. Here are the %shown most projects choose between; all %all are compared on the choices page.</source>
+        <translation>%all Produkte tragen den Namen Exponential. Hier sind die %shown, zwischen denen die meisten Projekte wählen; alle %all werden auf der Auswahlseite verglichen.</translation>
+    </message>
+    <message>
+        <source>More choices</source>
+        <translation>Weitere Auswahl</translation>
+    </message>
+    <message>
+        <source>More choices: compare all %all products and find the right one.</source>
+        <translation>Weitere Auswahl: Vergleichen Sie alle %all Produkte und finden Sie das passende.</translation>
+    </message>
+    <message>
+        <source>Compare all %all products</source>
+        <translation>Alle %all Produkte vergleichen</translation>
+    </message>
+    <message>
         <source>Choosing a product</source>
         <translation>Ein Produkt wählen</translation>
     </message>

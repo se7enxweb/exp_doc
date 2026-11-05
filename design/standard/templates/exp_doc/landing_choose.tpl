@@ -11,7 +11,10 @@
    so the catalogues translate it and a text an editor changed shows in English until its entry is changed too.
 
    Variables: framed (optional, true: drawn in its own .a4-help-frame), frame_class (optional, more classes of that
-   frame: a4-page in Classic, whose body is not one). *}
+   frame: a4-page in Classic, whose body is not one), only (optional, the ProductList paths to show, the front page's
+   [ChooseSettings] FrontProducts[]; unset or empty: all), more (optional, true: when products were left out, the
+   link to the page of every choice, [ChooseSettings] ChoosePath, in the recommendation and at the end), heading
+   (optional, false: no heading, the page's own title names the box). *}
 {if ezini( 'ChooseSettings', 'Enabled', 'exp_doc.ini' )|eq( 'enabled' )}
 {def $doc_choose_pick = ezini( 'ChooseSettings', 'Recommended', 'exp_doc.ini' )
      $doc_choose_products = array()
@@ -19,6 +22,9 @@
      $doc_choose_group = ''
      $doc_choose_line = array()
      $doc_choose_install = ''
+     $doc_choose_all = 0
+     $doc_choose_more = ''
+     $doc_choose_heading = true()
      $doc_choose_labels = hash( 'What', 'What it is'|i18n( 'design/exp_doc' ),
                                 'BestFor', 'Best for'|i18n( 'design/exp_doc' ),
                                 'Stack', 'Kernel and stack'|i18n( 'design/exp_doc' ),
@@ -29,7 +35,9 @@
 {foreach ezini( 'ModernSettings', 'ProductList', 'exp_doc.ini' ) as $doc_choose_entry}
     {set $doc_choose_line = $doc_choose_entry|explode( ';' )
          $doc_choose_group = concat( 'ChooseProduct_', $doc_choose_line.0|explode( '/' )|implode( '_' ) )}
-    {if ezini_hasvariable( $doc_choose_group, 'What', 'exp_doc.ini' )}
+    {if ezini_hasvariable( $doc_choose_group, 'What', 'exp_doc.ini' )}{set $doc_choose_all = $doc_choose_all|inc}{/if}
+    {if is_set( $only )}{if and( $only|count|gt( 0 ), $only|contains( $doc_choose_line.0 )|not )}{set $doc_choose_group = ''}{/if}{/if}
+    {if and( ne( $doc_choose_group, '' ), ezini_hasvariable( $doc_choose_group, 'What', 'exp_doc.ini' ) )}
         {set $doc_choose_products = $doc_choose_products|append( hash( 'path', $doc_choose_line.0, 'name', $doc_choose_line.1, 'group', $doc_choose_group ) )
              $doc_choose_names = $doc_choose_names|merge( hash( $doc_choose_line.0, $doc_choose_line.1 ) )}
     {/if}
@@ -41,18 +49,24 @@
     {if and( eq( $doc_choose_line.0, 'install' ), eq( $doc_choose_install, '' ) )}{set $doc_choose_install = $doc_choose_line.1}{/if}
 {/foreach}
 {/if}
+{if is_set( $heading )}{set $doc_choose_heading = $heading}{/if}
+{if is_set( $more )}{if and( $more, $doc_choose_products|count|lt( $doc_choose_all ) )}{set $doc_choose_more = ezini( 'ChooseSettings', 'ChoosePath', 'exp_doc.ini' )}{/if}{/if}
 {if $doc_choose_products|count}
 {if and( is_set( $framed ), $framed )}<div class="{if and( is_set( $frame_class ), $frame_class )}{$frame_class|wash} {/if}a4-help-frame exp-doc-landing-choose">{/if}
-<section class="a4-help-support exp-doc-landing-section exp-doc-choose" aria-labelledby="exp-doc-choose-title">
+<section class="a4-help-support exp-doc-landing-section exp-doc-choose{if ne( $doc_choose_more, '' )} is-short{/if}"{if $doc_choose_heading} aria-labelledby="exp-doc-choose-title"{else} aria-label="{'Choosing a product'|i18n( 'design/exp_doc' )}"{/if}>
     <div class="a4-help-support-head">
         <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon a4-bi-signpost-split"></span></span>
         <div>
-            <h2 id="exp-doc-choose-title">{'Choosing a product'|i18n( 'design/exp_doc' )}</h2>
+            {if $doc_choose_heading}<h2 id="exp-doc-choose-title">{'Choosing a product'|i18n( 'design/exp_doc' )}</h2>{/if}
+            {if ne( $doc_choose_more, '' )}
+            <p>{'%all products share the name Exponential. Here are the %shown most projects choose between; all %all are compared on the choices page.'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all, '%shown', $doc_choose_products|count ) )}</p>
+            {else}
             <p>{'Six products share the name Exponential. Here is how they differ, and which one fits what you need.'|i18n( 'design/exp_doc' )}</p>
+            {/if}
         </div>
     </div>
 
-    <ul class="a4-plain exp-doc-choose-cards">
+    <ul class="a4-plain exp-doc-choose-cards{if $doc_choose_products|count|le( 2 )} is-pair{/if}">
     {foreach $doc_choose_products as $doc_choose_product}
         <li class="a4-card exp-doc-choose-card{if eq( $doc_choose_product.path, $doc_choose_pick )} is-recommended{/if}">
             <h3 class="exp-doc-choose-name"><a href={$doc_choose_product.path|ezurl}>{$doc_choose_product.name|wash}</a>{if eq( $doc_choose_product.path, $doc_choose_pick )} <span class="a4-badge is-accent">{'Recommended'|i18n( 'design/exp_doc' )}</span>{/if}</h3>
@@ -94,11 +108,16 @@
         <p class="exp-doc-choose-pick-actions">
             {if ne( $doc_choose_install, '' )}<a class="a4-btn a4-btn-primary a4-btn-large" href={if $doc_choose_install|contains( '://' )}"{$doc_choose_install|wash}" rel="noopener noreferrer"{else}{$doc_choose_install|ezurl}{/if}><span class="a4-icon a4-bi-download" aria-hidden="true"></span> {'Install Exponential 6'|i18n( 'design/exp_doc' )}</a>{/if}
             <a class="a4-btn a4-btn-large" href={$doc_choose_pick|ezurl}>{'More about Exponential 6'|i18n( 'design/exp_doc' )}</a>
+            {if ne( $doc_choose_more, '' )}<a class="a4-btn a4-btn-large" href={$doc_choose_more|ezurl}><span class="a4-icon a4-bi-signpost-split" aria-hidden="true"></span> {'More choices'|i18n( 'design/exp_doc' )}</a>{/if}
         </p>
     </div>
+    {/if}
+
+    {if ne( $doc_choose_more, '' )}
+    <p class="exp-doc-choose-more"><span>{'More choices: compare all %all products and find the right one.'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all ) )}</span> <a class="a4-btn a4-btn-primary" href={$doc_choose_more|ezurl}>{'Compare all %all products'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all ) )} <span class="a4-icon a4-bi-arrow-right" aria-hidden="true"></span></a></p>
     {/if}
 </section>
 {if and( is_set( $framed ), $framed )}</div>{/if}
 {/if}
-{undef $doc_choose_pick $doc_choose_products $doc_choose_names $doc_choose_group $doc_choose_line $doc_choose_install $doc_choose_labels $doc_choose_links_group}
+{undef $doc_choose_all $doc_choose_more $doc_choose_heading $doc_choose_pick $doc_choose_products $doc_choose_names $doc_choose_group $doc_choose_line $doc_choose_install $doc_choose_labels $doc_choose_links_group}
 {/if}
