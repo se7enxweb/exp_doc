@@ -13,7 +13,8 @@
    Variables: framed (optional, true: drawn in its own .a4-help-frame), frame_class (optional, more classes of that
    frame: a4-page in Classic, whose body is not one), only (optional, the ProductList paths to show, the front page's
    [ChooseSettings] FrontProducts[]; unset or empty: all), more (optional, true: when products were left out, the
-   link to the page of every choice, [ChooseSettings] ChoosePath, in the recommendation and at the end), heading
+   link to the page of every choice, [ChooseSettings] ChoosePath, in the recommendation and at the end, there with the
+   link to the page of every product, [ModernSettings] ProductsPath), heading
    (optional, false: no heading, the page's own title names the box). *}
 {if ezini( 'ChooseSettings', 'Enabled', 'exp_doc.ini' )|eq( 'enabled' )}
 {def $doc_choose_pick = ezini( 'ChooseSettings', 'Recommended', 'exp_doc.ini' )
@@ -114,7 +115,7 @@
     {/if}
 
     {if ne( $doc_choose_more, '' )}
-    <p class="exp-doc-choose-more"><span>{'More choices: compare all %all products and find the right one.'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all ) )}</span> <a class="a4-btn a4-btn-primary" href={$doc_choose_more|ezurl}>{'Compare all %all products'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all ) )} <span class="a4-icon a4-bi-arrow-right" aria-hidden="true"></span></a></p>
+    <p class="exp-doc-choose-more"><span>{'More choices: compare all %all products and find the right one.'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all ) )}</span> <span class="exp-doc-choose-more-actions"><a class="a4-btn a4-btn-primary" href={$doc_choose_more|ezurl}>{'Compare all %all products'|i18n( 'design/exp_doc', '', hash( '%all', $doc_choose_all ) )} <span class="a4-icon a4-bi-arrow-right" aria-hidden="true"></span></a>{if ezini( 'ModernSettings', 'ProductsPath', 'exp_doc.ini' )|ne( '' )} <a class="a4-btn" href={ezini( 'ModernSettings', 'ProductsPath', 'exp_doc.ini' )|ezurl}><span class="a4-icon a4-bi-box-seam" aria-hidden="true"></span> {'View all products'|i18n( 'design/exp_doc' )}</a>{/if}</span></p>
     {/if}
 </section>
 {if and( is_set( $framed ), $framed )}</div>{/if}

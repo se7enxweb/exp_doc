@@ -207,6 +207,11 @@ ProductList[]=basic;Exponential Basic;The documentation of Exponential Basic.;cu
 # The page of every product (below the site's root; [PageDisplaySettings] draws the list on it): the front page links
 # to it when it shows fewer products than ProductList[]
 ProductsPath=products
+# The products the front page (Modern) shows, their ProductList paths, in ProductList order; the others are on the
+# page of every product (ProductsPath), which the front page links to. Empty: every product.
+FrontProductList[]
+FrontProductList[]=exponential
+FrontProductList[]=platform/dxp
 # How many levels the page tree (parts/doc_tree.tpl) draws below the manual version
 TreeDepth=3
 # How many of the site's top pages the tree of a page outside the manuals lists (then a link to all of them)
@@ -451,6 +456,12 @@ Needs[]=basic;You want a very small site for learning or personal use
 # The page of every choice (below the site's root; [PageDisplaySettings] draws the whole box on it): the front page
 # links to it when it shows fewer products than there are
 ChoosePath=choose
+# The products "Choosing a product" shows on the front page (both designs; their ProductList paths, in ProductList
+# order) with their lines of "How to choose"; the others are on the page of every choice (ChoosePath), which the box
+# links to. Empty: every product.
+FrontProducts[]
+FrontProducts[]=exponential
+FrontProducts[]=platform/dxp
 
 # The pages that draw one of the front page's lists in full, by the remote id of their object:
 # Display[<remote id>]=<list>. products: every product of [ModernSettings] ProductList[] (exp_doc/landing_products.tpl);

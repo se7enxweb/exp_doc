@@ -112,7 +112,7 @@
 {/set-block}
 {if $doc_start}
 {def $doc_body_parts = $doc_body|explode( '<h2' )}
-{$doc_body_parts.0}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page'}{include uri='design:exp_doc/landing_start.tpl' framed=true() frame_class='a4-page'}{if $doc_body_parts|count|gt( 1 )}<h2{$doc_body_parts|extract( 1 )|implode( '<h2' )}{/if}
+{$doc_body_parts.0}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page' only=ezini( 'ChooseSettings', 'FrontProducts', 'exp_doc.ini' ) more=true()}{include uri='design:exp_doc/landing_start.tpl' framed=true() frame_class='a4-page'}{if $doc_body_parts|count|gt( 1 )}<h2{$doc_body_parts|extract( 1 )|implode( '<h2' )}{/if}
 {undef $doc_body_parts}
 {else}
 {$doc_body}

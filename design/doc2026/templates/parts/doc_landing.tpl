@@ -5,8 +5,10 @@
    - a card for every manual (its cover or icon, summary and audience, and its versions), .a4-help-about and
      .a4-help-grow in turn, then one for the upgrade guides ([ModernSettings] UpgradeGuidesPath); the section centered;
    - "Choosing a product" (exp_doc/landing_choose.tpl): how the products differ and which one to take, the
-     recommendation of Exponential 6 with its install button;
-   - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
+     recommendation of Exponential 6 with its install button; on the front page only the products of [ChooseSettings]
+     FrontProducts[] (Exponential and DXP), with the links to every choice (/choose) and every product (/products);
+   - the products of [ModernSettings] FrontProductList[] (exp_doc/landing_products.tpl, fetch exp_doc/products: the
+     containers once they exist, else [ModernSettings] ProductList[]) and the link to the page of every product,
      the same cards with the Supported badge where it applies;
    - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
    - the recently changed and added pages, comments, ratings, the help's recent Markdown changes and the latest
@@ -78,12 +80,14 @@
 </section>
 {/if}
 
-{* "Choosing a product" (exp_doc/landing_choose.tpl, exp_doc.ini [ChooseSettings]), right before the products *}
-{include uri='design:exp_doc/landing_choose.tpl'}
+{* "Choosing a product" (exp_doc/landing_choose.tpl, exp_doc.ini [ChooseSettings]), right before the products: only the
+   products of [ChooseSettings] FrontProducts[], with the links to the page of every choice and of every product *}
+{include uri='design:exp_doc/landing_choose.tpl' only=ezini( 'ChooseSettings', 'FrontProducts', 'exp_doc.ini' ) more=true()}
 
-{* the products (exp_doc/landing_products.tpl: fetch exp_doc/products, [ModernSettings] ProductList[]): the same faded
+{* the products (exp_doc/landing_products.tpl: fetch exp_doc/products, [ModernSettings] ProductList[]): only those of
+   [ModernSettings] FrontProductList[], with the link to the page of every product (ProductsPath); the same faded
    cards as the manuals *}
-{include uri='design:exp_doc/landing_products.tpl'}
+{include uri='design:exp_doc/landing_products.tpl' only=ezini( 'ModernSettings', 'FrontProductList', 'exp_doc.ini' ) more=true()}
 {if fetch( 'exp_doc', 'help_report' )}{include uri='design:exp_doc/landing_start.tpl' framed=true()}{/if}
 
 <div class="exp-doc-landing-columns">
