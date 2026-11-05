@@ -210,6 +210,8 @@ PageClasses[]=exp_doc_section
 PageClasses[]=exp_doc_tutorial
 PageClasses[]=exp_doc_faq
 PageClasses[]=exp_doc_extension
+# "Was this page helpful?" under every page (parts/doc_feedback.tpl): enabled or disabled
+Feedback=enabled
 # The information collector attributes of "Was this page helpful?" (parts/doc_feedback.tpl); a class without them
 # shows no form
 FeedbackAttributes[]

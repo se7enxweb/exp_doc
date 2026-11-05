@@ -2,9 +2,9 @@
    information collection, listed per page in the admin, mailed to the setting's address). The page class carries
    two information collector attributes (exp_doc.ini [ModernSettings] FeedbackAttributes[]: the Yes/No choice and
    the comment); the kernel collects them through content/action and mails them per collect.ini. A page without
-   those attributes shows no form. *}
+   those attributes shows no form, and exp_doc.ini [ModernSettings] Feedback=disabled turns the form off everywhere. *}
 {def $doc_fields = ezini( 'ModernSettings', 'FeedbackAttributes', 'exp_doc.ini' )
-     $doc_ok = true()}
+     $doc_ok = ezini( 'ModernSettings', 'Feedback', 'exp_doc.ini' )|ne( 'disabled' )}
 {foreach $doc_fields as $doc_field}{if not( is_set( $node.data_map[$doc_field] ) )}{set $doc_ok = false()}{/if}{/foreach}
 {if $doc_ok}
 <section class="exp-doc-feedback" aria-labelledby="exp-doc-feedback-title">
