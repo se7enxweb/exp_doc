@@ -46,6 +46,9 @@ MetaTags[description]=Exponential Documentation
 MetaTags[keywords]=Exponential, documentation, manual, reference, 7x
 # The caution box above every page (parts/doc_disclaimer.tpl): enabled|disabled
 Disclaimer=enabled
+# The views without the caution box (the start of the address below the site's root), as on the static site
+DisclaimerHideViews[]
+DisclaimerHideViews[]=content/advancedsearch
 # The left menu (parts/doc_menu.tpl): the classes whose node opens a "Table of contents" (a manual version, an
 # extension with its versions), the sections that open one too (by their static source path: the static Upgrading
 # and Tutorials pages had a table of contents, the other sections the quick links), the classes whose node opens

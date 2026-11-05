@@ -1,8 +1,13 @@
 {* The caution box above every Classic page, as on the static site (exp_doc.ini [ClassicSettings] Disclaimer).
    Its two links point to imported pages, found by the static file they were imported from (the fetch
    exp_doc/node_by_source), so they follow the page wherever it is moved. The static site colored "Caution:" with
-   an inline style; here a class does it (no inline styles). *}
-{if ezini( 'ClassicSettings', 'Disclaimer', 'exp_doc.ini' )|eq( 'enabled' )}
+   an inline style; here a class does it (no inline styles). The views in DisclaimerHideViews[] (the advanced
+   search) had no caution box on the static site and draw none. *}
+{def $doc_no_disclaimer = false()}
+{foreach ezini( 'ClassicSettings', 'DisclaimerHideViews', 'exp_doc.ini' ) as $doc_view}
+    {if or( $site.uri.original_uri|begins_with( $doc_view ), $site.uri.original_uri|begins_with( concat( '/', $doc_view ) ) )}{set $doc_no_disclaimer = true()}{break}{/if}
+{/foreach}
+{if and( ezini( 'ClassicSettings', 'Disclaimer', 'exp_doc.ini' )|eq( 'enabled' ), $doc_no_disclaimer|not )}
 {def $doc_platform = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'display/MAIN/ExponentialPlatformDocumentationCenter.html' ) )
      $doc_architecture = fetch( 'exp_doc', 'node_by_source', hash( 'path', 'pages/viewpage0139.html' ) )}
                                     <div id="ezp5disclaimer">
@@ -13,3 +18,4 @@
             </div>
 {undef $doc_platform $doc_architecture}
 {/if}
+{undef $doc_no_disclaimer}
