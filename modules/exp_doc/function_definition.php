@@ -38,7 +38,7 @@ $FunctionList['versions'] = array( 'name' => 'versions',
 /*
  *   fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', <node id> ) ) [, 'limit', <n>]
  *       the children of a node as the menus list them: in the parent's sort order, without the classes of
- *       exp_doc.ini [ClassicSettings] MenuHideClasses[] and the nodes of MenuHideNodeRemoteIDs[] (the Contributors
+ *       exp_doc.ini [ClassicSettings] MenuHideClasses[] and the nodes of MenuHideNodeRemoteIDs[] and MenuHideNames[] (the Contributors
  *       folder), at most limit of them; used by the Classic menus and Modern's page tree and child cards
  */
 $FunctionList['menu_children'] = array( 'name' => 'menu_children',

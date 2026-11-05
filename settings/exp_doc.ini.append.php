@@ -104,6 +104,11 @@ MenuHideNodeRemoteIDs[]
 MenuHideNodeRemoteIDs[]=exp-doc-contributors
 # the media folder (images and files of the pages, not pages)
 MenuHideNodeRemoteIDs[]=exp-doc-media
+# Pages never listed in the menus, by name (exactly, or with the suffix the import adds to a taken name: "Comments
+# (11403666)"): the old site's view of one comment was a page of its own, headed "Comments"; the import made 88 of
+# them, which the old site's menus never listed (the comment itself is below its page as comment_historical)
+MenuHideNames[]
+MenuHideNames[]=Comments
 # The social links of the footer: SocialLinks[<label>]=<address>
 SocialLinks[]
 SocialLinks[YouTube]=https://www.youtube.com/@ExponentialCMSInsights

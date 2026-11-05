@@ -714,11 +714,13 @@ class expDocFetch
         $ini = eZINI::instance( 'exp_doc.ini' );
         $hideClasses = $ini->hasVariable( 'ClassicSettings', 'MenuHideClasses' ) ? (array)$ini->variable( 'ClassicSettings', 'MenuHideClasses' ) : array();
         $hideNodes = $ini->hasVariable( 'ClassicSettings', 'MenuHideNodeRemoteIDs' ) ? (array)$ini->variable( 'ClassicSettings', 'MenuHideNodeRemoteIDs' ) : array();
+        $hideNames = $ini->hasVariable( 'ClassicSettings', 'MenuHideNames' ) ? array_filter( (array)$ini->variable( 'ClassicSettings', 'MenuHideNames' ) ) : array();
         $params = array( 'Depth' => 1, 'DepthOperator' => 'eq', 'SortBy' => $parent->sortArray() );
         if ( $limit && (int)$limit > 0 )
         {
-            // a few more than asked: the hidden remote ids are left out after the fetch
-            $params['Limit'] = max( 0, (int)$offset ) + (int)$limit + count( $hideNodes );
+            // a few more than asked: the hidden remote ids and names are left out after the fetch (a page holds a
+            // handful of the comment pages MenuHideNames[] names, never a hundred)
+            $params['Limit'] = max( 0, (int)$offset ) + (int)$limit + count( $hideNodes ) + ( $hideNames ? 100 : 0 );
         }
         if ( $hideClasses )
         {
@@ -730,11 +732,22 @@ class expDocFetch
         foreach ( is_array( $children ) ? $children : array() as $child )
         {
             // by the node's remote id or its object's (the migrations name the objects)
-            if ( !in_array( $child->attribute( 'remote_id' ), $hideNodes, true )
-                 && !in_array( $child->object()->attribute( 'remote_id' ), $hideNodes, true ) )
+            if ( in_array( $child->attribute( 'remote_id' ), $hideNodes, true )
+                 || in_array( $child->object()->attribute( 'remote_id' ), $hideNodes, true ) )
             {
-                $result[] = $child;
+                continue;
             }
+            // MenuHideNames[]: a page named exactly so, or so with the suffix the import adds to a taken name
+            // ("Comments (11403666)", "Comments (11403666) (4)")
+            $name = (string)$child->attribute( 'name' );
+            foreach ( $hideNames as $hidden )
+            {
+                if ( $name === $hidden || strpos( $name, $hidden . ' (' ) === 0 )
+                {
+                    continue 2;
+                }
+            }
+            $result[] = $child;
         }
         if ( ( $limit && (int)$limit > 0 ) || (int)$offset > 0 )
         {
