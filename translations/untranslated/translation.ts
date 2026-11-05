@@ -800,6 +800,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Recent forum activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The forums could not be reached just now. This is the activity read on %date.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The forum activity could not be read. Open the forums instead.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <comment>forum post marker</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No forum activity to show yet.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>See all forum activity</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation type="unfinished"></translation>
     </message>

@@ -8,7 +8,8 @@
      the same cards with the Supported badge where it applies;
    - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
    - the recently changed and added pages, comments, ratings, the help's recent Markdown changes and the latest
-     commits of Exponential (exp_doc/help_recent_changes, help_commits), and the most read pages (the kernel's view
+     commits of Exponential (exp_doc/help_recent_changes, help_commits), the Share forums' newest posts
+     (exp_doc/forum_activity), and the most read pages (the kernel's view
      counts, no third-party tracker), each in an .a4-help-support box;
    - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: found an error, free
      documentation, Support Exponential). *}
@@ -199,6 +200,29 @@
 </section>
 {/if}
 {undef $doc_commits}
+{* the newest topics and replies of the Exponential Share forums (fetch exp_doc/forum_activity: expDocForumFeed, the
+   forums' RSS feed read by the server with the commit feed's timeout and cache; exp_doc.ini [ModernSettings]
+   ForumFeed*; the browser loads nothing from outside) *}
+{def $doc_forum = fetch( 'exp_doc', 'forum_activity' )}
+{if $doc_forum}
+<section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-forum-title">
+    <h2 id="exp-doc-forum-title" class="a4-h2">{'Recent forum activity'|i18n( 'design/exp_doc' )}</h2>
+    {if $doc_forum.stale}
+    <p class="a4-meta" role="status">{if $doc_forum.fetched|gt( 0 )}{'The forums could not be reached just now. This is the activity read on %date.'|i18n( 'design/exp_doc',, hash( '%date', $doc_forum.fetched|l10n( 'shortdatetime' ) ) )|wash}{else}{'The forum activity could not be read. Open the forums instead.'|i18n( 'design/exp_doc' )}{/if}</p>
+    {/if}
+    {if $doc_forum.items|count}
+    <ol class="a4-plain exp-doc-landing-list">
+    {foreach $doc_forum.items as $doc_f}
+        <li>{if $doc_f.reply}<span class="a4-tag">{'Reply'|i18n( 'design/exp_doc', 'forum post marker' )}</span> {/if}<a href="{$doc_f.url|wash}" rel="noopener noreferrer">{$doc_f.title|shorten( 100 )|wash}</a>{if or( $doc_f.author|ne( '' ), $doc_f.time|gt( 0 ) )} <span class="a4-meta">{$doc_f.author|wash}{if and( $doc_f.author|ne( '' ), $doc_f.time|gt( 0 ) )} · {/if}{if $doc_f.time|gt( 0 )}<time datetime="{$doc_f.time|datetime( 'custom', '%Y-%m-%dT%H:%i:%s' )}">{$doc_f.time|l10n( 'shortdate' )}</time>{/if}</span>{/if}</li>
+    {/foreach}
+    </ol>
+    {elseif $doc_forum.stale|not}
+    <p class="a4-meta">{'No forum activity to show yet.'|i18n( 'design/exp_doc' )}</p>
+    {/if}
+    <p class="exp-doc-landing-more"><a href="{$doc_forum.more|wash}" rel="noopener noreferrer">{'See all forum activity'|i18n( 'design/exp_doc' )}</a></p>
+</section>
+{/if}
+{undef $doc_forum}
 {if $doc_popular|count}
 <section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-popular-title">
     <h2 id="exp-doc-popular-title" class="a4-h2">{'Most read'|i18n( 'design/exp_doc' )}</h2>

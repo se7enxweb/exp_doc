@@ -800,6 +800,31 @@
         <translation>Alle Commits</translation>
     </message>
     <message>
+        <source>Recent forum activity</source>
+        <translation>Neues aus dem Forum</translation>
+    </message>
+    <message>
+        <source>The forums could not be reached just now. This is the activity read on %date.</source>
+        <translation>Das Forum ist gerade nicht erreichbar. Dies ist der Stand vom %date.</translation>
+    </message>
+    <message>
+        <source>The forum activity could not be read. Open the forums instead.</source>
+        <translation>Die Beiträge des Forums konnten nicht gelesen werden. Öffnen Sie stattdessen das Forum.</translation>
+    </message>
+    <message>
+        <source>Reply</source>
+        <comment>forum post marker</comment>
+        <translation>Antwort</translation>
+    </message>
+    <message>
+        <source>No forum activity to show yet.</source>
+        <translation>Noch keine Beiträge im Forum.</translation>
+    </message>
+    <message>
+        <source>See all forum activity</source>
+        <translation>Alle Beiträge im Forum</translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation>Die Seite jetzt: %average von 5, %count Bewertungen</translation>
     </message>
