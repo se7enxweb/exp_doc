@@ -177,8 +177,8 @@ class expDocFetch
      * [RecentSettings] ContributorFolderRemoteID), each with the number of pages that name them as writer (written_by;
      * Confluence's "created by" is mapped there), last updater (last_updated_by, "last modified by") and maintainer
      * (maintainers), the current versions of published pages only, and the historical comments they wrote (the
-     * comment class's author relation: how many, and the newest one's written date). Aggregate queries, one per role,
-     * never one per person. Split by role: authors (at least one page; most pages first, then by name), commenters
+     * comment class's author relation: how many, and the newest one's written date; expDocContributorCounts, kept per
+     * publish by a cronjob part). Split by role: authors (at least one page; most pages first, then by name), commenters
      * (comments only; most comments first, then by name), and the count of those with neither (their comments not
      * converted yet).
      *
@@ -198,59 +198,11 @@ class expDocFetch
         {
             return self::$people = $result;
         }
-        $db = eZDB::instance();
-        $attributeIDs = function ( $identifier ) use ( $db )
-        {
-            $rows = $db->arrayQuery( "SELECT id FROM ezcontentclass_attribute WHERE version = 0 AND identifier = '" . $db->escapeString( $identifier ) . "'" );
-            $ids = array_map( 'intval', array_column( $rows, 'id' ) );
-            return $ids ? implode( ',', $ids ) : '0';
-        };
-        $counts = array( 'written' => array(), 'updated' => array(), 'maintained' => array() );
-        // one aggregate per role: the single relations from the attribute data, the relation list from the links
-        foreach ( array( 'written' => 'written_by', 'updated' => 'last_updated_by' ) as $key => $identifier )
-        {
-            foreach ( $db->arrayQuery( "SELECT ca.data_int AS id, COUNT(*) AS n FROM ezcontentobject_attribute ca, ezcontentobject o
-                                        WHERE ca.contentclassattribute_id IN ( " . $attributeIDs( $identifier ) . " ) AND ca.data_int > 0
-                                        AND o.id = ca.contentobject_id AND o.current_version = ca.version AND o.status = 1
-                                        GROUP BY ca.data_int" ) as $row )
-            {
-                $counts[$key][(int)$row['id']] = (int)$row['n'];
-            }
-        }
-        foreach ( $db->arrayQuery( "SELECT l.to_contentobject_id AS id, COUNT( DISTINCT l.from_contentobject_id ) AS n
-                                    FROM ezcontentobject_link l, ezcontentobject o
-                                    WHERE l.contentclassattribute_id IN ( " . $attributeIDs( 'maintainers' ) . " )
-                                    AND o.id = l.from_contentobject_id AND o.current_version = l.from_contentobject_version AND o.status = 1
-                                    GROUP BY l.to_contentobject_id" ) as $row )
-        {
-            $counts['maintained'][(int)$row['id']] = (int)$row['n'];
-        }
-        // the comments: the historical comments' author relation, how many and the newest one's written date, in one
-        // aggregate (the readers' new comments name their author as text, so they are not counted here)
-        $commentClass = (string)$ini->variable( 'ClassicSettings', 'CommentClass' );
-        $classAttribute = function ( $identifier ) use ( $db, $commentClass )
-        {
-            $rows = $db->arrayQuery( "SELECT a.id FROM ezcontentclass_attribute a, ezcontentclass c WHERE a.version = 0 AND c.version = 0
-                                      AND a.contentclass_id = c.id AND c.identifier = '" . $db->escapeString( $commentClass ) . "'
-                                      AND a.identifier = '" . $db->escapeString( $identifier ) . "'" );
-            return $rows ? (int)$rows[0]['id'] : 0;
-        };
-        $comments = array();
-        $authorAttribute = $classAttribute( 'author' );
-        $createdAttribute = $classAttribute( 'created' );
-        if ( $authorAttribute )
-        {
-            foreach ( $db->arrayQuery( "SELECT ca.data_int AS id, COUNT(*) AS n, MAX( cd.data_int ) AS latest
-                                        FROM ezcontentobject_attribute ca, ezcontentobject o, ezcontentobject_attribute cd
-                                        WHERE ca.contentclassattribute_id = $authorAttribute AND ca.data_int > 0
-                                        AND o.id = ca.contentobject_id AND o.current_version = ca.version AND o.status = 1
-                                        AND cd.contentobject_id = ca.contentobject_id AND cd.version = ca.version
-                                        AND cd.language_code = ca.language_code AND cd.contentclassattribute_id = " . (int)$createdAttribute . "
-                                        GROUP BY ca.data_int" ) as $row )
-            {
-                $comments[(int)$row['id']] = array( (int)$row['n'], (int)$row['latest'] );
-            }
-        }
+        // the role counts, counted once per publish by the cronjob part exp_doc_contributor_counts.php and kept in a
+        // cache file (expDocContributorCounts), not by every view of the page
+        $all = expDocContributorCounts::get();
+        $counts = array( 'written' => $all['written'], 'updated' => $all['updated'], 'maintained' => $all['maintained'] );
+        $comments = $all['comments'];
         $nodes = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => array( 'exp_doc_contributor' ),
                                                                  'Depth' => 1, 'DepthOperator' => 'eq' ),
                                                           $folder->mainNode()->attribute( 'node_id' ) );
