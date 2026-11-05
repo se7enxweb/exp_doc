@@ -189,17 +189,34 @@ class expDocComment
         $pageUrl = $page ? $page->attribute( 'url_alias' ) : '';
         eZURI::transformURI( $pageUrl );
         $map = $object->dataMap();
-        $body = ezpI18n::tr( 'design/exp_doc', 'A comment on the documentation waits for moderation.' ) . "\n\n"
-              . ezpI18n::tr( 'design/exp_doc', 'Page' ) . ': ' . ( $page ? $page->attribute( 'name' ) : '' ) . "\n" . $host . $pageUrl . "\n"
-              . ezpI18n::tr( 'design/exp_doc', 'Name' ) . ': ' . $map['author']->toString() . "\n"
-              . ezpI18n::tr( 'design/exp_doc', 'Subject' ) . ': ' . $map['subject']->toString() . "\n\n"
-              . $map['message']->toString() . "\n\n"
-              . ezpI18n::tr( 'design/exp_doc', 'Release or delete it in the administration: Dashboard > Recent content, filter "Held".' ) . "\n";
+        $heldPath = $ini->hasVariable( 'CommentSettings', 'HeldPath' ) ? trim( (string)$ini->variable( 'CommentSettings', 'HeldPath' ) ) : '';
+        $heldUrl = strpos( $heldPath, 'https://' ) === 0 ? $heldPath : $host . rtrim( eZSys::wwwDir(), '/' ) . '/' . ltrim( $heldPath, '/' );
         $mail = new eZMail();
         $mail->setSender( (string)$ini->variable( 'CommentSettings', 'Sender' ) );
         $mail->setReceiver( $recipient );
         $mail->setSubject( ezpI18n::tr( 'design/exp_doc', 'Comment waiting: %subject', null, array( '%subject' => $map['subject']->toString() ) ) );
-        $mail->setBody( $body );
+        if ( class_exists( 'expMailTemplateBody' ) )
+        {
+            // the kernel's mail design (design:mail/layout.tpl), an HTML part and a plain-text part
+            $tpl = eZTemplate::factory();
+            $tpl->setVariable( 'page_name', $page ? (string)$page->attribute( 'name' ) : '' );
+            $tpl->setVariable( 'page_url', $host . $pageUrl );
+            $tpl->setVariable( 'author', $map['author']->toString() );
+            $tpl->setVariable( 'subject', $map['subject']->toString() );
+            $tpl->setVariable( 'message', $map['message']->toString() );
+            $tpl->setVariable( 'held_url', $heldUrl );
+            expMailTemplateBody::apply( $mail, $tpl, $tpl->fetch( 'design:exp_doc/mail/comment_held.tpl' ) );
+        }
+        else
+        {
+            $mail->setBody( ezpI18n::tr( 'design/exp_doc', 'A comment on the documentation waits for moderation.' ) . "\n\n"
+                          . ezpI18n::tr( 'design/exp_doc', 'Page' ) . ': ' . ( $page ? $page->attribute( 'name' ) : '' ) . "\n" . $host . $pageUrl . "\n"
+                          . ezpI18n::tr( 'design/exp_doc', 'Name' ) . ': ' . $map['author']->toString() . "\n"
+                          . ezpI18n::tr( 'design/exp_doc', 'Subject' ) . ': ' . $map['subject']->toString() . "\n\n"
+                          . $map['message']->toString() . "\n\n"
+                          . ezpI18n::tr( 'design/exp_doc', 'Release or delete it in the administration: Dashboard > Recent content, filter "Held".' ) . "\n"
+                          . $heldUrl . "\n" );
+        }
         return (bool)eZMailTransport::send( $mail );
     }
 

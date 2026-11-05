@@ -252,6 +252,9 @@ MessageLength=5000
 # [MailSettings] AdminEmail), from Sender
 Recipient=
 Sender=support@se7enx.com
+# The notice's "Release or delete" button: the administration's Recent content, held items only, below this
+# installation's address (an absolute https address here replaces it)
+HeldPath=admin/moderation/recent/(held)/yes
 # How deep the readers' replies are drawn (the historical comments are drawn to any depth)
 MaxDepth=6
 # From this level on, a phone keeps the indent of the level above and a historical reply says whom it answers
