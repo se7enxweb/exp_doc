@@ -327,7 +327,7 @@ Links[]=source;https://github.com/se7enxweb/exponential
 Links[]=package;https://packagist.org/packages/se7enxweb/exponential
 Links[]=website;https://exponential.earth
 Related[]
-ShowBody=disabled
+ShowBody=enabled
 
 [ProductLanding_platform]
 Links[]
