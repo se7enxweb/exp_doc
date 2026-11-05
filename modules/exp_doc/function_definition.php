@@ -227,3 +227,24 @@ $FunctionList['recent_ratings'] = array( 'name' => 'recent_ratings',
                                                                  'method' => 'latest' ),
                                          'parameter_type' => 'standard',
                                          'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 8 ) ) );
+
+/*
+ *   fetch( 'exp_doc', 'help_support' )
+ *       the help center's "Support Exponential" block for the front page, as the help dashboard has it (the kernel's
+ *       exphelp.ini [SupportSettings] and [SupportOrganization_<id>]), or false; drawn by exphelp/parts/support.tpl
+ *   fetch( 'exp_doc', 'help_report' )
+ *       the help center's "Found an error?" block: hash( 'url' (the reporting guide), 'trackers' (exphelp.ini)), or
+ *       false; drawn by exphelp/parts/dashboard_report.tpl
+ */
+$FunctionList['help_support'] = array( 'name' => 'help_support',
+                                       'operation_types' => array( 'read' ),
+                                       'call_method' => array( 'class' => 'expDocFetch',
+                                                               'method' => 'helpSupport' ),
+                                       'parameter_type' => 'standard',
+                                       'parameters' => array() );
+$FunctionList['help_report'] = array( 'name' => 'help_report',
+                                      'operation_types' => array( 'read' ),
+                                      'call_method' => array( 'class' => 'expDocFetch',
+                                                              'method' => 'helpReport' ),
+                                      'parameter_type' => 'standard',
+                                      'parameters' => array() );

@@ -41,8 +41,9 @@ from lxml import html as lhtml
 EXCEPTION_IDS = {'exp-doc-switches', 'exp-cc', 'expwt', 'exp-wt', 'ezwt', 'exp-cc-config'}
 # the decided additions left out of the comparison: the version badge, and the page's Contributors list (a
 # list the static site did not have, owner 2026-11-04)
-# the page's rating (owner 2026-11-04)
-EXCEPTION_CLASSES = {'exp-doc-runs-on', 'exp-doc-contributors', 'exp-doc-rating'}
+# the page's rating (owner 2026-11-04), and the help center's bottom blocks at the end of the front page
+# (exp_doc/landing_org.tpl, owner 2026-11-04)
+EXCEPTION_CLASSES = {'exp-doc-runs-on', 'exp-doc-contributors', 'exp-doc-rating', 'exp-doc-landing-org'}
 # wrappers that are an exception while what they hold is static markup: compared as if they were not there
 UNWRAP_TAGS = {'details'}
 UNWRAP_CLASSES = {'exp-doc-comments-toggle'}

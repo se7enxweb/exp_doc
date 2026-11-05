@@ -531,6 +531,12 @@ body.exp-doc {
     padding: var(--a4-space-2) 0;
     border-bottom: 1px solid var(--a4-line);
 }
+/* the help center's bottom blocks at the end of the front page (exp_doc/landing_org.tpl): its frame (.a4-help-frame,
+   the dashboard's gap between the blocks) at the full width of the page, below the lists above */
+.exp-doc-landing-org.a4-help-frame {
+    max-width: none;
+    margin: var(--a4-space-6) 0 0;
+}
 
 /* ---- footer ----------------------------------------------------------------------------------------------- */
 .exp-doc-footer {

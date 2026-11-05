@@ -339,6 +339,41 @@ class expDocFetch
     }
 
     /**
+     * The help center's "Support Exponential" block for the front page, exactly as the help dashboard gets it: the
+     * kernel's exphelp/audience view builds it from exphelp.ini [SupportSettings] and [SupportOrganization_<id>], so the
+     * texts, addresses and translations are never kept twice. False when the help is off, the block is off, or the
+     * kernel is older than the block.
+     *
+     * @return array array( 'result' => array( 'title', 'text', 'organizations', 'more' )|false )
+     */
+    public static function helpSupport()
+    {
+        $class = 'Exponential\\View\\Kernel\\Exphelp\\Audience';
+        if ( !class_exists( 'expHelp' ) || !expHelp::isEnabled() || !class_exists( $class ) || !method_exists( $class, 'support' ) )
+        {
+            return array( 'result' => false );
+        }
+        return array( 'result' => $class::support() );
+    }
+
+    /**
+     * The help center's "Found an error?" block for the front page, as the help dashboard gets it: the address of the
+     * reporting guide and the issue trackers of exphelp.ini (expHelpIssueReport), their labels translated.
+     *
+     * @return array array( 'result' => array( 'url' => string, 'trackers' => array )|false )
+     */
+    public static function helpReport()
+    {
+        if ( !class_exists( 'expHelp' ) || !expHelp::isEnabled() || !class_exists( 'expHelpIssueReport' ) )
+        {
+            return array( 'result' => false );
+        }
+        $report = new expHelpIssueReport();
+        return array( 'result' => array( 'url' => expHelp::url( 'report' ),
+                                         'trackers' => expHelp::translatedNames( $report->trackers(), array( 'label', 'description' ) ) ) );
+    }
+
+    /**
      * The object ids of a relation list attribute, in its order.
      *
      * @param eZContentObjectAttribute $attribute

@@ -71,3 +71,13 @@
     font-size: 1.2em;
     font-weight: bold;
 }
+
+/* The help center's bottom blocks at the end of the front page (exp_doc/landing_org.tpl, a listed exception like the
+   rating form): the help center's components and tokens, in the width of the main column, below the comments */
+.exp-doc-landing-org.a4-help-frame {
+    max-width: none;
+    margin: var(--a4-space-6) 0;
+    font-family: var(--a4-font);
+    line-height: var(--a4-leading);
+    color: var(--a4-ink);
+}

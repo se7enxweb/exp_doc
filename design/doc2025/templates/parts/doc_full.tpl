@@ -40,4 +40,6 @@
 </div>
 </div>
 {include uri='design:parts/doc_comments.tpl' node=$node}
+{* the front page ends with the help center's bottom blocks (exp_doc/landing_org.tpl), below everything above *}
+{if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}{include uri='design:exp_doc/landing_org.tpl'}{/if}
 {undef $doc_map $doc_root_source}

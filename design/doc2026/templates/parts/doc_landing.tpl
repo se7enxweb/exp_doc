@@ -6,7 +6,9 @@
    - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
      the same cards with the Supported badge where it applies;
    - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
-     an .a4-help-support box. *}
+     an .a4-help-support box;
+   - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: who makes Exponential, found
+     an error, free documentation, Support Exponential, start where you are). *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
                                                      'class_filter_type', 'include', 'class_filter_array', array( 'exp_doc_manual' ),
                                                      'sort_by', array( 'priority', true() ), 'limit', 24 ) )
@@ -149,4 +151,5 @@
 </section>
 {/if}
 </div>
+{include uri='design:exp_doc/landing_org.tpl'}
 {undef $doc_manuals $doc_recent $doc_popular}
