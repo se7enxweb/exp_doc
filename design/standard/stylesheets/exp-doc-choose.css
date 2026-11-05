@@ -25,13 +25,23 @@
   font-weight: var(--a4-weight-heading);
 }
 
-/* the products: three cards in a row on a wide screen, two on a narrow one, one on a phone */
+/* the products: three cards in a row in a wide box (two rows of three), two in a narrower one, one on a phone; by the
+   box's own width, so the same holds in Classic's narrower main column */
+.exp-doc-choose {
+  container-type: inline-size;
+}
 .exp-doc-choose-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--a4-space-3);
   margin: 0;
   padding: 0;
+}
+@container (min-width: 36rem) {
+  .exp-doc-choose-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 56rem) {
+  .exp-doc-choose-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 .exp-doc-choose-cards > .exp-doc-choose-card {
   display: grid;

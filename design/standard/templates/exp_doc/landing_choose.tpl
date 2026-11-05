@@ -92,8 +92,8 @@
         <p class="exp-doc-choose-pick-lead"><strong>{'The best user experience and the most features are in Exponential 6, not in Platform, Basic or even DXP.'|i18n( 'design/exp_doc' )}</strong></p>
         <p>{'Not sure? Choose Exponential 6.x today and get started fast.'|i18n( 'design/exp_doc' )}</p>
         <p class="exp-doc-choose-pick-actions">
-            {if ne( $doc_choose_install, '' )}<a class="a4-btn is-primary" href={if $doc_choose_install|contains( '://' )}"{$doc_choose_install|wash}" rel="noopener noreferrer"{else}{$doc_choose_install|ezurl}{/if}><span class="a4-icon a4-bi-download" aria-hidden="true"></span> {'Install Exponential 6'|i18n( 'design/exp_doc' )}</a>{/if}
-            <a class="a4-btn" href={$doc_choose_pick|ezurl}>{'More about Exponential 6'|i18n( 'design/exp_doc' )}</a>
+            {if ne( $doc_choose_install, '' )}<a class="a4-btn a4-btn-primary a4-btn-large" href={if $doc_choose_install|contains( '://' )}"{$doc_choose_install|wash}" rel="noopener noreferrer"{else}{$doc_choose_install|ezurl}{/if}><span class="a4-icon a4-bi-download" aria-hidden="true"></span> {'Install Exponential 6'|i18n( 'design/exp_doc' )}</a>{/if}
+            <a class="a4-btn a4-btn-large" href={$doc_choose_pick|ezurl}>{'More about Exponential 6'|i18n( 'design/exp_doc' )}</a>
         </p>
     </div>
     {/if}
