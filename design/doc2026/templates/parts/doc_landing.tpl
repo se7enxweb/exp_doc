@@ -5,10 +5,11 @@
      .a4-help-grow in turn, then one for the upgrade guides ([ModernSettings] UpgradeGuidesPath); the section centered;
    - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
      the same cards with the Supported badge where it applies;
+   - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
    - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
      an .a4-help-support box;
    - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: who makes Exponential, found
-     an error, free documentation, Support Exponential, start where you are). *}
+     an error, free documentation, Support Exponential). *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
                                                      'class_filter_type', 'include', 'class_filter_array', array( 'exp_doc_manual' ),
                                                      'sort_by', array( 'priority', true() ), 'limit', 24 ) )
@@ -87,6 +88,7 @@
 </section>
 {/if}
 {undef $doc_products $doc_supported}
+{if fetch( 'exp_doc', 'help_report' )}{include uri='design:exp_doc/landing_start.tpl' framed=true()}{/if}
 
 <div class="exp-doc-landing-columns">
 {if $doc_recent|count}
@@ -161,5 +163,5 @@
 </section>
 {/if}
 </div>
-{include uri='design:exp_doc/landing_org.tpl'}
+{include uri='design:exp_doc/landing_org.tpl' start=false()}
 {undef $doc_manuals $doc_recent $doc_popular}

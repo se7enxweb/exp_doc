@@ -542,7 +542,9 @@ body.exp-doc {
 }
 /* the help center's bottom blocks at the end of the front page (exp_doc/landing_org.tpl): its frame (.a4-help-frame,
    the dashboard's gap between the blocks) at the full width of the page, below the lists above */
-.exp-doc-landing-org.a4-help-frame {
+/* (and "Start where you are" on its own, right below the products: exp_doc/landing_start.tpl) */
+.exp-doc-landing-org.a4-help-frame,
+.exp-doc-landing-start.a4-help-frame {
     max-width: none;
     margin: var(--a4-space-6) 0 0;
 }

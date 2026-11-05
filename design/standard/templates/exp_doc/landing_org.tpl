@@ -7,7 +7,9 @@
    Left out entirely when the help is off. Styles: exphelp.css (.a4-help-*) and the design's .exp-doc-landing-org;
    no inline CSS or script.
 
-   Variables: frame_class (optional, more classes of the frame: a4-page in Classic, whose body is not one). *}
+   Variables: frame_class (optional, more classes of the frame: a4-page in Classic, whose body is not one), start
+   (optional, false: without the "Start where you are" card, exp_doc/landing_start.tpl, which Modern draws below the
+   products). *}
 {def $doc_org_report = fetch( 'exp_doc', 'help_report' )}
 {if $doc_org_report}
 {def $doc_org_support = fetch( 'exp_doc', 'help_support' )}
@@ -16,13 +18,7 @@
     {include uri='design:exphelp/parts/dashboard_report.tpl' report=$doc_org_report.url security=$doc_org_report.security trackers=$doc_org_report.trackers}
     {include uri='design:exphelp/parts/license_dashboard.tpl'}
     {if $doc_org_support}{include uri='design:exphelp/parts/support.tpl' support=$doc_org_support}{/if}
-    <section class="a4-card exp-doc-landing-org-start" aria-labelledby="exp-doc-org-start">
-        <div class="a4-help-section-head">
-            <h2 id="exp-doc-org-start"><span class="a4-icon a4-bi-people" aria-hidden="true"></span>{'Start where you are'|i18n( 'kernel/exphelp' )}</h2>
-            <p>{'Pick your role to see the pages written for it.'|i18n( 'kernel/exphelp' )}</p>
-            <a href={'exphelp/dashboard#help-dash-audiences'|ezurl}>{'Open the help center'|i18n( 'design/exp_doc' )}</a>
-        </div>
-    </section>
+    {if first_set( $start, true() )}{include uri='design:exp_doc/landing_start.tpl'}{/if}
 </div>
 {undef $doc_org_support}
 {/if}
