@@ -10,15 +10,14 @@
    - the recently changed and added pages, comments, ratings, the help's recent Markdown changes and the latest
      commits of Exponential (exp_doc/help_recent_changes, help_commits), the Share forums' newest posts
      (exp_doc/forum_activity), and the most read pages (the kernel's view
-     counts, no third-party tracker), each in an .a4-help-support box;
+     counts, no third-party tracker), each in an .a4-help-support box; the recently changed and added pages are one
+     cache-block per role set (the lists only show what the reader may read): a query over every page each, they
+     change only with a publish, which expires it (as do two hours);
    - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: found an error, free
      documentation, Support Exponential). *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
                                                      'class_filter_type', 'include', 'class_filter_array', array( 'exp_doc_manual' ),
                                                      'sort_by', array( 'priority', true() ), 'limit', 24 ) )
-     $doc_recent = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
-                                                    'class_filter_type', 'include', 'class_filter_array', ezini( 'ModernSettings', 'PageClasses', 'exp_doc.ini' ),
-                                                    'sort_by', array( 'modified', false() ), 'limit', 8 ) )
      $doc_popular = fetch( 'content', 'view_top_list', hash( 'limit', 8 ) )}
 <section class="a4-help-hero exp-doc-hero" aria-labelledby="exp-doc-hero-title">
     <h1 id="exp-doc-hero-title" class="exp-doc-hero-title"><span class="exp-doc-hero-logo">{include uri='design:exp_doc/logo.tpl'}</span> {ezini( 'ModernSettings', 'LandingHeading', 'exp_doc.ini' )|wash}</h1>
@@ -100,7 +99,9 @@
 {if fetch( 'exp_doc', 'help_report' )}{include uri='design:exp_doc/landing_start.tpl' framed=true()}{/if}
 
 <div class="exp-doc-landing-columns">
-{if $doc_recent|count}
+{cache-block keys=array( fetch( 'user', 'current_user' ).role_id_list|implode( ',' ), fetch( 'user', 'current_user' ).limited_assignment_value_list|implode( ',' ) ) expiry=7200}{def $doc_recent = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
+                                                    'class_filter_type', 'include', 'class_filter_array', ezini( 'ModernSettings', 'PageClasses', 'exp_doc.ini' ),
+                                                    'sort_by', array( 'modified', false() ), 'limit', 8 ) )}{if $doc_recent|count}
 <section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-recent-title">
     <h2 id="exp-doc-recent-title" class="a4-h2">{'Recently changed'|i18n( 'design/exp_doc' )}</h2>
     <ol class="a4-plain exp-doc-landing-list">
@@ -126,7 +127,7 @@
     <p class="exp-doc-landing-more"><a href={ezini( 'RecentSettings', 'NewPath', 'exp_doc.ini' )|ezurl}>{'See all new pages'|i18n( 'design/exp_doc' )}</a></p>
 </section>
 {/if}
-{undef $doc_added}
+{undef $doc_recent $doc_added}{/cache-block}
 {* the newest approved readers' comments (never a held one), each linked to the comment on its page *}
 {def $doc_comments = fetch( 'exp_doc', 'recent_comments', hash( 'limit', 8 ) )}
 <section class="a4-help-support exp-doc-landing-section" aria-labelledby="exp-doc-comments-title">
@@ -235,4 +236,4 @@
 {/if}
 </div>
 {include uri='design:exp_doc/landing_org.tpl' start=false() about=false()}
-{undef $doc_manuals $doc_recent $doc_popular}
+{undef $doc_manuals $doc_popular}
