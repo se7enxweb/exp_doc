@@ -320,13 +320,28 @@ class expDocFetch
             {
                 $map = $node->dataMap();
                 $entry['node'] = $node;
+                $text = '';
                 foreach ( array( 'short_description', 'summary', 'intro' ) as $identifier )
                 {
                     if ( isset( $map[$identifier] ) && $map[$identifier]->hasContent() )
                     {
-                        $entry['text'] = trim( preg_replace( '/\s+/u', ' ', strip_tags( $map[$identifier]->attribute( 'data_text' ) ) ) );
+                        $text = trim( preg_replace( '/\s+/u', ' ', strip_tags( $map[$identifier]->attribute( 'data_text' ) ) ) );
                         break;
                     }
+                }
+                // a section (exp_doc_section has none of those): the description of its Metadata attribute, which
+                // editors change in the same edit form
+                if ( $text === '' && isset( $map['metadata'] ) && $map['metadata']->attribute( 'data_type_string' ) === 'xrowmetadata' )
+                {
+                    $meta = $map['metadata']->content();
+                    if ( is_object( $meta ) && isset( $meta->description ) )
+                    {
+                        $text = trim( preg_replace( '/\s+/u', ' ', (string)$meta->description ) );
+                    }
+                }
+                if ( $text !== '' )
+                {
+                    $entry['text'] = $text;
                 }
                 if ( isset( $map['status'] ) && $map['status']->hasContent() )
                 {
@@ -335,7 +350,225 @@ class expDocFetch
             }
             $result[] = $entry;
         }
-        return array( 'result' => $result );
+        return array( 'result' => self::$productList = $result );
+    }
+
+    /** @var array|null the products of the request (products()), read once */
+    protected static $productList = null;
+
+    /**
+     * The path of the product ([ModernSettings] ProductList[]) whose container $node is, compared with the node's
+     * address (without the site's path prefix), so no query is made; false when the node is no product's container.
+     *
+     * @param eZContentObjectTreeNode $node
+     * @return string|false
+     */
+    public static function productKey( eZContentObjectTreeNode $node )
+    {
+        $alias = strtolower( trim( (string)$node->attribute( 'url_alias' ), '/' ) );
+        $prefix = strtolower( trim( (string)eZURLAliasML::getPathPrefix(), '/' ) );
+        if ( $prefix !== '' && strpos( $alias, $prefix . '/' ) === 0 )
+        {
+            $alias = substr( $alias, strlen( $prefix ) + 1 );
+        }
+        if ( $alias === '' )
+        {
+            return false;
+        }
+        foreach ( (array)eZINI::instance( 'exp_doc.ini' )->variable( 'ModernSettings', 'ProductList' ) as $line )
+        {
+            $parts = explode( ';', (string)$line, 2 );
+            $path = strtolower( trim( trim( $parts[0] ), '/' ) );
+            if ( $path !== '' && $path === $alias )
+            {
+                return $path;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Whether the node is a product's container (the Classic pagelayout loads the help center's styles for its box).
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => bool )
+     */
+    public static function isProduct( $nodeID )
+    {
+        $node = eZContentObjectTreeNode::fetch( (int)$nodeID );
+        return array( 'result' => $node instanceof eZContentObjectTreeNode && self::productKey( $node ) !== false );
+    }
+
+    /**
+     * The landing page of a product's container (exp_doc.ini [ProductLandingSettings] and [ProductLanding_<path with
+     * "_" for "/">]): the product's front page entry (name, text, status) with its supported flag, the product it
+     * belongs to (the longest other product path before its own), its links, its sections (the container's children
+     * without [ProductLandingSettings] HideSectionClasses[], at most MaxSections, each with its page count, the
+     * product it is, and a manual's versions), the sections elsewhere on the site that belong to it (Related[]), its
+     * recently changed pages (below the container; with nothing below it, below the related sections), the node of
+     * the "see all changes" link, whether the landing shows the container's body, and the whole family (every product,
+     * the current one marked). False when the node is no product's container.
+     *
+     * @param int $nodeID
+     * @return array array( 'result' => array|false )
+     */
+    public static function productLanding( $nodeID )
+    {
+        $node = eZContentObjectTreeNode::fetch( (int)$nodeID );
+        $key = $node instanceof eZContentObjectTreeNode ? self::productKey( $node ) : false;
+        if ( $key === false )
+        {
+            return array( 'result' => false );
+        }
+        $ini = eZINI::instance( 'exp_doc.ini' );
+        $group = 'ProductLanding_' . str_replace( '/', '_', $key );
+        $setting = function ( $section, $name, $default ) use ( $ini )
+        {
+            return $ini->hasVariable( $section, $name ) ? $ini->variable( $section, $name ) : $default;
+        };
+        $supportedStatuses = (array)$setting( 'ModernSettings', 'SupportedStatuses', array() );
+        $products = self::$productList !== null ? self::$productList : self::products()['result'];
+        $current = false;
+        $parent = false;
+        $family = array();
+        foreach ( $products as $product )
+        {
+            $product['current'] = $product['path'] === $key;
+            $product['supported'] = $product['status'] !== '' && in_array( $product['status'], $supportedStatuses, true );
+            if ( $product['current'] )
+            {
+                $current = $product;
+            }
+            elseif ( strpos( $key, $product['path'] . '/' ) === 0 && ( !$parent || strlen( $product['path'] ) > strlen( $parent['path'] ) ) )
+            {
+                $parent = $product;
+            }
+            $family[] = $product;
+        }
+        if ( !$current )
+        {
+            return array( 'result' => false );
+        }
+
+        $links = array();
+        foreach ( (array)$setting( $group, 'Links', array() ) as $line )
+        {
+            $parts = array_map( 'trim', explode( ';', (string)$line, 2 ) );
+            if ( count( $parts ) === 2 && $parts[0] !== '' && $parts[1] !== '' )
+            {
+                $links[] = array( 'kind' => strtolower( $parts[0] ), 'url' => $parts[1], 'external' => strpos( $parts[1], '://' ) !== false );
+            }
+        }
+
+        $pageClasses = (array)$setting( 'ModernSettings', 'PageClasses', array() );
+        $hide = (array)$setting( 'ProductLandingSettings', 'HideSectionClasses', array() );
+        $params = array( 'Depth' => 1, 'DepthOperator' => 'eq', 'SortBy' => $node->sortArray() );
+        if ( $hide )
+        {
+            $params['ClassFilterType'] = 'exclude';
+            $params['ClassFilterArray'] = array_values( $hide );
+        }
+        $children = eZContentObjectTreeNode::subTreeByNodeID( $params, (int)$node->attribute( 'node_id' ) );
+        $children = is_array( $children ) ? $children : array();
+        $sections = array();
+        foreach ( array_slice( $children, 0, max( 1, (int)$setting( 'ProductLandingSettings', 'MaxSections', 8 ) ) ) as $child )
+        {
+            $sections[] = self::productSection( $child, $family, $pageClasses );
+        }
+
+        $prefix = eZURLAliasML::getPathPrefix();
+        $related = array();
+        foreach ( (array)$setting( $group, 'Related', array() ) as $path )
+        {
+            $path = trim( (string)$path, '/' );
+            $relatedNode = $path === '' ? null : eZContentObjectTreeNode::fetchByURLPath( strtolower( ( $prefix ? $prefix . '/' : '' ) . $path ) );
+            if ( $relatedNode instanceof eZContentObjectTreeNode && $relatedNode->canRead() )
+            {
+                $related[] = self::productSection( $relatedNode, $family, $pageClasses, 'archive' );
+            }
+        }
+
+        // the recently changed pages: below the container, or, with nothing below it, below its related sections
+        $recentParents = array( (int)$node->attribute( 'node_id' ) );
+        if ( !$children && $related )
+        {
+            $recentParents = array();
+            foreach ( $related as $section )
+            {
+                $recentParents[] = (int)$section['node']->attribute( 'node_id' );
+            }
+        }
+        $recent = array();
+        if ( $pageClasses )
+        {
+            $recent = eZContentObjectTreeNode::subTreeByNodeID( array( 'ClassFilterType' => 'include', 'ClassFilterArray' => $pageClasses,
+                                                                         'SortBy' => array( 'modified', false ),
+                                                                         'Limit' => max( 1, (int)$setting( 'ProductLandingSettings', 'RecentLimit', 8 ) ) ),
+                                                                  count( $recentParents ) === 1 ? $recentParents[0] : $recentParents );
+            $recent = is_array( $recent ) ? $recent : array();
+        }
+
+        $map = $node->dataMap();
+        return array( 'result' => array(
+            'key' => $key,
+            'node' => $node,
+            'product' => $current,
+            'parent' => $parent,
+            'links' => $links,
+            'sections' => $sections,
+            'section_count' => count( $children ),
+            'related' => $related,
+            'recent' => $recent,
+            // the "see all changes" link: the one node the list was taken from, else none
+            'recent_node_id' => count( $recentParents ) === 1 ? $recentParents[0] : 0,
+            'show_body' => $setting( $group, 'ShowBody', 'enabled' ) === 'enabled' && isset( $map['body'] ) && $map['body']->hasContent(),
+            'family' => $family,
+        ) );
+    }
+
+    /**
+     * One section card of a product landing: the node, how many pages its subtree holds, the product it is (or
+     * false), and a manual's versions.
+     *
+     * @param eZContentObjectTreeNode $node
+     * @param array $family the products (productLanding())
+     * @param array $pageClasses
+     * @param string $icon the card's icon (a4-bi-<icon>); empty: a product's, a manual's or a section's
+     * @return array
+     */
+    protected static function productSection( eZContentObjectTreeNode $node, array $family, array $pageClasses, $icon = '' )
+    {
+        $key = self::productKey( $node );
+        $product = false;
+        foreach ( $key === false ? array() : $family as $entry )
+        {
+            if ( $entry['path'] === $key )
+            {
+                $product = $entry;
+            }
+        }
+        $isManual = $node->attribute( 'class_identifier' ) === 'exp_doc_manual';
+        $versions = array();
+        foreach ( $isManual ? self::versions( (int)$node->attribute( 'node_id' ) )['result'] : array() as $version )
+        {
+            $map = $version->dataMap();
+            $label = isset( $map['version'] ) && $map['version']->hasContent() ? trim( $map['version']->toString() ) : '';
+            $versions[] = array( 'node' => $version, 'label' => $label !== '' ? $label : (string)$version->attribute( 'name' ) );
+        }
+        return array(
+            'node' => $node,
+            // the product's name (the owner's) for a product, else the node's
+            'name' => $product ? $product['name'] : (string)$node->attribute( 'name' ),
+            'text' => $product ? $product['text'] : '',
+            'supported' => $product ? $product['supported'] : false,
+            'icon' => $icon !== '' ? $icon : ( $product ? 'box-seam' : ( $isManual ? 'journal-text' : 'folder' ) ),
+            'count' => $pageClasses ? (int)eZContentObjectTreeNode::subTreeCountByNodeID( array( 'ClassFilterType' => 'include',
+                                                                                                'ClassFilterArray' => $pageClasses ),
+                                                                                         (int)$node->attribute( 'node_id' ) ) : 0,
+            'product' => $product,
+            'manual' => $isManual,
+            'versions' => $versions,
+        );
     }
 
     /**

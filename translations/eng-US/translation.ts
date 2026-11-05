@@ -837,6 +837,46 @@
         <translation>See all forum activity</translation>
     </message>
     <message>
+        <source>Install</source>
+        <translation>Install</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation>Upgrade</translation>
+    </message>
+    <message>
+        <source>Compare the distributions</source>
+        <translation>Compare the distributions</translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation>Website</translation>
+    </message>
+    <message>
+        <source>Which one should I choose?</source>
+        <translation>Which one should I choose?</translation>
+    </message>
+    <message>
+        <source>Sections</source>
+        <translation>Sections</translation>
+    </message>
+    <message>
+        <source>Browse all %count sections</source>
+        <translation>Browse all %count sections</translation>
+    </message>
+    <message>
+        <source>From the former documentation center</source>
+        <translation>From the former documentation center</translation>
+    </message>
+    <message>
+        <source>About %product</source>
+        <translation>About %product</translation>
+    </message>
+    <message>
+        <source>The Exponential family</source>
+        <translation>The Exponential family</translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation>The page now: %average of 5, %count ratings</translation>
     </message>

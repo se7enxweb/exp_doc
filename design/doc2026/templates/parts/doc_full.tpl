@@ -2,9 +2,14 @@
    dates, labels), the body (the editable XML; the original HTML when there is no XML body), its child pages as
    cards, the feedback form, and the edit link for signed-in editors. The class templates (full/<class>.tpl)
    include this one and give $before_body / $after_body for their own parts (the tutorial summary, the extension
-   facts box). The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl). *}
+   facts box). The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl),
+   a product's container its landing page (parts/doc_product_landing.tpl, fetch exp_doc/product_landing), and the
+   Confluence container its spaces (parts/doc_platform_landing.tpl). *}
+{def $doc_product_landing = fetch( 'exp_doc', 'product_landing', hash( 'node_id', $node.node_id ) )}
 {if eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )}
 {include uri='design:parts/doc_landing.tpl' node=$node}
+{elseif $doc_product_landing}
+{include uri='design:parts/doc_product_landing.tpl' node=$node landing=$doc_product_landing}
 {elseif eq( $node.object.remote_id, ezini( 'PlatformSettings', 'RemoteID', 'exp_doc.ini' ) )}
 {include uri='design:parts/doc_platform_landing.tpl' node=$node}
 {else}
@@ -39,3 +44,4 @@
 </article>
 {undef $doc_map}
 {/if}
+{undef $doc_product_landing}

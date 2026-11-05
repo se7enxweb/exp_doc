@@ -140,6 +140,31 @@ $FunctionList['products'] = array( 'name' => 'products',
                                    'parameters' => array() );
 
 /*
+ *   fetch( 'exp_doc', 'product_landing', hash( 'node_id', <node id> ) )
+ *       the landing page of a product's container (the node at a path of [ModernSettings] ProductList[]): the product,
+ *       the product it belongs to, its links, sections, related sections, recently changed pages and the family
+ *       (expDocFetch::productLanding()); false for every other node
+ *   fetch( 'exp_doc', 'is_product', hash( 'node_id', <node id> ) )
+ *       whether the node is a product's container (no other query than the node's own)
+ */
+$FunctionList['product_landing'] = array( 'name' => 'product_landing',
+                                          'operation_types' => array( 'read' ),
+                                          'call_method' => array( 'class' => 'expDocFetch',
+                                                                  'method' => 'productLanding' ),
+                                          'parameter_type' => 'standard',
+                                          'parameters' => array( array( 'name' => 'node_id',
+                                                                        'type' => 'integer',
+                                                                        'required' => true ) ) );
+$FunctionList['is_product'] = array( 'name' => 'is_product',
+                                     'operation_types' => array( 'read' ),
+                                     'call_method' => array( 'class' => 'expDocFetch',
+                                                             'method' => 'isProduct' ),
+                                     'parameter_type' => 'standard',
+                                     'parameters' => array( array( 'name' => 'node_id',
+                                                                   'type' => 'integer',
+                                                                   'required' => true ) ) );
+
+/*
  *   fetch( 'exp_doc', 'recent_comments', hash( 'limit', 8 ) )
  *       the newest approved readers' comments (never a held one), each as a hash: node, page, subject, excerpt, name,
  *       date, type and anchor (the comment's id on its page)

@@ -100,3 +100,40 @@ div.template-design .a4-help-frame li {
 form.exp-doc-rating {
     color-scheme: light;
 }
+
+/* A product's box after the heading of its container (parts/doc_full.tpl, a listed exception like the front page's
+   frames): the help center's components and tokens (components.css and exphelp.css load on these pages, the frame
+   is an .a4-page), light; its cards in the shape Modern gives them (the faded box, the tile, the name, the text, the
+   versions or the page count), the links and the family as rows that wrap */
+.exp-doc-product.a4-help-frame {
+    max-width: none;
+    margin: var(--a4-space-4) 0 var(--a4-space-6);
+    color-scheme: light;
+}
+.exp-doc-product .exp-doc-manual-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--a4-space-2);
+    min-width: 0;
+}
+.exp-doc-product .exp-doc-manual-name {
+    margin: 0;
+    font-size: var(--a4-text-l);
+}
+.exp-doc-product .exp-doc-manual-summary,
+.exp-doc-product-text {
+    margin: 0;
+}
+.exp-doc-product .exp-doc-manual-versions,
+.exp-doc-product-links,
+.exp-doc-product-family {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--a4-space-2);
+}
+.exp-doc-product-links {
+    margin: var(--a4-space-3) 0 0;
+}
+.exp-doc-product .exp-doc-landing-more {
+    margin: var(--a4-space-3) 0 0;
+}

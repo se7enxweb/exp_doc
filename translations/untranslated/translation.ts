@@ -837,6 +837,46 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compare the distributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Which one should I choose?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browse all %count sections</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>From the former documentation center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About %product</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential family</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation type="unfinished"></translation>
     </message>

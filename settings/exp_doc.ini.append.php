@@ -138,9 +138,10 @@ LandingText=Install, configure, extend and run Exponential: manuals for every ve
 UpgradeGuidesPath=exponential/upgrading
 # The products of the front page, in this order: "<path below the site's root>;<name>;<one line>[;<status>]".
 # The name is always this one (the owner's product names); the short text and status come from the container node at
-# that path once it exists, until then
+# that path once it exists (its short_description, summary or intro, else the description of its Metadata attribute,
+# which editors change), until then
 # these (plain lines on purpose: the containers carry the products' own texts). A status of [ModernSettings]
-# SupportedStatuses[] gets the Supported badge.
+# SupportedStatuses[] gets the Supported badge. Each container is the product's landing page ([ProductLandingSettings]).
 ProductList[]
 ProductList[]=exponential;Exponential;Manuals, tutorials, upgrading and the extensions of Exponential.;current
 ProductList[]=platform;Exponential Platform;The documentation of Exponential Platform.;current
@@ -234,11 +235,108 @@ ExcerptLength=220
 ContributorFolderRemoteID=exp-doc-contributors
 ContributorLimit=500
 
-# The Platform container (the Confluence spaces, made by the import from display/): Modern draws a landing page for it
+# The Confluence container (/platform/confluence, the spaces of the former documentation center, made by the import
+# from display/confluence/): Modern draws the spaces' landing page for it (parts/doc_platform_landing.tpl). Until
+# 2026-11-04 this was the Platform container, which is a product landing page now ([ProductLandingSettings]).
 [PlatformSettings]
-RemoteID=staticimport-doc-html-e4fd3481c5e8112931e161ebbc5af0ff
-# How many recently changed pages of the platform the landing lists
+RemoteID=staticimport-doc-html-8565d9ad2d987fe3c2406f986f5f4fbc
+# How many recently changed pages of the spaces the landing lists
 RecentLimit=8
+
+# The products' landing pages: the container at each path of [ModernSettings] ProductList[] (fetch exp_doc/
+# product_landing). Modern draws the whole page (parts/doc_product_landing.tpl: the hero with the product's text, its
+# Supported badge and its links, its sections as cards, the related sections, the container's own text, the recently
+# changed pages and the family); Classic keeps its page and adds the product's box after the heading (the links, the
+# sections and the family, exp_doc/product_*.tpl). The texts are content: the product's short text is the description
+# of the container's Metadata attribute, the longer one its body.
+[ProductLandingSettings]
+# How many of a product's sections show as cards; with more, a link to all of them (the node's sitemap view)
+MaxSections=8
+# How many recently changed pages the landing lists
+RecentLimit=8
+# The classes of a container's children that are no section cards: the version containers (the manuals' cards carry
+# their versions) and the historical copies
+HideSectionClasses[]
+HideSectionClasses[]=exp_doc_version
+HideSectionClasses[]=exp_doc_historical
+HideSectionClasses[]=comment
+HideSectionClasses[]=comment_historical
+# The guide comparing every distribution (the help center's DISTRIBUTIONS.md), linked from the family box
+CompareURL=exphelp/viewer/DISTRIBUTIONS.md#1-the-quick-start-which-one-should-i-choose
+
+# One group per product: [ProductLanding_<its ProductList path, "_" for "/">]
+# Links[]=<kind>;<address>: the hero's buttons, in this order. Kinds: install, upgrade, compare, source (GitHub),
+#   package (Packagist), website. An address with :// is outside this site, any other a path of it (help center pages
+#   included). Every fact behind them was read from the product's own repository (composer.json, README) and the help
+#   center's "Distributions of Exponential" on 2026-11-04.
+# Related[]=<path below the site's root>: sections elsewhere on the site that belong to the product (its spaces of the
+#   former documentation center)
+# ShowBody=enabled|disabled: whether the Modern landing shows the container's body (disabled where the body is the
+#   static page the container came from, which Classic shows)
+[ProductLanding_exponential]
+Links[]
+Links[]=install;exphelp/viewer/INSTALL.md
+Links[]=upgrade;exponential/upgrading
+Links[]=source;https://github.com/se7enxweb/exponential
+Links[]=package;https://packagist.org/packages/se7enxweb/exponential
+Links[]=website;https://exponential.earth
+Related[]
+ShowBody=disabled
+
+[ProductLanding_platform]
+Links[]
+Links[]=compare;exphelp/viewer/DISTRIBUTIONS.md#2-all-distributions-at-a-glance
+Links[]=upgrade;exphelp/viewer/DISTRIBUTIONS.md#10-moving-between-distributions
+Links[]=source;https://github.com/se7enxweb
+Links[]=website;https://platform.exponential.earth
+Related[]
+ShowBody=enabled
+
+[ProductLanding_platform_legacy]
+Links[]
+Links[]=install;exphelp/viewer/DISTRIBUTIONS.md#4-exponential-platform-legacy
+Links[]=upgrade;exphelp/viewer/DISTRIBUTIONS.md#10-moving-between-distributions
+Links[]=source;https://github.com/se7enxweb/exponential-platform-legacy
+Links[]=package;https://packagist.org/packages/se7enxweb/exponential-platform-legacy
+Links[]=website;https://platform.exponential.earth
+Related[]
+Related[]=platform/confluence/ezp
+Related[]=platform/confluence/ezp51
+ShowBody=enabled
+
+[ProductLanding_platform_nexus]
+Links[]
+Links[]=install;exphelp/viewer/DISTRIBUTIONS.md#5-exponential-platform-nexus
+Links[]=upgrade;exphelp/viewer/DISTRIBUTIONS.md#10-moving-between-distributions
+Links[]=source;https://github.com/se7enxweb/exponential-platform-nexus
+Links[]=package;https://packagist.org/packages/se7enxweb/exponential-platform-nexus
+Links[]=website;https://platform.exponential.earth
+Related[]
+ShowBody=enabled
+
+[ProductLanding_platform_dxp]
+Links[]
+Links[]=install;exphelp/viewer/DISTRIBUTIONS.md#6-exponential-platform-dxp
+Links[]=upgrade;exphelp/viewer/DISTRIBUTIONS.md#10-moving-between-distributions
+Links[]=source;https://github.com/se7enxweb/exponential-platform-dxp-skeleton
+Links[]=package;https://packagist.org/packages/se7enxweb/exponential-platform-dxp-skeleton
+Links[]=website;https://platform.exponential.earth
+Related[]
+Related[]=platform/confluence/developer
+Related[]=platform/confluence/techdoc
+Related[]=platform/confluence/userguide
+Related[]=platform/confluence/user
+ShowBody=enabled
+
+[ProductLanding_basic]
+Links[]
+Links[]=install;https://github.com/se7enxweb/exponentialbasic#installation-via-composer--packagist
+Links[]=compare;exphelp/viewer/DISTRIBUTIONS.md#exponential-basic
+Links[]=source;https://github.com/se7enxweb/exponentialbasic
+Links[]=package;https://packagist.org/packages/se7enxweb/exponentialbasic
+Links[]=website;https://basic.exponential.earth
+Related[]
+ShowBody=enabled
 
 # Readers' comments on the pages (Modern: parts/doc_page_comments.tpl; the view doc/comment, classes/expdoccomment.php).
 # A new comment is held and hidden by the kernel's review hold (settings/siteaccess/site/content.ini.append.php) until

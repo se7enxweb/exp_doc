@@ -1,8 +1,9 @@
-{* The landing page of the Platform container in the Modern design (the Confluence spaces of the old site, below
-   one section made by the import, exp_doc.ini [PlatformSettings] RemoteID): the hero with its own text (the
-   container's body), a card per space (its child sections, with their page counts), and the platform's recently
-   changed pages with a link to the full list (doc/recent with (manual)/<this node>). Classic shows the container as
-   the static page it came from. *}
+{* The landing page of the Confluence container in the Modern design (/platform/confluence: the spaces of the former
+   documentation center, below one section made by the import, exp_doc.ini [PlatformSettings] RemoteID): the hero with
+   its own line, a card per space (its child sections, with their page counts), the container's body, and the spaces'
+   recently changed pages with a link to the full list (doc/recent with (manual)/<this node>). Until 2026-11-04 this
+   drew the Platform container, which is a product landing page now (parts/doc_product_landing.tpl). Classic shows
+   the container as the static page it came from. *}
 {def $doc_spaces = fetch( 'exp_doc', 'menu_children', hash( 'parent_node_id', $node.node_id ) )
      $doc_recent = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
                                                     'class_filter_type', 'include', 'class_filter_array', ezini( 'ModernSettings', 'PageClasses', 'exp_doc.ini' ),

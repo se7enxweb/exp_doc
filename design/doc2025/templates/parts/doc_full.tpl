@@ -23,6 +23,40 @@
 <h1>{cond( eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), ezini( 'ClassicSettings', 'FrontHeading', 'exp_doc.ini' ), $node.name )|wash}</h1>
 </div>
 
+{* a product's container (exp_doc.ini [ModernSettings] ProductList[], fetch exp_doc/product_landing): the product's
+   box after the heading, before the page's own text (a listed exception, .exp-doc-product): its short text and
+   Supported badge, its links, its sections and related sections as the help center's cards, and its place in the
+   family; the help center's components and tokens, light (the pagelayout loads them on these pages) *}
+{if $doc_is_root|not}
+{def $doc_landing = fetch( 'exp_doc', 'product_landing', hash( 'node_id', $node.node_id ) )}
+{if $doc_landing}
+<div class="a4-page a4-help-frame exp-doc-product">
+    <section class="a4-card exp-doc-product-intro" aria-label="{$doc_landing.product.name|wash}">
+        {if $doc_landing.product.text}<p class="exp-doc-product-text">{$doc_landing.product.text|wash}{if $doc_landing.product.supported} <span class="a4-badge is-ok">{'Supported'|i18n( 'design/exp_doc' )}</span>{/if}</p>{/if}
+        {if $doc_landing.links|count}<p class="exp-doc-product-links">{include uri='design:exp_doc/product_links.tpl' links=$doc_landing.links}</p>{/if}
+    </section>
+    {if $doc_landing.sections|count}
+    <section aria-labelledby="exp-doc-product-sections-title">
+        <h2 id="exp-doc-product-sections-title" class="a4-h2">{'Sections'|i18n( 'design/exp_doc' )}</h2>
+        {include uri='design:exp_doc/product_cards.tpl' sections=$doc_landing.sections list_class='a4-grid is-wide' badge_class='a4-badge is-ok'}
+        {if $doc_landing.section_count|gt( $doc_landing.sections|count )}<p class="exp-doc-landing-more"><a href={concat( 'content/view/sitemap/', $node.node_id )|ezurl}>{'Browse all %count sections'|i18n( 'design/exp_doc', '', hash( '%count', $doc_landing.section_count ) )}</a></p>{/if}
+    </section>
+    {/if}
+    {if $doc_landing.related|count}
+    <section aria-labelledby="exp-doc-product-related-title">
+        <h2 id="exp-doc-product-related-title" class="a4-h2">{'From the former documentation center'|i18n( 'design/exp_doc' )}</h2>
+        {include uri='design:exp_doc/product_cards.tpl' sections=$doc_landing.related list_class='a4-grid is-wide' badge_class='a4-badge is-ok'}
+    </section>
+    {/if}
+    <section class="a4-card exp-doc-product-family-box" aria-labelledby="exp-doc-product-family-title">
+        <h2 id="exp-doc-product-family-title" class="a4-h2">{'The Exponential family'|i18n( 'design/exp_doc' )}</h2>
+        {include uri='design:exp_doc/product_family.tpl' family=$doc_landing.family heading_id='exp-doc-product-family-title'}
+    </section>
+</div>
+{/if}
+{undef $doc_landing}
+{/if}
+
 {* on the front page "Who makes Exponential" (the help dashboard's exphelp/parts/dashboard_about.tpl, a listed
    exception) comes first, before the static page's content, as Modern draws it above the manuals; the bottom blocks
    then leave it out *}

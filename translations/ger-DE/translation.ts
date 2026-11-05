@@ -837,6 +837,46 @@
         <translation>Alle Beiträge im Forum</translation>
     </message>
     <message>
+        <source>Install</source>
+        <translation>Installieren</translation>
+    </message>
+    <message>
+        <source>Upgrade</source>
+        <translation>Aktualisieren</translation>
+    </message>
+    <message>
+        <source>Compare the distributions</source>
+        <translation>Distributionen vergleichen</translation>
+    </message>
+    <message>
+        <source>Website</source>
+        <translation>Website</translation>
+    </message>
+    <message>
+        <source>Which one should I choose?</source>
+        <translation>Welche passt zu mir?</translation>
+    </message>
+    <message>
+        <source>Sections</source>
+        <translation>Abschnitte</translation>
+    </message>
+    <message>
+        <source>Browse all %count sections</source>
+        <translation>Alle %count Abschnitte ansehen</translation>
+    </message>
+    <message>
+        <source>From the former documentation center</source>
+        <translation>Aus dem früheren Dokumentationszentrum</translation>
+    </message>
+    <message>
+        <source>About %product</source>
+        <translation>Über %product</translation>
+    </message>
+    <message>
+        <source>The Exponential family</source>
+        <translation>Die Exponential-Familie</translation>
+    </message>
+    <message>
         <source>The page now: %average of 5, %count ratings</source>
         <translation>Die Seite jetzt: %average von 5, %count Bewertungen</translation>
     </message>
