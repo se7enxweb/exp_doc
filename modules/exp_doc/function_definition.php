@@ -248,3 +248,25 @@ $FunctionList['help_report'] = array( 'name' => 'help_report',
                                                               'method' => 'helpReport' ),
                                       'parameter_type' => 'standard',
                                       'parameters' => array() );
+
+/*
+ *   fetch( 'exp_doc', 'help_recent_changes', hash( 'limit', 8 ) )
+ *       the help's Markdown pages changed last (the developers' help page's "Recently updated", in the reader's help
+ *       language), each a hash: id, title, subject, time, url (the help viewer, keeping /(lang)/<key>); empty when the
+ *       help is off
+ *   fetch( 'exp_doc', 'help_commits', hash( 'limit', 8 ) )
+ *       the latest commits of the Exponential repository without merges (the kernel's expHelpCommitFeed, from its
+ *       cache): hash( 'commits', 'fetched', 'stale', 'error', 'history', 'more' (the developers' page's log)), or false
+ */
+$FunctionList['help_recent_changes'] = array( 'name' => 'help_recent_changes',
+                                              'operation_types' => array( 'read' ),
+                                              'call_method' => array( 'class' => 'expDocFetch',
+                                                                      'method' => 'helpRecentChanges' ),
+                                              'parameter_type' => 'standard',
+                                              'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 8 ) ) );
+$FunctionList['help_commits'] = array( 'name' => 'help_commits',
+                                       'operation_types' => array( 'read' ),
+                                       'call_method' => array( 'class' => 'expDocFetch',
+                                                               'method' => 'helpCommits' ),
+                                       'parameter_type' => 'standard',
+                                       'parameters' => array( array( 'name' => 'limit', 'type' => 'integer', 'required' => false, 'default' => 8 ) ) );

@@ -388,6 +388,61 @@ class expDocFetch
     }
 
     /**
+     * The help's Markdown pages changed last, for the front page's "Recent Markdown changes": the same list as the
+     * developers' help page's "Recently updated" (expHelpDocumentIndex::recentChanges(), the pages this reader may
+     * read, in the reader's help language). Each address is the help viewer's and keeps the reader's help language
+     * (/(lang)/<key>, expHelp::carryReading()) when one is chosen. An empty list when the help is off or the kernel is
+     * older than the list.
+     *
+     * @param int $limit
+     * @return array array( 'result' => list of array( 'id', 'title', 'subject', 'time', 'url' ) )
+     */
+    public static function helpRecentChanges( $limit = 8 )
+    {
+        if ( !class_exists( 'expHelp' ) || !expHelp::isEnabled() || !class_exists( 'expHelpDocumentIndex' )
+             || !method_exists( 'expHelpDocumentIndex', 'recentChanges' ) )
+        {
+            return array( 'result' => array() );
+        }
+        $carry = method_exists( 'expHelp', 'carryReading' );
+        $result = array();
+        foreach ( expHelpDocumentIndex::instance()->recentChanges( min( 50, max( 1, (int)$limit ) ) ) as $change )
+        {
+            $url = expHelp::url( 'viewer', $change['id'] );
+            $result[] = array( 'id' => $change['id'],
+                               'title' => $change['title'],
+                               'subject' => isset( $change['subject'] ) ? (string)$change['subject'] : '',
+                               'time' => isset( $change['time'] ) ? (int)$change['time'] : 0,
+                               'url' => $carry ? expHelp::carryReading( $url ) : $url );
+        }
+        return array( 'result' => $result );
+    }
+
+    /**
+     * The latest commits of the Exponential repository for the front page's "Recent commits", as the developers' help
+     * page gets them: the kernel's expHelpCommitFeed (exphelp.ini [CommitFeed]), which reads the project's feed on the
+     * server at most once per its cache time, with its timeout and a lock, and otherwise answers from its cache; the
+     * browser loads nothing from outside. Merge commits are left out. Also the address of the developers' page's
+     * commit log (keeping the reader's help language). False when the help is off or the kernel has no feed.
+     *
+     * @param int $limit
+     * @return array array( 'result' => array( 'commits', 'fetched', 'stale', 'error', 'history', 'more' )|false )
+     */
+    public static function helpCommits( $limit = 8 )
+    {
+        if ( !class_exists( 'expHelp' ) || !expHelp::isEnabled() || !class_exists( 'expHelpCommitFeed' )
+             || !method_exists( 'expHelpCommitFeed', 'page' ) )
+        {
+            return array( 'result' => false );
+        }
+        $feed = new expHelpCommitFeed();
+        $result = $feed->page( 0, min( 50, max( 1, (int)$limit ) ), false );
+        $more = expHelp::url( 'audience', 'developer', 'commits' );
+        $result['more'] = method_exists( 'expHelp', 'carryReading' ) ? expHelp::carryReading( $more ) : $more;
+        return array( 'result' => $result );
+    }
+
+    /**
      * The object ids of a relation list attribute, in its order.
      *
      * @param eZContentObjectAttribute $attribute
