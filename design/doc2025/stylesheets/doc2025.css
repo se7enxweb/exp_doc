@@ -127,6 +127,11 @@ div.template-design .exp-doc-choose li.exp-doc-choose-card {
 div.template-design .exp-doc-choose-needs li {
     padding: var(--a4-space-2) 0;
 }
+/* ...as do the product cards of a product box (the products page, a product's sections: the faded boxes of
+   exphelp.css .a4-help-about and .a4-help-grow) */
+div.template-design .a4-help-frame li.exp-doc-manual {
+    padding: var(--a4-space-5);
+}
 form.exp-doc-rating {
     color-scheme: light;
 }
