@@ -11,7 +11,7 @@
         </div>
         <div class="exp-doc-footer-col">
             <p>{'Get the support you need faster! Ask the experts at 7x.'|i18n( 'design/doc2025' )}</p>
-            <p><a class="a4-btn is-primary" href="https://se7enx.com/contact">{'Contact 7x'|i18n( 'design/exp_doc' )}</a></p>
+            <p><a class="a4-btn a4-btn-primary" href="https://se7enx.com/contact">{'Contact 7x'|i18n( 'design/exp_doc' )}</a></p>
         </div>
         <div class="exp-doc-footer-col">
             <ul class="a4-plain exp-doc-footer-links">

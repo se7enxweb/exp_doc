@@ -75,7 +75,7 @@
             </select>
         </div>
         <div class="exp-doc-recent-actions">
-            <button type="submit" class="a4-btn is-primary" name="FilterButton">{'Show'|i18n( 'design/exp_doc' )}</button>
+            <button type="submit" class="a4-btn a4-btn-primary" name="FilterButton">{'Show'|i18n( 'design/exp_doc' )}</button>
             {if $filters|count}<a class="a4-btn" href={$base_uri|ezurl}>{'Clear the filters'|i18n( 'design/exp_doc' )}</a>{/if}
         </div>
         {if $doc_help_only}<p id="exp-doc-recent-help-note" class="a4-filter-count">{'The Markdown pages of the help center have no version, kind of page or contributor. Choose a manual to use those filters.'|i18n( 'design/exp_doc' )}</p>{/if}

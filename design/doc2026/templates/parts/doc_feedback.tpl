@@ -16,7 +16,7 @@
         <input type="hidden" name="ContentNodeID" value="{$node.node_id}">
         <input type="hidden" name="ContentObjectID" value="{$node.contentobject_id}">
         <input type="hidden" name="ViewMode" value="full">
-        <button type="submit" class="a4-btn is-primary" name="ActionCollectInformation">{'Send feedback'|i18n( 'design/exp_doc' )}</button>
+        <button type="submit" class="a4-btn a4-btn-primary" name="ActionCollectInformation">{'Send feedback'|i18n( 'design/exp_doc' )}</button>
     </form>
 </section>
 {/if}

@@ -27,7 +27,7 @@
     <form class="exp-doc-hero-search" role="search" method="post" action={'content/search'|ezurl}>
         <label class="a4-sr-only" for="exp-doc-hero-search-text">{'Search the documentation'|i18n( 'design/exp_doc' )}</label>
         <input type="search" id="exp-doc-hero-search-text" name="SearchText" placeholder="{'What are you looking for?'|i18n( 'design/exp_doc' )}" autocomplete="off">
-        <button type="submit" class="a4-btn is-primary" name="SearchButton">{'Search'|i18n( 'design/exp_doc' )}</button>
+        <button type="submit" class="a4-btn a4-btn-primary" name="SearchButton">{'Search'|i18n( 'design/exp_doc' )}</button>
         {include uri='design:parts/front_search_suggest.tpl' suggest_id='exp-doc-hero-search-text'}
     </form>
     <p class="a4-meta exp-doc-hero-help">{'Guides, manuals and the reference of this Exponential installation, in English and German.'|i18n( 'design/exp_doc' )}</p>

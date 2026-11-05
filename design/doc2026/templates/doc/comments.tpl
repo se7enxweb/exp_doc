@@ -56,7 +56,7 @@
             </select>
         </div>
         <div class="exp-doc-recent-actions">
-            <button type="submit" class="a4-btn is-primary" name="FilterButton">{'Show'|i18n( 'design/exp_doc' )}</button>
+            <button type="submit" class="a4-btn a4-btn-primary" name="FilterButton">{'Show'|i18n( 'design/exp_doc' )}</button>
             {if $filters|count}<a class="a4-btn" href={$base_uri|ezurl}>{'Clear the filters'|i18n( 'design/exp_doc' )}</a>{/if}
         </div>
         <p class="a4-filter-count" role="status">{'%count comments'|i18n( 'design/exp_doc', '', hash( '%count', $count ) )}</p>

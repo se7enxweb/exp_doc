@@ -34,6 +34,6 @@
         <input type="text" id="{$prefix}-website" name="CommentWebsite" value="" tabindex="-1" autocomplete="off">
     </div>
     <p class="a4-meta">{'Comments are read by a moderator before they appear.'|i18n( 'design/exp_doc' )}</p>
-    <button type="submit" class="a4-btn is-primary" name="CommentButton">{cond( and( is_set( $reply ), $reply ), 'Send the reply'|i18n( 'design/exp_doc' ), 'Send the comment'|i18n( 'design/exp_doc' ) )}</button>
+    <button type="submit" class="a4-btn a4-btn-primary" name="CommentButton">{cond( and( is_set( $reply ), $reply ), 'Send the reply'|i18n( 'design/exp_doc' ), 'Send the comment'|i18n( 'design/exp_doc' ) )}</button>
 </form>
 {undef $doc_in $doc_err}

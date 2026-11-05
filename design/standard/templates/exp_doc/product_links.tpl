@@ -11,6 +11,6 @@
                         'package', hash( 'label', 'Packagist', 'icon', 'box-seam' ),
                         'website', hash( 'label', 'Website'|i18n( 'design/exp_doc' ), 'icon', 'globe2' ) )}
 {foreach $links as $doc_index => $doc_link}{if is_set( $doc_kinds[$doc_link.kind] )}
-<a class="a4-btn{if eq( $doc_index, 0 )} is-primary{/if}" href={if $doc_link.external}"{$doc_link.url|wash}" rel="noopener noreferrer"{else}{$doc_link.url|ezurl}{/if}><span class="a4-icon a4-bi-{$doc_kinds[$doc_link.kind].icon}" aria-hidden="true"></span> {$doc_kinds[$doc_link.kind].label|wash}</a>
+<a class="a4-btn{if eq( $doc_index, 0 )} a4-btn-primary{/if}" href={if $doc_link.external}"{$doc_link.url|wash}" rel="noopener noreferrer"{else}{$doc_link.url|ezurl}{/if}><span class="a4-icon a4-bi-{$doc_kinds[$doc_link.kind].icon}" aria-hidden="true"></span> {$doc_kinds[$doc_link.kind].label|wash}</a>
 {/if}{/foreach}
 {undef $doc_kinds}
