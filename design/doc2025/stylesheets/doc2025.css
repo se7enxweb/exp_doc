@@ -101,6 +101,13 @@ div.template-design .a4-help-frame li {
     background-image: none;
     line-height: inherit;
 }
+/* ...but the product cards and the needs of "Choosing a product" (exp-doc-choose.css) keep their own padding */
+div.template-design .exp-doc-choose li.exp-doc-choose-card {
+    padding: var(--a4-card-pad-y) var(--a4-card-pad-x);
+}
+div.template-design .exp-doc-choose-needs li {
+    padding: var(--a4-space-2) 0;
+}
 form.exp-doc-rating {
     color-scheme: light;
 }

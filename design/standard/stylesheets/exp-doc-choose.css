@@ -21,6 +21,7 @@
 }
 .exp-doc-choose h3 {
   margin: 0;
+  color: var(--a4-ink);
   font-size: var(--a4-text-m);
   font-weight: var(--a4-weight-heading);
 }
@@ -58,6 +59,9 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--a4-space-2);
+}
+.exp-doc-choose-name a {
+  color: var(--a4-accent-text);
 }
 .exp-doc-choose-facts {
   display: grid;
