@@ -12,7 +12,8 @@
                        $site.uri.original_uri )
      $doc_languages = language_switcher( $doc_here )}
 <div id="exp-doc-switches" class="exp-doc-switches">
-    <a class="exp-doc-helplink" href={'exphelp/dashboard'|ezurl}>{'Help center'|i18n( 'design/exp_doc' )}</a>
+    {* a reader who chose the help's language (/(lang)/<key>) keeps it *}
+    <a class="exp-doc-helplink" href={concat( 'exphelp/dashboard', cond( fetch( 'exphelp', 'reading_key' ), concat( '/(lang)/', fetch( 'exphelp', 'reading_key' ) ), '' ) )|ezurl}>{'Help center'|i18n( 'design/exp_doc' )}</a>
 {if $doc_switch.designs|count}
     <nav class="exp-doc-switch exp-doc-switch-design" aria-label="{'Design'|i18n( 'design/exp_doc' )}">
         <ul>
