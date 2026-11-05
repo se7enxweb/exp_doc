@@ -26,21 +26,26 @@
                                     {cond( eq( $doc_total, 1 ), '1 Comment', concat( $doc_total, ' Comments' ) )}
                             </h2>
         </div>
+{* the anonymous avatar of the static comments (a relative path into the static Confluence files, which this site does
+   not have): the design's own image *}
+{def $doc_cf_avatar = 's/en_GB/5983/f3e491afc761ac0a6981cfa3dcbc04fc7e88c149.16/_/images/icons/profilepics/anonymous.png"'
+     $doc_cf_avatar_url = concat( 'images/confluence/anonymous.svg'|ezdesign( 'no' ), '"' )}
             <ol class="comment-threads top-level" id="page-comments">
 {if $doc_comments|count}
 {foreach $doc_comments as $comment}
                     <li id="comment-thread-{$comment.data_map.source_comment_id.content|explode( 'comment-' )|implode( '' )|wash}" class="comment-thread">
-{$comment.data_map.original_html.content}
+{$comment.data_map.original_html.content|explode( concat( 'src="../../', $doc_cf_avatar ) )|implode( concat( 'src="', $doc_cf_avatar_url ) )|explode( concat( 'src="../', $doc_cf_avatar ) )|implode( concat( 'src="', $doc_cf_avatar_url ) )}
                     </li>
 {/foreach}
 {else}
 {foreach $doc_hist.source as $doc_c}
                     <li id="comment-thread-{$doc_c.id|wash}" class="comment-thread">
-{$doc_c.original}
+{$doc_c.original|explode( concat( 'src="../../', $doc_cf_avatar ) )|implode( concat( 'src="', $doc_cf_avatar_url ) )|explode( concat( 'src="../', $doc_cf_avatar ) )|implode( concat( 'src="', $doc_cf_avatar_url ) )}
                     </li>
 {/foreach}
 {/if}
             </ol>
+{undef $doc_cf_avatar $doc_cf_avatar_url}
 </div>
 {else}
 <div id="comments" class="class-comment">
