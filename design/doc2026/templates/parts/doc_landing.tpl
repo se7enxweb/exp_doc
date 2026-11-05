@@ -1,6 +1,7 @@
 {* The landing page of the Modern design (the front page), in the help center's components and their color fades:
    - a large search in the hero (.a4-help-hero), its heading the official logo (named "Exponential" for screen
      readers) and exp_doc.ini [ModernSettings] LandingHeading;
+   - "Who makes Exponential" (the help dashboard's exphelp/parts/dashboard_about.tpl), above the manuals;
    - a card for every manual (its cover or icon, summary and audience, and its versions), .a4-help-about and
      .a4-help-grow in turn, then one for the upgrade guides ([ModernSettings] UpgradeGuidesPath); the section centered;
    - the products (fetch exp_doc/products: the containers once they exist, else [ModernSettings] ProductList[]),
@@ -8,8 +9,8 @@
    - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
    - the recently changed pages and the most read pages (the kernel's view counts, no third-party tracker), each in
      an .a4-help-support box;
-   - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: who makes Exponential, found
-     an error, free documentation, Support Exponential). *}
+   - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: found an error, free
+     documentation, Support Exponential). *}
 {def $doc_manuals = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,
                                                      'class_filter_type', 'include', 'class_filter_array', array( 'exp_doc_manual' ),
                                                      'sort_by', array( 'priority', true() ), 'limit', 24 ) )
@@ -29,6 +30,12 @@
     <p class="a4-meta exp-doc-hero-help">{'Guides, manuals and the reference of this Exponential installation, in English and German.'|i18n( 'design/exp_doc' )}</p>
     <p class="a4-help-hero-actions"><a class="a4-btn" href={'exphelp/dashboard'|ezurl}>{'Open the help center'|i18n( 'design/exp_doc' )}</a> <a class="a4-btn" href={'exphelp/contents'|ezurl}><span class="a4-icon a4-bi-list-ul" aria-hidden="true"></span> {'Browse all help'|i18n( 'design/exp_doc' )}</a></p>
 </section>
+
+{if fetch( 'exp_doc', 'help_report' )}
+<div class="a4-help-frame exp-doc-landing-about">
+    {include uri='design:exphelp/parts/dashboard_about.tpl' landing_on=ezini( 'LandingSettings', 'Enabled', 'exphelp.ini' )|eq( 'enabled' )}
+</div>
+{/if}
 
 {if $doc_manuals|count}
 <section class="exp-doc-landing-section exp-doc-landing-manuals" aria-labelledby="exp-doc-manuals-title">
@@ -163,5 +170,5 @@
 </section>
 {/if}
 </div>
-{include uri='design:exp_doc/landing_org.tpl' start=false()}
+{include uri='design:exp_doc/landing_org.tpl' start=false() about=false()}
 {undef $doc_manuals $doc_recent $doc_popular}
