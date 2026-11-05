@@ -93,6 +93,19 @@
 .exp-doc-landing-about.a4-help-frame {
     margin-top: 0;
 }
+/* on a phone the help frames' cards (at least 16rem wide in exphelp.css) do not fit inside the static page's body and
+   frame padding: one column that may shrink, and long words break inside the card instead of widening the page */
+@media (max-width: 600px) {
+    .exp-doc-landing-org .a4-help-about-links,
+    .exp-doc-landing-about .a4-help-about-links {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .exp-doc-landing-org .a4-help-about-text,
+    .exp-doc-landing-about .a4-help-about-text {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+}
 /* a frame inside the page body (.template-design): without the static lists' bullet image and indent, which the help
    center's lists (cards of links) do not have */
 div.template-design .a4-help-frame li {
