@@ -556,6 +556,7 @@ body.exp-doc {
 .exp-doc-landing-products.is-front > .exp-doc-products-lead,
 .exp-doc-landing-products.is-front > .exp-doc-products-more {
     text-align: center;
+    justify-content: center;
 }
 .exp-doc-landing-products.is-front > .exp-doc-manuals {
     grid-template-columns: repeat(auto-fit, minmax(16rem, 26rem));
