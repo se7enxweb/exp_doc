@@ -922,7 +922,8 @@ class expDocFetch
      * from a static path whose first folder is one of [ClassicSettings] ConfluencePrefixes[]), and if so what the
      * static site's Atlassian frame showed around it:
      * - space: the space's node (the Confluence container's child on the node's path), key (its short title, USER),
-     *   name (its name), home (the space's home page: its child imported from display/<key>.html, else its first child);
+     *   name (its name), home (the space's home page: its child on the node's path, else its child imported from
+     *   display/<key>.html, else its first child);
      * - title: the page's title without the " - <space> - eZ Documentation" the import kept from the static <title>;
      * - crumbs: the pages from the space's home page down to the page's parent (the static breadcrumbs after the
      *   space), each array( 'node', 'title' );
@@ -992,7 +993,17 @@ class expDocFetch
             }
             $name = (string)$space->attribute( 'name' );
             $children = self::menuChildren( $space->attribute( 'node_id' ) );
+            // the space's page on the node's path (the root of the space's tree the page sits in), else the page
+            // imported from the space's start file, else the first
             foreach ( $children['result'] as $child )
+            {
+                if ( in_array( (int)$child->attribute( 'node_id' ), $path, true ) )
+                {
+                    $home = $child;
+                    break;
+                }
+            }
+            foreach ( $home ? array() : $children['result'] as $child )
             {
                 $childMap = $child->attribute( 'data_map' );
                 if ( isset( $childMap['source_path'] ) && trim( (string)$childMap['source_path']->attribute( 'data_text' ) ) === 'display/' . $key . '.html' )

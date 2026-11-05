@@ -73,7 +73,7 @@
                         <ul class="label-list label-list-right">
 {if and( is_set( $cf_map.labels ), $cf_map.labels.has_content, $cf_map.labels.content.tags|count )}
 {foreach $cf_map.labels.content.tags as $cf_tag}
-                            <li class="aui-label"><a class="aui-label-split-main" href={concat( 'tags/view/', $cf_tag.url )|ezurl} rel="tag">{$cf_tag.keyword|wash}</a></li>
+                            <li class="aui-label"><a class="aui-label-split-main" href={$cf_tag.url|ezurl} rel="tag">{$cf_tag.keyword|wash}</a></li>
 {/foreach}
 {else}
                             <li class="no-labels-message">{'No labels'|i18n( 'design/doc2025' )}</li>
