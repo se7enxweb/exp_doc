@@ -11,7 +11,7 @@
  * database), so they are kept in a cache file (var/<site>/cache/exp_doc/contributor-counts.php) instead of being counted
  * by the page view:
  * - the cronjob part exp_doc_contributor_counts.php (frequent) counts again when something was published since the
- *   file was written (the template-block expiry every publish sets), so the counts follow a publish within one run;
+ *   counts were last counted (the template-block expiry every publish sets), so they follow a publish within one run;
  * - a page view counts only when there is no file yet (a new installation, a cleared cache directory).
  *
  * @copyright Copyright (C) 1998 - 2026 Exponential Foundation and 7x. All rights reserved.
@@ -36,7 +36,7 @@ class expDocContributorCounts
     }
 
     /**
-     * Counts again and stores the result when something was published after the cache file was written (or there is
+     * Counts again and stores the result when something was published after the last counting started (or there is
      * no file, or $force).
      *
      * @param bool $force
@@ -45,7 +45,9 @@ class expDocContributorCounts
     public static function refresh( $force = false )
     {
         $file = self::file();
-        if ( !$force && is_file( $file ) && filemtime( $file ) >= self::publishedAt() )
+        // compared with the time the counting started, so a publish while counting is counted by the next run
+        $cached = $force ? null : self::read();
+        if ( $cached !== null && (int)$cached['time'] > self::publishedAt() )
         {
             return null;
         }
