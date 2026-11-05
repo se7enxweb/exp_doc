@@ -527,6 +527,11 @@ body.exp-doc {
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
     gap: var(--a4-space-5);
 }
+/* the boxes of a row share its height; what a box holds (its heading, list or empty-state line, "See all" link)
+   starts at the top under the heading instead of the box's grid (.a4-help-support) spreading its rows over it */
+.exp-doc-landing-columns > .a4-help-support {
+    align-content: start;
+}
 .exp-doc-landing-list li {
     padding: var(--a4-space-2) 0;
     border-bottom: 1px solid var(--a4-line);
