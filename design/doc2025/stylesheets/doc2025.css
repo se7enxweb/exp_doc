@@ -37,9 +37,11 @@
 }
 
 /* The official Exponential logo in the header (design:exp_doc/logo.tpl, the owner's decided exception): the size of
-   the static site's logo image, the colors of the static (light) design; the front square keeps its orange */
+   the static site's logo image, the colors of the static (light) design; the front square keeps its orange. Inline
+   on the text baseline like the static <img>, so the logo row keeps the static row's height (48px, not 45px) and
+   everything below it stays where the static page has it */
 #logo .exp-logo {
-    display: block;
+    display: inline-block;
     width: auto;
     height: 45px;
 }
