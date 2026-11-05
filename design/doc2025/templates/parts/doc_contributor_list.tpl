@@ -4,7 +4,7 @@
 <h2>{'%count contributors'|i18n( 'design/exp_doc', '', hash( '%count', $doc_people|count ) )}</h2>
 <ol class="exp-doc-contributor-index">
 {foreach $doc_people as $doc_person}
-<li>{node_view_gui view='line' content_node=$doc_person.node doc_counts=$doc_person}</li>
+<li>{include uri='design:parts/doc_contributor_line.tpl' node=$doc_person.node doc_counts=$doc_person}</li>
 {/foreach}
 </ol>
 {undef $doc_people}
@@ -15,7 +15,7 @@
 <h2>{'Commenters'|i18n( 'design/exp_doc' )} ({'%count people'|i18n( 'design/exp_doc', '', hash( '%count', $doc_commenters|count ) )})</h2>
 <ol class="exp-doc-contributor-index">
 {foreach $doc_commenters as $doc_person}
-<li>{node_view_gui view='line' content_node=$doc_person.node doc_counts=$doc_person}</li>
+<li>{include uri='design:parts/doc_contributor_line.tpl' node=$doc_person.node doc_counts=$doc_person}</li>
 {/foreach}
 </ol>
 {/if}
