@@ -62,7 +62,7 @@
 
 {include uri='design:parts/doc_menu.tpl' path=$doc_path node_id=$doc_node_id resizable=$doc_help}
 <div class="area-docmain-normal">
-{if or( $doc_is_front, and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) ) )}<div class="a4-page exp-doc-help-classic">{$module_result.content}</div>{else}{$module_result.content}{/if}
+{if and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}<div class="a4-page exp-doc-help-classic">{$module_result.content}</div>{else}{$module_result.content}{/if}
 </div>
 <!-- Main area content: END -->
 
