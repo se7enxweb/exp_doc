@@ -12,9 +12,17 @@ class expDocFetch
     /** @var array path => node id (0: none), for the request */
     protected static $cache = array();
 
+    /** @var bool whether the stored map (var/<site>/cache/exp_doc/node-by-source.php) was read in this request */
+    protected static $cacheLoaded = false;
+
     /**
      * The node imported from a static file: the main node of the object whose source_path attribute equals $path
      * (relative to the static repository's root, without a leading slash). Only the published version counts.
+     *
+     * The answers are kept in a cache file until the next publish (the template-block expiry every publish sets):
+     * Classic's frame looks up the same twenty paths on every page (the quick links, the caution box, the path, the
+     * footer), and a path no page was imported from (documentation.html) cost a search through every source_path
+     * attribute, seconds per page view.
      *
      * @param string $path
      * @return array array( 'result' => eZContentObjectTreeNode|false )
@@ -26,9 +34,15 @@ class expDocFetch
         {
             return array( 'result' => false );
         }
+        if ( !self::$cacheLoaded )
+        {
+            self::$cacheLoaded = true;
+            self::$cache = array_merge( self::readSourceCache(), self::$cache );
+        }
         if ( !array_key_exists( $path, self::$cache ) )
         {
             self::$cache[$path] = self::lookup( $path );
+            self::writeSourceCache();
         }
         $nodeID = self::$cache[$path];
         if ( !$nodeID )
@@ -807,6 +821,55 @@ class expDocFetch
      * @param string $path
      * @return int
      */
+    /** @return string the cache file of nodeBySource() */
+    protected static function sourceCacheFile()
+    {
+        return eZSys::cacheDirectory() . '/exp_doc/node-by-source.php';
+    }
+
+    /**
+     * The stored path => node id map, empty when there is none or something was published after it was written.
+     *
+     * @return array
+     */
+    protected static function readSourceCache()
+    {
+        $file = self::sourceCacheFile();
+        if ( !is_file( $file ) )
+        {
+            return array();
+        }
+        $data = @include $file;
+        if ( !is_array( $data ) || !isset( $data['time'], $data['map'] ) || !is_array( $data['map'] )
+             || (int)$data['time'] <= (int)eZExpiryHandler::instance()->getTimestamp( 'template-block-cache', 0 ) )
+        {
+            return array();
+        }
+        return $data['map'];
+    }
+
+    /** Stores the request's path => node id map (written whole and renamed, so a page view never reads half a file). */
+    protected static function writeSourceCache()
+    {
+        $file = self::sourceCacheFile();
+        $dir = dirname( $file );
+        if ( !is_dir( $dir ) && !eZDir::mkdir( $dir, false, true ) )
+        {
+            return;
+        }
+        $tmp = $file . '.' . getmypid() . '.tmp';
+        $data = array( 'time' => time(), 'map' => array_map( 'intval', self::$cache ) );
+        if ( @file_put_contents( $tmp, '<?php return ' . var_export( $data, true ) . ";\n" ) !== false )
+        {
+            @chmod( $tmp, 0666 );
+            @rename( $tmp, $file );
+            if ( function_exists( 'opcache_invalidate' ) )
+            {
+                opcache_invalidate( $file, true );
+            }
+        }
+    }
+
     protected static function lookup( $path )
     {
         // the import's own remote id first (staticimport-doc-html-<md5 of the source path>), then the source_path attribute
@@ -827,9 +890,15 @@ class expDocFetch
         {
             return 0;
         }
-        $attributes = eZPersistentObject::fetchObjectList( eZContentObjectAttribute::definition(), null,
-                                                           array( 'contentclassattribute_id' => array( $classAttributeIDs ),
-                                                                  'data_text' => $path ),
+        $conditions = array( 'contentclassattribute_id' => array( $classAttributeIDs ), 'data_text' => $path );
+        // the string datatype's sort key is the lower-case text (at most 255 characters): its index narrows the rows
+        // to the few with this text, where data_text alone reads every source_path attribute (seconds)
+        $sortKey = eZCharTransform::instance()->transformByGroup( $path, 'lowercase' );
+        if ( strlen( $sortKey ) <= 255 )
+        {
+            $conditions['sort_key_string'] = $sortKey;
+        }
+        $attributes = eZPersistentObject::fetchObjectList( eZContentObjectAttribute::definition(), null, $conditions,
                                                            null, null, true );
         foreach ( (array)$attributes as $attribute )
         {
