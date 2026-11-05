@@ -1,4 +1,7 @@
-<?php /* #?ini charset="utf-8"?
+<?php /* #?ini charset="utf-8"? */ __halt_compiler();
+
+# PHP stops reading this file at __halt_compiler() above: several path patterns below hold "*/", which would end a
+# PHP comment early, so the file is not wrapped in one comment as other settings files are.
 
 # The documentation site's import (--doc-html), as exp_doc sets it up: the static export of the documentation
 # (https://exponential.doc.exponential.earth, se7enxweb/exponential.doc.exponential.earth) into the exp_doc_* classes
