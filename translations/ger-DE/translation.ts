@@ -861,6 +861,94 @@
         <translation>Welche passt zu mir?</translation>
     </message>
     <message>
+        <source>Community and partner distributions</source>
+        <translation>Distributionen der Community und von Partnern</translation>
+    </message>
+    <message>
+        <source>Ready-made distributions of partners and the community, built on the kernels of the products above.</source>
+        <translation>Fertige Distributionen von Partnern und der Community, gebaut auf den Kernels der Produkte oben.</translation>
+    </message>
+    <message>
+        <source>Ready-to-run starter</source>
+        <translation>Startklarer Starter</translation>
+    </message>
+    <message>
+        <source>Demo site</source>
+        <translation>Demo-Site</translation>
+    </message>
+    <message>
+        <source>You want a ready-made Symfony site with the CJW JAC example content on the eZ Platform 2.5 APIs</source>
+        <translation>Sie möchten eine fertige Symfony-Site mit den CJW-JAC-Beispielinhalten auf den APIs von eZ Platform 2.5</translation>
+    </message>
+    <message>
+        <source>You want the CJW design and starter content in German and English on the Exponential 6 kernel</source>
+        <translation>Sie möchten das CJW-Design und Starter-Inhalte auf Deutsch und Englisch auf dem Exponential-6-Kernel</translation>
+    </message>
+    <message>
+        <source>The CJW distribution of Exponential Platform Nexus: Platform Legacy with the Netgen media site, Exponential Layouts and Tags on the eZ Platform 2.5 kernel APIs, with the CJW JAC example site and the Composer vendor files included.</source>
+        <translation>Die CJW-Distribution von Exponential Platform Nexus: Platform Legacy mit der Netgen Media Site, Exponential Layouts und Tags auf den Kernel-APIs von eZ Platform 2.5, mit der CJW-JAC-Beispielsite und den mitgelieferten Composer-Vendor-Dateien.</translation>
+    </message>
+    <message>
+        <source>Exponential Platform Nexus with the CJW JAC example site: a Symfony platform on the eZ Platform 2.5 APIs with Exponential 6 inside</source>
+        <translation>Exponential Platform Nexus mit der CJW-JAC-Beispielsite: eine Symfony-Plattform auf den APIs von eZ Platform 2.5 mit Exponential 6 darin</translation>
+    </message>
+    <message>
+        <source>Symfony based Exponential Platform (Legacy) web applications that start from a complete example site</source>
+        <translation>Symfony-basierte Webanwendungen mit Exponential Platform (Legacy), die von einer vollständigen Beispielsite ausgehen</translation>
+    </message>
+    <message>
+        <source>Symfony 3.4 with ezpublish-kernel 7.5 (the eZ Platform 2.5 API) and the Exponential 6 legacy kernel (6.0.12 or later) through the legacy bridge; MySQL, SQLite, PostgreSQL or Oracle</source>
+        <translation>Symfony 3.4 mit ezpublish-kernel 7.5 (die API von eZ Platform 2.5) und dem Legacy-Kernel von Exponential 6 (6.0.12 oder neuer) über die Legacy Bridge; MySQL, SQLite, PostgreSQL oder Oracle</translation>
+    </message>
+    <message>
+        <source>The platform's admin UI, the Netgen AdminUI bundle and the Exponential 6 administration</source>
+        <translation>Die Admin-Oberfläche der Plattform, das Netgen-AdminUI-Bundle und die Administration von Exponential 6</translation>
+    </message>
+    <message>
+        <source>Netgen media site, Exponential Layouts, Tags, the Netgen site API, GraphQL, the HTTP cache, Solr search, RichText and XmlText fields; a ready-to-run starter tuned for SQLite</source>
+        <translation>Netgen Media Site, Exponential Layouts, Tags, die Netgen Site API, GraphQL, der HTTP-Cache, Solr-Suche, RichText- und XmlText-Felder; ein startklarer Starter, abgestimmt auf SQLite</translation>
+    </message>
+    <message>
+        <source>8.0 to 8.5 (8.5 recommended)</source>
+        <translation>8.0 bis 8.5 (8.5 empfohlen)</translation>
+    </message>
+    <message>
+        <source>Two kernels: Symfony and Twig, and Exponential's templates for the legacy side</source>
+        <translation>Zwei Kernels: Symfony und Twig, dazu die Templates von Exponential für die Legacy-Seite</translation>
+    </message>
+    <message>
+        <source>CJW Multisite, the CJW starter site package of Exponential 6.0.15: an English and a German site in the design of CJW Themes Jumper, with the starter content, its layouts and the administration.</source>
+        <translation>CJW Multisite, das CJW-Starter-Site-Paket von Exponential 6.0.15: eine englische und eine deutsche Site im Design von CJW Themes Jumper, mit den Starter-Inhalten, ihren Layouts und der Administration.</translation>
+    </message>
+    <message>
+        <source>The CJW starter site on the Exponential 6 kernel: the site package cjw_multisite with the design starter of the cjw_themes_jumper extension, the look of the Nexus v2 CJW starter site in Exponential templates</source>
+        <translation>Die CJW-Starter-Site auf dem Exponential-6-Kernel: das Site-Paket cjw_multisite mit dem Design starter der Erweiterung cjw_themes_jumper, das Aussehen der CJW-Starter-Site von Nexus v2 in Exponential-Templates</translation>
+    </message>
+    <message>
+        <source>A ready German and English site with the CJW design on Exponential 6, installed from the setup wizard or one console command</source>
+        <translation>Eine fertige deutsche und englische Site mit dem CJW-Design auf Exponential 6, installiert über den Setup-Assistenten oder einen Konsolenbefehl</translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel (6.0.15) in plain PHP, no Symfony; the Layouts engine explayouts and ezjscore</source>
+        <translation>Der Exponential-6-Kernel (6.0.15) in reinem PHP, ohne Symfony; die Layouts-Engine explayouts und ezjscore</translation>
+    </message>
+    <message>
+        <source>The Exponential 6 administration: the admin and editor siteaccesses</source>
+        <translation>Die Administration von Exponential 6: die Siteaccesses admin und editor</translation>
+    </message>
+    <message>
+        <source>Starter content in German and English with its layouts, paged list and grid blocks, Leaflet maps through a cached tile proxy, feedback forms with a honeypot field, the cjw image aliases</source>
+        <translation>Starter-Inhalte auf Deutsch und Englisch mit ihren Layouts, Listen- und Rasterblöcke mit Seitenwechsel, Leaflet-Karten über einen zwischengespeicherten Kachel-Proxy, Feedback-Formulare mit Honeypot-Feld, die cjw-Bildvarianten</translation>
+    </message>
+    <message>
+        <source>8.0 or later (the imagick extension for the image aliases)</source>
+        <translation>8.0 oder neuer (die Erweiterung imagick für die Bildvarianten)</translation>
+    </message>
+    <message>
+        <source>One stack: PHP and Exponential's templates; installs with ./console exp:install --package=cjw_multisite</source>
+        <translation>Ein Stack: PHP und die Templates von Exponential; installiert mit ./console exp:install --package=cjw_multisite</translation>
+    </message>
+    <message>
         <source>%shown of the %all products of Exponential, the ones most projects start with.</source>
         <translation>%shown der %all Produkte von Exponential, mit denen die meisten Projekte beginnen.</translation>
     </message>

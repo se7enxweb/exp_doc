@@ -39,8 +39,8 @@
 {$doc_map.original_html.content}
 {/if}
     </div>
-{if eq( $doc_page_display, 'products' )}{include uri='design:exp_doc/landing_products.tpl' heading=false()}
-{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' heading=false()}{/if}
+{if eq( $doc_page_display, 'products' )}{include uri='design:exp_doc/landing_products.tpl' heading=false()}{include uri='design:exp_doc/landing_partners.tpl' badge_class='exp-doc-version-badge is-supported'}
+{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' heading=false()}{include uri='design:exp_doc/landing_partners.tpl' badge_class='exp-doc-version-badge is-supported' needs=true()}{/if}
 {if is_set( $after_body )}{$after_body}{/if}
 {* the Contributors folder lists every contributor below its own text *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}

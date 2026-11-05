@@ -117,8 +117,8 @@
 {else}
 {$doc_body}
 {/if}
-{if eq( $doc_page_display, 'products' )}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-products">{include uri='design:exp_doc/landing_products.tpl' heading=false() list_class='a4-grid is-wide' badge_class='a4-badge is-ok'}</div>
-{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page' heading=false()}{/if}
+{if eq( $doc_page_display, 'products' )}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-products">{include uri='design:exp_doc/landing_products.tpl' heading=false() list_class='a4-grid is-wide' badge_class='a4-badge is-ok'}{include uri='design:exp_doc/landing_partners.tpl'}</div>
+{elseif eq( $doc_page_display, 'choose' )}{include uri='design:exp_doc/landing_choose.tpl' framed=true() frame_class='a4-page' heading=false()}<div class="a4-page a4-help-frame exp-doc-product exp-doc-page-partners">{include uri='design:exp_doc/landing_partners.tpl' needs=true()}</div>{/if}
 {* the Contributors folder lists every contributor below its own text (a listed exception) *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
 

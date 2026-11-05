@@ -158,3 +158,27 @@
   flex-wrap: wrap;
   gap: var(--a4-space-2);
 }
+
+/* "Community and partner distributions" (exp_doc/landing_partners.tpl) on the pages of every product and every choice:
+   the same cards, with the distribution's short text and its links as a row of buttons that wraps */
+.exp-doc-partners {
+  display: grid;
+  gap: var(--a4-space-3);
+}
+.exp-doc-partners > .a4-h2,
+.exp-doc-partners-lead,
+.exp-doc-partner-text {
+  margin: 0;
+}
+.exp-doc-partners-lead {
+  color: var(--a4-muted);
+}
+.exp-doc-partner-text {
+  color: var(--a4-ink);
+}
+.exp-doc-partner-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--a4-space-2);
+  margin: var(--a4-space-2) 0 0;
+}

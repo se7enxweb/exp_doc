@@ -529,6 +529,63 @@ Features=A simple personal home page CMS, extendable through settings
 PHP=8.2 or later
 Learning=Small and easy to understand
 
+# "Community and partner distributions" (exp_doc/landing_partners.tpl) on the page of every product and, with the
+# "How to choose" lines below, on the page of every choice ([PageDisplaySettings]); never on the front page. They are
+# distributions built on the kernels of the products above, so the counts of the products ("six products") leave them
+# out. One group per distribution, [PartnerProduct_<key>], shown in the order of Products[]: Name (never translated),
+# Status (a status of [ModernSettings] SupportedStatuses[] gets the Supported badge), Text (the short text), the facts
+# of [ChooseProduct_*] (What, BestFor, Stack, Admin, Features, PHP, Learning) and Links[]=<kind>;<address> as in
+# [ProductLanding_*] (also: starter, demo); the name links to the first link. Every text goes through the translation
+# (design/exp_doc). Every fact was read from the distribution's own repositories (README, composer.json, package.xml)
+# and the help center's page of cjw_multisite on 2026-11-05; never add one they do not state.
+[PartnerSettings]
+Products[]
+Products[]=cjw_nexus
+Products[]=cjw_starter
+# "How to choose" on the page of every choice: <key>;<the need it answers>, in this order
+Needs[]
+Needs[]=cjw_nexus;You want a ready-made Symfony site with the CJW JAC example content on the eZ Platform 2.5 APIs
+Needs[]=cjw_starter;You want the CJW design and starter content in German and English on the Exponential 6 kernel
+
+# se7enxweb/cjw-exponential-platform-nexus (1.0.0.16), its ready-to-run starter se7enxweb/cjw-exponential-platform-nexus-starter
+# and the example data se7enxweb/cjw-exponential-media-site-data
+[PartnerProduct_cjw_nexus]
+Name=CJW Exponential Platform Nexus
+Status=current
+Text=The CJW distribution of Exponential Platform Nexus: Platform Legacy with the Netgen media site, Exponential Layouts and Tags on the eZ Platform 2.5 kernel APIs, with the CJW JAC example site and the Composer vendor files included.
+What=Exponential Platform Nexus with the CJW JAC example site: a Symfony platform on the eZ Platform 2.5 APIs with Exponential 6 inside
+BestFor=Symfony based Exponential Platform (Legacy) web applications that start from a complete example site
+Stack=Symfony 3.4 with ezpublish-kernel 7.5 (the eZ Platform 2.5 API) and the Exponential 6 legacy kernel (6.0.12 or later) through the legacy bridge; MySQL, SQLite, PostgreSQL or Oracle
+Admin=The platform's admin UI, the Netgen AdminUI bundle and the Exponential 6 administration
+Features=Netgen media site, Exponential Layouts, Tags, the Netgen site API, GraphQL, the HTTP cache, Solr search, RichText and XmlText fields; a ready-to-run starter tuned for SQLite
+PHP=8.0 to 8.5 (8.5 recommended)
+Learning=Two kernels: Symfony and Twig, and Exponential's templates for the legacy side
+Links[]
+Links[]=install;https://github.com/se7enxweb/cjw-exponential-platform-nexus/blob/master/doc/INSTALL.md
+Links[]=starter;https://github.com/se7enxweb/cjw-exponential-platform-nexus-starter
+Links[]=source;https://github.com/se7enxweb/cjw-exponential-platform-nexus
+Links[]=package;https://packagist.org/packages/se7enxweb/cjw-exponential-media-site-data
+Links[]=website;https://platform.exponential.earth
+
+# CJW Multisite: the site package cjw_multisite (se7enxweb/cjw_multisite-ezpackage) of Exponential 6.0.15 with the design
+# starter of the extension se7enxweb/cjw_themes_jumper; the help center's page help/site-packages/cjw-multisite
+[PartnerProduct_cjw_starter]
+Name=CJW Exponential Starter
+Status=current
+Text=CJW Multisite, the CJW starter site package of Exponential 6.0.15: an English and a German site in the design of CJW Themes Jumper, with the starter content, its layouts and the administration.
+What=The CJW starter site on the Exponential 6 kernel: the site package cjw_multisite with the design starter of the cjw_themes_jumper extension, the look of the Nexus v2 CJW starter site in Exponential templates
+BestFor=A ready German and English site with the CJW design on Exponential 6, installed from the setup wizard or one console command
+Stack=The Exponential 6 kernel (6.0.15) in plain PHP, no Symfony; the Layouts engine explayouts and ezjscore
+Admin=The Exponential 6 administration: the admin and editor siteaccesses
+Features=Starter content in German and English with its layouts, paged list and grid blocks, Leaflet maps through a cached tile proxy, feedback forms with a honeypot field, the cjw image aliases
+PHP=8.0 or later (the imagick extension for the image aliases)
+Learning=One stack: PHP and Exponential's templates; installs with ./console exp:install --package=cjw_multisite
+Links[]
+Links[]=install;exphelp/viewer/help/site-packages/cjw-multisite/README.md
+Links[]=demo;https://site.cjw.demo.exponential.earth
+Links[]=source;https://github.com/se7enxweb/cjw_multisite-ezpackage
+Links[]=package;https://packagist.org/packages/se7enxweb/cjw_themes_jumper
+
 # Readers' comments on the pages (Modern: parts/doc_page_comments.tpl; the view doc/comment, classes/expdoccomment.php).
 # A new comment is held and hidden by the kernel's review hold (settings/siteaccess/site/content.ini.append.php) until
 # a moderator releases it in Dashboard > Recent content.

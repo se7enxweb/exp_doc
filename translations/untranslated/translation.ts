@@ -861,6 +861,94 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Community and partner distributions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready-made distributions of partners and the community, built on the kernels of the products above.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ready-to-run starter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Demo site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want a ready-made Symfony site with the CJW JAC example content on the eZ Platform 2.5 APIs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You want the CJW design and starter content in German and English on the Exponential 6 kernel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The CJW distribution of Exponential Platform Nexus: Platform Legacy with the Netgen media site, Exponential Layouts and Tags on the eZ Platform 2.5 kernel APIs, with the CJW JAC example site and the Composer vendor files included.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exponential Platform Nexus with the CJW JAC example site: a Symfony platform on the eZ Platform 2.5 APIs with Exponential 6 inside</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony based Exponential Platform (Legacy) web applications that start from a complete example site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Symfony 3.4 with ezpublish-kernel 7.5 (the eZ Platform 2.5 API) and the Exponential 6 legacy kernel (6.0.12 or later) through the legacy bridge; MySQL, SQLite, PostgreSQL or Oracle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The platform's admin UI, the Netgen AdminUI bundle and the Exponential 6 administration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Netgen media site, Exponential Layouts, Tags, the Netgen site API, GraphQL, the HTTP cache, Solr search, RichText and XmlText fields; a ready-to-run starter tuned for SQLite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.0 to 8.5 (8.5 recommended)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Two kernels: Symfony and Twig, and Exponential's templates for the legacy side</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CJW Multisite, the CJW starter site package of Exponential 6.0.15: an English and a German site in the design of CJW Themes Jumper, with the starter content, its layouts and the administration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The CJW starter site on the Exponential 6 kernel: the site package cjw_multisite with the design starter of the cjw_themes_jumper extension, the look of the Nexus v2 CJW starter site in Exponential templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A ready German and English site with the CJW design on Exponential 6, installed from the setup wizard or one console command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential 6 kernel (6.0.15) in plain PHP, no Symfony; the Layouts engine explayouts and ezjscore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The Exponential 6 administration: the admin and editor siteaccesses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Starter content in German and English with its layouts, paged list and grid blocks, Leaflet maps through a cached tile proxy, feedback forms with a honeypot field, the cjw image aliases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>8.0 or later (the imagick extension for the image aliases)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>One stack: PHP and Exponential's templates; installs with ./console exp:install --package=cjw_multisite</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%shown of the %all products of Exponential, the ones most projects start with.</source>
         <translation type="unfinished"></translation>
     </message>
