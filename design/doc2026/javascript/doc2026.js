@@ -26,6 +26,15 @@
         tree.querySelectorAll('[data-exp-doc-tree-toggle]').forEach((button) => {
             const branch = doc.getElementById(button.getAttribute('aria-controls'));
             if (!branch) { return; }
+            if (!branch.querySelector('li')) {
+                // only children the menus leave out (comments ...): drawn as a leaf, with the bullet
+                const leaf = doc.createElement('span');
+                leaf.className = 'exp-doc-tree-leaf';
+                leaf.setAttribute('aria-hidden', 'true');
+                button.replaceWith(leaf);
+                branch.remove();
+                return;
+            }
             button.hidden = false;
             if (branch.hasAttribute('data-exp-doc-tree-closed')) { branch.hidden = true; }
             button.addEventListener('click', () => {

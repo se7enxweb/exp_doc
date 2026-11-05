@@ -233,6 +233,20 @@ body.exp-doc {
 .exp-doc-tree-toggle[aria-expanded="true"]::before {
     transform: rotate(90deg);
 }
+/* a page without children: a bullet in the toggle's place, so every row lines up */
+.exp-doc-tree-leaf {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--a4-space-5);
+    height: var(--a4-space-5);
+    margin-top: var(--a4-space-1);
+    color: var(--a4-muted);
+}
+.exp-doc-tree-leaf::before {
+    content: "\2022";
+}
 
 /* on this page */
 .exp-doc-onpage {
