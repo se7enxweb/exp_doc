@@ -78,4 +78,43 @@ MatchFile=line/exp_doc_page.tpl
 Subdir=templates
 Match[class_identifier]=folder
 
+# Help maintained as content (the help_* classes below /media/help): the page of the design with the text as the
+# help renders it (fetch exphelp/site_topic and exphelp/site_map), never the Markdown of the fields. The templates are
+# in design/standard and serve both designs.
+[full_help_concept_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_help_topic.tpl
+Subdir=templates
+Match[class_identifier]=help_concept
+
+[full_help_task_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_help_topic.tpl
+Subdir=templates
+Match[class_identifier]=help_task
+
+[full_help_reference_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_help_topic.tpl
+Subdir=templates
+Match[class_identifier]=help_reference
+
+[full_help_troubleshooting_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_help_topic.tpl
+Subdir=templates
+Match[class_identifier]=help_troubleshooting
+
+[full_help_manual_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_help_map.tpl
+Subdir=templates
+Match[class_identifier]=help_manual
+
+[full_help_section_doc]
+Source=node/view/full.tpl
+MatchFile=full/exp_doc_help_map.tpl
+Subdir=templates
+Match[class_identifier]=help_section
+
 */ ?>

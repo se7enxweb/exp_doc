@@ -1,7 +1,8 @@
 {* The full view of a documentation page in the Classic design, as the static site rendered it: the heading, the
    body (the editable XML; the original HTML is shown when the page has no XML body), the page break, the "Written
    by / Last updated by" box when the page has an author, then the comments (parts/doc_comments.tpl), which sit
-   outside the page's own three boxes. The pagelayout opens and closes .area-docmain-normal. *}
+   outside the page's own three boxes. The pagelayout opens and closes .area-docmain-normal. A class template gives
+   $body_html for a body it renders itself (the help topics, full/exp_doc_help_topic.tpl). *}
 {def $doc_map = $node.data_map
      $doc_root_source = false()
      $doc_is_root = eq( $node.node_id, ezini( 'NodeSettings', 'RootNode', 'content.ini' ) )
@@ -70,7 +71,9 @@
    static page's current lists, before the body's first second-level heading (the earlier front page): Classic has
    no products list to draw it below, as Modern does; a body without such a heading gets the card after it *}
 {set-block variable=$doc_body}
-{if and( is_set( $doc_map.body ), $doc_map.body.has_content )}
+{if is_set( $body_html )}
+{$body_html}
+{elseif and( is_set( $doc_map.body ), $doc_map.body.has_content )}
 {attribute_view_gui attribute=$doc_map.body}
 {elseif and( is_set( $doc_map.answer ), $doc_map.answer.has_content )}
 {attribute_view_gui attribute=$doc_map.answer}

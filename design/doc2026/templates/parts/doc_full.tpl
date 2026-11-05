@@ -2,7 +2,8 @@
    dates, labels), the body (the editable XML; the original HTML when there is no XML body), its child pages as
    cards, the feedback form, and the edit link for signed-in editors. The class templates (full/<class>.tpl)
    include this one and give $before_body / $after_body for their own parts (the tutorial summary, the extension
-   facts box). The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl),
+   facts box), $body_html for a body they render themselves (the help topics, full/exp_doc_help_topic.tpl) and
+   children=false() to leave out the child cards. The front page (content.ini [NodeSettings] RootNode) draws the landing instead (parts/doc_landing.tpl),
    a product's container its landing page (parts/doc_product_landing.tpl, fetch exp_doc/product_landing), and the
    Confluence container its spaces (parts/doc_platform_landing.tpl). *}
 {def $doc_product_landing = fetch( 'exp_doc', 'product_landing', hash( 'node_id', $node.node_id ) )}
@@ -22,7 +23,9 @@
     </header>
 {if is_set( $before_body )}{$before_body}{/if}
     <div class="exp-doc-body" data-exp-doc-body>
-{if and( is_set( $doc_map.body ), $doc_map.body.has_content )}
+{if is_set( $body_html )}
+{$body_html}
+{elseif and( is_set( $doc_map.body ), $doc_map.body.has_content )}
 {attribute_view_gui attribute=$doc_map.body}
 {elseif and( is_set( $doc_map.answer ), $doc_map.answer.has_content )}
 {attribute_view_gui attribute=$doc_map.answer}
@@ -35,7 +38,7 @@
 {if is_set( $after_body )}{$after_body}{/if}
 {* the Contributors folder lists every contributor below its own text *}
 {if eq( $node.object.remote_id, ezini( 'RecentSettings', 'ContributorFolderRemoteID', 'exp_doc.ini' ) )}{include uri='design:parts/doc_contributor_list.tpl'}{/if}
-    {include uri='design:parts/doc_children.tpl' node=$node}
+    {if or( is_set( $children )|not, $children )}{include uri='design:parts/doc_children.tpl' node=$node}{/if}
     {include uri='design:parts/doc_contributors.tpl' node=$node}
     {include uri='design:parts/doc_historical_comments.tpl' node=$node}
     {include uri='design:parts/doc_page_comments.tpl' node=$node}
