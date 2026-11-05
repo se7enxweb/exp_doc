@@ -105,6 +105,12 @@
         min-width: 0;
         overflow-wrap: anywhere;
     }
+    /* a wide table of the page text scrolls inside its own box instead of widening the page */
+    div.template-design table.renderedtable {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
 }
 /* a frame inside the page body (.template-design): without the static lists' bullet image and indent, which the help
    center's lists (cards of links) do not have */
