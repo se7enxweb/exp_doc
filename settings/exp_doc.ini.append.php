@@ -75,6 +75,15 @@ TocDepth=2
 # The class of the historical comments of the old site under a page (parts/doc_comments.tpl in Classic,
 # parts/doc_historical_comments.tpl in Modern; replies are their children, in the order of their priority)
 CommentClass=comment_historical
+# The pages that draw the static site's empty comments block ("Comments", "There are no comments.", "New comment")
+# when they have no comments (parts/doc_comments.tpl): the classes, and the starts of their static source paths (the
+# manuals' pages had it, the version landings, FAQ, tutorials, extensions and Confluence pages did not)
+EmptyCommentsClasses[]
+EmptyCommentsClasses[]=exp_doc_page
+EmptyCommentsClasses[]=exp_doc_section
+EmptyCommentsPrefixes[]
+EmptyCommentsPrefixes[]=Exponential/
+EmptyCommentsPrefixes[]=doc_hidden/Exponential/
 # Classes never listed in the menus
 MenuHideClasses[]
 MenuHideClasses[]=exp_doc_image

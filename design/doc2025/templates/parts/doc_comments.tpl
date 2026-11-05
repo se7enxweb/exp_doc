@@ -7,8 +7,11 @@
    - a Confluence page: div#comments-section with "<n> Comment(s)" and ol#page-comments, each comment in its own
      markup from the source (original_html).
    One listed exception: the comments are collapsed by default (the owner): <details class="exp-doc-comments-toggle">
-   with the summary "Comments (<n> historical)" around the static block; the check leaves the wrapper out. Nothing is
-   drawn when the page has no comments, as the static site did. *}
+   with the summary "Comments (<n> historical)" around the static block; the check leaves the wrapper out.
+   A page without comments: the manual pages of the static site (a class in [ClassicSettings] EmptyCommentsClasses[]
+   whose static source starts with one of EmptyCommentsPrefixes[]) drew the empty block, "Comments", "There are no
+   comments." and the "New comment" button, so they draw it too; every other page draws nothing, as the static site
+   did. *}
 {def $doc_hist = fetch( 'exp_doc', 'historical_comments', hash( 'node_id', $node.node_id ) )
      $doc_comment_class = $doc_hist.class
      $doc_comments = $doc_hist.comments}
@@ -62,5 +65,31 @@
 {/if}
 </details>
 {undef $doc_total $doc_confluence}
+{elseif and( ezini( 'ClassicSettings', 'EmptyCommentsClasses', 'exp_doc.ini' )|contains( $node.class_identifier ), is_set( $node.data_map.source_path ) )}
+{def $doc_source = $node.data_map.source_path.content|trim
+     $doc_empty = false()}
+{foreach ezini( 'ClassicSettings', 'EmptyCommentsPrefixes', 'exp_doc.ini' ) as $doc_prefix}
+    {if $doc_source|begins_with( $doc_prefix )}{set $doc_empty = true()}{break}{/if}
+{/foreach}
+{if $doc_empty}
+<div id="comments" class="class-comment">
+<div class="content-view-children">
+
+<h1>{'Comments'|i18n( 'design/doc2025' )}</h1>
+<p>{'There are no comments.'|i18n( 'design/doc2025' )}</p>
+<div class="toolbar">
+
+<form method="post" action={'content/action'|ezurl}>
+<input class="button" type="submit" name="NewButton" value="{'New comment'|i18n( 'design/doc2025' )}" />
+<input type="hidden" name="NodeID" value="{$node.node_id}" />
+<input type="hidden" name="RedirectURIAfterPublish" value="{$node.url_alias|wash}" />
+<input type="hidden" name="ClassIdentifier" value="{$doc_comment_class|wash}" />
+</form>
+</div>
+
+</div>
+</div>
+{/if}
+{undef $doc_source $doc_empty}
 {/if}
 {undef $doc_hist $doc_comment_class $doc_comments}

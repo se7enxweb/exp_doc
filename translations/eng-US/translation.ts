@@ -896,6 +896,10 @@
         <translation>New comment</translation>
     </message>
     <message>
+        <source>There are no comments.</source>
+        <translation>There are no comments.</translation>
+    </message>
+    <message>
         <source>Contributors:</source>
         <translation>Contributors:</translation>
     </message>
