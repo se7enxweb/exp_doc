@@ -10,7 +10,8 @@
    - the products of [ModernSettings] FrontProductList[] (exp_doc/landing_products.tpl, fetch exp_doc/products: the
      containers once they exist, else [ModernSettings] ProductList[]) and the link to the page of every product,
      the same cards with the Supported badge where it applies;
-   - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences;
+   - right below the products, "Start where you are" (exp_doc/landing_start.tpl), the line to the help center's audiences, then
+     "Grow from user to developer" (exp_doc/landing_grow.tpl, the help center's own band);
    - the recently changed and added pages, comments, ratings, the help's recent Markdown changes and the latest
      commits of Exponential (exp_doc/help_recent_changes, help_commits), the Share forums' newest posts
      (exp_doc/forum_activity), and the most read pages (the kernel's view
@@ -88,7 +89,7 @@
    [ModernSettings] FrontProductList[], with the link to the page of every product (ProductsPath); the same faded
    cards as the manuals *}
 {include uri='design:exp_doc/landing_products.tpl' only=ezini( 'ModernSettings', 'FrontProductList', 'exp_doc.ini' ) more=true()}
-{if fetch( 'exp_doc', 'help_report' )}{include uri='design:exp_doc/landing_start.tpl' framed=true()}{/if}
+{if fetch( 'exp_doc', 'help_report' )}{include uri='design:exp_doc/landing_start.tpl' framed=true()}{include uri='design:exp_doc/landing_grow.tpl'}{/if}
 
 <div class="exp-doc-landing-columns">
 {cache-block keys=array( fetch( 'user', 'current_user' ).role_id_list|implode( ',' ), fetch( 'user', 'current_user' ).limited_assignment_value_list|implode( ',' ) ) expiry=7200}{def $doc_recent = fetch( 'content', 'tree', hash( 'parent_node_id', $node.node_id,

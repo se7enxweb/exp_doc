@@ -85,6 +85,7 @@
 .exp-doc-landing-org.a4-help-frame,
 .exp-doc-landing-choose.a4-help-frame,
 .exp-doc-landing-start.a4-help-frame,
+.exp-doc-landing-grow.a4-help-frame,
 .exp-doc-landing-about.a4-help-frame {
     max-width: none;
     margin: var(--a4-space-6) 0;
