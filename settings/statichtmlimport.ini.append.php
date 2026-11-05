@@ -226,6 +226,8 @@ TopParentRules[]=display/;
 TopParentRules[]=basic/;
 TopParentRules[]=historical/;
 TopParentRules[]=License.html;
+# the credits page belongs to Exponential, not the hidden mirror (the owner's decision of 2026-11-04)
+TopParentRules[]=doc_hidden/Standing-on-the-shoulders-of-giants.html;Exponential.html
 TopParentRules[]=doc_hidden/**;historical/hidden-mirror/
 TopParentRules[]=doc_inside_admin.html;historical/hidden-mirror/
 TopParentRules[]=doc_inside_admin/**;historical/hidden-mirror/
@@ -316,6 +318,9 @@ HiddenPaths[]=doc_hidden.html
 HiddenPaths[]=doc_hidden/**
 HiddenPaths[]=doc_inside_admin.html
 HiddenPaths[]=doc_inside_admin/**
+# the credits page is shown below Exponential (TopParentRules[] above)
+VisiblePaths[]
+VisiblePaths[]=doc_hidden/Standing-on-the-shoulders-of-giants.html
 
 # The two page layouts of the export: the documentation site's own (.area-docmain-normal) and Confluence's
 # (#main-content); the first selector that matches wins
