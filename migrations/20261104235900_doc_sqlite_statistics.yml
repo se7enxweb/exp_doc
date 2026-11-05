@@ -1,0 +1,16 @@
+---
+# description: SQLite only: the statistics of the tables and indexes (ANALYZE, kept in sqlite_stat1), so the query planner picks the index of an object's version and language when the attributes of a list of objects are loaded (every content tree fetch with data maps), not the index of the language alone, which reads most of ezcontentobject_attribute; analysis_limit keeps the run to a few seconds on a large database. Other engines keep their own statistics and skip the step. After a large import the same two statements can be run again; they change no data.
+steps:
+  - type: sql
+    comment: the planner's statistics; without them SQLite guesses every index equally selective
+    sqlite: |
+      PRAGMA analysis_limit = 1000;
+      ANALYZE;
+    missing: skip
+down:
+  - type: sql
+    comment: back to no statistics (the planner's guesses); sqlite_stat1 itself cannot be dropped, only emptied
+    sqlite: |
+      DELETE FROM sqlite_stat1;
+      ANALYZE sqlite_master;
+    missing: skip
