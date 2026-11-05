@@ -565,7 +565,6 @@ Links[]
 Links[]=install;https://github.com/se7enxweb/cjw-exponential-platform-nexus/blob/master/doc/INSTALL.md
 Links[]=starter;#exp-doc-starter-cjw_nexus_starter
 Links[]=source;https://github.com/se7enxweb/cjw-exponential-platform-nexus
-Links[]=package;https://packagist.org/packages/se7enxweb/cjw-exponential-media-site-data
 Links[]=website;https://platform.exponential.earth
 
 # CJW Multisite: the site package cjw_multisite (se7enxweb/cjw_multisite-ezpackage) of Exponential 6.0.15 with the design
@@ -585,7 +584,6 @@ Links[]
 Links[]=install;exphelp/viewer/help/site-packages/cjw-multisite/README.md
 Links[]=demo;https://site.cjw.demo.exponential.earth
 Links[]=source;https://github.com/se7enxweb/cjw_multisite-ezpackage
-Links[]=package;https://packagist.org/packages/se7enxweb/cjw_themes_jumper
 
 # "Starter distributions" (exp_doc/landing_starters.tpl): ready-to-run installations, one GitHub repository each, on the
 # page of every product after the products and on the page of every choice after "Choosing a product" (with the "How to
