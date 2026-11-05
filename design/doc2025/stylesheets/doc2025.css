@@ -98,11 +98,13 @@
    frame padding: one column that may shrink, and long words break inside the card instead of widening the page */
 @media (max-width: 600px) {
     .exp-doc-landing-org .a4-help-about-links,
-    .exp-doc-landing-about .a4-help-about-links {
+    .exp-doc-landing-about .a4-help-about-links,
+    .exp-doc-landing-grow .a4-help-grow-steps {
         grid-template-columns: minmax(0, 1fr);
     }
     .exp-doc-landing-org .a4-help-about-text,
-    .exp-doc-landing-about .a4-help-about-text {
+    .exp-doc-landing-about .a4-help-about-text,
+    .exp-doc-landing-grow .a4-help-grow-step {
         min-width: 0;
         overflow-wrap: anywhere;
     }
