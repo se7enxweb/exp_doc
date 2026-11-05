@@ -3,16 +3,18 @@
    exphelp/dashboard.tpl and by the front page of the documentation site (fetch( 'exp_doc', 'help_report' )). Styles:
    stylesheets/exphelp.css (.a4-help-report*); no inline CSS or script.
 
-   Variables: report (the address of the reporting guide, '/exphelp/report' when not given), trackers (key => key,
+   Variables: report (the address of the reporting guide, '/exphelp/report' when not given), security (the address of
+   its security section, the guide's #security when not given), trackers (key => key,
    label, description, url, new_issue_url; optional). *}
 {def $help_rctx = 'kernel/exphelp'
-     $help_rurl = cond( and( is_set( $report ), $report ), $report, '/exphelp/report' )}
+     $help_rurl = cond( and( is_set( $report ), $report ), $report, '/exphelp/report' )
+     $help_rsec = cond( and( is_set( $security ), $security ), $security, concat( $help_rurl, '#security' ) )}
 <section class="a4-help-report" aria-labelledby="help-dash-report">
     <span class="a4-help-tile" aria-hidden="true"><span class="a4-icon a4-bi-exclamation-diamond"></span></span>
     <div>
         <h2 id="help-dash-report">{'Found an error?'|i18n( $help_rctx )}</h2>
         <p>{'Tell us on GitHub: the guide shows which tracker fits, what to include and the system details to copy, without any secrets.'|i18n( $help_rctx )}</p>
-        <a class="a4-help-report-security" href={concat( $help_rurl, '#security' )|ezurl}><span class="a4-icon a4-bi-shield-lock" aria-hidden="true"></span>{'A security issue? Report it privately, not in a public issue.'|i18n( $help_rctx )}</a>
+        <a class="a4-help-report-security" href={$help_rsec|ezurl}><span class="a4-icon a4-bi-shield-lock" aria-hidden="true"></span>{'A security issue? Report it privately, not in a public issue.'|i18n( $help_rctx )}</a>
     </div>
     <div class="a4-help-report-actions">
         <a class="a4-btn a4-btn-primary" href={$help_rurl|ezurl}><span class="a4-icon a4-bi-list-task" aria-hidden="true"></span>{'How to report an error'|i18n( $help_rctx )}</a>
@@ -25,4 +27,4 @@
         {/if}
     </div>
 </section>
-{undef $help_rctx $help_rurl}
+{undef $help_rctx $help_rurl $help_rsec}

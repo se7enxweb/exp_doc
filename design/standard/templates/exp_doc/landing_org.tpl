@@ -11,7 +11,7 @@
 {def $doc_org_support = fetch( 'exp_doc', 'help_support' )}
 <div class="a4-help-frame exp-doc-landing-org">
     {include uri='design:exphelp/parts/dashboard_about.tpl' landing_on=ezini( 'LandingSettings', 'Enabled', 'exphelp.ini' )|eq( 'enabled' )}
-    {include uri='design:exphelp/parts/dashboard_report.tpl' report=$doc_org_report.url trackers=$doc_org_report.trackers}
+    {include uri='design:exphelp/parts/dashboard_report.tpl' report=$doc_org_report.url security=$doc_org_report.security trackers=$doc_org_report.trackers}
     {include uri='design:exphelp/parts/license_dashboard.tpl'}
     {if $doc_org_support}{include uri='design:exphelp/parts/support.tpl' support=$doc_org_support}{/if}
     <section class="a4-card exp-doc-landing-org-start" aria-labelledby="exp-doc-org-start">

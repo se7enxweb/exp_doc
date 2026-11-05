@@ -358,9 +358,12 @@ class expDocFetch
 
     /**
      * The help center's "Found an error?" block for the front page, as the help dashboard gets it: the address of the
-     * reporting guide and the issue trackers of exphelp.ini (expHelpIssueReport), their labels translated.
+     * reporting guide and the issue trackers of exphelp.ini (expHelpIssueReport), their labels translated. Where
+     * site.ini [SiteAccessRules] switches exphelp/report off (the documentation site does: it tells about the
+     * installation), the guide is the help page exphelp.ini [ContextHelp] Map[exphelp/report] names, and the security
+     * link its "Security problems" section, so no link of the block ends on an error page.
      *
-     * @return array array( 'result' => array( 'url' => string, 'trackers' => array )|false )
+     * @return array array( 'result' => array( 'url', 'security', 'trackers' )|false )
      */
     public static function helpReport()
     {
@@ -368,8 +371,19 @@ class expDocFetch
         {
             return array( 'result' => false );
         }
+        $url = expHelp::url( 'report' );
+        $security = $url . '#security';
+        $access = eZModule::accessAllowed( new eZURI( 'exphelp/report' ) );
+        if ( !$access['result'] )
+        {
+            $map = (array)expHelp::setting( 'ContextHelp', 'Map', array() );
+            $page = isset( $map['exphelp/report'] ) ? (string)$map['exphelp/report'] : '';
+            $url = $page !== '' ? expHelp::url( 'viewer', $page ) : expHelp::url( 'dashboard' );
+            $security = $page !== '' ? $url . '#security-problems' : $url;
+        }
         $report = new expHelpIssueReport();
-        return array( 'result' => array( 'url' => expHelp::url( 'report' ),
+        return array( 'result' => array( 'url' => $url,
+                                         'security' => $security,
                                          'trackers' => expHelp::translatedNames( $report->trackers(), array( 'label', 'description' ) ) ) );
     }
 
