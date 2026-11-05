@@ -928,7 +928,8 @@ class expDocFetch
      * - crumbs: the pages from the space's home page down to the page's parent (the static breadcrumbs after the
      *   space), each array( 'node', 'title' );
      * - tree: the space's page tree (the home page's children as the menus list them, the branch down to the page
-     *   opened), each item array( 'node', 'title', 'current', 'open', 'has_children', 'children' );
+     *   opened, without the old versions of pages), each item array( 'node', 'title', 'current', 'open', 'has_children',
+     *   'children' );
      * - attachments: the images and files the page relates to (exp_doc.ini [ConfluenceFrame] AttachmentClasses[]).
      * False for every other node. Computed once per request and node.
      *
@@ -1098,6 +1099,14 @@ class expDocFetch
         foreach ( $children['result'] as $child )
         {
             $childID = (int)$child->attribute( 'node_id' );
+            // an old version of a page (its history_of names the page; "API (31430767) (4)") is not a page of the
+            // tree, as Confluence's tree had only the current pages; the version on show still is
+            $childMap = $child->attribute( 'data_map' );
+            if ( $childID !== $currentID && !in_array( $childID, $path, true ) && isset( $childMap['history_of'] )
+                 && (int)$childMap['history_of']->attribute( 'data_int' ) > 0 )
+            {
+                continue;
+            }
             $open = in_array( $childID, $path, true ) && $childID !== $currentID;
             $items[] = array( 'node' => $child, 'title' => self::confluenceTitle( $child->attribute( 'name' ) ),
                               'current' => $childID === $currentID, 'open' => $open,

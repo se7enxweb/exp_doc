@@ -350,7 +350,9 @@ body.exp-doc-confluence {
 /* The page panel */
 #main.aui-page-panel {
     position: relative;
+    min-height: 560px;
     padding: 20px;
+    box-sizing: border-box;
     background: var(--exp-doc-cf-paper);
 }
 #main-header {
