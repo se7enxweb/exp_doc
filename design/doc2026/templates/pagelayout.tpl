@@ -40,9 +40,14 @@
 {$module_result.content}
 </main>
 {else}
-{def $doc_module_menu = and( is_set( $module_result.left_menu ), $module_result.left_menu )}
-<div class="exp-doc-frame{if $doc_module_menu} is-module{/if}" data-exp-resizable="doc-modern-tree" data-min="208" data-max="480">
+{def $doc_module_menu = and( is_set( $module_result.left_menu ), $module_result.left_menu )
+     $doc_help_side = and( $doc_module_menu, $doc_module_menu|contains( 'exphelp' ) )
+     $doc_side_open = eq( ezpreference( 'exp_doc_help_sidebar' ), 'expanded' )}
+{* the help center's menu can be hidden to a slim rail (design:exp_doc/side_toggle.tpl): hidden unless the reader's
+   preference says expanded, drawn so from the start *}
+<div class="exp-doc-frame{if $doc_module_menu} is-module{/if}{if $doc_help_side} has-side-toggle{if not( $doc_side_open )} is-side-collapsed{/if}{/if}" data-exp-resizable="doc-modern-tree" data-min="208" data-max="480"{if $doc_help_side} data-exp-side-pref="{ezpreference( 'exp_doc_help_sidebar' )|wash}"{/if}>
     {if and( is_set( $module_result.left_menu ), $module_result.left_menu )}
+    {if $doc_help_side}{include uri='design:exp_doc/side_toggle.tpl' side_id='exp-doc-tree' expanded=$doc_side_open}{/if}
     <div id="exp-doc-tree" class="exp-doc-tree exp-doc-tree-module" data-exp-doc-tree data-exp-side>{include uri=$module_result.left_menu uri_string=$site.uri.original_uri}</div>
     {else}
     {include uri='design:parts/doc_tree.tpl' node=$doc_node path=$doc_path}
@@ -61,7 +66,7 @@
     </aside>
     {/if}
 </div>
-{undef $doc_module_menu}
+{undef $doc_module_menu $doc_help_side $doc_side_open}
 {/if}
 
 {include uri='design:parts/doc_footer.tpl'}

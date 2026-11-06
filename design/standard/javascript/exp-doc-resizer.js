@@ -40,6 +40,89 @@ function write(key, value) {
     }
 }
 
+/*
+ * The show/hide control of the help center's menu (design:exp_doc/side_toggle.tpl): the page layout draws the state
+ * from the preference exp_doc_help_sidebar (.is-side-collapsed on the grid; no value is collapsed). A click turns it
+ * at once and stores it with user/preferences/set_and_exit (the kernel keeps an anonymous reader's preference in the
+ * session). Only when that cannot be saved (no fetch, a network error, an error status or a redirect) this browser
+ * keeps the choice in localStorage, which is read while the server has no preference yet.
+ */
+const COLLAPSE_PREFIX = 'exp-doc-side-state:';
+
+function setupCollapse(grid, key, form) {
+    const button = form.querySelector('button');
+    const value = form.querySelector('[data-exp-side-value]');
+    const label = form.querySelector('[data-exp-side-label]');
+    if (!button || !value) {
+        return;
+    }
+    const show = button.getAttribute('data-label-show') || '';
+    const hide = button.getAttribute('data-label-hide') || '';
+    const storageKey = COLLAPSE_PREFIX + key;
+
+    const render = (expanded) => {
+        grid.classList.toggle('is-side-collapsed', !expanded);
+        button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        button.title = expanded ? hide : show;
+        if (label) {
+            label.textContent = expanded ? hide : show;
+        }
+        value.value = expanded ? 'collapsed' : 'expanded';
+    };
+    const local = (state) => {
+        try {
+            if (state === undefined) {
+                return window.localStorage.getItem(storageKey);
+            }
+            if (state === null) {
+                window.localStorage.removeItem(storageKey);
+            } else {
+                window.localStorage.setItem(storageKey, state);
+            }
+        } catch (e) {
+            // storage blocked: the choice lasts for this page
+        }
+        return null;
+    };
+
+    // the server has no preference yet: a choice this browser had to keep itself
+    if (!grid.getAttribute('data-exp-side-pref')) {
+        const kept = local();
+        if (kept === 'expanded' || kept === 'collapsed') {
+            render(kept === 'expanded');
+        }
+    } else {
+        local(null);
+    }
+
+    form.addEventListener('submit', (event) => {
+        if (!window.fetch || !window.URLSearchParams) {
+            return; // the plain form post stores it and comes back to this page
+        }
+        event.preventDefault();
+        const expanded = button.getAttribute('aria-expanded') !== 'true';
+        const state = expanded ? 'expanded' : 'collapsed';
+        render(expanded);
+        const body = new URLSearchParams(new FormData(form));
+        body.set('Value', state);
+        body.delete('RedirectURIAfterSet');
+        const failed = () => local(state);
+        window.fetch(form.action.replace(/\/+$/, '') + '/set_and_exit', {
+            method: 'POST',
+            credentials: 'same-origin',
+            keepalive: true,
+            body
+        }).then((response) => {
+            if (!response.ok || response.redirected) {
+                failed();
+            } else {
+                local(null);
+                grid.setAttribute('data-exp-side-pref', state);
+            }
+        }, failed);
+    });
+}
+
 function setup(grid) {
     const key = grid.getAttribute('data-exp-resizable') || 'side';
     const side = grid.querySelector('[data-exp-side]');
@@ -111,6 +194,11 @@ function setup(grid) {
             event.preventDefault();
             apply(width, true);
         });
+    }
+
+    const form = grid.querySelector('[data-exp-side-form]');
+    if (form && side) {
+        setupCollapse(grid, key, form);
     }
 
     if (toggle && side) {

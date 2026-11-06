@@ -95,11 +95,14 @@
 {include uri='design:parts/doc_disclaimer.tpl'}
 
 <div id="page-width5">
-{def $doc_help = and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )}
+{def $doc_help = and( is_set( $module_result.left_menu ), $module_result.left_menu|contains( 'exphelp' ) )
+     $doc_side_open = eq( ezpreference( 'exp_doc_help_sidebar' ), 'expanded' )}
 {* the help center's pages (not part of the static site): the menu is a resizable column, a drawer on a small screen
-   (javascript/exp-doc-resizer.js, shared with Modern) *}
-<div id="main" class="float-break{if $doc_help} exp-doc-resizable{/if}"{if $doc_help} data-exp-resizable="doc-classic-help" data-min="224" data-max="480"{/if}>
-{if $doc_help}<button type="button" class="button exp-doc-drawer-toggle" data-exp-drawer-toggle aria-controls="exp-doc-side" aria-expanded="false" hidden>{'Menu'|i18n( 'design/exp_doc' )}</button>{/if}
+   (javascript/exp-doc-resizer.js, shared with Modern), and can be hidden to a slim rail (design:exp_doc/side_toggle.tpl):
+   hidden unless the reader's preference says expanded, drawn so from the start *}
+<div id="main" class="float-break{if $doc_help} exp-doc-resizable has-side-toggle{if not( $doc_side_open )} is-side-collapsed{/if}{/if}"{if $doc_help} data-exp-resizable="doc-classic-help" data-min="224" data-max="480" data-exp-side-pref="{ezpreference( 'exp_doc_help_sidebar' )|wash}"{/if}>
+{if $doc_help}<button type="button" class="button exp-doc-drawer-toggle" data-exp-drawer-toggle aria-controls="exp-doc-side" aria-expanded="false" hidden>{'Menu'|i18n( 'design/exp_doc' )}</button>
+{include uri='design:exp_doc/side_toggle.tpl' side_id='exp-doc-side' expanded=$doc_side_open}{/if}
 
 {include uri='design:parts/doc_menu.tpl' path=$doc_path node_id=$doc_node_id resizable=$doc_help}
 <div class="area-docmain-normal">
@@ -127,4 +130,4 @@
 {include uri='design:exp_doc/analytics.tpl'}
 </body>
 </html>
-{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_is_product $doc_help $doc_confluence}
+{undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_is_product $doc_help $doc_side_open $doc_confluence}

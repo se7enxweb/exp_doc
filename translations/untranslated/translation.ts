@@ -536,6 +536,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Show menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide menu</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Send the comment</source>
         <translation type="unfinished"></translation>
     </message>

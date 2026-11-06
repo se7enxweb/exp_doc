@@ -82,3 +82,110 @@
     display: none;
   }
 }
+
+/* The show/hide control of the help center's menu (design:exp_doc/side_toggle.tpl, javascript/exp-doc-resizer.js).
+   From 900px: expanded, the button stands on the menu's inner edge, centered in the gap, and stays in view while the
+   page scrolls; collapsed (.is-side-collapsed, drawn by the page layout from the preference), the menu and its handle
+   are gone and its column is a slim rail with the button and its grip. Below 900px the rail is hidden: the menu is
+   the drawer there. Both designs place the rail, the menu and the content explicitly, so the rail never takes the
+   content's cell. */
+.exp-doc-side-rail {
+  display: none;
+}
+.exp-doc-side-form {
+  display: contents;
+}
+.exp-doc-side-toggle {
+  position: sticky;
+  top: var(--a4-space-4);
+  z-index: var(--a4-z-sticky);
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  gap: var(--a4-space-1);
+  min-width: var(--a4-control-h);
+  min-height: var(--a4-control-h);
+  margin: 0;
+  margin-inline-start: calc(var(--a4-control-h) / -2);
+  padding: var(--a4-space-1);
+  border: 1px solid var(--a4-line);
+  border-radius: var(--a4-radius-s);
+  background: var(--a4-card);
+  box-shadow: var(--a4-shadow-s);
+  color: var(--a4-muted);
+  font: inherit;
+  font-size: var(--a4-text-m);
+  line-height: var(--a4-leading-none);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.exp-doc-side-toggle:hover {
+  background: var(--a4-soft);
+  color: var(--a4-accent-text);
+}
+.exp-doc-side-toggle:focus-visible {
+  outline: 3px solid var(--a4-ring);
+  outline-offset: 2px;
+  color: var(--a4-accent-text);
+}
+.exp-doc-side-grip {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .has-side-toggle > .exp-doc-side-rail {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: end;
+    align-self: stretch;
+    width: 0;
+    margin-inline-end: calc(var(--a4-space-5) / -2);
+  }
+  .has-side-toggle > [data-exp-side] {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  #main.exp-doc-resizable.has-side-toggle > .area-docmain-normal {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  /* collapsed: the rail is the column */
+  #main.exp-doc-resizable.is-side-collapsed,
+  .exp-doc-frame.is-module.is-side-collapsed {
+    grid-template-columns: calc(var(--a4-control-h) + var(--a4-space-2)) minmax(0, 1fr);
+  }
+  .is-side-collapsed > [data-exp-side],
+  .is-side-collapsed > .exp-doc-resizer {
+    display: none;
+  }
+  .is-side-collapsed > .exp-doc-side-rail {
+    justify-self: stretch;
+    width: auto;
+    margin: 0;
+    padding-inline-end: var(--a4-space-2);
+    border-inline-end: 1px solid var(--a4-line);
+    box-sizing: border-box;
+  }
+  .is-side-collapsed .exp-doc-side-toggle {
+    margin: 0;
+    padding: var(--a4-space-2) var(--a4-space-1);
+  }
+  .is-side-collapsed .exp-doc-side-grip {
+    display: inline-block;
+  }
+}
+
+/* Modern: below its sticky header, as the page tree */
+.exp-doc-frame .exp-doc-side-toggle {
+  top: calc(var(--a4-control-h) + var(--a4-space-6));
+}
+
+@media print {
+  .exp-doc-side-rail {
+    display: none;
+  }
+}

@@ -536,6 +536,14 @@
         <translation>Resize the page tree</translation>
     </message>
     <message>
+        <source>Show menu</source>
+        <translation>Show menu</translation>
+    </message>
+    <message>
+        <source>Hide menu</source>
+        <translation>Hide menu</translation>
+    </message>
+    <message>
         <source>Send the comment</source>
         <translation>Send the comment</translation>
     </message>

@@ -536,6 +536,14 @@
         <translation>Breite des Seitenbaums ändern</translation>
     </message>
     <message>
+        <source>Show menu</source>
+        <translation>Menü einblenden</translation>
+    </message>
+    <message>
+        <source>Hide menu</source>
+        <translation>Menü ausblenden</translation>
+    </message>
+    <message>
         <source>Send the comment</source>
         <translation>Kommentar senden</translation>
     </message>
