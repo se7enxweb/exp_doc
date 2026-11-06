@@ -70,6 +70,7 @@
 {include uri='design:parts/expwt_page_toolbar.tpl'}
 <script type="application/json" id="exp-doc-strings">{json_encode( hash( 'copy', 'Copy'|i18n( 'design/exp_doc' ), 'copied', 'Copied'|i18n( 'design/exp_doc' ), 'copyLink', 'Copy the link to this heading'|i18n( 'design/exp_doc' ), ) )}</script>
 {ezscript_load( array( 'doc2026.js' ) )}
+{'false'|bc_ga_urchin()}
 <script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>
 <script type="module" src={'javascript/exp-doc-rating.js'|ezdesign}></script>
 </body>

@@ -123,6 +123,7 @@
 {include uri='design:parts/expwt_page_toolbar.tpl'}
 {if $doc_help}<script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>{/if}
 <script type="module" src={'javascript/exp-doc-rating.js'|ezdesign}></script>
+{'false'|bc_ga_urchin()}
 </body>
 </html>
 {undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_is_product $doc_help $doc_confluence}
