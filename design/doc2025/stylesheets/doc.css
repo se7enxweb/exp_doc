@@ -450,6 +450,16 @@ div.object-center p
     color: #404040;
 }
 
+/* an embedded image is shown at its original size, but never wider than the page (a 1440px screenshot on a phone) */
+div.embed img,
+div.object-left img,
+div.object-center img,
+div.object-right img
+{
+    max-width: 100%;
+    height: auto;
+}
+
 div.output
 {
     margin: 0.75em 0 0.75em 0;
