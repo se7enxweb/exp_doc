@@ -198,14 +198,18 @@
 .a4-help-brand {
   display: flex;
   justify-self: center;
+  max-width: 100%;
   margin: 0;
   color: var(--a4-ink);
 }
+/* never wider than the page on a phone: the width shrinks and the height follows the proportion */
 .a4-help-brand .a4-logo-full,
 .a4-help-brand-img {
   display: block;
   width: calc(var(--a4-space-6) * 380 / 60);
-  height: var(--a4-space-6);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 380 / 60;
 }
 .a4-help-brand .a4-logo-mark { display: none; }
 .a4-help-hero h1 {
