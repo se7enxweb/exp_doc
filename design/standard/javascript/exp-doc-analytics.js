@@ -11,9 +11,9 @@
  *   denied, as only statistics was asked for), then the tag (src) and the extension's gtag configuration (setup,
  *   with data-bc-ga-id and data-bc-ga-udn as the template operator bc_ga_urchin() printed them) are added;
  * - on every later page the stored choice (cookie ng-cc-consent) loads it again, once the banner has read it;
- * - withdrawn (the footer's "Cookie settings"): Consent Mode is set to denied at once, so the tag already in the
- *   page stops storing and sending identifiers, Google's cookies (_ga, _ga_<id>, _gid, _gat*) are deleted, and the
- *   next page loads nothing from Google.
+ * - withdrawn (the footer's "Cookie settings"): Consent Mode is set to denied and Google's opt-out switch is set
+ *   for the container and its measurement ids at once, so the tag already in the page sends nothing more, Google's
+ *   cookies (_ga, _ga_<id>, _gid, _gat*) are deleted, and the next page loads nothing from Google.
  */
 (function () {
     'use strict';
@@ -33,6 +33,7 @@
 
     var loaded = false;
     var granted = false;
+    var disabled = [];
 
     function gtag() {
         window.dataLayer.push(arguments);
@@ -50,7 +51,9 @@
 
     function load() {
         granted = true;
-        window['ga-disable-' + config.id] = false;
+        disabled.splice(0).forEach(function (id) {
+            window['ga-disable-' + id] = false;
+        });
         if (loaded) {
             gtag('consent', 'update', { analytics_storage: 'granted' });
             return;
@@ -92,11 +95,27 @@
         });
     }
 
+    /* The container's Google Analytics measurement ids, read off its cookies (_ga_<X> belongs to G-<X>): Google's
+       own opt-out switch (window['ga-disable-<id>']) stops every further hit of the page, also the cookieless
+       pings Consent Mode would still send when the page is left. */
+    function measurementIds() {
+        return (document.cookie || '').split(';').map(function (part) {
+            return part.replace(/^\s+/, '').split('=')[0];
+        }).filter(function (name) {
+            return /^_ga_[A-Za-z0-9]+$/.test(name);
+        }).map(function (name) {
+            return 'G-' + name.substring(4);
+        });
+    }
+
     function withdraw() {
         granted = false;
         if (loaded) {
             gtag('consent', 'update', { analytics_storage: 'denied' });
-            window['ga-disable-' + config.id] = true;
+            [config.id].concat(measurementIds()).forEach(function (id) {
+                window['ga-disable-' + id] = true;
+                disabled.push(id);
+            });
         }
         dropGoogleCookies();
     }
