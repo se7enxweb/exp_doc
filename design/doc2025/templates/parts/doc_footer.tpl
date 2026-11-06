@@ -36,7 +36,7 @@
         <div id="footer-connect-copyright" class="grid_8 alpha omega">
             {'Copyright © 1998 - %year %maker (except where otherwise noted). All rights reserved.'|i18n( 'design/doc2025', '', hash( '%year', currentdate()|datetime( 'custom', '%Y' ), '%maker', '%foundation and %company'|i18n( 'design/exp_doc', '', hash( '%foundation', '<a href="https://foundation.exponential.earth">Exponential Foundation</a>', '%company', '<a href="https://se7enx.com">7x</a>' ) ) ) )}
             <br/>
-            {'License for this Website Content:'|i18n( 'design/doc2025' )} <a href={cond( $doc_license, $doc_license.url_alias, '/' )|ezurl}>{'GNU Free Documentation License v1.2+'|i18n( 'design/doc2025' )}</a>
+            {'License for this Website Content:'|i18n( 'design/doc2025' )} <a href={cond( $doc_license, $doc_license.url_alias, '/' )|ezurl}>{'GNU Free Documentation License v1.3 or later'|i18n( 'design/doc2025' )}</a>
             <br/><br/>
             {'Powered by %cms and the groundbreaking %exponential %community.'|i18n( 'design/doc2025', '', hash(
                 '%cms', concat( '<a href="https://se7enx.com/exponential" title="Exponential CMS">', 'The Exponential CMS'|i18n( 'design/doc2025' ), '</a>' ),

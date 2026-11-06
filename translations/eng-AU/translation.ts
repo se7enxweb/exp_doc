@@ -635,8 +635,8 @@
         <translation>Licence for this Website Content:</translation>
     </message>
     <message>
-        <source>GNU Free Documentation License v1.2+</source>
-        <translation>GNU Free Documentation Licence v1.2+</translation>
+        <source>GNU Free Documentation License v1.3 or later</source>
+        <translation>GNU Free Documentation Licence v1.3 or later</translation>
     </message>
     <message>
         <source>Powered by %cms and the groundbreaking %exponential %community.</source>

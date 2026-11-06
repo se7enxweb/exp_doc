@@ -1592,7 +1592,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>GNU Free Documentation License v1.2+</source>
+        <source>GNU Free Documentation License v1.3 or later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
