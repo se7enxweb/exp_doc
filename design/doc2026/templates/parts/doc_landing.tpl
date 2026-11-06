@@ -14,8 +14,8 @@
      "Grow from user to developer" (exp_doc/landing_grow.tpl, the help center's own band);
    - the recently changed and added pages, comments, ratings, the help's recent Markdown changes and the latest
      commits of Exponential (exp_doc/help_recent_changes, help_commits), the Share forums' newest posts
-     (exp_doc/forum_activity), and the most read pages (the kernel's view
-     counts, no third-party tracker), each in an .a4-help-support box; the recently changed and added pages are one
+     (exp_doc/forum_activity), and the most read pages (the kernel's own view
+     counts from the server, not Google Analytics), each in an .a4-help-support box; the recently changed and added pages are one
      cache-block per role set (the lists only show what the reader may read): a query over every page each, they
      change only with a publish, which expires it (as do two hours);
    - last, below all of that, the help center's bottom blocks (exp_doc/landing_org.tpl: found an error, free

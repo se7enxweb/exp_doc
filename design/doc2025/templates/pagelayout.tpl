@@ -4,7 +4,8 @@
      replaced by the packed stylesheets; the old menu and search scripts are not needed, see javascript/README);
    - the header switches (parts/switches.tpl): Classic / Modern and the content languages;
    - the viewport meta and the cookie banner;
-   - no third-party trackers (the static gtag snippet is left out).
+   - the static gtag snippet's place is taken by exp_doc/analytics.tpl: the website statistics tag of
+     bcwebsitestatistics.ini, loaded only after the reader accepts statistics in the cookie banner.
    Everything inside #page matches the static markup after whitespace normalization (the diff suite checks it). *}
 {* the path from the site's root (content.ini [NodeSettings] RootNode) down; the folders above it (the multisite
    tree's "Websites") are not part of this site *}
@@ -123,7 +124,7 @@
 {include uri='design:parts/expwt_page_toolbar.tpl'}
 {if $doc_help}<script type="module" src={'javascript/exp-doc-resizer.js'|ezdesign}></script>{/if}
 <script type="module" src={'javascript/exp-doc-rating.js'|ezdesign}></script>
-{'false'|bc_ga_urchin()}
+{include uri='design:exp_doc/analytics.tpl'}
 </body>
 </html>
 {undef $doc_root_id $doc_path $doc_seen $doc_node_id $doc_is_front $doc_is_product $doc_help $doc_confluence}

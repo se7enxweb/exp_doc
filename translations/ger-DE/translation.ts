@@ -404,6 +404,18 @@
         <translation>Diese Dokumentation speichert nur, was sie zum Arbeiten braucht: ein Sitzungs-Cookie, wenn Sie sich anmelden, das gewählte Design (Classic oder Modern) und Ihre Sprache. Ihre Wahl bleibt 6 Monate in einem Cookie gespeichert. Einzelheiten finden Sie in unseren %cookie_link.</translation>
     </message>
     <message>
+        <source>This documentation stores what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.</source>
+        <translation>Diese Dokumentation speichert, was sie zum Arbeiten braucht: ein Sitzungs-Cookie, wenn Sie sich anmelden, das gewählte Design (Classic oder Modern) und Ihre Sprache. Nur wenn Sie zustimmen, nutzt sie außerdem Google Analytics (über den Google Tag Manager), um Besuche zu zählen; bis dahin wird nichts von Google geladen. Ihre Wahl bleibt 6 Monate in einem Cookie gespeichert, und Sie können sie jederzeit unter „Cookie-Einstellungen“ am Fuß jeder Seite ändern. Einzelheiten finden Sie in unseren %cookie_link.</translation>
+    </message>
+    <message>
+        <source>Statistics (Google Analytics)</source>
+        <translation>Statistik (Google Analytics)</translation>
+    </message>
+    <message>
+        <source>Google Analytics, loaded through Google Tag Manager (%id), counts visits and shows us which pages are read: the pages you open, the page you came from, your browser, device and screen size, and your approximate location derived from your IP address. Google processes the data for us and may transfer it to the USA. It sets the cookies _ga and _ga_* for up to 2 years. Off until you turn it on; when you turn it off again, Google is no longer loaded and these cookies are deleted.</source>
+        <translation>Google Analytics, geladen über den Google Tag Manager (%id), zählt Besuche und zeigt uns, welche Seiten gelesen werden: die Seiten, die Sie öffnen, die Seite, von der Sie kommen, Ihren Browser, Ihr Gerät und Ihre Bildschirmgröße sowie Ihren ungefähren Standort, abgeleitet aus Ihrer IP-Adresse. Google verarbeitet die Daten für uns und kann sie in die USA übermitteln. Es setzt die Cookies _ga und _ga_* für bis zu 2 Jahre. Aus, bis Sie es einschalten; schalten Sie es wieder aus, wird Google nicht mehr geladen und diese Cookies werden gelöscht.</translation>
+    </message>
+    <message>
         <source>The session cookie for signing in and for forms, the cookies that keep your design and language, and the cookie that keeps this choice. They stay on because the website needs them; you can delete them in your browser settings at any time.</source>
         <translation>Das Sitzungs-Cookie für die Anmeldung und für Formulare, die Cookies für Ihr Design und Ihre Sprache und das Cookie, das diese Wahl speichert. Sie bleiben aktiv, weil die Website sie braucht; Sie können sie jederzeit in den Einstellungen Ihres Browsers löschen.</translation>
     </message>

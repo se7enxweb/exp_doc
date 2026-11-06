@@ -404,6 +404,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>This documentation stores what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Statistics (Google Analytics)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Google Analytics, loaded through Google Tag Manager (%id), counts visits and shows us which pages are read: the pages you open, the page you came from, your browser, device and screen size, and your approximate location derived from your IP address. Google processes the data for us and may transfer it to the USA. It sets the cookies _ga and _ga_* for up to 2 years. Off until you turn it on; when you turn it off again, Google is no longer loaded and these cookies are deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The session cookie for signing in and for forms, the cookies that keep your design and language, and the cookie that keeps this choice. They stay on because the website needs them; you can delete them in your browser settings at any time.</source>
         <translation type="unfinished"></translation>
     </message>
