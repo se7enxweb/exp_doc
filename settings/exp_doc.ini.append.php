@@ -123,7 +123,8 @@ SocialClasses[]
 SocialClasses[YouTube]=youtube
 
 # The quick links of the Classic front and top-level pages (parts/doc_menu_quicklinks.tpl), as on the static site.
-# Links[]=<static file the page was imported from>;<label>
+# Links[]=<static file the page was imported from>;<label>, or Links[]=path:<url alias>;<label> for a page the site has
+# of its own (/choose, /products)
 [ClassicQuicklinks]
 # The groups of the front page
 Groups[]
@@ -139,6 +140,8 @@ PageGroups[]=extensions
 [Quicklinks_exponential_page]
 Heading=Exponential
 Links[]
+Links[]=path:choose;Choosing a product
+Links[]=path:products;Products
 Links[]=Exponential/Technical-manual/6.html;Technical manual (v6.x)
 Links[]=Exponential/User-manual/6.html;User manual (v6.x)
 Links[]=Exponential/Upgrading.html;Upgrading manual
@@ -150,6 +153,8 @@ Links[]=FAQ.html;FAQ
 [Quicklinks_exponential]
 Heading=Exponential
 Links[]
+Links[]=path:choose;Choosing a product
+Links[]=path:products;Products
 Links[]=Exponential/Technical-manual/6.x/Reference.html;TM : Reference (v6.x)
 Links[]=Exponential/Technical-manual/6.html;Technical manual (v6.x)
 Links[]=Exponential/User-manual/6.html;User manual (v6.x)
