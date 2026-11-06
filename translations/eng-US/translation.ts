@@ -400,12 +400,12 @@
         <translation>(start page)</translation>
     </message>
     <message>
-        <source>This documentation stores only what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Your choice is kept in a cookie for 6 months. Details are in our %cookie_link.</source>
-        <translation>This documentation stores only what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Your choice is kept in a cookie for 6 months. Details are in our %cookie_link.</translation>
+        <source>This documentation stores only what it needs to work: a session cookie when you sign in or keep a setting such as the help menu shown or hidden, the design you chose (Classic or Modern) and your language. Your choice is kept in a cookie for 6 months. Details are in our %cookie_link.</source>
+        <translation>This documentation stores only what it needs to work: a session cookie when you sign in or keep a setting such as the help menu shown or hidden, the design you chose (Classic or Modern) and your language. Your choice is kept in a cookie for 6 months. Details are in our %cookie_link.</translation>
     </message>
     <message>
-        <source>This documentation stores what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.</source>
-        <translation>This documentation stores what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.</translation>
+        <source>This documentation stores what it needs to work: a session cookie when you sign in or keep a setting such as the help menu shown or hidden, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.</source>
+        <translation>This documentation stores what it needs to work: a session cookie when you sign in or keep a setting such as the help menu shown or hidden, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.</translation>
     </message>
     <message>
         <source>Statistics (Google Analytics)</source>

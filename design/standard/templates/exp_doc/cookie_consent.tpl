@@ -33,9 +33,9 @@
         </div>
         <div class="exp-cc-body">
             {if $cc_ga}
-            <p id="exp-cc-text" class="exp-cc-text">{'This documentation stores what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.'|i18n( 'design/exp_doc', '', hash( '%cookie_link', $cc_policy_link ) )}</p>
+            <p id="exp-cc-text" class="exp-cc-text">{'This documentation stores what it needs to work: a session cookie when you sign in or keep a setting such as the help menu shown or hidden, the design you chose (Classic or Modern) and your language. Only if you agree, it also uses Google Analytics (through Google Tag Manager) to count visits; until then nothing is loaded from Google. Your choice is kept in a cookie for 6 months, and you can change it at any time under "Cookie settings" at the foot of every page. Details are in our %cookie_link.'|i18n( 'design/exp_doc', '', hash( '%cookie_link', $cc_policy_link ) )}</p>
             {else}
-            <p id="exp-cc-text" class="exp-cc-text">{'This documentation stores only what it needs to work: a session cookie when you sign in, the design you chose (Classic or Modern) and your language. Your choice is kept in a cookie for 6 months. Details are in our %cookie_link.'|i18n( 'design/exp_doc', '', hash( '%cookie_link', $cc_policy_link ) )}</p>
+            <p id="exp-cc-text" class="exp-cc-text">{'This documentation stores only what it needs to work: a session cookie when you sign in or keep a setting such as the help menu shown or hidden, the design you chose (Classic or Modern) and your language. Your choice is kept in a cookie for 6 months. Details are in our %cookie_link.'|i18n( 'design/exp_doc', '', hash( '%cookie_link', $cc_policy_link ) )}</p>
             {/if}
             <div class="exp-cc-actions">
                 <button type="button" class="btn btn-primary exp-cc-btn" data-exp-cc-action="reject">{'Reject all'|i18n( 'design/media/cookieconsent' )}</button>
