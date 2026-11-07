@@ -466,6 +466,19 @@ span.node-name-normal
     overflow-wrap: anywhere;
 }
 
+/* code blocks and tables wider than a phone scroll inside their own box instead of widening the page */
+div.attribute-body pre
+{
+    max-width: 100%;
+}
+
+div.attribute-body table
+{
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 /* a long path or setting name in running text wraps on a phone instead of widening the page; code blocks scroll */
 :not(pre) > code,
 div.attribute-body p,
