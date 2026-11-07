@@ -400,6 +400,13 @@ body.exp-doc {
 .exp-doc-body pre .line {
     display: block;
 }
+/* a long path or setting name in running text wraps on a phone instead of widening the page; code blocks scroll */
+.exp-doc-body :not(pre) > code,
+.exp-doc-body p,
+.exp-doc-body li,
+.exp-doc-body td {
+    overflow-wrap: anywhere;
+}
 .exp-doc-copy {
     position: absolute;
     top: var(--a4-space-2);

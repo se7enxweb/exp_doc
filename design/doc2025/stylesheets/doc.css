@@ -466,6 +466,15 @@ span.node-name-normal
     overflow-wrap: anywhere;
 }
 
+/* a long path or setting name in running text wraps on a phone instead of widening the page; code blocks scroll */
+:not(pre) > code,
+div.attribute-body p,
+div.attribute-body li,
+div.attribute-body td
+{
+    overflow-wrap: anywhere;
+}
+
 div.output
 {
     margin: 0.75em 0 0.75em 0;
