@@ -442,6 +442,10 @@ body.exp-doc {
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
     gap: var(--a4-space-3);
 }
+/* a card never widens its column: a summary without spaces (a row of ####) wraps instead of scrolling the page */
+.exp-doc-cards > li {
+    min-width: 0;
+}
 .exp-doc-card {
     display: grid;
     gap: var(--a4-space-1) var(--a4-space-2);
@@ -461,6 +465,7 @@ body.exp-doc {
 .exp-doc-card-text {
     color: var(--a4-muted);
     font-size: var(--a4-text-s);
+    overflow-wrap: anywhere;
 }
 
 /* feedback and edit */
