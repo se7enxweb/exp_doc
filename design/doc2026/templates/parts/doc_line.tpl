@@ -5,7 +5,7 @@
 {if and( is_set( $doc_map.metadata ), is_set( $doc_map.metadata.content.description ) )}{set $doc_summary = $doc_map.metadata.content.description}{/if}
 {* a help topic or manual: its short description (its body is Markdown, see full/exp_doc_help_topic.tpl) *}
 {if and( eq( $doc_summary, '' ), is_set( $doc_map.shortdesc ) )}{set $doc_summary = $doc_map.shortdesc.content}{/if}
-{if and( eq( $doc_summary, '' ), is_set( $doc_map.body ), is_set( $doc_map.shortdesc )|not )}{set $doc_summary = $doc_map.body.content.output.output_text|striptags|shorten( 160 )}{/if}
+{if and( eq( $doc_summary, '' ), is_set( $doc_map.body ), is_set( $doc_map.shortdesc )|not )}{set $doc_summary = $doc_map.body.content.output.output_text|explode( '<' )|implode( ' <' )|strip_tags|html_entity_decode|trim|shorten( 160 )}{/if}
 <a class="a4-card exp-doc-card" href={$node.url_alias|ezurl}>
     <span class="exp-doc-card-name">{$node.name|wash}</span>
     {if and( is_set( $doc_map.rating ), $doc_map.rating.content.rating_count )}<span class="exp-doc-card-rating">{include uri='design:exp_doc/rating_stars.tpl' rating=$doc_map.rating.content}</span>{/if}

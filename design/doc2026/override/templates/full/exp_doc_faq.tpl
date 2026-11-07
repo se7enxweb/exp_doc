@@ -12,7 +12,7 @@
         <div class="exp-doc-faq-answer">{attribute_view_gui attribute=$doc_q.data_map.answer}</div>
     </details>
     {set $doc_entities = $doc_entities|append( hash( '@type', 'Question', 'name', $doc_q.data_map.question.content,
-                                                     'acceptedAnswer', hash( '@type', 'Answer', 'text', $doc_q.data_map.answer.content.output.output_text|striptags|trim ) ) )}
+                                                     'acceptedAnswer', hash( '@type', 'Answer', 'text', $doc_q.data_map.answer.content.output.output_text|explode( '<' )|implode( ' <' )|strip_tags|html_entity_decode|trim ) ) )}
     {/foreach}
 </section>
 <script type="application/ld+json">{json_encode( hash( '@context', 'https://schema.org', '@type', 'FAQPage', 'mainEntity', $doc_entities ) )}</script>{/if}{/set-block}
