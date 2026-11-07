@@ -466,26 +466,51 @@ span.node-name-normal
     overflow-wrap: anywhere;
 }
 
-/* code blocks and tables wider than a phone scroll inside their own box instead of widening the page */
-div.attribute-body pre
-{
-    max-width: 100%;
-}
-
-div.attribute-body table
-{
-    display: block;
-    max-width: 100%;
-    overflow-x: auto;
-}
-
-/* a long path or setting name in running text wraps on a phone instead of widening the page; code blocks scroll */
-:not(pre) > code,
-div.attribute-body p,
-div.attribute-body li,
-div.attribute-body td
+/* a long path or setting name in inline code wraps instead of widening the page */
+:not(pre) > code
 {
     overflow-wrap: anywhere;
+}
+
+/* Phone width. The page body is div.area-docmain-normal (pagelayout.tpl), floated next to the side menu, so on a
+   phone it is only about 230px wide. Its boxes stay inside the screen, but long code lines and unbreakable words
+   overflow them visibly and widen the page. Code blocks and content tables scroll inside their own box, words in
+   running text wrap. Scoped to the page body and to table.renderedtable only, so the layout tables of #main are
+   never touched, and to small screens, so the desktop look does not change. */
+@media (max-width: 800px)
+{
+    div.area-docmain-normal pre
+    {
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    /* the code template nests pre.wordwrap inside pre.exp-doc-pre: only the outer box scrolls */
+    div.area-docmain-normal pre pre
+    {
+        overflow-x: visible;
+    }
+
+    div.area-docmain-normal table.renderedtable
+    {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    div.area-docmain-normal h1,
+    div.area-docmain-normal h2,
+    div.area-docmain-normal h3,
+    div.area-docmain-normal h4,
+    div.area-docmain-normal p,
+    div.area-docmain-normal li,
+    div.area-docmain-normal dt,
+    div.area-docmain-normal dd,
+    div.area-docmain-normal table.renderedtable td,
+    div.area-docmain-normal table.renderedtable th
+    {
+        overflow-wrap: anywhere;
+    }
 }
 
 div.output
