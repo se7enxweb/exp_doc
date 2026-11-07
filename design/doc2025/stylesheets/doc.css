@@ -460,6 +460,12 @@ div.object-right img
     height: auto;
 }
 
+/* a long page title in the side menu wraps instead of pushing the page wider than a phone screen */
+span.node-name-normal
+{
+    overflow-wrap: anywhere;
+}
+
 div.output
 {
     margin: 0.75em 0 0.75em 0;
