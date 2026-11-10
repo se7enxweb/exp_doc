@@ -10,7 +10,17 @@
      $doc_here = cond( and( is_set( $module_result.node_id ), $module_result.node_id ),
                        fetch( 'content', 'node', hash( 'node_id', $module_result.node_id ) ).url_alias,
                        $site.uri.original_uri )
-     $doc_languages = language_switcher( $doc_here )}
+     $doc_here_parts = array()
+     $doc_skip = false()}
+{* a page that is not a node keeps its own address, which may carry (design)/<name> already: drop that pair, or each
+   switch would add one more (crawlers followed them into /(design)/doc/(design)/doc2025/... without end) *}
+{foreach $doc_here|explode( '/' ) as $doc_part}
+    {if $doc_skip}{set $doc_skip = false()}
+    {elseif eq( $doc_part, concat( '(', $doc_switch.parameter, ')' ) )}{set $doc_skip = true()}
+    {else}{set $doc_here_parts = $doc_here_parts|append( $doc_part )}{/if}
+{/foreach}
+{set $doc_here = $doc_here_parts|implode( '/' )}
+{def $doc_languages = language_switcher( $doc_here )}
 <div id="exp-doc-switches" class="exp-doc-switches">
     {* a reader who chose the help's language (/(lang)/<key>) keeps it *}
     <a class="exp-doc-helplink" href={concat( 'exphelp/dashboard', cond( fetch( 'exphelp', 'reading_key' ), concat( '/(lang)/', fetch( 'exphelp', 'reading_key' ) ), '' ) )|ezurl}>{'Help center'|i18n( 'design/exp_doc' )}</a>
@@ -18,7 +28,7 @@
     <nav class="exp-doc-switch exp-doc-switch-design" aria-label="{'Design'|i18n( 'design/exp_doc' )}">
         <ul>
 {foreach $doc_switch.designs as $doc_design}
-            <li><a href={concat( $doc_here, '/(', $doc_switch.parameter, ')/', $doc_design.name )|ezurl}{if $doc_design.current} aria-current="true" class="current"{/if}>{$doc_design.label|i18n( 'design/exp_doc' )|wash}</a></li>
+            <li><a rel="nofollow" href={concat( $doc_here, '/(', $doc_switch.parameter, ')/', $doc_design.name )|ezurl}{if $doc_design.current} aria-current="true" class="current"{/if}>{$doc_design.label|i18n( 'design/exp_doc' )|wash}</a></li>
 {/foreach}
         </ul>
     </nav>
@@ -33,4 +43,4 @@
     </nav>
 {/if}
 </div>
-{undef $doc_switch $doc_here $doc_languages}
+{undef $doc_switch $doc_here $doc_here_parts $doc_skip $doc_languages}
