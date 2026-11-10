@@ -13,9 +13,9 @@
     <title>{$title|wash}</title>
 {else}
     {def $doc_title_parts = array()}
-    {foreach $path|reverse as $item}
+    {if is_array( $path )}{foreach $path|reverse as $item}
         {set $doc_title_parts = $doc_title_parts|append( $item.text )}
-    {/foreach}
+    {/foreach}{/if}
     <title>{$doc_title_parts|implode( ' / ' )|wash} - {ezini( 'ClassicSettings', 'TitleSuffix', 'exp_doc.ini' )|wash}</title>
     {undef $doc_title_parts}
 {/if}
@@ -30,11 +30,14 @@
     <link rel="Search" href={'/content/advancedsearch'|ezurl} title="Search Doc" />
 {include uri='design:exp_doc/head_feed.tpl' only_own=true()}
 {* the icons, theme colors, Open Graph and Twitter tags: the official logo's brand images (a decided exception) *}
+{* A module result without a path (a layout that does not exist, an error page) keeps the front page's title *}
 {def $doc_manual = false()
+     $doc_head_title = ezini( 'ClassicSettings', 'FrontTitle', 'exp_doc.ini' )
      $doc_page = cond( and( is_set( $module_result.node_id ), $module_result.node_id ), fetch( 'content', 'node', hash( 'node_id', $module_result.node_id ) ), false() )}
 {if $doc_page}{foreach $doc_page.path as $doc_up}{if eq( $doc_up.class_identifier, 'exp_doc_manual' )}{set $doc_manual = $doc_up}{/if}{/foreach}{/if}
+{if $is_front|not}{if is_array( $path )}{if $path|count}{set $doc_head_title = $path|reverse|extract_left( 1 )[0].text}{/if}{/if}{/if}
 {include uri='design:exp_doc/head_brand.tpl' manual=$doc_manual
-         title=cond( $is_front, ezini( 'ClassicSettings', 'FrontTitle', 'exp_doc.ini' ), $path|reverse|extract_left( 1 )[0].text )
+         title=$doc_head_title
          description=ezini( 'ClassicSettings', 'FrontDescription', 'exp_doc.ini' )
          url=cond( $doc_page, $doc_page.url_alias|ezurl( 'no', 'full' ), '/'|ezurl( 'no', 'full' ) )}
-{undef $doc_manual $doc_page}
+{undef $doc_manual $doc_page $doc_head_title}

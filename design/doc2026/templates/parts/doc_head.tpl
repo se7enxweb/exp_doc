@@ -2,11 +2,13 @@
    attribute (the Meta category), the canonical address, and the brand part shared with Classic
    (design:exp_doc/head_brand.tpl: the icons, the theme colors, Open Graph and Twitter with the manual's image). *}
 {def $doc_site = ezini( 'ModernSettings', 'SiteName', 'exp_doc.ini' )
-     $doc_title = cond( $is_front, $doc_site, concat( $path|reverse|extract_left( 1 )[0].text, ' – ', $doc_site ) )
+     $doc_title = $doc_site
      $doc_meta = cond( and( $node, is_set( $node.data_map.metadata ) ), $node.data_map.metadata.content, false() )
      $doc_description = cond( and( $doc_meta, is_set( $doc_meta.description ), $doc_meta.description ), $doc_meta.description,
                               ezini( 'ModernSettings', 'SiteDescription', 'exp_doc.ini' ) )
      $doc_manual = false()}
+{* A module result without a path (a layout that does not exist, an error page) keeps the site name alone *}
+{if $is_front|not}{if is_array( $path )}{if $path|count}{set $doc_title = concat( $path|reverse|extract_left( 1 )[0].text, ' – ', $doc_site )}{/if}{/if}{/if}
 {if $node}{foreach $node.path as $doc_up}{if eq( $doc_up.class_identifier, 'exp_doc_manual' )}{set $doc_manual = $doc_up}{/if}{/foreach}{/if}
     <title>{$doc_title|wash}</title>
     <meta name="description" content="{$doc_description|wash}">
