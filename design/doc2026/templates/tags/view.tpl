@@ -62,7 +62,10 @@
                 <aside>
                     <section class="content-view-aside">
                         {if ezmodule( 'ezfind/search' )}
-                        {def $related_nodes = fetch( ezfind, search,
+                        {* the module's name in a variable: a literal fetch( ezfind, ... ) is resolved when the template is
+                           compiled, inside the if or not, and logs "no module found" each time it compiles *}
+                        {def $search_module = 'ezfind'}
+                        {def $related_nodes = fetch( $search_module, 'search',
                             hash(
                                 limit, 0,
                                 filter, concat( 'ezf_df_tag_ids:"', $tag.id, '"' ),
