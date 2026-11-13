@@ -1,6 +1,13 @@
 <?php /* #?ini charset="utf-8"?
 
 # The class icons of the documentation classes (Bootstrap Icons, the icon theme of admin4)
+# The class map names bootstrap-icons files: the documentation designs use that theme (the kernel's Theme, crystal,
+# has none of these names, and every class icon on the site logged "Missing icon file").
+[IconSettings]
+DesignTheme[doc]=bootstrap-icons
+DesignTheme[doc2025]=bootstrap-icons
+DesignTheme[doc2026]=bootstrap-icons
+
 [ClassIcons]
 ClassMap[exp_doc_page]=file-earmark-text.svg
 ClassMap[exp_doc_section]=folder.svg
